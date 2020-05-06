@@ -14,7 +14,7 @@ export interface Hole {
   fromGround?: number
 }
 
-export interface Wall {
+export interface IWall {
   start: string // id pointu
   end: string // id pointu
   thickness: number
@@ -23,32 +23,32 @@ export interface Wall {
   }
 }
 
-export interface Sensor {
+export interface ISensor {
   point: string // id pointu
   tag?: string
 }
 
-export interface RoomObject {
+export interface IRoomObject {
   shapePoints: string[] // id pointów
   height: number
   fromGround?: number
 }
 
-export interface Path {
+export interface IPath {
   tag?: string
   points: string[] // id pointów
 }
 
-export interface Room {
+export interface IRoom {
   walls: string[]
   tag?: string
 }
 
-export interface ProductionHall {
+export interface IProductionHall {
   points: Dictionary<Point>
-  walls: Dictionary<Wall>
-  sensors: Dictionary<Sensor>
-  objects: Dictionary<RoomObject>
-  path: Dictionary<Path>
-  rooms: Dictionary<Room>
+  walls: Dictionary<IWall>
+  sensors: Dictionary<ISensor>
+  objects: Dictionary<IRoomObject>
+  path: Dictionary<IPath>
+  rooms: Dictionary<IRoom>
 }

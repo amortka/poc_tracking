@@ -1,10 +1,11 @@
+import * as THREE from 'three'
 import React from 'react'
-import { Canvas as CanvasThree } from 'react-three-fiber'
 import { AmbientLight } from './components/AmbientLight'
 import { Camera } from './components/Camera'
-import { Scene } from './components/Scene'
+import { Canvas as CanvasThree } from 'react-three-fiber'
 import { Floor } from './components/Floor'
-import * as THREE from 'three'
+import { Scene } from './components/Scene'
+import { Wall } from './components/Wall'
 
 export const Canvas: React.FC = () => {
   THREE.Object3D.DefaultUp.set(0, 0, 1)
@@ -17,6 +18,8 @@ export const Canvas: React.FC = () => {
       <axesHelper args={[10]} />
       <Scene>
         <Floor />
+
+        <Wall />
       </Scene>
     </CanvasThree>
   )
