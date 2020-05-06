@@ -1,10 +1,13 @@
 import React from 'react'
-import { IProductionHall } from '../../../models/main.model'
+import { useObservable } from 'rxjs-hooks'
+import { visualisationQuery } from '../../../store/visualisation/visualisation.query'
+import { Wall } from '../components/Wall'
 
-interface WallsProps {
-  config: IProductionHall
-}
+interface WallsProps {}
 
 export const Walls: React.FC = () => {
-  return <></>
+  const config = useObservable(() => visualisationQuery.state$)
+
+  console.log({ config })
+  return <Wall />
 }
