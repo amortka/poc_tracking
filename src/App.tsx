@@ -1,12 +1,16 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import './App.css'
 import { Canvas } from './modules/three/Canvas'
+import { store } from './store/store.config'
 
 function App() {
   return (
-    <main className={'MainContainer'}>
-      <Canvas />
-    </main>
+    <Provider store={store}>
+      <main className={'MainContainer'}>
+        <Canvas />
+      </main>
+    </Provider>
   )
 }
 

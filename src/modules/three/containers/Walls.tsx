@@ -1,10 +1,11 @@
 import React from 'react'
-import { IProductionHall } from '../../../models/main.model'
+import { Visualisation } from '../../../models/main.model'
+import { Wall } from '../components/Wall'
 
 interface WallsProps {
-  config: IProductionHall
+  config: Visualisation
 }
 
 export const Walls: React.FC = () => {
-  return <></>
+  return <Wall />
 }

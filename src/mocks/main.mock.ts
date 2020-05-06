@@ -1,8 +1,8 @@
-import { IProductionHall } from '../models/main.model'
+import { Visualisation } from '../models/main.model'
 
-export const productionHallMock: IProductionHall = {
+export const productionHallMock: Visualisation = {
   objects: {},
-  path: {},
+  paths: {},
   points: {
     sm6nf67n: { x: 0, y: 0 },
     n2o9zu3r: { x: 13.48, y: 0 },
@@ -101,7 +101,7 @@ export const productionHallMock: IProductionHall = {
   },
   rooms: {
     kn3gtnyz: {
-      walls: ['kn3gtnyz'],
+      walls: ['ezzgwvd4', 'sw4py33t', 'jucu1uf9', 'ka9v61v5', 'e22c2u9q', 'jgxi5xqi'],
       tag: 'Main Room',
     },
   },
