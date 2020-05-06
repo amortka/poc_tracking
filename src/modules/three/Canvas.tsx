@@ -5,7 +5,7 @@ import { Camera } from './components/Camera'
 import { Canvas as CanvasThree } from 'react-three-fiber'
 import { Floor } from './components/Floor'
 import { Scene } from './components/Scene'
-import { Wall } from './components/Wall'
+import { Walls } from './containers/Walls'
 
 export const Canvas: React.FC = () => {
   THREE.Object3D.DefaultUp.set(0, 0, 1)
@@ -18,8 +18,7 @@ export const Canvas: React.FC = () => {
       <axesHelper args={[10]} />
       <Scene>
         <Floor />
-
-        <Wall />
+        <Walls />
       </Scene>
     </CanvasThree>
   )
