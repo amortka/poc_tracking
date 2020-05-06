@@ -44,7 +44,7 @@ export interface IRoom {
   tag?: string
 }
 
-export interface IProductionHall {
+export interface Visualisation {
   points: Dictionary<Point>
   walls: Dictionary<IWall>
   sensors: Dictionary<ISensor>

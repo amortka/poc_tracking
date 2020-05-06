@@ -3,7 +3,7 @@ import { createSelector } from 'reselect'
 
 export const visualisationSelectors = {
   config$: createSelector(
-    (state: AppState) => state.visualisation.config,
-    (config) => config
+    (state: AppState) => state.visualisation,
+    (visualisation) => visualisation
   ),
 }

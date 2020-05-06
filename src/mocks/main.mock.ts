@@ -1,6 +1,6 @@
-import { IProductionHall } from '../models/main.model'
+import { Visualisation } from '../models/main.model'
 
-export const productionHallMock: IProductionHall = {
+export const productionHallMock: Visualisation = {
   objects: {},
   path: {},
   points: {
