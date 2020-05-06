@@ -6,6 +6,7 @@ import { Canvas as CanvasThree } from 'react-three-fiber'
 import { Floor } from './components/Floor'
 import { Scene } from './components/Scene'
 import { Wall } from './components/Wall'
+import { useMst } from '../../store/Root'
 
 export const Canvas: React.FC = () => {
   THREE.Object3D.DefaultUp.set(0, 0, 1)
