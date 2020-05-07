@@ -27,8 +27,9 @@ export const Canvas: React.FC<CanvasProps> = ({ config }) => {
       <AmbientLight />
       <Camera />
       <axesHelper args={[10]} />
+      <Floor />
+
       <Scene>
-        <Floor />
         <Walls walls={walls} />
       </Scene>
     </CanvasThree>
