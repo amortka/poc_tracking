@@ -16,7 +16,7 @@ export const visualisationMock: IVisualisation = {
     ezzgwvd4: {
       start: 'sm6nf67n',
       end: 'n2o9zu3r',
-      thickness: 0.2,
+      thickness: 0.1,
       meta: {
         holes: {
           xygtl1oo: {
@@ -31,7 +31,7 @@ export const visualisationMock: IVisualisation = {
     sw4py33t: {
       start: 'n2o9zu3r',
       end: 'otov69hw',
-      thickness: 0.2,
+      thickness: 0.1,
       meta: {
         holes: {
           nv0glj1e: {
@@ -46,7 +46,7 @@ export const visualisationMock: IVisualisation = {
     jucu1uf9: {
       start: 'otov69hw',
       end: 'aeeuewak',
-      thickness: 0.2,
+      thickness: 0.1,
       meta: {
         holes: {
           pzr6vr6o: {
@@ -67,7 +67,7 @@ export const visualisationMock: IVisualisation = {
     ka9v61v5: {
       start: 'aeeuewak',
       end: 's5pyoioi',
-      thickness: 0.2,
+      thickness: 0.1,
       meta: {
         holes: {
           yu723a51: {
@@ -82,12 +82,12 @@ export const visualisationMock: IVisualisation = {
     e22c2u9q: {
       start: 's5pyoioi',
       end: 'bbgexc3r',
-      thickness: 0.2,
+      thickness: 0.1,
     },
     jgxi5xqi: {
       start: 'bbgexc3r',
       end: 'sm6nf67n',
-      thickness: 0.2,
+      thickness: 0.1,
       meta: {
         holes: {
           uotg7ieh: {

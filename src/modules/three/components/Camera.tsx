@@ -11,7 +11,7 @@ export const Camera: React.FC = () => {
   useEffect(() => {
     if (!camera) return
     setControls(new OrbitControls(camera, gl.domElement))
-    camera?.position.set(20, 80, 40)
+    camera?.position.set(4, 2, 10)
   }, [camera, gl.domElement])
 
   useEffect(() => {
