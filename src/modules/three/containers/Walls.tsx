@@ -1,10 +1,14 @@
-import React from 'react'
-import { IProductionHall } from '../../../models/main.model'
+import React, { useMemo } from 'react'
+import { useObservable } from 'rxjs-hooks'
+import { visualisationQuery } from '../../../store/visualisation/visualisation.query'
+import { Wall } from '../components/Wall'
 
-interface WallsProps {
-  config: IProductionHall
-}
+interface WallsProps {}
 
 export const Walls: React.FC = () => {
-  return <></>
+  const walls = useObservable(() => visualisationQuery.wallsWithPointsCoordinates$) || []
+
+  const renderWalls = useMemo(() => walls.map((w, i) => <Wall key={i} {...w} />), [walls])
+
+  return <React.Fragment>{renderWalls}</React.Fragment>
 }
