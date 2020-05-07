@@ -1,17 +1,17 @@
 import * as THREE from 'three'
 
 export class VectorUtils {
-  public static getNormalVectorToVector(v1: THREE.Vector2): THREE.Vector2 {
+  static getNormalVectorToVector(v1: THREE.Vector2): THREE.Vector2 {
     return v1.clone().rotateAround(new THREE.Vector2(0, 0), Math.PI / 2)
   }
 
-  public static getShapeFromVectors(vectors: THREE.Vector2[], thickness: number): THREE.Shape {
+  static getShapeFromVectors(vectors: THREE.Vector2[], thickness: number): THREE.Shape {
     const shape = new THREE.Shape()
 
     if (vectors.length <= 1) return shape
     const result: THREE.Vector2[] = [
-      ...this._getShapeFromVectors(vectors, thickness / 2),
-      ...(this._getShapeFromVectors(vectors.reverse(), thickness / 2) as THREE.Vector2[]),
+      ...this._getShapeFromVectors(vectors, thickness),
+      ...(this._getShapeFromVectors(vectors.reverse(), 0) as THREE.Vector2[]),
     ]
 
     result.forEach((v, i) => {
@@ -48,15 +48,15 @@ export class VectorUtils {
     return result
   }
 
-  public static getVectorFromPoints(p1: THREE.Vector2, p2: THREE.Vector2): THREE.Vector2 {
+  static getVectorFromPoints(p1: THREE.Vector2, p2: THREE.Vector2): THREE.Vector2 {
     return new THREE.Vector2(p2.x - p1.x, p2.y - p1.y)
   }
 
-  public static getLineFromTwoVectors([p1, p2]: [THREE.Vector2, THREE.Vector2]): THREE.Line3 {
+  static getLineFromTwoVectors([p1, p2]: [THREE.Vector2, THREE.Vector2]): THREE.Line3 {
     return new THREE.Line3(new THREE.Vector3(p1.x, p1.y, 0), new THREE.Vector3(p2.x, p2.y, 0))
   }
 
-  public static getIntersectionOffTwoLines(line1: THREE.Line3, line2: THREE.Line3): THREE.Vector3 | null {
+  static getIntersectionOffTwoLines(line1: THREE.Line3, line2: THREE.Line3): THREE.Vector3 | null {
     let intersection: THREE.Vector3 | null = null
     const A = line1.start
     const B = line1.end
@@ -86,7 +86,7 @@ export class VectorUtils {
     return intersection
   }
 
-  public static getVectorsMovedByThickness(
+  static getVectorsMovedByThickness(
     p1: THREE.Vector2,
     p2: THREE.Vector2,
     thickness: number
@@ -95,5 +95,13 @@ export class VectorUtils {
       .normalize()
       .multiplyScalar(thickness)
     return [p1.clone().add(moveVector), p2.clone().add(moveVector)]
+  }
+
+  static getVectorToPositionOnSegment(
+    start: THREE.Vector2,
+    end: THREE.Vector2,
+    distanceFromStart: number
+  ): THREE.Vector2 {
+    return end.clone().add(start.clone().negate()).normalize().multiplyScalar(distanceFromStart).add(start.clone())
   }
 }
