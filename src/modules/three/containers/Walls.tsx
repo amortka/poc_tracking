@@ -1,10 +1,13 @@
-import React from 'react'
-import { IProductionHall } from '../../../models/main.model'
+import React, { useMemo } from 'react'
+import { Wall } from '../components/Wall'
+import { IWallWithPointsCoordinates } from '../canvas.model'
 
 interface WallsProps {
-  config: IProductionHall
+  walls: IWallWithPointsCoordinates[]
 }
 
-export const Walls: React.FC = () => {
-  return <></>
+export const Walls: React.FC<WallsProps> = ({ walls }) => {
+  const renderWalls = useMemo(() => walls?.map((w, i) => <Wall key={i} {...w} />), [walls])
+
+  return <React.Fragment>{renderWalls}</React.Fragment>
 }

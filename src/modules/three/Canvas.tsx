@@ -1,14 +1,25 @@
 import * as THREE from 'three'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { AmbientLight } from './components/AmbientLight'
 import { Camera } from './components/Camera'
 import { Canvas as CanvasThree } from 'react-three-fiber'
 import { Floor } from './components/Floor'
 import { Scene } from './components/Scene'
-import { Wall } from './components/Wall'
+import { Walls } from './containers/Walls'
+import { IVisualisation } from '../../models/main.model'
+import { StateUtils } from './utils/state.utils'
 
-export const Canvas: React.FC = () => {
+interface CanvasProps {
+  config: IVisualisation
+}
+
+export const Canvas: React.FC<CanvasProps> = ({ config }) => {
   THREE.Object3D.DefaultUp.set(0, 0, 1)
+
+  const walls = useMemo(() => StateUtils.getWallsDataFromConfig(config.walls, config.points), [
+    config.walls,
+    config.points,
+  ])
 
   return (
     <CanvasThree
@@ -18,8 +29,7 @@ export const Canvas: React.FC = () => {
       <axesHelper args={[10]} />
       <Scene>
         <Floor />
-
-        <Wall />
+        <Walls walls={walls} />
       </Scene>
     </CanvasThree>
   )
