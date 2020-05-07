@@ -2,7 +2,7 @@ export interface Dictionary<T> {
   [id: string]: T
 }
 
-export interface Point {
+export interface IPoint {
   x: number
   y: number
 }
@@ -45,7 +45,7 @@ export interface IRoom {
 }
 
 export interface IVisualisation {
-  points: Dictionary<Point>
+  points: Dictionary<IPoint>
   walls: Dictionary<IWall>
   sensors: Dictionary<ISensor>
   objects: Dictionary<IRoomObject>

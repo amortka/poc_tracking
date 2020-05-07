@@ -44,7 +44,7 @@ export const visualisationMock: IVisualisation = {
       },
     },
     jucu1uf9: {
-      start: 'goisx17k',
+      start: 'otov69hw',
       end: 'aeeuewak',
       thickness: 0.2,
       meta: {
