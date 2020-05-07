@@ -4,10 +4,10 @@ import { AmbientLight } from './components/AmbientLight'
 import { Camera } from './components/Camera'
 import { Canvas as CanvasThree } from 'react-three-fiber'
 import { Floor } from './components/Floor'
-import { Scene } from './components/Scene'
-import { Walls } from './containers/Walls'
 import { IVisualisation } from '../../models/main.model'
+import { Scene } from './components/Scene'
 import { StateUtils } from './utils/state.utils'
+import { Walls } from './components/Walls/Walls'
 
 interface CanvasProps {
   config: IVisualisation
