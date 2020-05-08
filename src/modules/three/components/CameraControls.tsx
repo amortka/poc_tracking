@@ -16,7 +16,8 @@ export const CameraControls: React.FC = () => {
   const { camera, gl } = useThree()
 
   useEffect(() => {
-    camera.position.set(10, 10, 10)
+    ;(camera as THREE.OrthographicCamera).zoom = 30
+    camera.updateProjectionMatrix()
   }, [])
 
   useFrame(() => controls.update())
@@ -26,10 +27,11 @@ export const CameraControls: React.FC = () => {
       ref={ref}
       args={[camera, gl.domElement]}
       enableDamping
-      screenSpacePanning
       minDistance={10}
       maxDistance={100}
       maxPolarAngle={Math.PI / 2.2}
+      minZoom={20}
+      maxZoom={50}
       dampingFactor={0.05}
     />
   )
