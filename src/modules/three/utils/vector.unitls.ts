@@ -104,4 +104,8 @@ export class VectorUtils {
   ): THREE.Vector2 {
     return end.clone().add(start.clone().negate()).normalize().multiplyScalar(distanceFromStart).add(start.clone())
   }
+
+  /**
+   *  NEW
+   */
 }

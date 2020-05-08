@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import * as THREE from 'three'
 import { IPoint, IWall } from '../../../../models/main.model'
-import { VectorUtils } from './vector.unitls'
+import { VectorUtils } from '../../utils/vector.unitls'
 import { CsgUtils } from '../../utils/csg.utils'
 
 export interface WallProps extends Omit<IWall, 'start' | 'end'> {
@@ -10,7 +10,7 @@ export interface WallProps extends Omit<IWall, 'start' | 'end'> {
   height?: number
 }
 
-export const Wall: React.FC<WallProps> = React.memo(({ height = 2.7, start, end, thickness, meta }) => {
+export const WallNormal: React.FC<WallProps> = React.memo(({ height = 2.7, start, end, thickness, meta }) => {
   const wallStart = useMemo(() => new THREE.Vector2(start.x, start.y), [start.x, start.y])
   const wallEnd = useMemo(() => new THREE.Vector2(end.x, end.y), [end.x, end.y])
 
