@@ -28,7 +28,7 @@ export interface ISensor {
   tag?: string
 }
 
-export interface IRoomObject {
+export interface IObject {
   shapePoints: string[]
   height: number
   fromGround?: number
@@ -52,7 +52,7 @@ export interface IVisualisation {
   points: Dictionary<IPoint>
   walls: Dictionary<IWall>
   sensors: Dictionary<ISensor>
-  objects: Dictionary<IRoomObject>
+  objects: Dictionary<IObject>
   paths: Dictionary<IPath>
   rooms: Dictionary<IRoom>
 }

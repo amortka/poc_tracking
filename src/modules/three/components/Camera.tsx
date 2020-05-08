@@ -11,7 +11,7 @@ export const Camera: React.FC = () => {
   useEffect(() => {
     if (!camera) return
     setControls(new OrbitControls(camera, gl.domElement))
-    camera?.position.set(4, 2, 10)
+    camera?.position.set(0, 0, 6)
   }, [camera, gl.domElement])
 
   useEffect(() => {
@@ -42,7 +42,6 @@ export const Camera: React.FC = () => {
       ref={ref}
       aspect={size.width / size.height}
       fov={100}
-      position={[0, -10, 10]}
       onUpdate={(self) => self.updateProjectionMatrix()}
     />
   )
