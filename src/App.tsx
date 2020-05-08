@@ -6,6 +6,7 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core'
 import { green, yellow } from '@material-ui/core/colors'
 import { Menu } from './modules/ui-interface/components/Menu'
 import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar'
+import { VisualisationType } from './modules/three/canvas.model'
 
 const theme = createMuiTheme({
   palette: {
@@ -17,13 +18,13 @@ const theme = createMuiTheme({
 
 function App() {
   return (
-    <div className={'MainContainer'}>
+    <main className={'MainContainer'}>
       <ThemeProvider theme={theme}>
         <Menu />
-        <Canvas config={visualisationMock} />
+        <Canvas config={visualisationMock} type={VisualisationType.D2} />
         <InfoSidebar />
       </ThemeProvider>
-    </div>
+    </main>
   )
 }
 

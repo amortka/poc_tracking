@@ -7,7 +7,7 @@ export const visualisationMock: IVisualisation = {
       height: 1,
       fromGround: 0.1,
       meta: {
-        name: 'ecophon solo',
+        name: 'ecophon',
         description: '120x120',
       },
     },
@@ -16,7 +16,7 @@ export const visualisationMock: IVisualisation = {
       height: 1,
       fromGround: 0.1,
       meta: {
-        name: 'ecophon solo',
+        name: 'ecophon',
         description: '120x120',
       },
     },
@@ -25,8 +25,35 @@ export const visualisationMock: IVisualisation = {
       height: 1,
       fromGround: 0.1,
       meta: {
-        name: 'ecophon solo',
+        name: 'ecophon',
         description: '120x120',
+      },
+    },
+    mdwlizmv: {
+      shapePoints: ['h5jghnhl', 'o6c3mck5', 'lqximksu', 'janzaxld'],
+      height: 1,
+      fromGround: 0.1,
+      meta: {
+        name: 'ecophon',
+        description: '120x240',
+      },
+    },
+    kstmxjew: {
+      shapePoints: ['ophifqgn', 'pyaidnyh', 'vbowugex', 'qtvfipgx'],
+      height: 1,
+      fromGround: 0.1,
+      meta: {
+        name: 'ecophon',
+        description: '120x240',
+      },
+    },
+    dbrolfrq: {
+      shapePoints: ['aizmaxly', 'wlnnbsii', 'hddoeigl', 'dhwtktzq'],
+      height: 1,
+      fromGround: 0.1,
+      meta: {
+        name: 'ecophon',
+        description: '120x240',
       },
     },
   },
@@ -35,6 +62,8 @@ export const visualisationMock: IVisualisation = {
     sm6nf67n: { x: 0, y: 0 },
     n2o9zu3r: { x: 13.48, y: 0 },
     otov69hw: { x: 13.48, y: 6.75 },
+    zgppagoc: { x: 8.11, y: 6.75 },
+    qqsaokeb: { x: 8.11, y: 5.36 },
     aeeuewak: { x: 1.49, y: 5.36 },
     s5pyoioi: { x: 1.48, y: 1.3 },
     bbgexc3r: { x: 0, y: 1.28 },
@@ -50,6 +79,21 @@ export const visualisationMock: IVisualisation = {
     oaozugec: { x: 6.9, y: 0.72 },
     suvgtoul: { x: 6.88, y: 1.93 },
     sgvatdjc: { x: 5.69, y: 1.93 },
+
+    h5jghnhl: { x: 2.59, y: 2.15 },
+    o6c3mck5: { x: 3.8, y: 2.15 },
+    lqximksu: { x: 3.8, y: 4.55 },
+    janzaxld: { x: 2.59, y: 4.55 },
+
+    ophifqgn: { x: 4.13, y: 2.15 },
+    pyaidnyh: { x: 5.35, y: 2.14 },
+    vbowugex: { x: 5.34, y: 4.54 },
+    qtvfipgx: { x: 4.13, y: 4.54 },
+
+    aizmaxly: { x: 5.7, y: 2.14 },
+    wlnnbsii: { x: 6.91, y: 2.14 },
+    hddoeigl: { x: 6.91, y: 4.56 },
+    dhwtktzq: { x: 5.7, y: 4.56 },
   },
   sensors: {},
   walls: {
@@ -85,7 +129,7 @@ export const visualisationMock: IVisualisation = {
     },
     jucu1uf9: {
       start: 'otov69hw',
-      end: 'aeeuewak',
+      end: 'zgppagoc',
       thickness: 0.1,
       meta: {
         holes: {
@@ -103,6 +147,26 @@ export const visualisationMock: IVisualisation = {
           },
         },
       },
+    },
+    fytviige: {
+      start: 'zgppagoc',
+      end: 'qqsaokeb',
+      thickness: 0.1,
+      meta: {
+        holes: {
+          bbvuwocv: {
+            start: 0.1,
+            width: 0.8,
+            height: 2.2,
+            fromGround: 0,
+          },
+        },
+      },
+    },
+    vzelifcm: {
+      start: 'qqsaokeb',
+      end: 'aeeuewak',
+      thickness: 0.1,
     },
     ka9v61v5: {
       start: 'aeeuewak',
@@ -141,7 +205,7 @@ export const visualisationMock: IVisualisation = {
   },
   rooms: {
     kn3gtnyz: {
-      walls: ['ezzgwvd4', 'sw4py33t', 'jucu1uf9', 'ka9v61v5', 'e22c2u9q', 'jgxi5xqi'],
+      walls: ['ezzgwvd4', 'sw4py33t', 'jucu1uf9', 'fytviige', 'vzelifcm', 'ka9v61v5', 'e22c2u9q', 'jgxi5xqi'],
       tag: 'Main Room',
     },
   },

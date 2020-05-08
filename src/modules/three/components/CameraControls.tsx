@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
-import { ReactThreeFiber, extend, useThree, useFrame, useResource } from 'react-three-fiber'
+import { extend, ReactThreeFiber, useFrame, useResource, useThree } from 'react-three-fiber'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+
 extend({ OrbitControls })
 
 declare global {
