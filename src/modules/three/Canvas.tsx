@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import React, { useMemo } from 'react'
 import { AmbientLight } from './components/AmbientLight'
-import { Camera } from './components/Camera'
+import { CameraControls } from './components/CameraControls'
 import { Canvas as CanvasThree } from 'react-three-fiber'
 import { Floor } from './components/Floor'
 import { ICanvasTheme, VisualisationType } from './canvas.model'
@@ -23,10 +23,10 @@ export const Canvas: React.FC<CanvasProps> = ({ config, theme = {}, type }) => {
   const themeConfig = useMemo(() => CanvasUitls.getCanvasTheme(theme), [theme])
 
   return (
-    <CanvasThree style={{ background: themeConfig.canvasBackground }}>
+    <CanvasThree gl2 orthographic style={{ background: themeConfig.canvasBackground }}>
       <ThemeContext.Provider value={themeConfig}>
         <AmbientLight />
-        <Camera />
+        <CameraControls />
         <axesHelper args={[10]} />
         <Floor type={type} />
 
