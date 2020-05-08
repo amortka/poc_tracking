@@ -32,6 +32,10 @@ export interface IRoomObject {
   shapePoints: string[]
   height: number
   fromGround?: number
+  meta?: {
+    name?: string
+    description?: string
+  }
 }
 
 export interface IPath {

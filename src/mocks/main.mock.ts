@@ -1,7 +1,35 @@
 import { IVisualisation } from '../models/main.model'
 
 export const visualisationMock: IVisualisation = {
-  objects: {},
+  objects: {
+    bkgwbnwu: {
+      shapePoints: ['xfblfcmx', 'cmtulzxs', 'gjcuvwgu', 'uazocvnx'],
+      height: 1,
+      fromGround: 0.1,
+      meta: {
+        name: 'ecophon solo',
+        description: '120x120',
+      },
+    },
+    bkozixwk: {
+      shapePoints: ['unxmnnfr', 'zboxtrvu', 'cqmcsiay', 'nstmcsir'],
+      height: 1,
+      fromGround: 0.1,
+      meta: {
+        name: 'ecophon solo',
+        description: '120x120',
+      },
+    },
+    xgqewujr: {
+      shapePoints: ['qyipxgyf', 'oaozugec', 'suvgtoul', 'sgvatdjc'],
+      height: 1,
+      fromGround: 0.1,
+      meta: {
+        name: 'ecophon solo',
+        description: '120x120',
+      },
+    },
+  },
   paths: {},
   points: {
     sm6nf67n: { x: 0, y: 0 },
@@ -10,6 +38,18 @@ export const visualisationMock: IVisualisation = {
     aeeuewak: { x: 1.49, y: 5.36 },
     s5pyoioi: { x: 1.48, y: 1.3 },
     bbgexc3r: { x: 0, y: 1.28 },
+    xfblfcmx: { x: 2.58, y: 0.73 },
+    cmtulzxs: { x: 3.8, y: 0.73 },
+    gjcuvwgu: { x: 3.81, y: 1.93 },
+    uazocvnx: { x: 2.59, y: 1.93 },
+    unxmnnfr: { x: 4.14, y: 0.73 },
+    zboxtrvu: { x: 5.34, y: 0.72 },
+    cqmcsiay: { x: 5.35, y: 1.93 },
+    nstmcsir: { x: 4.14, y: 1.92 },
+    qyipxgyf: { x: 5.7, y: 0.72 },
+    oaozugec: { x: 6.9, y: 0.72 },
+    suvgtoul: { x: 6.88, y: 1.93 },
+    sgvatdjc: { x: 5.69, y: 1.93 },
   },
   sensors: {},
   walls: {
