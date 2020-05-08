@@ -1,4 +1,5 @@
 import React from 'react'
-import { CanvasUitls } from '../utils/canvas.uitls'
+import { CanvasUtils } from '../utils/canvasUtils'
+import { ICanvasTheme } from '../canvas.model'
 
-export const ThemeContext = React.createContext(CanvasUitls.canvasThemeDefault)
+export const ThemeContext = React.createContext<ICanvasTheme>(CanvasUtils.canvasThemeDefault)

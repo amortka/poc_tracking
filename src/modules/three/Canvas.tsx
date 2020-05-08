@@ -9,7 +9,7 @@ import { IVisualisation } from '../../models/main.model'
 import { Objects } from './components/Objects/Objects'
 import { Scene } from './components/Scene'
 import { Walls } from './components/Walls/Walls'
-import { CanvasUitls } from './utils/canvas.uitls'
+import { CanvasUtils } from './utils/canvasUtils'
 import { ThemeContext } from './contexts/ThemeContext'
 
 interface CanvasProps {
@@ -20,7 +20,7 @@ interface CanvasProps {
 
 export const Canvas: React.FC<CanvasProps> = ({ config, theme = {}, type }) => {
   THREE.Object3D.DefaultUp.set(0, 0, 1)
-  const themeConfig = useMemo(() => CanvasUitls.getCanvasTheme(theme), [theme])
+  const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme])
 
   return (
     <CanvasThree gl2 orthographic style={{ background: themeConfig.canvasBackground }}>

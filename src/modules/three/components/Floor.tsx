@@ -12,7 +12,6 @@ export const Floor: React.FC<FloorProps> = ({ type }) => {
 
   const theme = useContext(ThemeContext)
 
-  console.log(theme, type, theme.floor[type])
   return (
     <mesh ref={mesh} position={[0, 0, -0.1]}>
       <planeBufferGeometry attach="geometry" args={[100, 100]} />

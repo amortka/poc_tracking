@@ -27,18 +27,21 @@ type Color = THREE.Color | number | string
 
 export interface ICanvasTheme {
   canvasBackground: BackgroundProperty<any>
+  text: {
+    color: Color
+  }
   floor: {
     D2: Color
     D3: Color
   }
   walls: {
-    D2: Color
+    D2: { line: Color }
     D3: Color
   }
   objects: {
     D2: {
+      line: Color
       shape: Color
-      plane: Color
       text: Color
     }
     D3: {

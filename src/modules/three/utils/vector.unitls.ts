@@ -1,4 +1,6 @@
 import * as THREE from 'three'
+import { IPoint } from '../../../models/main.model'
+import { Vector2 } from 'three'
 
 export class VectorUtils {
   static getNormalVectorToVector(v1: THREE.Vector2): THREE.Vector2 {
@@ -105,7 +107,7 @@ export class VectorUtils {
     return end.clone().add(start.clone().negate()).normalize().multiplyScalar(distanceFromStart).add(start.clone())
   }
 
-  /**
-   *  NEW
-   */
+  static getVectorsArrayFromPointsArray(points: IPoint[]): Vector2[] {
+    return [...points].map((p) => new THREE.Vector2(p.x, p.y))
+  }
 }

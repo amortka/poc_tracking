@@ -1,12 +1,15 @@
 import { ICanvasTheme } from '../canvas.model'
 const merge = require('deepmerge')
 
-export class CanvasUitls {
+export class CanvasUtils {
   static canvasThemeDefault: ICanvasTheme = {
     canvasBackground: '#2c323a',
+    text: {
+      color: '#959da2',
+    },
     floor: { D2: '#2c323a', D3: '#2c323a' },
-    objects: { D2: { plane: undefined, shape: undefined, text: undefined }, D3: { shape: undefined, text: undefined } },
-    walls: { D2: undefined, D3: undefined },
+    objects: { D2: { line: '#868d94', shape: '#868d94', text: undefined }, D3: { shape: undefined, text: undefined } },
+    walls: { D2: { line: '#61676f' }, D3: undefined },
   }
 
   static getCanvasTheme(config: Partial<ICanvasTheme> = {}): ICanvasTheme {
