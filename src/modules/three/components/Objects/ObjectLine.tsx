@@ -13,7 +13,7 @@ export const ObjectLine: React.FC<WallProps> = React.memo(({ meta, shapePoints, 
   const groupRef = useRef(null)
 
   const theme = useContext(ThemeContext)
-  const points = LineUtils.getShapePointsFromPointCoordinates(shapePoints, fromGround)
+  const points = LineUtils.getPathPointsFromPointCoordinates(shapePoints, fromGround)
 
   const lineG = useMemo(() => new THREE.BufferGeometry().setFromPoints(points), [points])
   const shapeG = ShapeUtils.getShapeFromPointCoordinates(shapePoints)
@@ -40,9 +40,9 @@ export const ObjectLine: React.FC<WallProps> = React.memo(({ meta, shapePoints, 
         />
       </mesh>
       // @ts-ignore
-      <line geometry={lineG}>
+      <lineLoop geometry={lineG}>
         <lineBasicMaterial attach="material" color={theme.objects.D2.line} />
-      </line>
+      </lineLoop>
       {meta?.name && <Text label={meta.name} position={textNamePositionV} />}
       {meta?.name && (
         <Text label={meta.description} position={contextDescriptionPositionV} geometryConfig={{ size: 0.1 }} />

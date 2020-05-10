@@ -11,6 +11,7 @@ import { Scene } from './components/Scene'
 import { Walls } from './components/Walls/Walls'
 import { CanvasUtils } from './utils/canvasUtils'
 import { ThemeContext } from './contexts/ThemeContext'
+import { Paths } from './components/Paths/Paths'
 
 interface CanvasProps {
   config: IVisualisation
@@ -33,6 +34,7 @@ export const Canvas: React.FC<CanvasProps> = ({ config, theme = {}, type }) => {
         <Scene>
           <Walls walls={config.walls} points={config.points} rooms={config.rooms} type={type} />
           <Objects points={config.points} objects={config.objects} type={type} />
+          <Paths points={config.points} paths={config.paths} />
         </Scene>
       </ThemeContext.Provider>
     </CanvasThree>
