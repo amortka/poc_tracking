@@ -1,4 +1,4 @@
-import { IObject, IPoint, IWall } from '../../models/main.model'
+import { IObject, IPath, IPoint, IWall } from '../../models/main.model'
 import * as THREE from 'three'
 import { BackgroundProperty } from 'csstype'
 
@@ -14,6 +14,10 @@ export interface IWallWithPointsCoordinates extends Omit<IWall, 'start' | 'end'>
 
 export interface IObjectWithPointsCoordinates extends Omit<IObject, 'shapePoints'> {
   shapePoints: IPoint[]
+}
+
+export interface IPathWithPointsCoordinates extends Omit<IPath, 'points'> {
+  points: IPoint[]
 }
 
 export interface IWallWithAdditionalData extends Omit<IWall, 'start' | 'end'> {
@@ -47,6 +51,20 @@ export interface ICanvasTheme {
     D3: {
       shape: Color
       text: Color
+    }
+  }
+  paths: {
+    D2: {
+      gapSize: number
+      dashSize: number
+      line: Color
+      selectedLine: Color
+    }
+    D3: {
+      gapSize: number
+      dashSize: number
+      line: Color
+      selectedLine: Color
     }
   }
 }

@@ -57,7 +57,12 @@ export const visualizationMock: IVisualization = {
       },
     },
   },
-  paths: {},
+  paths: {
+    ojihoybn: {
+      points: ['nlyiefgt', 'ponbhqmp', 'flguqmoa', 'bxlnhzmb', 'acljbmkd', 'nlyiefgq'],
+      tag: 'main path',
+    },
+  },
   points: {
     sm6nf67n: { x: 0, y: 0 },
     n2o9zu3r: { x: 13.48, y: 0 },
@@ -91,7 +96,6 @@ export const visualizationMock: IVisualization = {
     wlnnbsii: { x: 6.91, y: 2.14 },
     hddoeigl: { x: 6.91, y: 4.56 },
     dhwtktzq: { x: 5.7, y: 4.56 },
-
     sadvcvxl: { x: 1.49, y: 5.34 },
     dqwzllxi: { x: 1.52, y: 2.88 },
     rzmgfdlc: { x: 1.51, y: 0.01 },
@@ -102,6 +106,13 @@ export const visualizationMock: IVisualization = {
     zohcrjma: { x: 10.3, y: 5.4 },
     lojlicgi: { x: 7.07, y: 5.34 },
     ccomdgqr: { x: 4.27, y: 5.34 },
+
+    nlyiefgt: { x: 11.27, y: 0.27 },
+    ponbhqmp: { x: 1.7, y: 0.3 },
+    flguqmoa: { x: 1.7, y: 5.06 },
+    bxlnhzmb: { x: 10.3, y: 5.08 },
+    acljbmkd: { x: 10.27, y: 0.47 },
+    nlyiefgq: { x: 11.27, y: 0.47 },
   },
   sensors: {
     qwbmjtmf: {
