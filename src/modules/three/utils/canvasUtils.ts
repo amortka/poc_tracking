@@ -3,6 +3,10 @@ const merge = require('deepmerge')
 
 export class CanvasUtils {
   static canvasThemeDefault: ICanvasTheme = {
+    paths: {
+      D2: { dashSize: 0.1, gapSize: 0.05, line: '#464c53', selectedLine: '#1a9c68' },
+      D3: { dashSize: 0.1, gapSize: 0.05, line: '#464c53', selectedLine: '#1a9c68' },
+    },
     canvasBackground: '#2c323a',
     text: {
       color: '#959da2',

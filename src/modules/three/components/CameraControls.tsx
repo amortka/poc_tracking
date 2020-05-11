@@ -32,7 +32,7 @@ export const CameraControls: React.FC = () => {
       maxDistance={100}
       maxPolarAngle={Math.PI / 2.2}
       minZoom={20}
-      maxZoom={50}
+      maxZoom={100}
       dampingFactor={0.05}
     />
   )

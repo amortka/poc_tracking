@@ -57,7 +57,12 @@ export const visualisationMock: IVisualisation = {
       },
     },
   },
-  paths: {},
+  paths: {
+    ojihoybn: {
+      points: ['nlyiefgt', 'ponbhqmp', 'flguqmoa', 'bxlnhzmb', 'acljbmkd', 'nlyiefgq'],
+      tag: 'main path',
+    },
+  },
   points: {
     sm6nf67n: { x: 0, y: 0 },
     n2o9zu3r: { x: 13.48, y: 0 },
@@ -79,23 +84,78 @@ export const visualisationMock: IVisualisation = {
     oaozugec: { x: 6.9, y: 0.72 },
     suvgtoul: { x: 6.88, y: 1.93 },
     sgvatdjc: { x: 5.69, y: 1.93 },
-
     h5jghnhl: { x: 2.59, y: 2.15 },
     o6c3mck5: { x: 3.8, y: 2.15 },
     lqximksu: { x: 3.8, y: 4.55 },
     janzaxld: { x: 2.59, y: 4.55 },
-
     ophifqgn: { x: 4.13, y: 2.15 },
     pyaidnyh: { x: 5.35, y: 2.14 },
     vbowugex: { x: 5.34, y: 4.54 },
     qtvfipgx: { x: 4.13, y: 4.54 },
-
     aizmaxly: { x: 5.7, y: 2.14 },
     wlnnbsii: { x: 6.91, y: 2.14 },
     hddoeigl: { x: 6.91, y: 4.56 },
     dhwtktzq: { x: 5.7, y: 4.56 },
+    sadvcvxl: { x: 1.49, y: 5.34 },
+    dqwzllxi: { x: 1.52, y: 2.88 },
+    rzmgfdlc: { x: 1.51, y: 0.01 },
+    etkehdxr: { x: 4.27, y: 0.01 },
+    wytjebmg: { x: 7.05, y: 0.02 },
+    qeculymv: { x: 10.3, y: 0.03 },
+    xlrbndpv: { x: 10.31, y: 2.77 },
+    zohcrjma: { x: 10.3, y: 5.4 },
+    lojlicgi: { x: 7.07, y: 5.34 },
+    ccomdgqr: { x: 4.27, y: 5.34 },
+
+    nlyiefgt: { x: 11.27, y: 0.27 },
+    ponbhqmp: { x: 1.7, y: 0.3 },
+    flguqmoa: { x: 1.7, y: 5.06 },
+    bxlnhzmb: { x: 10.3, y: 5.08 },
+    acljbmkd: { x: 10.27, y: 0.47 },
+    nlyiefgq: { x: 11.27, y: 0.47 },
   },
-  sensors: {},
+  sensors: {
+    qwbmjtmf: {
+      point: 'sadvcvxl',
+      tag: 'Sensor 1',
+    },
+    xzfsgxxh: {
+      point: 'dqwzllxi',
+      tag: 'Sensor 2',
+    },
+    izktgqna: {
+      point: 'rzmgfdlc',
+      tag: 'Sensor 3',
+    },
+    piunnkuf: {
+      point: 'etkehdxr',
+      tag: 'Sensor 4',
+    },
+    saruefli: {
+      point: 'wytjebmg',
+      tag: 'Sensor 5',
+    },
+    pnxwxnpk: {
+      point: 'qeculymv',
+      tag: 'Sensor 6',
+    },
+    aihfuhkc: {
+      point: 'xlrbndpv',
+      tag: 'Sensor 7',
+    },
+    jpgsbunl: {
+      point: 'zohcrjma',
+      tag: 'Sensor 8',
+    },
+    zapgjpha: {
+      point: 'lojlicgi',
+      tag: 'Sensor 9',
+    },
+    quqklxup: {
+      point: 'ccomdgqr',
+      tag: 'Sensor 10',
+    },
+  },
   walls: {
     ezzgwvd4: {
       start: 'sm6nf67n',
