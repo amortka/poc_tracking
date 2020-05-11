@@ -1,5 +1,5 @@
 import React from 'react'
-import { Drawer, List, ListItem, ListItemText, ListItemIcon, makeStyles, Paper, Typography } from '@material-ui/core'
+import { Drawer, makeStyles, Paper, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles({
   root: {

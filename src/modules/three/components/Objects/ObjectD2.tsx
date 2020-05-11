@@ -6,11 +6,13 @@ import { ThemeContext } from '../../contexts/ThemeContext'
 import { ShapeUtils } from '../../utils/shape.utils'
 import { Text } from '../Text'
 import { GeometryUtils } from '../../utils/geometry.utils'
+import { EventType, ObjectType, useEmitEvent } from '../../contexts/EventsContext'
 
 export interface WallProps extends IObjectWithPointsCoordinates {}
 
-export const ObjectLine: React.FC<WallProps> = React.memo(({ meta, shapePoints, fromGround = 0.001 }) => {
+export const ObjectD2: React.FC<WallProps> = React.memo(({ meta, shapePoints, fromGround = 0.001, ...other }) => {
   const groupRef = useRef(null)
+  const emitEvent = useEmitEvent({ meta, shapePoints, fromGround, ...other }, ObjectType.OBJECT)
 
   const theme = useContext(ThemeContext)
   const points = LineUtils.getPathPointsFromPointCoordinates(shapePoints, fromGround)
@@ -28,7 +30,12 @@ export const ObjectLine: React.FC<WallProps> = React.memo(({ meta, shapePoints, 
   const contextDescriptionPositionV = textNamePositionV.clone().add(new THREE.Vector3(0, -0.2, 0))
 
   return (
-    <group ref={groupRef}>
+    <group
+      ref={groupRef}
+      onClick={(e) => emitEvent(EventType.MOUSE_CLICK, e as any)}
+      onPointerOver={(e) => emitEvent(EventType.MOUSE_IN, e as any)}
+      onPointerOut={(e) => emitEvent(EventType.MOUSE_OUT, e as any)}>
+      >
       <mesh position={[0, 0, fromGround]}>
         <extrudeGeometry attach="geometry" args={[shapeG, extrudeSettings]} />
         <meshPhongMaterial

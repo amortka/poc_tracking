@@ -17,7 +17,7 @@ export const PathsLine: React.FC<WallProps> = React.memo(({ points, tag }) => {
 
   useEffect(() => {
     lineRef?.current.computeLineDistances()
-  }, [lineRef.current, points])
+  }, [lineRef, points])
 
   return (
     // @ts-ignore

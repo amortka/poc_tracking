@@ -10,7 +10,7 @@ interface WallProps extends Omit<IWall, 'start' | 'end'> {
   height?: number
 }
 
-export const WallNormal: React.FC<WallProps> = React.memo(({ height = 2.7, start, end, thickness, meta }) => {
+export const WallD3: React.FC<WallProps> = React.memo(({ height = 2.7, start, end, thickness, meta }) => {
   const wallStart = useMemo(() => new THREE.Vector2(start.x, start.y), [start.x, start.y])
   const wallEnd = useMemo(() => new THREE.Vector2(end.x, end.y), [end.x, end.y])
 

@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
-import { WallNormal } from './WallNormal'
+import { WallD3 } from './WallD3'
 import { IVisualization } from '../../../../models/main.model'
 import { WallsUtils } from './Walls.utils'
-import { WallLine } from './WallLine'
+import { WallD2 } from './WallD2'
 import { VisualizationType } from '../../canvas.model'
 
 interface WallsProps extends Pick<IVisualization, 'walls' | 'points' | 'rooms'> {
@@ -14,13 +14,13 @@ export const Walls: React.FC<WallsProps> = React.memo(({ walls, points, type }) 
   switch (type) {
     case VisualizationType.D3:
       renderWalls = useMemo(
-        () => WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallNormal key={i} {...w} />),
+        () => WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallD3 key={i} {...w} />),
         [walls, points]
       )
       break
     case VisualizationType.D2:
       renderWalls = useMemo(
-        () => WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallLine key={i} {...w} />),
+        () => WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallD2 key={i} {...w} />),
         [walls, points]
       )
       break

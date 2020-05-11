@@ -8,7 +8,7 @@ interface WallProps extends Omit<IWall, 'start' | 'end'> {
   end: IPoint
 }
 
-export const WallLine: React.FC<WallProps> = React.memo(({ start, end, meta }) => {
+export const WallD2: React.FC<WallProps> = React.memo(({ start, end, meta }) => {
   const theme = useContext(ThemeContext)
 
   const points = [

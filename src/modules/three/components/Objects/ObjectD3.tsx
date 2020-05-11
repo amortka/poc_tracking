@@ -3,7 +3,7 @@ import { IObjectWithPointsCoordinates } from '../../canvas.model'
 
 export interface ObjectNormalProps extends IObjectWithPointsCoordinates {}
 
-export const ObjectNormal: React.FC<ObjectNormalProps> = React.memo(({ height = 1, meta }) => {
+export const ObjectD3: React.FC<ObjectNormalProps> = React.memo(({ height = 1, meta }) => {
   // const wallStart = useMemo(() => new THREE.Vector2(start.x, start.y), [start.x, start.y])
   // const wallEnd = useMemo(() => new THREE.Vector2(end.x, end.y), [end.x, end.y])
 

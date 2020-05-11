@@ -1,12 +1,12 @@
+import './App.css'
 import React from 'react'
-import { ThemeProvider, createMuiTheme } from '@material-ui/core'
-import { green, yellow } from '@material-ui/core/colors'
 import { Canvas } from './modules/three/Canvas'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core'
+import { green, yellow } from '@material-ui/core/colors'
+import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar'
+import { Menu } from './modules/ui-interface/components/Menu'
 import { visualizationMock } from './mocks/main.mock'
 import { VisualizationType } from './modules/three/canvas.model'
-import { Menu } from './modules/ui-interface/components/Menu'
-import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar'
-import './App.css'
 
 const theme = createMuiTheme({
   palette: {
@@ -17,11 +17,13 @@ const theme = createMuiTheme({
 })
 
 function App() {
+  const callback = (payload) => console.log({ payload })
+
   return (
     <main className={'MainContainer'}>
       <ThemeProvider theme={theme}>
         <Menu />
-        <Canvas config={visualizationMock} type={VisualizationType.D3} />
+        <Canvas config={visualizationMock} type={VisualizationType.D3} events={callback} />
         <InfoSidebar />
       </ThemeProvider>
     </main>
