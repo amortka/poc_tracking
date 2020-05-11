@@ -21,7 +21,7 @@ function App() {
     <main className={'MainContainer'}>
       <ThemeProvider theme={theme}>
         <Menu />
-        <Canvas config={visualizationMock} type={VisualizationType.D2} />
+        <Canvas config={visualizationMock} type={VisualizationType.D3} />
         <InfoSidebar />
       </ThemeProvider>
     </main>

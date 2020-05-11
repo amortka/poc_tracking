@@ -31,7 +31,7 @@ export const Canvas: React.FC<CanvasProps> = ({ config, theme = {}, type }) => {
         <Floor type={type} />
         <Scene>
           <Walls walls={config.walls} points={config.points} rooms={config.rooms} type={type} />
-          <Objects points={config.points} objects={config.objects} type={type} />
+          <Objects points={config.points} objects={config.objects} type={VisualizationType.D2} />
           <Paths points={config.points} paths={config.paths} />
           <Sensors points={config.points} sensors={config.sensors} type={type} />
         </Scene>

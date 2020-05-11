@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import { IPoint, IWall } from '../../../../models/main.model'
 import { ThemeContext } from '../../contexts/ThemeContext'
 
-export interface WallProps extends Omit<IWall, 'start' | 'end'> {
+interface WallProps extends Omit<IWall, 'start' | 'end'> {
   start: IPoint
   end: IPoint
 }

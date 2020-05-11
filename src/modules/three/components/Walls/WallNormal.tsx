@@ -4,7 +4,7 @@ import { IPoint, IWall } from '../../../../models/main.model'
 import { VectorUtils } from '../../utils/vector.unitls'
 import { CsgUtils } from '../../utils/csg.utils'
 
-export interface WallProps extends Omit<IWall, 'start' | 'end'> {
+interface WallProps extends Omit<IWall, 'start' | 'end'> {
   start: IPoint
   end: IPoint
   height?: number
