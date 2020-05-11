@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
-import { IVisualisation } from '../../../../models/main.model'
+import { IVisualization } from '../../../../models/main.model'
 import { PathsUtils } from './Paths.utils'
 import { PathsLine } from './PathsLine'
 
-interface WallsProps extends Pick<IVisualisation, 'paths' | 'points'> {}
+interface WallsProps extends Pick<IVisualization, 'paths' | 'points'> {}
 
 export const Paths: React.FC<WallsProps> = React.memo(({ paths, points }) => {
   const renderObjects = useMemo(

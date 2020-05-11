@@ -38,6 +38,10 @@ export interface ICanvasTheme {
     D2: Color
     D3: Color
   }
+  sensor: {
+    D2: Color
+    D3: Color
+  }
   walls: {
     D2: { line: Color }
     D3: Color
