@@ -1,16 +1,55 @@
 import React from 'react'
-import { Drawer, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core'
+import { Drawer, List, ListItem, ListItemIcon, makeStyles } from '@material-ui/core'
+import { AcUnit, BorderAllOutlined, CommuteOutlined, AttachMoney, PermIdentity } from '@material-ui/icons'
+
+const useStyles = makeStyles({
+  root: {
+    width: '64px',
+    maxWidth: '64px',
+  },
+  drawerPaper: {
+    backgroundColor: '#11151A',
+  },
+  listItem: {
+    maxWidth: '64px',
+    backgroundColor: '#0C0F13',
+  },
+  listItemIcon: {
+    minWidth: 'unset',
+  },
+})
 
 export const Menu: React.FC = () => {
+  const classes = useStyles()
+
   return (
-    <Drawer variant="permanent">
+    <Drawer variant="permanent" className={classes.root} classes={{ paper: classes.drawerPaper }}>
       <List>
-        {['Logo', 'Main', 'Carts', 'Box'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem className={classes.listItem}>
+          <ListItemIcon className={classes.listItemIcon}>
+            <AcUnit fontSize="large" />
+          </ListItemIcon>
+        </ListItem>
+        <ListItem button className={classes.listItem}>
+          <ListItemIcon className={classes.listItemIcon}>
+            <BorderAllOutlined fontSize="large" />
+          </ListItemIcon>
+        </ListItem>
+        <ListItem button className={classes.listItem}>
+          <ListItemIcon className={classes.listItemIcon}>
+            <CommuteOutlined fontSize="large" />
+          </ListItemIcon>
+        </ListItem>
+        <ListItem button className={classes.listItem}>
+          <ListItemIcon className={classes.listItemIcon}>
+            <AttachMoney fontSize="large" />
+          </ListItemIcon>
+        </ListItem>
+        <ListItem button className={classes.listItem}>
+          <ListItemIcon className={classes.listItemIcon}>
+            <PermIdentity fontSize="large" />
+          </ListItemIcon>
+        </ListItem>
       </List>
     </Drawer>
   )
