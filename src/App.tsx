@@ -1,13 +1,13 @@
 import React from 'react'
 import './App.css'
 import { Canvas } from './modules/three/Canvas'
-import { visualisationMock } from './mocks/main.mock'
-import { VisualisationType } from './modules/three/canvas.model'
+import { visualizationMock } from './mocks/main.mock'
+import { VisualizationType } from './modules/three/canvas.model'
 
 function App() {
   return (
     <main className={'MainContainer'}>
-      <Canvas config={visualisationMock} type={VisualisationType.D2} />
+      <Canvas config={visualizationMock} type={VisualizationType.D2} />
     </main>
   )
 }

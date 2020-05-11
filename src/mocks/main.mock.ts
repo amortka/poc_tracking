@@ -1,6 +1,6 @@
-import { IVisualisation } from '../models/main.model'
+import { IVisualization } from '../models/main.model'
 
-export const visualisationMock: IVisualisation = {
+export const visualizationMock: IVisualization = {
   objects: {
     bkgwbnwu: {
       shapePoints: ['xfblfcmx', 'cmtulzxs', 'gjcuvwgu', 'uazocvnx'],

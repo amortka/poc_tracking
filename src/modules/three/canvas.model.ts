@@ -2,7 +2,7 @@ import { IObject, IPoint, IWall } from '../../models/main.model'
 import * as THREE from 'three'
 import { BackgroundProperty } from 'csstype'
 
-export enum VisualisationType {
+export enum VisualizationType {
   D2 = 'D2',
   D3 = 'D3',
 }

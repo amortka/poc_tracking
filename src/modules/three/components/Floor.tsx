@@ -1,10 +1,10 @@
 import React, { useContext, useRef } from 'react'
 import * as THREE from 'three'
 import { ThemeContext } from '../contexts/ThemeContext'
-import { VisualisationType } from '../canvas.model'
+import { VisualizationType } from '../canvas.model'
 
 interface FloorProps {
-  type: VisualisationType
+  type: VisualizationType
 }
 
 export const Floor: React.FC<FloorProps> = ({ type }) => {
