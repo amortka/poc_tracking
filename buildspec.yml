@@ -15,4 +15,5 @@ phases:
   post_build:
     commands:
       - echo s3_bucket $s3_bucket
+      - aws s3 rm s3://$s3_bucket --recursive
       - aws s3 cp --recursive --acl public-read ./build $s3_bucket
