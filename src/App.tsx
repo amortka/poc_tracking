@@ -1,12 +1,12 @@
-import './App.css'
-import React from 'react'
-import { Canvas } from './modules/three/Canvas'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core'
-import { green, yellow } from '@material-ui/core/colors'
-import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar'
-import { Menu } from './modules/ui-interface/components/Menu'
-import { visualizationMock } from './mocks/main.mock'
-import { VisualizationType } from './modules/three/canvas.model'
+import './App.css';
+import React from 'react';
+import { Canvas } from './modules/three/Canvas';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { green, yellow } from '@material-ui/core/colors';
+import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
+import { Menu } from './modules/ui-interface/components/Menu';
+import { visualizationMock } from './mocks/main.mock';
+import { VisualizationType } from './modules/three/canvas.model';
 
 const theme = createMuiTheme({
   palette: {
@@ -14,10 +14,10 @@ const theme = createMuiTheme({
     primary: green,
     secondary: yellow,
   },
-})
+});
 
 function App() {
-  const callback = (payload) => console.log({ payload })
+  const callback = (payload) => console.log({ payload });
 
   return (
     <main className={'MainContainer'}>
@@ -27,7 +27,7 @@ function App() {
         <InfoSidebar />
       </ThemeProvider>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
