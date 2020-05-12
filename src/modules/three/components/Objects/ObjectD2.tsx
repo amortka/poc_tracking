@@ -28,15 +28,17 @@ export const ObjectD2: React.FC<WallProps> = React.memo(({ meta, shapePoints, fr
   );
 
   const contextDescriptionPositionV = textNamePositionV.clone().add(new THREE.Vector3(0, -0.2, 0));
-
   return (
-    <group
-      ref={groupRef}
-      onClick={(e) => emitEvent(EventType.MOUSE_CLICK, e as any)}
-      onPointerOver={(e) => emitEvent(EventType.MOUSE_IN, e as any)}
-      onPointerOut={(e) => emitEvent(EventType.MOUSE_OUT, e as any)}>
-      >
-      <mesh position={[0, 0, fromGround]}>
+    <group ref={groupRef}>
+      {meta?.name && <Text label={meta.name} position={textNamePositionV} />}
+      {meta?.name && (
+        <Text label={meta.description} position={contextDescriptionPositionV} geometryConfig={{ size: 0.1 }} />
+      )}
+      <mesh
+        position={[0, 0, fromGround]}
+        onClick={(e) => emitEvent(EventType.MOUSE_CLICK)}
+        onPointerOver={(e) => emitEvent(EventType.MOUSE_IN)}
+        onPointerOut={(e) => emitEvent(EventType.MOUSE_OUT)}>
         <extrudeGeometry attach="geometry" args={[shapeG, extrudeSettings]} />
         <meshPhongMaterial
           attach="material"
@@ -50,10 +52,6 @@ export const ObjectD2: React.FC<WallProps> = React.memo(({ meta, shapePoints, fr
       <lineLoop geometry={lineG}>
         <lineBasicMaterial attach="material" color={theme.objects.D2.line} />
       </lineLoop>
-      {meta?.name && <Text label={meta.name} position={textNamePositionV} />}
-      {meta?.name && (
-        <Text label={meta.description} position={contextDescriptionPositionV} geometryConfig={{ size: 0.1 }} />
-      )}
     </group>
   );
 });

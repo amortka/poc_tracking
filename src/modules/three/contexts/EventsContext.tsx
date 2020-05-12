@@ -3,8 +3,8 @@ import { IPath, IRoom, ISensor, IWall } from '../../../models/main.model';
 import { IObjectWithPointsCoordinates } from '../canvas.model';
 
 export enum EventType {
-  MOUSE_IN = 'mouse-in',
-  MOUSE_OUT = 'mouse-out',
+  MOUSE_IN = 'pointerin',
+  MOUSE_OUT = 'pointerout',
   MOUSE_CLICK = 'click',
 }
 
@@ -18,7 +18,7 @@ export enum ObjectType {
 export type EventContextObject = IWall | ISensor | IObjectWithPointsCoordinates | IRoom | IPath;
 
 export interface IEventContextPayload {
-  event: PointerEvent;
+  // event?: PointerEvent;
   object: EventContextObject;
   objectType: ObjectType;
   type: EventType;
@@ -54,7 +54,7 @@ export const EventsContextProvider: React.FC = ({ children }) => (
 export function useEmitEvent(object: EventContextObject, objectType: ObjectType) {
   const eventsContext = useContext(EventsContext);
 
-  return (type: EventType, event: PointerEvent) => {
-    eventsContext.emitNewEvent({ type, object, event, objectType });
+  return (type: EventType) => {
+    eventsContext.emitNewEvent({ type, object, objectType });
   };
 }

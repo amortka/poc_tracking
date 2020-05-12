@@ -13,6 +13,7 @@ import { ThemeContext } from './contexts/ThemeContext';
 import { Paths } from './components/Paths/Paths';
 import { Sensors } from './components/Sensors/Sensors';
 import { EventsContextProvider, eventsContextService } from './contexts/EventsContext';
+import { equal } from '../../utils/object.utils';
 
 interface CanvasProps {
   config: IVisualization;
@@ -21,30 +22,37 @@ interface CanvasProps {
   events?: (IEventContextPayload) => void;
 }
 
-export const Canvas: React.FC<CanvasProps> = ({ config, theme = {}, type, events }) => {
-  Object3D.DefaultUp.set(0, 0, 1);
+export const Canvas: React.FC<CanvasProps> = React.memo(
+  ({ config, theme = {}, type, events }) => {
+    Object3D.DefaultUp.set(0, 0, 1);
 
-  const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme]);
+    const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme]);
 
-  useEffect(() => {
-    events && eventsContextService.registerCallback(events);
-    return eventsContextService.unregisterCallback(events);
-  }, [events]);
+    useEffect(() => {
+      events && eventsContextService.registerCallback(events);
+      return eventsContextService.unregisterCallback(events);
+    }, [events]);
 
-  return (
-    <CanvasThree gl2 orthographic style={{ background: themeConfig.canvasBackground }}>
-      <EventsContextProvider>
-        <ThemeContext.Provider value={themeConfig}>
-          <AmbientLight />
-          <Floor type={type} />
-          <Scene>
-            <Walls walls={config.walls} points={config.points} rooms={config.rooms} type={type} />
-            <Objects points={config.points} objects={config.objects} type={VisualizationType.D2} />
-            <Paths points={config.points} paths={config.paths} />
-            <Sensors points={config.points} sensors={config.sensors} type={type} />
-          </Scene>
-        </ThemeContext.Provider>
-      </EventsContextProvider>
-    </CanvasThree>
-  );
-};
+    return (
+      <CanvasThree gl2 orthographic style={{ background: themeConfig.canvasBackground }}>
+        <EventsContextProvider>
+          <ThemeContext.Provider value={themeConfig}>
+            <AmbientLight />
+            <Floor type={type} />
+            <Scene>
+              <Walls walls={config.walls} points={config.points} rooms={config.rooms} type={type} />
+              <Objects points={config.points} objects={config.objects} type={VisualizationType.D2} />
+              <Paths points={config.points} paths={config.paths} />
+              <Sensors points={config.points} sensors={config.sensors} type={type} />
+            </Scene>
+          </ThemeContext.Provider>
+        </EventsContextProvider>
+      </CanvasThree>
+    );
+  },
+
+  (prevProps, nextProps) =>
+    equal(prevProps.config, nextProps.config) &&
+    equal(prevProps.theme, nextProps.theme) &&
+    prevProps.type === nextProps.type
+);

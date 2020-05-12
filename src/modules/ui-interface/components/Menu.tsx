@@ -1,6 +1,6 @@
 import React from 'react';
 import { Drawer, List, ListItem, ListItemIcon, makeStyles } from '@material-ui/core';
-import { AcUnit, BorderAllOutlined, CommuteOutlined, AttachMoney, PermIdentity } from '@material-ui/icons';
+import { AcUnit, AttachMoney, BorderAllOutlined, CommuteOutlined, PermIdentity } from '@material-ui/icons';
 
 const useStyles = makeStyles({
   root: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Menu: React.FC = () => {
+export const Menu: React.FC = React.memo(() => {
   const classes = useStyles();
 
   return (
@@ -53,4 +53,4 @@ export const Menu: React.FC = () => {
       </List>
     </Drawer>
   );
-};
+});
