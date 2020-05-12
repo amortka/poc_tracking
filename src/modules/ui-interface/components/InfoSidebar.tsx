@@ -1,5 +1,6 @@
 import React from 'react';
-import { Drawer, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Drawer, makeStyles, Paper, Typography, Box } from '@material-ui/core';
+import { ExpansionSidebarItem } from './expansion-sidebar-item';
 
 const useStyles = makeStyles({
   root: {
@@ -10,14 +11,18 @@ const useStyles = makeStyles({
     backgroundColor: '#14191F',
     width: '300px',
     maxWidth: '300px',
+    borderLeft: 'none',
   },
   paper: {
-    '&:first-of-type': {
-      backgroundColor: '#2C323A',
-    },
     height: '200px',
     marginBottom: '20px',
     backgroundColor: '#212830',
+    boxShadow: 'inset 5px 0 20px -7px #000000',
+  },
+  box: {
+    backgroundColor: '#2C323A',
+    height: '150px',
+    marginBottom: '20px',
   },
 });
 
@@ -26,26 +31,14 @@ export const InfoSidebar: React.FC = () => {
 
   return (
     <Drawer variant="permanent" anchor="right" className={classes.root} classes={{ paper: classes.drawerPaper }}>
-      <Paper className={classes.paper} square elevation={0}>
+      <Box className={classes.box} padding="10px">
         <Typography variant="h6">Linia produkcyjna</Typography>
         dsadsadsadas
-      </Paper>
-      <Paper className={classes.paper} square elevation={0}>
-        <Typography variant="h6">WAREHOUSE 800</Typography>
-        dsasdasdasdasdas
-      </Paper>
-      <Paper className={classes.paper} square elevation={0}>
-        <Typography variant="h6">P1</Typography>
-        asdsdgdfgfd
-      </Paper>
-      <Paper className={classes.paper} square elevation={0}>
-        <Typography variant="h6">P 03</Typography>
-        asdsdgdfgfd
-      </Paper>
-      <Paper className={classes.paper} square>
-        <Typography variant="h6">Strefa Cavity</Typography>
-        asdsdgdfgfd
-      </Paper>
+      </Box>
+      <ExpansionSidebarItem title="Warehouse 800" />
+      <ExpansionSidebarItem title="P1" />
+      <ExpansionSidebarItem title="P0" />
+      <ExpansionSidebarItem title="Strefa Cavity" />
     </Drawer>
   );
 };
