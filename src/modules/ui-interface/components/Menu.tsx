@@ -1,6 +1,6 @@
-import React from 'react'
-import { Drawer, List, ListItem, ListItemIcon, makeStyles } from '@material-ui/core'
-import { AcUnit, BorderAllOutlined, CommuteOutlined, AttachMoney, PermIdentity } from '@material-ui/icons'
+import React from 'react';
+import { Drawer, List, ListItem, ListItemIcon, makeStyles } from '@material-ui/core';
+import { AcUnit, BorderAllOutlined, CommuteOutlined, AttachMoney, PermIdentity } from '@material-ui/icons';
 
 const useStyles = makeStyles({
   root: {
@@ -17,10 +17,10 @@ const useStyles = makeStyles({
   listItemIcon: {
     minWidth: 'unset',
   },
-})
+});
 
 export const Menu: React.FC = () => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Drawer variant="permanent" className={classes.root} classes={{ paper: classes.drawerPaper }}>
@@ -52,5 +52,5 @@ export const Menu: React.FC = () => {
         </ListItem>
       </List>
     </Drawer>
-  )
-}
+  );
+};

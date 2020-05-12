@@ -1,4 +1,4 @@
-import { IVisualization } from '../models/main.model'
+import { IVisualization } from '../models/main.model';
 
 export const visualizationMock: IVisualization = {
   objects: {
@@ -283,4 +283,4 @@ export const visualizationMock: IVisualization = {
       tag: 'Main Room',
     },
   },
-}
+};

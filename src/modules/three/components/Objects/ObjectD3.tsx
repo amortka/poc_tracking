@@ -1,5 +1,5 @@
-import React from 'react'
-import { IObjectWithPointsCoordinates } from '../../canvas.model'
+import React from 'react';
+import { IObjectWithPointsCoordinates } from '../../canvas.model';
 
 export interface ObjectNormalProps extends IObjectWithPointsCoordinates {}
 
@@ -13,12 +13,12 @@ export const ObjectD3: React.FC<ObjectNormalProps> = React.memo(({ height = 1, m
     steps: 2,
     depth: height,
     bevelEnabled: false,
-  }
+  };
 
   return (
     <mesh>
       <extrudeGeometry attach="geometry" args={[null, extrudeSettings]} />
       <meshPhongMaterial attach="material" color={'red'} transparent={true} opacity={0.5} depthWrite={false} />
     </mesh>
-  )
-})
+  );
+});

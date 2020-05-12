@@ -1,35 +1,35 @@
-import React, { useEffect, useMemo } from 'react'
-import { Object3D } from 'three'
-import { AmbientLight } from './components/AmbientLight'
-import { Canvas as CanvasThree } from 'react-three-fiber'
-import { Floor } from './components/Floor'
-import { ICanvasTheme, VisualizationType } from './canvas.model'
-import { IVisualization } from '../../models/main.model'
-import { Objects } from './components/Objects/Objects'
-import { Scene } from './components/Scene'
-import { Walls } from './components/Walls/Walls'
-import { CanvasUtils } from './utils/canvasUtils'
-import { ThemeContext } from './contexts/ThemeContext'
-import { Paths } from './components/Paths/Paths'
-import { Sensors } from './components/Sensors/Sensors'
-import { EventsContextProvider, eventsContextService } from './contexts/EventsContext'
+import React, { useEffect, useMemo } from 'react';
+import { Object3D } from 'three';
+import { AmbientLight } from './components/AmbientLight';
+import { Canvas as CanvasThree } from 'react-three-fiber';
+import { Floor } from './components/Floor';
+import { ICanvasTheme, VisualizationType } from './canvas.model';
+import { IVisualization } from '../../models/main.model';
+import { Objects } from './components/Objects/Objects';
+import { Scene } from './components/Scene';
+import { Walls } from './components/Walls/Walls';
+import { CanvasUtils } from './utils/canvasUtils';
+import { ThemeContext } from './contexts/ThemeContext';
+import { Paths } from './components/Paths/Paths';
+import { Sensors } from './components/Sensors/Sensors';
+import { EventsContextProvider, eventsContextService } from './contexts/EventsContext';
 
 interface CanvasProps {
-  config: IVisualization
-  theme?: ICanvasTheme
-  type: VisualizationType
-  events?: (IEventContextPayload) => void
+  config: IVisualization;
+  theme?: ICanvasTheme;
+  type: VisualizationType;
+  events?: (IEventContextPayload) => void;
 }
 
 export const Canvas: React.FC<CanvasProps> = ({ config, theme = {}, type, events }) => {
-  Object3D.DefaultUp.set(0, 0, 1)
+  Object3D.DefaultUp.set(0, 0, 1);
 
-  const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme])
+  const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme]);
 
   useEffect(() => {
-    events && eventsContextService.registerCallback(events)
-    return eventsContextService.unregisterCallback(events)
-  }, [events])
+    events && eventsContextService.registerCallback(events);
+    return eventsContextService.unregisterCallback(events);
+  }, [events]);
 
   return (
     <CanvasThree gl2 orthographic style={{ background: themeConfig.canvasBackground }}>
@@ -46,5 +46,5 @@ export const Canvas: React.FC<CanvasProps> = ({ config, theme = {}, type, events
         </ThemeContext.Provider>
       </EventsContextProvider>
     </CanvasThree>
-  )
-}
+  );
+};
