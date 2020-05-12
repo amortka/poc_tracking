@@ -26,19 +26,19 @@ export const InfoSidebar: React.FC = () => {
 
   return (
     <Drawer variant="permanent" anchor="right" className={classes.root} classes={{ paper: classes.drawerPaper }}>
-      <Paper className={classes.paper} square>
+      <Paper className={classes.paper} square elevation={0}>
         <Typography variant="h6">Linia produkcyjna</Typography>
         dsadsadsadas
       </Paper>
-      <Paper className={classes.paper} square>
+      <Paper className={classes.paper} square elevation={0}>
         <Typography variant="h6">WAREHOUSE 800</Typography>
         dsasdasdasdasdas
       </Paper>
-      <Paper className={classes.paper} square>
+      <Paper className={classes.paper} square elevation={0}>
         <Typography variant="h6">P1</Typography>
         asdsdgdfgfd
       </Paper>
-      <Paper className={classes.paper} square>
+      <Paper className={classes.paper} square elevation={0}>
         <Typography variant="h6">P 03</Typography>
         asdsdgdfgfd
       </Paper>
