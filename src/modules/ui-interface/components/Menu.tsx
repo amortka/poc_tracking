@@ -1,8 +1,8 @@
-import React from 'react'
-import { Drawer, List, makeStyles } from '@material-ui/core'
-import { AcUnit, BorderAllOutlined, CommuteOutlined, AttachMoney, PermIdentity } from '@material-ui/icons'
+import React from 'react';
+import { Drawer, List, makeStyles } from '@material-ui/core';
+import { AcUnit, BorderAllOutlined, CommuteOutlined, AttachMoney, PermIdentity } from '@material-ui/icons';
 
-import { MenuItem } from './MenuItem'
+import { MenuItem } from './MenuItem';
 
 const useStyles = makeStyles({
   root: {
@@ -15,12 +15,12 @@ const useStyles = makeStyles({
   list: {
     height: '100%',
   },
-})
+});
 
 export interface MenuItem {
-  name: string
-  icon: React.FC
-  isButton: boolean
+  name: string;
+  icon: React.FC;
+  isButton: boolean;
 }
 
 const menuItems = [
@@ -49,10 +49,10 @@ const menuItems = [
     icon: <PermIdentity fontSize="large" />,
     isButton: true,
   },
-]
+];
 
 export const Menu: React.FC = () => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Drawer variant="permanent" className={classes.root} classes={{ paper: classes.drawerPaper }}>
@@ -64,5 +64,5 @@ export const Menu: React.FC = () => {
         ))}
       </List>
     </Drawer>
-  )
-}
+  );
+};

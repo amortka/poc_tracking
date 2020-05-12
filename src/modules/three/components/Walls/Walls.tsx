@@ -1,30 +1,30 @@
-import React, { useMemo } from 'react'
-import { WallNormal } from './WallNormal'
-import { IVisualisation } from '../../../../models/main.model'
-import { WallsUtils } from './Walls.utils'
-import { WallLine } from './WallLine'
-import { VisualisationType } from '../../canvas.model'
+import React, { useMemo } from 'react';
+import { WallD3 } from './WallD3';
+import { IVisualization } from '../../../../models/main.model';
+import { WallsUtils } from './Walls.utils';
+import { WallD2 } from './WallD2';
+import { VisualizationType } from '../../canvas.model';
 
-interface WallsProps extends Pick<IVisualisation, 'walls' | 'points' | 'rooms'> {
-  type: VisualisationType
+interface WallsProps extends Pick<IVisualization, 'walls' | 'points' | 'rooms'> {
+  type: VisualizationType;
 }
 
 export const Walls: React.FC<WallsProps> = React.memo(({ walls, points, type }) => {
-  let renderWalls
+  let renderWalls;
   switch (type) {
-    case VisualisationType.D3:
+    case VisualizationType.D3:
       renderWalls = useMemo(
-        () => WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallNormal key={i} {...w} />),
+        () => WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallD3 key={i} {...w} />),
         [walls, points]
-      )
-      break
-    case VisualisationType.D2:
+      );
+      break;
+    case VisualizationType.D2:
       renderWalls = useMemo(
-        () => WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallLine key={i} {...w} />),
+        () => WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallD2 key={i} {...w} />),
         [walls, points]
-      )
-      break
+      );
+      break;
   }
 
-  return <React.Fragment>{renderWalls}</React.Fragment>
-})
+  return <React.Fragment>{renderWalls}</React.Fragment>;
+});

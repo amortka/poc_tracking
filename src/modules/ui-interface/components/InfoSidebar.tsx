@@ -1,5 +1,5 @@
-import React from 'react'
-import { Drawer, List, ListItem, ListItemText, ListItemIcon, makeStyles, Paper, Typography } from '@material-ui/core'
+import React from 'react';
+import { Drawer, makeStyles, Paper, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -19,10 +19,10 @@ const useStyles = makeStyles({
     marginBottom: '20px',
     backgroundColor: '#212830',
   },
-})
+});
 
 export const InfoSidebar: React.FC = () => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Drawer variant="permanent" anchor="right" className={classes.root} classes={{ paper: classes.drawerPaper }}>
@@ -47,5 +47,5 @@ export const InfoSidebar: React.FC = () => {
         asdsdgdfgfd
       </Paper>
     </Drawer>
-  )
-}
+  );
+};

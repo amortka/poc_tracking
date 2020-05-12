@@ -1,6 +1,6 @@
-import { IVisualisation } from '../models/main.model'
+import { IVisualization } from '../models/main.model';
 
-export const visualisationMock: IVisualisation = {
+export const visualizationMock: IVisualization = {
   objects: {
     bkgwbnwu: {
       shapePoints: ['xfblfcmx', 'cmtulzxs', 'gjcuvwgu', 'uazocvnx'],
@@ -61,6 +61,19 @@ export const visualisationMock: IVisualisation = {
     ojihoybn: {
       points: ['nlyiefgt', 'ponbhqmp', 'flguqmoa', 'bxlnhzmb', 'acljbmkd', 'nlyiefgq'],
       tag: 'main path',
+      sensors: {
+        ywwijxvz: { sensorId: 'qeculymv', distance: 1.27 },
+        ebnkugjl: { sensorId: 'wytjebmg', distance: 4.52 },
+        brivjsfw: { sensorId: 'etkehdxr', distance: 7.3 },
+        pmdsjikh: { sensorId: 'rzmgfdlc', distance: 10.06 },
+        fjybvfxc: { sensorId: 'dqwzllxi', distance: 12.94 },
+        hgjifznl: { sensorId: 'sadvcvxl', distance: 15.4 },
+        raoibdeo: { sensorId: 'ccomdgqr', distance: 18.16 },
+        itsefkge: { sensorId: 'lojlicgi', distance: 20.94 },
+        zgwojjmg: { sensorId: 'zohcrjma', distance: 24.19 },
+        iexwbqjr: { sensorId: 'xlrbndpv', distance: 26.65 },
+        abpeetej: { sensorId: 'qeculymv', distance: 29.53 },
+      },
     },
   },
   points: {
@@ -101,6 +114,7 @@ export const visualisationMock: IVisualisation = {
     rzmgfdlc: { x: 1.51, y: 0.01 },
     etkehdxr: { x: 4.27, y: 0.01 },
     wytjebmg: { x: 7.05, y: 0.02 },
+
     qeculymv: { x: 10.3, y: 0.03 },
     xlrbndpv: { x: 10.31, y: 2.77 },
     zohcrjma: { x: 10.3, y: 5.4 },
@@ -269,4 +283,4 @@ export const visualisationMock: IVisualisation = {
       tag: 'Main Room',
     },
   },
-}
+};

@@ -1,28 +1,30 @@
-import React from 'react'
-import './App.css'
-import { Canvas } from './modules/three/Canvas'
-import { visualisationMock } from './mocks/main.mock'
-import { ThemeProvider, createMuiTheme } from '@material-ui/core'
-import { Menu } from './modules/ui-interface/components/Menu'
-import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar'
-import { VisualisationType } from './modules/three/canvas.model'
+import './App.css';
+import React from 'react';
+import { Canvas } from './modules/three/Canvas';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
+import { Menu } from './modules/ui-interface/components/Menu';
+import { visualizationMock } from './mocks/main.mock';
+import { VisualizationType } from './modules/three/canvas.model';
 
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
   },
-})
+});
 
 function App() {
+  const callback = (payload) => console.log({ payload });
+
   return (
     <main className={'MainContainer'}>
       <ThemeProvider theme={theme}>
         <Menu />
-        <Canvas config={visualisationMock} type={VisualisationType.D2} />
+        <Canvas config={visualizationMock} type={VisualizationType.D3} events={callback} />
         <InfoSidebar />
       </ThemeProvider>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;

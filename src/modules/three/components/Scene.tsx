@@ -1,20 +1,25 @@
-import React, { useEffect, useRef } from 'react'
-import * as THREE from 'three'
+import React, { useEffect, useRef, useState } from 'react';
+import { Box3, Vector3 } from 'three';
+import { CameraControls } from './CameraControls';
 
-export const Scene: React.FC = (props) => {
-  const scene = useRef<THREE.Object3D>()
+export const Scene: React.FC = ({ children }) => {
+  const scene = useRef<THREE.Object3D>();
+  const [sceneBoundaries, setSceneBoundaries] = useState<Box3>(null);
 
   useEffect(() => {
-    new THREE.Box3()
-      .setFromObject(scene.current)
-      .getCenter(scene.current.position)
-      .multiplyScalar(-1)
-      .multiply(new THREE.Vector3(1, 1, 0))
-  }, [scene])
+    const boundaries = new Box3().setFromObject(scene.current);
+
+    boundaries.getCenter(scene.current.position).multiplyScalar(-1).multiply(new Vector3(1, 1, 0));
+
+    // TODO Do not get Box3 from object twice (even after update)
+    boundaries.setFromObject(scene.current);
+    setSceneBoundaries(boundaries);
+  }, [scene, children]);
 
   return (
     <group ref={scene} position={[0, 0, 0]}>
-      {props.children}
+      <CameraControls boundaries={sceneBoundaries} />
+      {children}
     </group>
-  )
-}
+  );
+};

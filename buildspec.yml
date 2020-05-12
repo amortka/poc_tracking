@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm i npm@latest -g
+      - pip install --upgrade pip
+      - pip install --upgrade awscli
+  pre_build:
+    commands:
+      - npm install
+  build:
+    commands:
+      - npm run build
+  post_build:
+    commands:
+      - echo s3_bucket $s3_bucket
+      - aws s3 rm $s3_bucket --recursive
+      - aws s3 cp --recursive --acl public-read ./build $s3_bucket

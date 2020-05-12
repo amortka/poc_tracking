@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const AmbientLight: React.FC = () => {
   return (
@@ -6,5 +6,5 @@ export const AmbientLight: React.FC = () => {
       <ambientLight intensity={0.2} />
       <pointLight position={[140, 140, 140]} />
     </>
-  )
-}
+  );
+};

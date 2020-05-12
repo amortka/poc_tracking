@@ -31,10 +31,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pretty": "pretty-quick --pattern \"**/*.(ts|tsx)\""
   },
   "prettier": {
-    "semi": false,
+    "semi": true,
     "trailingComma": "es5",
     "singleQuote": true,
     "jsxBracketSameLine": true,
