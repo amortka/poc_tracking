@@ -51,7 +51,7 @@ const menuItems = [
   },
 ];
 
-export const Menu: React.FC = () => {
+export const Menu: React.FC = React.memo(() => {
   const classes = useStyles();
 
   return (
@@ -65,4 +65,4 @@ export const Menu: React.FC = () => {
       </List>
     </Drawer>
   );
-};
+});

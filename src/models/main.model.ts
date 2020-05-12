@@ -57,3 +57,7 @@ export interface IVisualization {
   paths: Dictionary<IPath>;
   rooms: Dictionary<IRoom>;
 }
+
+export interface FromBackend {
+  vehicles: Dictionary<{ tag: string; width: number; height: number; segments: number }>;
+}

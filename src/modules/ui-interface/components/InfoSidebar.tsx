@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const InfoSidebar: React.FC = () => {
+export const InfoSidebar: React.FC = React.memo(() => {
   const classes = useStyles();
 
   return (
@@ -41,4 +41,4 @@ export const InfoSidebar: React.FC = () => {
       <ExpansionSidebarItem title="Strefa Cavity" />
     </Drawer>
   );
-};
+});
