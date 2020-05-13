@@ -1,6 +1,8 @@
 import React from 'react';
-import { Drawer, List, ListItem, ListItemIcon, makeStyles } from '@material-ui/core';
-import { AcUnit, AttachMoney, BorderAllOutlined, CommuteOutlined, PermIdentity } from '@material-ui/icons';
+import { Drawer, List, makeStyles } from '@material-ui/core';
+import { AcUnit, BorderAllOutlined, CommuteOutlined, AttachMoney, PermIdentity } from '@material-ui/icons';
+
+import { MenuItem } from './MenuItem';
 
 const useStyles = makeStyles({
   root: {
@@ -10,46 +12,56 @@ const useStyles = makeStyles({
   drawerPaper: {
     backgroundColor: '#11151A',
   },
-  listItem: {
-    maxWidth: '64px',
-    backgroundColor: '#0C0F13',
-  },
-  listItemIcon: {
-    minWidth: 'unset',
+  list: {
+    height: '100%',
   },
 });
+
+export interface MenuItem {
+  name: string;
+  icon: React.FC;
+  isButton: boolean;
+}
+
+const menuItems = [
+  {
+    name: 'logo',
+    icon: <AcUnit fontSize="large" />,
+    isButton: false,
+  },
+  {
+    name: 'visualisation',
+    icon: <BorderAllOutlined fontSize="large" />,
+    isButton: true,
+  },
+  {
+    name: 'carts',
+    icon: <CommuteOutlined fontSize="large" />,
+    isButton: true,
+  },
+  {
+    name: 'halls',
+    icon: <AttachMoney fontSize="large" />,
+    isButton: true,
+  },
+  {
+    name: 'settings',
+    icon: <PermIdentity fontSize="large" />,
+    isButton: true,
+  },
+];
 
 export const Menu: React.FC = React.memo(() => {
   const classes = useStyles();
 
   return (
     <Drawer variant="permanent" className={classes.root} classes={{ paper: classes.drawerPaper }}>
-      <List>
-        <ListItem className={classes.listItem}>
-          <ListItemIcon className={classes.listItemIcon}>
-            <AcUnit fontSize="large" />
-          </ListItemIcon>
-        </ListItem>
-        <ListItem button className={classes.listItem}>
-          <ListItemIcon className={classes.listItemIcon}>
-            <BorderAllOutlined fontSize="large" />
-          </ListItemIcon>
-        </ListItem>
-        <ListItem button className={classes.listItem}>
-          <ListItemIcon className={classes.listItemIcon}>
-            <CommuteOutlined fontSize="large" />
-          </ListItemIcon>
-        </ListItem>
-        <ListItem button className={classes.listItem}>
-          <ListItemIcon className={classes.listItemIcon}>
-            <AttachMoney fontSize="large" />
-          </ListItemIcon>
-        </ListItem>
-        <ListItem button className={classes.listItem}>
-          <ListItemIcon className={classes.listItemIcon}>
-            <PermIdentity fontSize="large" />
-          </ListItemIcon>
-        </ListItem>
+      <List className={classes.list}>
+        {menuItems.map((item) => (
+          <MenuItem key={item.name} isButton={item.isButton}>
+            {item.icon}
+          </MenuItem>
+        ))}
       </List>
     </Drawer>
   );
