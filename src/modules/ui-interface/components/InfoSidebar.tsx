@@ -1,6 +1,8 @@
 import React from 'react';
-import { Drawer, makeStyles, Paper, Typography, Box } from '@material-ui/core';
+import { Drawer, makeStyles, Paper, Typography, Box, List } from '@material-ui/core';
 import { ExpansionSidebarItem } from './expansion-sidebar-item';
+import { cartsMock } from '../../../mocks/ui.mock';
+import { CartItem } from './cart-item';
 
 const useStyles = makeStyles({
   root: {
@@ -13,16 +15,17 @@ const useStyles = makeStyles({
     maxWidth: '300px',
     borderLeft: 'none',
   },
-  paper: {
-    height: '200px',
-    marginBottom: '20px',
-    backgroundColor: '#212830',
-    boxShadow: 'inset 5px 0 20px -7px #000000',
-  },
   box: {
     backgroundColor: '#2C323A',
-    height: '150px',
+    height: '200px',
     marginBottom: '20px',
+    padding: 0,
+  },
+  list: {
+    width: '100%',
+  },
+  title: {
+    padding: '15px 20px',
   },
 });
 
@@ -32,8 +35,14 @@ export const InfoSidebar: React.FC = React.memo(() => {
   return (
     <Drawer variant="permanent" anchor="right" className={classes.root} classes={{ paper: classes.drawerPaper }}>
       <Box className={classes.box} padding="10px">
-        <Typography variant="h6">Linia produkcyjna</Typography>
-        dsadsadsadas
+        <Typography variant="subtitle1" className={classes.title}>
+          Linia produkcyjna
+        </Typography>
+        <List className={classes.list}>
+          <CartItem {...cartsMock[0]} />
+          <CartItem {...cartsMock[1]} />
+          <CartItem {...cartsMock[2]} />
+        </List>
       </Box>
       <ExpansionSidebarItem title="Warehouse 800" />
       <ExpansionSidebarItem title="P1" />

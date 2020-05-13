@@ -10,6 +10,7 @@ import {
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import { Add } from '@material-ui/icons';
 import { CartItem } from './cart-item';
+import { cartsMock } from '../../../mocks/ui.mock';
 
 const ExpansionPanel = withStyles({
   root: {
@@ -35,6 +36,12 @@ const useStyles = makeStyles({
     marginBottom: '20px',
     backgroundColor: '#212830',
   },
+  details: {
+    padding: 0,
+  },
+  list: {
+    width: '100%',
+  },
 });
 
 export interface ExpansionSidebarItemProps {
@@ -49,12 +56,11 @@ export const ExpansionSidebarItem: React.FC<ExpansionSidebarItemProps> = ({ titl
       <ExpansionPanelSummary expandIcon={<Add />}>
         <Typography variant="h6">{title}</Typography>
       </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
-        <Typography>asdasdasdasd</Typography>
-        <List>
-          <CartItem />
-          <CartItem />
-          <CartItem />
+      <ExpansionPanelDetails className={classes.details}>
+        <List className={classes.list}>
+          <CartItem {...cartsMock[3]} />
+          <CartItem {...cartsMock[4]} />
+          <CartItem {...cartsMock[5]} />
         </List>
       </ExpansionPanelDetails>
     </ExpansionPanel>
