@@ -4,9 +4,9 @@ import { IPathWithPointsCoordinates } from '../../canvas.model';
 import { LineUtils } from '../../utils/line.utils';
 import { ThemeContext } from '../../contexts/ThemeContext';
 
-export interface WallProps extends IPathWithPointsCoordinates {}
+export interface PathsDefaultProps extends IPathWithPointsCoordinates {}
 
-export const PathsLine: React.FC<WallProps> = React.memo(({ points, tag }) => {
+export const PathsDefault: React.FC<PathsDefaultProps> = React.memo(({ points, tag }) => {
   const lineRef = useRef<THREE.Line>(null);
   const fromGround = useRef(0.02);
 
