@@ -4,13 +4,13 @@ import { IPoint } from '../../../../models/main.model';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { VisualizationType } from '../../canvas.model';
 
+const circleRadius = 0.15;
+const circleSegments = 16;
+
 interface ISensor {
   position: IPoint;
   type: VisualizationType;
 }
-
-const circleRadius = 0.15;
-const circleSegments = 16;
 
 export const Sensor: React.FC<ISensor> = ({ position, type }) => {
   const theme = useContext(ThemeContext);

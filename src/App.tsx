@@ -15,6 +15,12 @@ const theme = createMuiTheme({
   },
 });
 
+interface Vehicle {
+  distance: number; // 0-1
+  pathId: string;
+  tag: string;
+}
+
 function App() {
   const [events, setEvents] = useState<IEventContextPayload>(null);
 

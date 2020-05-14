@@ -12,6 +12,7 @@ import { CanvasUtils } from './utils/canvasUtils';
 import { ThemeContext } from './contexts/ThemeContext';
 import { Paths } from './components/Paths/Paths';
 import { Sensors } from './components/Sensors/Sensors';
+import { Routes } from './components/Routes/Routes';
 import { EventsContextProvider, eventsContextService } from './contexts/EventsContext';
 import { equal } from '../../utils/object.utils';
 
@@ -39,11 +40,13 @@ export const Canvas: React.FC<CanvasProps> = React.memo(
           <ThemeContext.Provider value={themeConfig}>
             <AmbientLight />
             <Floor type={type} />
-            <Scene>
+            <Scene type={type}>
               <Walls walls={config.walls} points={config.points} rooms={config.rooms} type={type} />
               <Objects points={config.points} objects={config.objects} type={VisualizationType.D2} />
               <Paths points={config.points} paths={config.paths} />
               <Sensors points={config.points} sensors={config.sensors} type={type} />
+
+              <Routes points={config.points} paths={config.paths} />
             </Scene>
           </ThemeContext.Provider>
         </EventsContextProvider>
