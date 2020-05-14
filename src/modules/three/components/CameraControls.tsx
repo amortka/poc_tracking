@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 // HERE
 // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-import { extend, ReactThreeFiber, useFrame, useResource, useThree } from 'react-three-fiber';
+import { extend, ReactThreeFiber, useFrame, useResource, useThree, useUpdate } from 'react-three-fiber';
 import { OrbitControls } from '../../../libs/OrbitControls/OrbitControls';
+import { VisualizationType } from '../canvas.model';
 
 extend({ OrbitControls });
 
@@ -23,10 +24,11 @@ const maxAzimuthAngle = Math.PI / 3;
 
 interface ICameraControls {
   boundaries: THREE.Box3;
+  type: VisualizationType;
 }
 
-export const CameraControls: React.FC<ICameraControls> = ({ boundaries }) => {
-  const [ref, controls] = useResource<OrbitControls>();
+export const CameraControls: React.FC<ICameraControls> = ({ boundaries, type }) => {
+  const controlsRef = useRef<OrbitControls>();
   const { camera, gl } = useThree();
 
   useEffect(() => {
@@ -43,26 +45,26 @@ export const CameraControls: React.FC<ICameraControls> = ({ boundaries }) => {
     orthoCamera.zoom = zoomToBoundaries;
     orthoCamera.position.z = boundaries.max.z + Math.abs(orthoCamera.bottom);
 
-    controls.panBoundaries = boundaries;
-    controls.minZoom = zoomToBoundaries * 0.5;
-    controls.maxZoom = zoomToBoundaries * 2;
+    controlsRef.current.panBoundaries = boundaries;
+    controlsRef.current.minZoom = zoomToBoundaries * 0.5;
+    controlsRef.current.maxZoom = zoomToBoundaries * 2;
 
     camera.updateProjectionMatrix();
     camera.updateMatrix();
-    controls.update();
-  }, [boundaries, gl.domElement, camera, controls]);
+    controlsRef.current.update();
+  }, [boundaries, gl.domElement, camera]);
 
-  useFrame(() => controls.update());
+  useFrame(() => controlsRef.current.update());
 
   return (
     <orbitControls
-      ref={ref}
+      ref={controlsRef}
       args={[camera, gl.domElement]}
-      maxPolarAngle={maxPolarAngle}
       enableDamping={enableDamping}
       dampingFactor={dampingFactor}
       minAzimuthAngle={minAzimuthAngle}
       maxAzimuthAngle={maxAzimuthAngle}
+      maxPolarAngle={maxPolarAngle}
     />
   );
 };
