@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Canvas } from './modules/three/Canvas';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
@@ -17,7 +17,10 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  const [vehicles, setVehicles] = useState<VehicleAnimation[]>([]);
+  const [vehicles, setVehicles] = useState<VehicleAnimation[]>([
+    { pathId: 'ojihoybn', tag: 'vehicle-1', type: 'basic', progress: 0.38 },
+  ]);
+
   const [events, setEvents] = useState<IEventContextPayload>(null);
 
   return (
