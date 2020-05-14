@@ -1,19 +1,20 @@
+import './three-extend';
 import React, { useEffect, useMemo } from 'react';
-import { Object3D } from 'three';
 import { AmbientLight } from './components/AmbientLight';
 import { Canvas as CanvasThree } from 'react-three-fiber';
+import { CanvasUtils } from './utils/canvasUtils';
+import { equal } from '../../utils/object.utils';
+import { EventsContextProvider, eventsContextService } from './contexts/EventsContext';
 import { Floor } from './components/Floor';
 import { ICanvasTheme, VisualizationType } from './canvas.model';
 import { IVisualization } from '../../models/main.model';
+import { Object3D } from 'three';
 import { Objects } from './components/Objects/Objects';
-import { Scene } from './components/Scene';
-import { Walls } from './components/Walls/Walls';
-import { CanvasUtils } from './utils/canvasUtils';
-import { ThemeContext } from './contexts/ThemeContext';
 import { Paths } from './components/Paths/Paths';
+import { Scene } from './components/Scene';
 import { Sensors } from './components/Sensors/Sensors';
-import { EventsContextProvider, eventsContextService } from './contexts/EventsContext';
-import { equal } from '../../utils/object.utils';
+import { ThemeContext } from './contexts/ThemeContext';
+import { Walls } from './components/Walls/Walls';
 
 interface CanvasProps {
   config: IVisualization;
