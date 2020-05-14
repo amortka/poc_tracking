@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
-import { IVisualization } from '../../../../models/main.model';
+import { IVisualizationScene } from '../../../../models/main.model';
 import { VisualizationType } from '../../canvas.model';
 import { Sensor } from './Sensor';
 
-interface ISensors extends Pick<IVisualization, 'sensors' | 'points'> {
+interface ISensors extends Pick<IVisualizationScene, 'sensors' | 'points'> {
   type: VisualizationType;
 }
 

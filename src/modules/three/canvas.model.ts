@@ -1,4 +1,4 @@
-import { IObject, IPath, IPoint, IWall } from '../../models/main.model';
+import { IObject, IPath, IPoint, IRoute, IVehicle, IWall } from '../../models/main.model';
 import * as THREE from 'three';
 import { BackgroundProperty } from 'csstype';
 
@@ -20,14 +20,12 @@ export interface IPathWithPointsCoordinates extends Omit<IPath, 'points'> {
   points: IPoint[];
 }
 
-export interface IWallWithAdditionalData extends Omit<IWall, 'start' | 'end'> {
-  start: IPoint;
-  end: IPoint;
-  startNeighborWalls: IWallWithPointsCoordinates;
-  endNeighborWalls: IWallWithPointsCoordinates;
+export interface IRouteWithComputedData extends Omit<IRoute, 'vehicle' | 'path'> {
+  vehicle: IVehicle;
+  path: IPathWithPointsCoordinates;
 }
 
-type Color = THREE.Color | number | string;
+export type Color = THREE.Color | number | string;
 
 export interface ICanvasTheme {
   canvasBackground: BackgroundProperty<any>;

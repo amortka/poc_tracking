@@ -1,5 +1,5 @@
 import React from 'react';
-import { Drawer, makeStyles, Paper, Typography, Box, List } from '@material-ui/core';
+import { Box, Drawer, List, makeStyles, Typography } from '@material-ui/core';
 import { ExpansionSidebarItem } from './expansion-sidebar-item';
 import { cartsMock } from '../../../mocks/ui.mock';
 import { CartItem } from './cart-item';

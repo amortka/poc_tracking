@@ -2,12 +2,12 @@ import './three-extend';
 import React, { useEffect, useMemo } from 'react';
 import { AmbientLight } from './components/AmbientLight';
 import { Canvas as CanvasThree } from 'react-three-fiber';
-import { CanvasUtils } from './utils/canvasUtils';
+import { CanvasUtils } from './utils/canvas.utils';
 import { equal } from '../../utils/object.utils';
 import { EventsContextProvider, eventsContextService } from './contexts/EventsContext';
 import { Floor } from './components/Floor';
 import { ICanvasTheme, VisualizationType } from './canvas.model';
-import { IVisualization } from '../../models/main.model';
+import { IVisualisationState, IVisualizationScene } from '../../models/main.model';
 import { Object3D } from 'three';
 import { Objects } from './components/Objects/Objects';
 import { Paths } from './components/Paths/Paths';
@@ -15,16 +15,18 @@ import { Scene } from './components/Scene';
 import { Sensors } from './components/Sensors/Sensors';
 import { ThemeContext } from './contexts/ThemeContext';
 import { Walls } from './components/Walls/Walls';
+import { Routes } from './components/Routes/Routes';
 
 interface CanvasProps {
-  config: IVisualization;
+  scene: IVisualizationScene;
+  state: IVisualisationState;
   theme?: ICanvasTheme;
   type: VisualizationType;
   events?: (IEventContextPayload) => void;
 }
 
 export const Canvas: React.FC<CanvasProps> = React.memo(
-  ({ config, theme = {}, type, events }) => {
+  ({ scene, theme = {}, type, events, state }) => {
     Object3D.DefaultUp.set(0, 0, 1);
 
     const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme]);
@@ -41,10 +43,11 @@ export const Canvas: React.FC<CanvasProps> = React.memo(
             <AmbientLight />
             <Floor type={type} />
             <Scene>
-              <Walls walls={config.walls} points={config.points} rooms={config.rooms} type={type} />
-              <Objects points={config.points} objects={config.objects} type={VisualizationType.D2} />
-              <Paths points={config.points} paths={config.paths} />
-              <Sensors points={config.points} sensors={config.sensors} type={type} />
+              <Walls walls={scene.walls} points={scene.points} rooms={scene.rooms} type={type} />
+              <Objects points={scene.points} objects={scene.objects} type={VisualizationType.D2} />
+              <Paths points={scene.points} paths={scene.paths} />
+              <Sensors points={scene.points} sensors={scene.sensors} type={type} />
+              <Routes points={scene.points} paths={scene.paths} vehicles={state.vehicles} routes={state.routes} />
             </Scene>
           </ThemeContext.Provider>
         </EventsContextProvider>
@@ -53,7 +56,7 @@ export const Canvas: React.FC<CanvasProps> = React.memo(
   },
 
   (prevProps, nextProps) =>
-    equal(prevProps.config, nextProps.config) &&
+    equal(prevProps.scene, nextProps.scene) &&
     equal(prevProps.theme, nextProps.theme) &&
     prevProps.type === nextProps.type
 );

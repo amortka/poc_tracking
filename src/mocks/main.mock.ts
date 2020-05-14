@@ -1,6 +1,6 @@
-import { IVisualization } from '../models/main.model';
+import { IVisualizationScene, IVisualisationState } from '../models/main.model';
 
-export const visualizationMock: IVisualization = {
+export const visualizationSceneMock: IVisualizationScene = {
   objects: {
     bkgwbnwu: {
       shapePoints: ['xfblfcmx', 'cmtulzxs', 'gjcuvwgu', 'uazocvnx'],
@@ -61,19 +61,19 @@ export const visualizationMock: IVisualization = {
     ojihoybn: {
       points: ['nlyiefgt', 'ponbhqmp', 'flguqmoa', 'bxlnhzmb', 'acljbmkd', 'nlyiefgq'],
       tag: 'main path',
-      sensors: {
-        ywwijxvz: { sensorId: 'qeculymv', distance: 0.04 },
-        ebnkugjl: { sensorId: 'wytjebmg', distance: 0.14 },
-        brivjsfw: { sensorId: 'etkehdxr', distance: 0.23 },
-        pmdsjikh: { sensorId: 'rzmgfdlc', distance: 0.32 },
-        fjybvfxc: { sensorId: 'dqwzllxi', distance: 0.41 },
-        hgjifznl: { sensorId: 'sadvcvxl', distance: 0.49 },
-        raoibdeo: { sensorId: 'ccomdgqr', distance: 0.57 },
-        itsefkge: { sensorId: 'lojlicgi', distance: 0.66 },
-        zgwojjmg: { sensorId: 'zohcrjma', distance: 0.76 },
-        iexwbqjr: { sensorId: 'xlrbndpv', distance: 0.84 },
-        abpeetej: { sensorId: 'qeculymv', distance: 0.93 },
-      },
+      sensors: [
+        { sensorId: 'qeculymv', distance: 0.04 },
+        { sensorId: 'wytjebmg', distance: 0.14 },
+        { sensorId: 'etkehdxr', distance: 0.23 },
+        { sensorId: 'rzmgfdlc', distance: 0.32 },
+        { sensorId: 'dqwzllxi', distance: 0.41 },
+        { sensorId: 'sadvcvxl', distance: 0.49 },
+        { sensorId: 'ccomdgqr', distance: 0.57 },
+        { sensorId: 'lojlicgi', distance: 0.66 },
+        { sensorId: 'zohcrjma', distance: 0.76 },
+        { sensorId: 'xlrbndpv', distance: 0.84 },
+        { sensorId: 'qeculymv', distance: 0.93 },
+      ],
     },
   },
   points: {
@@ -281,6 +281,20 @@ export const visualizationMock: IVisualization = {
     kn3gtnyz: {
       walls: ['ezzgwvd4', 'sw4py33t', 'jucu1uf9', 'fytviige', 'vzelifcm', 'ka9v61v5', 'e22c2u9q', 'jgxi5xqi'],
       tag: 'Main Room',
+    },
+  },
+};
+
+export const visualisationStateMock: IVisualisationState = {
+  vehicles: {
+    trqzbojg: { tag: 'Milkrun ABC', dimensions: { x: 0.6, y: 0.4, z: 0.25 }, segments: 1 },
+  },
+  routes: {
+    fqfwxpzw: {
+      vehicle: 'trqzbojg',
+      path: 'ojihoybn',
+      progress: 0.2,
+      selected: true,
     },
   },
 };

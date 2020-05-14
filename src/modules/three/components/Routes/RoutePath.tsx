@@ -1,9 +1,9 @@
 import * as THREE from 'three';
-import React, { useRef } from 'react';
+import React from 'react';
 import { IPathWithPointsCoordinates } from '../../canvas.model';
 import { LineUtils } from '../../utils/line.utils';
 
-export interface PathsDefaultProps extends IPathWithPointsCoordinates {
+export interface RoutePathProps extends IPathWithPointsCoordinates {
   distanceStart: number; // value 0-1
   distanceEnd: number; // value 0-1
   linewidth: number;
@@ -17,9 +17,9 @@ export interface PathsDefaultProps extends IPathWithPointsCoordinates {
   opacity?: number;
 }
 
-export const PathsSelected: React.FC<PathsDefaultProps> = React.memo(({ points, tag, ...config }) => {
-  const fromGround = useRef(0.03);
-  const pointsV = LineUtils.getPathPointsFromPointCoordinates(points, fromGround.current);
+export const RoutePath: React.FC<RoutePathProps> = React.memo(({ points, tag, ...config }) => {
+  const fromGround = 0.03;
+  const pointsV = LineUtils.getPathPointsFromPointCoordinates(points, fromGround);
 
   const geometryConfig = {
     distanceStart: config.distanceStart,
