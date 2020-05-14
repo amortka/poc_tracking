@@ -26,7 +26,7 @@ const tooltipReducer: Reducer<Pick<TooltipProps, 'open' | 'template'>, IEventCon
         open: true,
       };
     case EventType.MOUSE_OUT:
-      return { template: '', open: false };
+      return { ...state, open: false };
     default:
       // throw new Error();
       return state;

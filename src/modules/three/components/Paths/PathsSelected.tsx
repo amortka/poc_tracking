@@ -1,39 +1,46 @@
-import React, { useContext, useRef } from 'react';
+import * as THREE from 'three';
+import React, { useRef } from 'react';
 import { IPathWithPointsCoordinates } from '../../canvas.model';
-import { Line2 } from 'three/examples/jsm/lines/Line2.js';
-import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial.js';
-import { LineGeometry } from 'three/examples/jsm/lines/LineGeometry.js';
-import { extend } from 'react-three-fiber';
-import { ThemeContext } from '../../contexts/ThemeContext';
 import { LineUtils } from '../../utils/line.utils';
 
-extend({ Line2, LineMaterial, LineGeometry });
+export interface PathsDefaultProps extends IPathWithPointsCoordinates {
+  distanceStart: number; // value 0-1
+  distanceEnd: number; // value 0-1
+  linewidth: number;
+  colorStart?: THREE.Color | string | number;
+  colorEnd?: THREE.Color | string | number;
+  color?: number;
+  dashed?: boolean;
+  dashScale?: number;
+  dashSize?: number;
+  gapSize?: number;
+  opacity?: number;
+}
 
-export interface PathsDefaultProps extends IPathWithPointsCoordinates {}
-
-export const PathsSelected: React.FC<PathsDefaultProps> = React.memo(({ points, tag }) => {
-  const theme = useContext(ThemeContext);
-
-  const fromGround = useRef(0.02);
+export const PathsSelected: React.FC<PathsDefaultProps> = React.memo(({ points, tag, ...config }) => {
+  const fromGround = useRef(0.03);
   const pointsV = LineUtils.getPathPointsFromPointCoordinates(points, fromGround.current);
-  const positionArray: number[] = [];
-  pointsV.forEach((v) => positionArray.push(...v.toArray()));
 
-  const lineG = new LineGeometry().setPositions(positionArray);
-  // geometry.setColors(colors);
-  const lineM = new LineMaterial({
-    color: 0xaa00ff,
-    linewidth: 0.005,
-    vertexColors: true,
-    dashed: false,
-  });
-
-  const line2 = new Line2(lineG, lineM);
-  line2.computeLineDistances();
-  line2.scale.set(1, 1, 1);
+  const geometryConfig = {
+    distanceStart: config.distanceStart,
+    distanceEnd: config.distanceEnd,
+    colorStart: config.colorStart,
+    colorEnd: config.colorEnd,
+  };
+  const materialConfig = {
+    color: config.color,
+    linewidth: config.linewidth,
+    vertexColors: !config.color,
+    dashed: config.dashed,
+    gapSize: config.gapSize,
+    dashScale: config.dashScale,
+    dashSize: config.dashSize,
+  };
 
   return (
-    // @ts-ignore
-    <line2 geometry={lineG} material={lineM} />
+    <line2>
+      <lineSegmentGeometry attach="geometry" args={[pointsV, geometryConfig]} />
+      <lineMaterial attach="material" args={[materialConfig]} />
+    </line2>
   );
 });
