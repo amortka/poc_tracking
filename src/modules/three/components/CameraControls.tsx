@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 // HERE
 // eslint-disable-next-line  @typescript-eslint/no-unused-vars
 import { extend, ReactThreeFiber, useFrame, useResource, useThree } from 'react-three-fiber';
+import * as THREE from 'three';
 import { OrbitControls } from '../../../libs/OrbitControls/OrbitControls';
 
 extend({ OrbitControls });
