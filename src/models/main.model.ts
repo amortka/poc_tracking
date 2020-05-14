@@ -41,7 +41,7 @@ export interface IObject {
 export interface IPath {
   tag?: string;
   points: string[];
-  sensors: Dictionary<{ sensorId: string; distance: number }>;
+  sensors: { sensorId: string; distance: number }[];
 }
 
 export interface IRoom {

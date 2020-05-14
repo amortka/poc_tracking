@@ -9,8 +9,8 @@ const mapPointsToPath = (pointIds: string[], points: Dictionary<IPoint>): THREE.
 };
 
 const mapSensorDictionaryToDistanceMap = (
-  sensors: Dictionary<{ sensorId: string; distance: number }>
+  sensors: { sensorId: string; distance: number }[]
 ): { [sensorId: string]: number } =>
-  Object.values(sensors).reduce((acc, { sensorId, distance }) => ({ ...acc, [sensorId]: distance }), {});
+  sensors.reduce((acc, { sensorId, distance }) => ({ ...acc, [sensorId]: distance }), {});
 
 export { mapPointsToPath, mapSensorDictionaryToDistanceMap };

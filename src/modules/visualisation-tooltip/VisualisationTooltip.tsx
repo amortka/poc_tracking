@@ -5,7 +5,7 @@ import { equal } from '../../utils/object.utils';
 import { useMouseMove } from '../../custom-hooks/use-mouse-move.hook';
 import { Typography } from '@material-ui/core';
 
-interface VisualisationTooltipProps {
+interface VisualizationTooltipProps {
   events: IEventContextPayload;
 }
 
@@ -33,7 +33,7 @@ const tooltipReducer: Reducer<Pick<TooltipProps, 'open' | 'template'>, IEventCon
   }
 };
 
-export const VisualisationTooltip: React.FC<VisualisationTooltipProps> = React.memo(
+export const VisualizationTooltip: React.FC<VisualizationTooltipProps> = React.memo(
   ({ events }) => {
     const [tooltipConfig, dispatchTooltipConfig] = useReducer(tooltipReducer, { template: '', open: false });
     const [mouseCoordinates, setTrackMouse] = useMouseMove();

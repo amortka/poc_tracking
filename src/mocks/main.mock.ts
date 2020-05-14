@@ -61,20 +61,19 @@ export const visualizationMock: IVisualization = {
     ojihoybn: {
       points: ['nlyiefgt', 'ponbhqmp', 'flguqmoa', 'bxlnhzmb', 'acljbmkd', 'nlyiefgq'],
       tag: 'main path',
-      sensors: {
-        //TODO Make array
-        abpeetej: { sensorId: 'qeculymv', distance: 1 },
-        brivjsfw: { sensorId: 'etkehdxr', distance: 0.2557798548354068 },
-        ebnkugjl: { sensorId: 'wytjebmg', distance: 0.15837327998027925 },
-        fjybvfxc: { sensorId: 'dqwzllxi', distance: 0.4533960714479676 },
-        hgjifznl: { sensorId: 'sadvcvxl', distance: 0.5395903786938718 },
-        iexwbqjr: { sensorId: 'xlrbndpv', distance: 0.9337716618306289 },
-        itsefkge: { sensorId: 'lojlicgi', distance: 0.7337027616785505 },
-        pmdsjikh: { sensorId: 'rzmgfdlc', distance: 0.35248566296495787 },
-        raoibdeo: { sensorId: 'ccomdgqr', distance: 0.6362961868234229 },
-        zgwojjmg: { sensorId: 'zohcrjma', distance: 0.8475773545847247 },
-        ywwijxvz: { sensorId: 'qeculymv', distance: 0.044498687074105016 },
-      },
+      sensors: [
+        { sensorId: 'qeculymv', distance: 1 },
+        { sensorId: 'etkehdxr', distance: 0.2557798548354068 },
+        { sensorId: 'wytjebmg', distance: 0.15837327998027925 },
+        { sensorId: 'dqwzllxi', distance: 0.4533960714479676 },
+        { sensorId: 'sadvcvxl', distance: 0.5395903786938718 },
+        { sensorId: 'xlrbndpv', distance: 0.9337716618306289 },
+        { sensorId: 'lojlicgi', distance: 0.7337027616785505 },
+        { sensorId: 'rzmgfdlc', distance: 0.35248566296495787 },
+        { sensorId: 'ccomdgqr', distance: 0.6362961868234229 },
+        { sensorId: 'zohcrjma', distance: 0.8475773545847247 },
+        { sensorId: 'qeculymv', distance: 0.044498687074105016 },
+      ],
     },
   },
   points: {
