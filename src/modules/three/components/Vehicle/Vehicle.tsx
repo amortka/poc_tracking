@@ -1,33 +1,20 @@
-import React, { useState } from 'react';
-import { useFrame } from 'react-three-fiber';
+import React from 'react';
 
 interface IVehicle {
-  lastPosition: string;
-  nextPosition: string;
-  segments: { [sensorId: string]: number };
+  type: string;
   path: THREE.Path;
+  progress: number;
 }
 
-const avgSpeed = 0.0001; // dlugostrasy / sredniapredkosc
+export const Vehicle: React.FC<IVehicle> = React.memo(({ progress, path }) => {
+  const position = path.getPoint(progress);
 
-export const AnimatedVehicle: React.FC<IVehicle> = ({ lastPosition, nextPosition, segments, path }) => {
-  const [position, setPosition] = useState<number>(segments[lastPosition]);
-
-  useFrame(() => {
-    if (position < segments[nextPosition]) {
-      setPosition((current) => {
-        const newValue = current + avgSpeed;
-        return newValue < segments[nextPosition] ? newValue : current;
-      });
-    }
-  });
-
-  const vPos = path.getPoint(position);
+  // TODO Predict vehicle direction based on vehicle length and sensor (on vehicle) position
 
   return (
-    <mesh position-x={vPos.x} position-y={vPos.y} rotation-x={Math.PI / 2}>
+    <mesh position-x={position.x} position-y={position.y} rotation-x={Math.PI / 2}>
       <cylinderGeometry attach="geometry" args={[0.15, 0.15, 0.5, 16]} />
       <meshBasicMaterial attach="material" color={0xffff00} />
     </mesh>
   );
-};
+});

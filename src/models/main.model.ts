@@ -61,3 +61,10 @@ export interface IVisualization {
 export interface FromBackend {
   vehicles: Dictionary<{ tag: string; width: number; height: number; segments: number }>;
 }
+
+export interface VehicleAnimation {
+  tag: string;
+  type: string;
+  pathId: string;
+  progress: number;
+}

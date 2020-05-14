@@ -1,27 +1,18 @@
 import React from 'react';
-import { AnimatedVehicle } from '../Vehicle/Vehicle';
+import { VehicleAnimation } from '../../../../models/main.model';
+import { Vehicle } from '../Vehicle/Vehicle';
 
 interface RouteProps {
   path: THREE.Path;
-  segments: { [sensorId: string]: number };
-  vehicles?: {
-    lastPosition: number;
-    nextPosition: number;
-  }[];
+  vehicles: Pick<VehicleAnimation, 'tag' | 'type' | 'progress'>[];
 }
 
-const vehicle = {
-  lastPosition: 'qeculymv',
-  nextPosition: 'wytjebmg',
-};
-
-export const Route: React.FC<RouteProps> = ({ path, segments }) => {
+export const Route: React.FC<RouteProps> = ({ path, vehicles }) => {
   return (
-    <AnimatedVehicle
-      lastPosition={vehicle.lastPosition}
-      nextPosition={vehicle.nextPosition}
-      segments={segments}
-      path={path}
-    />
+    <>
+      {vehicles.map(({ tag, type, progress }) => (
+        <Vehicle key={tag} progress={progress} path={path} type={type} />
+      ))}
+    </>
   );
 };

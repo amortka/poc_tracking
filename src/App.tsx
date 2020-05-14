@@ -5,6 +5,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
 import { Menu } from './modules/ui-interface/components/Menu';
 import { visualizationMock } from './mocks/main.mock';
+import { VehicleAnimation } from './models/main.model';
 import { VisualizationType } from './modules/three/canvas.model';
 import { VisualisationTooltip } from './modules/visualisation-tooltip/VisualisationTooltip';
 import { IEventContextPayload } from './modules/three/contexts/EventsContext';
@@ -15,20 +16,15 @@ const theme = createMuiTheme({
   },
 });
 
-interface Vehicle {
-  distance: number; // 0-1
-  pathId: string;
-  tag: string;
-}
-
 function App() {
+  const [vehicles, setVehicles] = useState<VehicleAnimation[]>([]);
   const [events, setEvents] = useState<IEventContextPayload>(null);
 
   return (
     <main className={'MainContainer'}>
       <ThemeProvider theme={theme}>
         <Menu />
-        <Canvas config={visualizationMock} type={VisualizationType.D3} events={setEvents} />
+        <Canvas config={visualizationMock} type={VisualizationType.D3} events={setEvents} vehicles={vehicles} />
         <VisualisationTooltip events={events} />
         <InfoSidebar />
       </ThemeProvider>

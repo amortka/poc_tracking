@@ -4,7 +4,7 @@ import { AmbientLight } from './components/AmbientLight';
 import { Canvas as CanvasThree } from 'react-three-fiber';
 import { Floor } from './components/Floor';
 import { ICanvasTheme, VisualizationType } from './canvas.model';
-import { IVisualization } from '../../models/main.model';
+import { IVisualization, VehicleAnimation } from '../../models/main.model';
 import { Objects } from './components/Objects/Objects';
 import { Scene } from './components/Scene';
 import { Walls } from './components/Walls/Walls';
@@ -21,10 +21,11 @@ interface CanvasProps {
   theme?: ICanvasTheme;
   type: VisualizationType;
   events?: (IEventContextPayload) => void;
+  vehicles: VehicleAnimation[];
 }
 
 export const Canvas: React.FC<CanvasProps> = React.memo(
-  ({ config, theme = {}, type, events }) => {
+  ({ config, theme = {}, type, events, vehicles }) => {
     Object3D.DefaultUp.set(0, 0, 1);
 
     const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme]);
@@ -46,7 +47,7 @@ export const Canvas: React.FC<CanvasProps> = React.memo(
               <Paths points={config.points} paths={config.paths} />
               <Sensors points={config.points} sensors={config.sensors} type={type} />
 
-              <Routes points={config.points} paths={config.paths} />
+              <Routes points={config.points} paths={config.paths} vehicles={vehicles} />
             </Scene>
           </ThemeContext.Provider>
         </EventsContextProvider>
