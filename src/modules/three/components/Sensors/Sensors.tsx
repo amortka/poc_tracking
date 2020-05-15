@@ -10,8 +10,8 @@ interface ISensors extends Pick<IVisualizationScene, 'sensors' | 'points'> {
 export const Sensors: React.FC<ISensors> = ({ points, sensors, type }) => {
   const sensorModels = useMemo(
     () =>
-      Object.entries(sensors).map(([sensorId, { point }]) => (
-        <Sensor key={sensorId} position={points[point]} type={type} />
+      Object.entries(sensors).map(([sensorId, { point, tag }]) => (
+        <Sensor key={sensorId} position={points[point]} type={type} id={sensorId} tag={tag} />
       )),
     [points, sensors, type]
   );

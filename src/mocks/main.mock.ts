@@ -1,4 +1,4 @@
-import { IVisualizationScene, IVisualisationState } from '../models/main.model';
+import { IVisualizationScene, IVisualisationState, ISelection } from '../models/main.model';
 
 export const visualizationSceneMock: IVisualizationScene = {
   objects: {
@@ -297,4 +297,9 @@ export const visualisationStateMock: IVisualisationState = {
       selected: true,
     },
   },
+};
+
+export const selectionMock: ISelection = {
+  sensors: ['qwbmjtmf', 'xzfsgxxh', 'izktgqna', 'piunnkuf'],
+  vehicles: [],
 };

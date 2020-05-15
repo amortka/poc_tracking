@@ -13,6 +13,7 @@ export enum ObjectType {
   PATH = 'PATH',
   SENSOR = 'SENSOR',
   WALL = 'WALL',
+  VEHICLE = 'VEHICLE',
 }
 
 export type EventContextObject = IWall | ISensor | IObjectWithPointsCoordinates | IRoom | IPath;

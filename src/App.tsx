@@ -4,10 +4,11 @@ import { Canvas } from './modules/three/Canvas';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
 import { Menu } from './modules/ui-interface/components/Menu';
-import { visualizationSceneMock, visualisationStateMock } from './mocks/main.mock';
+import { visualizationSceneMock, visualisationStateMock, selectionMock } from './mocks/main.mock';
 import { VisualizationType } from './modules/three/canvas.model';
-import { VisualisationTooltip } from './modules/visualisation-tooltip/VisualisationTooltip';
+import { MouseEventTooltip } from './modules/visualisation-tooltip/MouseEventTooltip';
 import { IEventContextPayload } from './modules/three/contexts/EventsContext';
+import { SelectionEventTooltip } from './modules/visualisation-tooltip/SelectionEventTooltip';
 
 const theme = createMuiTheme({
   palette: {
@@ -23,12 +24,15 @@ function App() {
       <ThemeProvider theme={theme}>
         <Menu />
         <Canvas
+          selectionDataClb={(payload) => console.log({ payload })}
+          selection={selectionMock}
           scene={visualizationSceneMock}
           state={visualisationStateMock}
           type={VisualizationType.D3}
           events={setEvents}
         />
-        <VisualisationTooltip events={events} />
+        <MouseEventTooltip events={events} />
+        <SelectionEventTooltip objects={[]} />
         <InfoSidebar />
       </ThemeProvider>
     </main>

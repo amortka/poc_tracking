@@ -1,3 +1,5 @@
+import { ObjectType } from '../modules/three/contexts/EventsContext';
+
 export interface Dictionary<T> {
   [id: string]: T;
 }
@@ -90,4 +92,25 @@ export interface IVisualisationState {
   vehicles: Dictionary<IVehicle>;
   routes: Dictionary<IRoute>;
   // TODO: add selections (showing tooltips e.g sensors)
+}
+
+/**
+ * Selection
+ */
+
+export interface ISelectionTooltip {
+  objectType: ObjectType;
+  coordinates: IPoint;
+  title: string;
+  description: string;
+}
+
+export interface ISelection {
+  vehicles: string[]; // array of vehicle ids
+  sensors: string[]; // array of sensor ids
+}
+
+export interface ISelectionData {
+  vehicles: Dictionary<ISelectionTooltip>;
+  sensors: Dictionary<ISelectionTooltip>;
 }
