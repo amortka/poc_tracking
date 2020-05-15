@@ -19,16 +19,13 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  const [vehicles, setVehicles] = useState<VehicleAnimation[]>([
-    { pathId: 'ojihoybn', tag: 'Milkrun ABC', type: 'basic', progress: 0.38 },
-    // { pathId: 'ojihoybn', tag: 'Milkrun GHI', type: 'basic', progress: 0.78 },
-    // { pathId: 'ojihoybn', tag: 'Milkrun MNB', type: 'basic', progress: 0.1 },
-  ]);
+  const [vehicles, setVehicles] = useState<VehicleAnimation[]>([]);
 
   useEffect(() => {
-    const communicationMock = new CommunicationMock({ tag: 'Milkrun ABC', path: 'dsada' });
+    const communicationMock = new CommunicationMock({ tag: 'Milkrun ABC', pathId: 'ojihoybn' });
     const vehiclePositionService = new VehiclePositionsService(visualizationMock.paths);
     vehiclePositionService.onUpdate((data) => setVehicles([data]));
+    vehiclePositionService.start();
 
     communicationMock.simulate(vehiclePositionService.handleEvent);
   }, []);

@@ -1,19 +1,19 @@
 interface MockVehicle {
   tag: string;
-  path: string;
+  pathId: string;
 }
 
 const progress = [
   { delay: 0, sensorId: 'qeculymv', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'etkehdxr', event: 'UPDATE' },
   { delay: 5000, sensorId: 'wytjebmg', event: 'UPDATE' },
+  { delay: 5000, sensorId: 'etkehdxr', event: 'UPDATE' },
+  { delay: 5000, sensorId: 'rzmgfdlc', event: 'UPDATE' },
   { delay: 5000, sensorId: 'dqwzllxi', event: 'UPDATE' },
   { delay: 5000, sensorId: 'sadvcvxl', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'xlrbndpv', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'lojlicgi', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'rzmgfdlc', event: 'UPDATE' },
   { delay: 5000, sensorId: 'ccomdgqr', event: 'UPDATE' },
+  { delay: 5000, sensorId: 'lojlicgi', event: 'UPDATE' },
   { delay: 5000, sensorId: 'zohcrjma', event: 'UPDATE' },
+  { delay: 5000, sensorId: 'xlrbndpv', event: 'UPDATE' },
   { delay: 5000, sensorId: 'qeculymv', event: 'UPDATE' },
 ];
 

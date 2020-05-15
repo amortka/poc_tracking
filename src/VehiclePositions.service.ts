@@ -29,22 +29,44 @@ export class VehiclePositionsService {
 
   constructor(paths: Dictionary<IPath>) {
     this.paths = paths;
+    this.vehicles = {};
   }
 
-  onUpdate(updateFunction: (update: VehicleUpdate) => void) {
+  onUpdate = (updateFunction: (update: VehicleUpdate) => void) => {
     this.updateFunction = updateFunction;
-  }
+  };
 
-  handleEvent(vehicleEvent: VehicleEvent) {
+  handleEvent = (vehicleEvent: VehicleEvent) => {
     if (vehicleEvent.event === 'UPDATE') {
       this.updateVehicle(vehicleEvent);
     }
-  }
+  };
+
+  start = () => {
+    Object.entries(this.vehicles).forEach(([vehicleId, data]) => {
+      if (data.currentProgress === data.destinationProgress) return;
+
+      const newProgress = data.currentProgress + 0.001;
+
+      const update = {
+        pathId: data.pathId,
+        tag: vehicleId,
+        type: data.type,
+        progress: newProgress < data.destinationProgress ? newProgress : data.destinationProgress,
+      };
+
+      this.vehicles[vehicleId].currentProgress = newProgress;
+
+      this.updateFunction(update);
+    });
+
+    requestAnimationFrame(this.start);
+  };
 
   private updateVehicle(data: VehicleEvent) {
     const sensorIndex = this.getSensorIndex(data.sensorId, data.pathId);
     const sensorProgress = this.getSensorProgress(sensorIndex, data.pathId);
-    const nextSensorProgress = this.getSensorProgress(sensorIndex, data.pathId);
+    const nextSensorProgress = this.getSensorProgress(sensorIndex + 1, data.pathId);
 
     this.vehicles[data.tag] = {
       type: data.type,
