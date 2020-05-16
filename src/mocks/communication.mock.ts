@@ -14,7 +14,6 @@ const progress = [
   { delay: 5000, sensorId: 'lojlicgi', event: 'UPDATE' },
   { delay: 5000, sensorId: 'zohcrjma', event: 'UPDATE' },
   { delay: 5000, sensorId: 'xlrbndpv', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'qeculymv', event: 'UPDATE' },
 ];
 
 const wait = (time) =>
