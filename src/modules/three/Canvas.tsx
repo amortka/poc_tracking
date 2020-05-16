@@ -14,7 +14,6 @@ import { Paths } from './components/Paths/Paths';
 import { Sensors } from './components/Sensors/Sensors';
 import { Routes } from './components/Routes/Routes';
 import { EventsContextProvider, eventsContextService } from './contexts/EventsContext';
-import { equal } from '../../utils/object.utils';
 
 interface CanvasProps {
   config: IVisualization;
