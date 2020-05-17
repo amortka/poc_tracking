@@ -12,7 +12,7 @@ import { CanvasUtils } from './utils/canvasUtils';
 import { ThemeContext } from './contexts/ThemeContext';
 import { Paths } from './components/Paths/Paths';
 import { Sensors } from './components/Sensors/Sensors';
-import { Routes } from './components/Routes/Routes';
+import { Routes1 } from './components/Routes1/Routes';
 import { EventsContextProvider, eventsContextService } from './contexts/EventsContext';
 
 interface CanvasProps {
@@ -45,7 +45,7 @@ export const Canvas: React.FC<CanvasProps> = ({ config, theme = {}, type, events
             <Paths points={config.points} paths={config.paths} />
             <Sensors points={config.points} sensors={config.sensors} type={type} />
 
-            <Routes points={config.points} paths={config.paths} vehicles={vehicles} />
+            <Routes1 points={config.points} paths={config.paths} vehicles={vehicles} />
           </Scene>
         </ThemeContext.Provider>
       </EventsContextProvider>

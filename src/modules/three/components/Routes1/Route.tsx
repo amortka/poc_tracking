@@ -7,7 +7,7 @@ interface RouteProps {
   vehicles: Pick<VehicleAnimation, 'tag' | 'type' | 'progress'>[];
 }
 
-export const Route: React.FC<RouteProps> = ({ path, vehicles }) => {
+export const Route1: React.FC<RouteProps> = ({ path, vehicles }) => {
   return (
     <>
       {vehicles.map(({ tag, type, progress }) => (

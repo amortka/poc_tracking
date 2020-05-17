@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Path } from 'three';
 import { IVisualization, VehicleAnimation } from '../../../../models/main.model';
-import { Route } from './Route';
+import { Route1 } from './Route';
 import { mapPointsToPath, mapSensorDictionaryToDistanceMap } from './utils';
 
 interface RoutesProps extends Pick<IVisualization, 'paths' | 'points'> {
@@ -9,7 +9,7 @@ interface RoutesProps extends Pick<IVisualization, 'paths' | 'points'> {
   vehicles: VehicleAnimation[];
 }
 
-export const Routes: React.FC<RoutesProps> = ({ paths, points, vehicles }) => {
+export const Routes1: React.FC<RoutesProps> = ({ paths, points, vehicles }) => {
   const routesProps = useMemo(
     () =>
       Object.entries(paths).map(([pathId, pathData]) => ({
@@ -34,7 +34,7 @@ export const Routes: React.FC<RoutesProps> = ({ paths, points, vehicles }) => {
   return (
     <>
       {routesProps.map((route) => (
-        <Route key={route.pathId} path={route.path} vehicles={vehiclesProps[route.pathId] || []} />
+        <Route1 key={route.pathId} path={route.path} vehicles={vehiclesProps[route.pathId] || []} />
       ))}
     </>
   );
