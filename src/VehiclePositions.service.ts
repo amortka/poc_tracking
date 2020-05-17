@@ -1,4 +1,4 @@
-import { Dictionary, IPath, IPoint } from './models/main.model';
+import { Dictionary, IPath } from './models/main.model';
 
 interface VehicleEvent {
   tag: string;

@@ -6,7 +6,7 @@ import { PathsSelected } from './PathsSelected';
 
 interface WallsProps extends Pick<IVisualization, 'paths' | 'points'> {}
 
-export const Paths: React.FC<WallsProps> = React.memo(({ paths, points }) => {
+export const Paths: React.FC<WallsProps> = ({ paths, points }) => {
   const renderObjectsSelected = useMemo(
     () => PathsUtils.getPathWithCoordinates(paths, points).map((o, i) => <PathsSelected key={i} {...o} />),
     [paths, points]
@@ -22,4 +22,4 @@ export const Paths: React.FC<WallsProps> = React.memo(({ paths, points }) => {
       {renderObjectsSelected}
     </React.Fragment>
   );
-});
+};

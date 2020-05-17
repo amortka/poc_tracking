@@ -1,9 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 // HERE
 // eslint-disable-next-line  @typescript-eslint/no-unused-vars
 import { extend, ReactThreeFiber, useFrame, useResource, useThree, useUpdate } from 'react-three-fiber';
 import { OrbitControls } from '../../../libs/OrbitControls/OrbitControls';
-import { VisualizationType } from '../canvas.model';
 
 extend({ OrbitControls });
 
@@ -24,35 +23,36 @@ const maxAzimuthAngle = Math.PI / 3;
 
 interface ICameraControls {
   boundaries: THREE.Box3;
-  type: VisualizationType;
 }
 
-export const CameraControls: React.FC<ICameraControls> = ({ boundaries, type }) => {
-  const controlsRef = useRef<OrbitControls>();
+export const CameraControls: React.FC<ICameraControls> = ({ boundaries }) => {
   const { camera, gl } = useThree();
 
-  useEffect(() => {
-    if (!boundaries) return;
+  const controlsRef = useUpdate<OrbitControls>(
+    (controls) => {
+      if (!boundaries) return;
 
-    const container = gl.domElement;
-    const orthoCamera = camera as THREE.OrthographicCamera;
-    const zoomToBoundaries =
-      Math.min(
-        container.offsetWidth / (boundaries.max.x - boundaries.min.x),
-        container.offsetHeight / (boundaries.max.y - boundaries.min.y)
-      ) * 0.8;
+      const container = gl.domElement;
+      const orthoCamera = camera as THREE.OrthographicCamera;
+      const zoomToBoundaries =
+        Math.min(
+          container.offsetWidth / (boundaries.max.x - boundaries.min.x),
+          container.offsetHeight / (boundaries.max.y - boundaries.min.y)
+        ) * 0.8;
 
-    orthoCamera.zoom = zoomToBoundaries;
-    orthoCamera.position.z = boundaries.max.z + Math.abs(orthoCamera.bottom);
+      orthoCamera.zoom = zoomToBoundaries;
+      orthoCamera.position.z = boundaries.max.z + Math.abs(orthoCamera.bottom);
 
-    controlsRef.current.panBoundaries = boundaries;
-    controlsRef.current.minZoom = zoomToBoundaries * 0.5;
-    controlsRef.current.maxZoom = zoomToBoundaries * 2;
+      controls.panBoundaries = boundaries;
+      controls.minZoom = zoomToBoundaries * 0.5;
+      controls.maxZoom = zoomToBoundaries * 2;
 
-    camera.updateProjectionMatrix();
-    camera.updateMatrix();
-    controlsRef.current.update();
-  }, [boundaries, gl.domElement, camera]);
+      camera.updateProjectionMatrix();
+      camera.updateMatrix();
+      controls.update();
+    },
+    [boundaries, gl.domElement, camera]
+  );
 
   useFrame(() => controlsRef.current.update());
 

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import { IPath, IRoom, ISensor, IWall } from '../../../models/main.model';
 import { IObjectWithPointsCoordinates } from '../canvas.model';
 
@@ -51,10 +51,13 @@ export const EventsContextProvider: React.FC = ({ children }) => (
   <EventsContext.Provider value={eventsContextService}>{children}</EventsContext.Provider>
 );
 
-export function useEmitEvent(object: EventContextObject, objectType: ObjectType) {
+export function useEmitEvent(object: EventContextObject, objectType: ObjectType, dependents?: any[]) {
   const eventsContext = useContext(EventsContext);
 
-  return (type: EventType) => {
+  const emitEvent = useCallback((type) => {
     eventsContext.emitNewEvent({ type, object, objectType });
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, dependents);
+
+  return emitEvent;
 }

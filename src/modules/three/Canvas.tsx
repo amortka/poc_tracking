@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { Object3D } from 'three';
-import { AmbientLight } from './components/AmbientLight';
+import { Lights } from './components/Lights';
 import { Canvas as CanvasThree } from 'react-three-fiber';
 import { Floor } from './components/Floor';
 import { ICanvasTheme, VisualizationType } from './canvas.model';
@@ -37,9 +37,9 @@ export const Canvas: React.FC<CanvasProps> = ({ config, theme = {}, type, events
     <CanvasThree gl2 orthographic style={{ background: themeConfig.canvasBackground }}>
       <EventsContextProvider>
         <ThemeContext.Provider value={themeConfig}>
-          <AmbientLight />
+          <Lights />
           <Floor type={type} />
-          <Scene type={type}>
+          <Scene>
             <Walls walls={config.walls} points={config.points} rooms={config.rooms} type={type} />
             <Objects points={config.points} objects={config.objects} type={VisualizationType.D2} />
             <Paths points={config.points} paths={config.paths} />

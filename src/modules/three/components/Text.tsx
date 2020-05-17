@@ -27,31 +27,31 @@ const textMaterialDefault: MeshBasicMaterialParameters = {
 
 interface TextProps {
   label: string;
-  position?: Vector3;
+  position?: Vector3 | [number, number, number];
   geometryConfig?: Partial<TextGeometryParameters>;
   materialConfig?: Partial<MeshBasicMaterialParameters>;
 }
 
-export const Text: React.FC<TextProps> = ({ label, position, geometryConfig = {}, materialConfig = {} }) => {
+export const Text: React.FC<TextProps> = ({ label, position, geometryConfig, materialConfig }) => {
   const theme = useContext(ThemeContext);
 
   const geometry = useMemo(() => {
     const textGeometryConfig: TextGeometryParameters = {
       ...textGeometryDefault,
-      ...geometryConfig,
+      ...(geometryConfig || {}),
     };
     return new TextGeometry(label, textGeometryConfig).center();
-  }, []);
+  }, [label, geometryConfig]);
 
   const material = useMemo(() => {
     const textMaterialConfig: MeshBasicMaterialParameters = {
       ...textMaterialDefault,
       color: theme.text.color,
-      ...materialConfig,
+      ...(materialConfig || {}),
     };
 
     return new MeshBasicMaterial(textMaterialConfig);
-  }, []);
+  }, [theme, materialConfig]);
 
   return <mesh position={position} args={[geometry, material]} />;
 };

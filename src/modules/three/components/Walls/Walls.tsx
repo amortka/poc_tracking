@@ -9,22 +9,15 @@ interface WallsProps extends Pick<IVisualization, 'walls' | 'points' | 'rooms'> 
   type: VisualizationType;
 }
 
-export const Walls: React.FC<WallsProps> = React.memo(({ walls, points, type }) => {
-  let renderWalls;
-  switch (type) {
-    case VisualizationType.D3:
-      renderWalls = useMemo(
-        () => WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallD3 key={i} {...w} />),
-        [walls, points]
-      );
-      break;
-    case VisualizationType.D2:
-      renderWalls = useMemo(
-        () => WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallD2 key={i} {...w} />),
-        [walls, points]
-      );
-      break;
-  }
+export const Walls: React.FC<WallsProps> = ({ walls, points, type }) => {
+  const renderWalls = useMemo(() => {
+    switch (type) {
+      case VisualizationType.D3:
+        return WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallD3 key={i} {...w} />);
+      case VisualizationType.D2:
+        return WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallD2 key={i} {...w} />);
+    }
+  }, [type, walls, points]);
 
   return <React.Fragment>{renderWalls}</React.Fragment>;
-});
+};
