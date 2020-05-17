@@ -1,6 +1,6 @@
-import { IVisualization } from '../models/main.model';
+import { IVisualizationScene, IVisualisationState, ISelection } from '../models/main.model';
 
-export const visualizationMock: IVisualization = {
+export const visualizationSceneMock: IVisualizationScene = {
   objects: {
     bkgwbnwu: {
       shapePoints: ['xfblfcmx', 'cmtulzxs', 'gjcuvwgu', 'uazocvnx'],
@@ -62,17 +62,17 @@ export const visualizationMock: IVisualization = {
       points: ['nlyiefgt', 'ponbhqmp', 'flguqmoa', 'bxlnhzmb', 'acljbmkd', 'nlyiefgq'],
       tag: 'main path',
       sensors: [
-        { sensorId: 'qeculymv', distance: 0.044498687074105016 },
-        { sensorId: 'wytjebmg', distance: 0.15837327998027925 },
-        { sensorId: 'etkehdxr', distance: 0.2557798548354068 },
-        { sensorId: 'rzmgfdlc', distance: 0.35248566296495787 },
-        { sensorId: 'dqwzllxi', distance: 0.4533960714479676 },
-        { sensorId: 'sadvcvxl', distance: 0.5395903786938718 },
-        { sensorId: 'ccomdgqr', distance: 0.6362961868234229 },
-        { sensorId: 'lojlicgi', distance: 0.7337027616785505 },
-        { sensorId: 'zohcrjma', distance: 0.8475773545847247 },
-        { sensorId: 'xlrbndpv', distance: 0.9337716618306289 },
-        { sensorId: 'qeculymv', distance: 1 },
+        { sensorId: 'qeculymv', distance: 0.04 },
+        { sensorId: 'wytjebmg', distance: 0.14 },
+        { sensorId: 'etkehdxr', distance: 0.23 },
+        { sensorId: 'rzmgfdlc', distance: 0.32 },
+        { sensorId: 'dqwzllxi', distance: 0.41 },
+        { sensorId: 'sadvcvxl', distance: 0.49 },
+        { sensorId: 'ccomdgqr', distance: 0.57 },
+        { sensorId: 'lojlicgi', distance: 0.66 },
+        { sensorId: 'zohcrjma', distance: 0.76 },
+        { sensorId: 'xlrbndpv', distance: 0.84 },
+        { sensorId: 'qeculymv', distance: 0.93 },
       ],
     },
   },
@@ -283,4 +283,23 @@ export const visualizationMock: IVisualization = {
       tag: 'Main Room',
     },
   },
+};
+
+export const visualisationStateMock: IVisualisationState = {
+  vehicles: {
+    trqzbojg: { tag: 'Milkrun ABC', dimensions: { x: 0.6, y: 0.4, z: 0.25 }, segments: 1 },
+  },
+  routes: {
+    fqfwxpzw: {
+      vehicle: 'trqzbojg',
+      path: 'ojihoybn',
+      progress: 0.2,
+      selected: true,
+    },
+  },
+};
+
+export const selectionMock: ISelection = {
+  sensors: ['qwbmjtmf', 'xzfsgxxh', 'izktgqna', 'piunnkuf'],
+  vehicles: [],
 };

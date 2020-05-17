@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 // HERE
 // eslint-disable-next-line  @typescript-eslint/no-unused-vars
 import { extend, ReactThreeFiber, useFrame, useResource, useThree, useUpdate } from 'react-three-fiber';
 import { OrbitControls } from '../../../libs/OrbitControls/OrbitControls';
+import { CameraControlContext } from '../contexts/CameraContext';
 
 extend({ OrbitControls });
 
@@ -27,6 +28,7 @@ interface ICameraControls {
 
 export const CameraControls: React.FC<ICameraControls> = ({ boundaries }) => {
   const { camera, gl } = useThree();
+  const [orbitControls, setOrbitControl] = useContext(CameraControlContext);
 
   const controlsRef = useUpdate<OrbitControls>(
     (controls) => {
@@ -53,6 +55,11 @@ export const CameraControls: React.FC<ICameraControls> = ({ boundaries }) => {
     },
     [boundaries, gl.domElement, camera]
   );
+
+  useEffect(() => {
+    if (!controlsRef.current) return;
+    setOrbitControl(controlsRef.current.current);
+  }, []);
 
   useFrame(() => controlsRef.current.update());
 

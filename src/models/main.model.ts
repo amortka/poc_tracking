@@ -1,3 +1,5 @@
+import { ObjectType } from '../modules/three/contexts/EventsContext';
+
 export interface Dictionary<T> {
   [id: string]: T;
 }
@@ -6,6 +8,10 @@ export interface IPoint {
   x: number;
   y: number;
 }
+
+/**
+ * IVisualizationScene
+ */
 
 export interface Hole {
   start: number;
@@ -41,7 +47,7 @@ export interface IObject {
 export interface IPath {
   tag?: string;
   points: string[];
-  sensors: { sensorId: string; distance: number }[];
+  sensors: Array<{ sensorId: string; distance: number }>;
 }
 
 export interface IRoom {
@@ -49,7 +55,7 @@ export interface IRoom {
   tag?: string;
 }
 
-export interface IVisualization {
+export interface IVisualizationScene {
   points: Dictionary<IPoint>;
   walls: Dictionary<IWall>;
   sensors: Dictionary<ISensor>;
@@ -58,8 +64,55 @@ export interface IVisualization {
   rooms: Dictionary<IRoom>;
 }
 
-export interface FromBackend {
-  vehicles: Dictionary<{ tag: string; width: number; height: number; segments: number }>;
+/**
+ * IVisualisationState
+ */
+
+export interface VehicleAnimation {
+  tag: string;
+  type: string;
+  pathId: string;
+  progress: number;
+}
+
+export interface IVehicle {
+  tag: string;
+  dimensions: { x: number; y: number; z: number };
+  segments: number;
+}
+
+export interface IRoute {
+  vehicle: string; // id vehicle
+  path: string; // id vehicle
+  progress: number; // range 0-1
+  selected: boolean;
+}
+
+export interface IVisualisationState {
+  vehicles: Dictionary<IVehicle>;
+  routes: Dictionary<IRoute>;
+  // TODO: add selections (showing tooltips e.g sensors)
+}
+
+/**
+ * Selection
+ */
+
+export interface ISelectionTooltip {
+  objectType: ObjectType;
+  coordinates: IPoint;
+  title: string;
+  description: string;
+}
+
+export interface ISelection {
+  vehicles: string[]; // array of vehicle ids
+  sensors: string[]; // array of sensor ids
+}
+
+export interface ISelectionData {
+  vehicles: Dictionary<ISelectionTooltip>;
+  sensors: Dictionary<ISelectionTooltip>;
 }
 
 export interface VehicleAnimation {
