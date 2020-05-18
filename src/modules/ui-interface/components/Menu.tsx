@@ -11,6 +11,7 @@ const useStyles = makeStyles({
   },
   drawerPaper: {
     backgroundColor: '#11151A',
+    borderRight: 'none',
   },
   list: {
     height: '100%',

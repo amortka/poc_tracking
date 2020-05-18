@@ -8,6 +8,7 @@ import { visualizationMock } from './mocks/main.mock';
 import { VisualizationType } from './modules/three/canvas.model';
 import { VisualisationTooltip } from './modules/visualisation-tooltip/VisualisationTooltip';
 import { IEventContextPayload } from './modules/three/contexts/EventsContext';
+import { CartInfo } from './modules/ui-interface/components/CartInfo';
 
 const theme = createMuiTheme({
   palette: {
@@ -17,6 +18,7 @@ const theme = createMuiTheme({
 
 function App() {
   const [events, setEvents] = useState<IEventContextPayload>(null);
+  const [isCartInfoVisible, setIsCartInfoVisible] = useState(false);
 
   return (
     <main className={'MainContainer'}>
@@ -24,7 +26,8 @@ function App() {
         <Menu />
         <Canvas config={visualizationMock} type={VisualizationType.D3} events={setEvents} />
         <VisualisationTooltip events={events} />
-        <InfoSidebar />
+        <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
+        {isCartInfoVisible && <CartInfo setIsCartInfoVisible={setIsCartInfoVisible} />}
       </ThemeProvider>
     </main>
   );
