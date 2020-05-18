@@ -22,7 +22,6 @@ import { Selection } from './components/Selection/Selection';
 import { CameraControlContextProvider } from './contexts/CameraContext';
 
 interface CanvasProps {
-  // events?: (payload: IEventContextPayload) => void;
   selectionDataClb?: (payload: ISelectionData) => void;
   scene: IVisualizationScene;
   selection: ISelection;
