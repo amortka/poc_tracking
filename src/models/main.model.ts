@@ -83,7 +83,7 @@ export interface IVehicle {
 
 export interface IRoute {
   vehicle: string; // id vehicle
-  path: string; // id vehicle
+  path: string; // id path
   progress: number; // range 0-1
   selected: boolean;
 }

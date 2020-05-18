@@ -36,7 +36,7 @@ export interface IPathWithPointsCoordinates extends Omit<IPath, 'points'> {
 
 export interface IRouteWithComputedData extends Omit<IRoute, 'vehicle' | 'path'> {
   vehicle: IVehicle;
-  path: IPathWithPointsCoordinates;
+  path: THREE.Path;
 }
 
 export type Color = THREE.Color | number | string;

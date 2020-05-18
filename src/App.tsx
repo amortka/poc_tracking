@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
-import './App.css';
+import { CommunicationMock } from './mocks/communication.mock';
+import { visualizationSceneMock, visualisationStateMock } from './mocks/main.mock';
+
+import { VehicleAnimation, IVisualisationState } from './models/main.model';
+
 import { Canvas } from './modules/three/Canvas';
 import { CartInfo } from './modules/ui-interface/components/CartInfo';
-import { CommunicationMock } from './mocks/communication.mock';
 import { IEventContextPayload } from './modules/three/contexts/EventsContext';
 import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
 import { Menu } from './modules/ui-interface/components/Menu';
 import { MouseEventTooltip } from './modules/visualisation-tooltip/MouseEventTooltip';
 import { SelectionEventTooltip } from './modules/visualisation-tooltip/SelectionEventTooltip';
-import { VehicleAnimation } from './models/main.model';
-import { VehiclePositionsService } from './VehiclePositions.service';
-import { visualisationStateMock, visualizationSceneMock } from './mocks/main.mock';
 import { VisualizationType } from './modules/three/canvas.model';
+
+import { VehiclePositionsService } from './VehiclePositions.service';
+
+import './App.css';
 
 const theme = createMuiTheme({
   palette: {
@@ -22,12 +26,23 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  const [vehicles, setVehicles] = useState<VehicleAnimation[]>([]);
+  const [state, setState] = useState<IVisualisationState>(visualisationStateMock);
 
   useEffect(() => {
     const communicationMock = new CommunicationMock({ tag: 'Milkrun ABC', pathId: 'ojihoybn' });
     const vehiclePositionService = new VehiclePositionsService(visualizationSceneMock.paths);
-    vehiclePositionService.onUpdate((data) => setVehicles([data]));
+    vehiclePositionService.onUpdate((data) => {
+      setState((state) => ({
+        ...state,
+        routes: {
+          ...state.routes,
+          [data.routeId]: {
+            ...state.routes[data.routeId],
+            progress: data.progress,
+          },
+        },
+      }));
+    });
     vehiclePositionService.start();
 
     communicationMock.simulate(vehiclePositionService.handleEvent);
@@ -45,10 +60,9 @@ function App() {
           <Canvas
             selectionDataClb={setSelection}
             scene={visualizationSceneMock}
-            state={visualisationStateMock}
+            state={state}
             type={VisualizationType.D3}
             events={setEvents}
-            vehicles={vehicles}
             debug={true}
           />
           <MouseEventTooltip events={events} />
