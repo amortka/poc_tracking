@@ -65,7 +65,7 @@ export const Canvas: React.FC<CanvasProps> = ({
               <Paths points={scene.points} paths={scene.paths} />
               <Sensors points={scene.points} sensors={scene.sensors} type={type} />
 
-              {/* <Routes1 points={scene.points} paths={scene.paths} vehicles={vehicles} /> */}
+              <Routes1 points={scene.points} paths={scene.paths} vehicles={vehicles} />
               <Routes points={scene.points} paths={scene.paths} vehicles={state.vehicles} routes={state.routes} />
 
               <Selection selection={selection} selectionDataClb={selectionDataClb} />

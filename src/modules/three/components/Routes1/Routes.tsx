@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 import { Path } from 'three';
-import { IVisualization, VehicleAnimation } from '../../../../models/main.model';
+import { IVisualizationScene, VehicleAnimation } from '../../../../models/main.model';
 import { Route1 } from './Route';
 import { mapPointsToPath, mapSensorDictionaryToDistanceMap } from './utils';
 
-interface RoutesProps extends Pick<IVisualization, 'paths' | 'points'> {
+interface RoutesProps extends Pick<IVisualizationScene, 'paths' | 'points'> {
   // TODO Use shared Vehicle interface
   vehicles: VehicleAnimation[];
 }

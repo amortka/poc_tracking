@@ -3,10 +3,8 @@ import { Canvas } from './modules/three/Canvas';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
 import { Menu } from './modules/ui-interface/components/Menu';
-import { visualizationMock } from './mocks/main.mock';
 import { VehicleAnimation } from './models/main.model';
 import { VisualizationType } from './modules/three/canvas.model';
-import { VisualizationTooltip } from './modules/visualisation-tooltip/VisualisationTooltip';
 import { IEventContextPayload } from './modules/three/contexts/EventsContext';
 import { CommunicationMock } from './mocks/communication.mock';
 import { VehiclePositionsService } from './VehiclePositions.service';
@@ -26,7 +24,7 @@ function App() {
 
   useEffect(() => {
     const communicationMock = new CommunicationMock({ tag: 'Milkrun ABC', pathId: 'ojihoybn' });
-    const vehiclePositionService = new VehiclePositionsService(visualizationMock.paths);
+    const vehiclePositionService = new VehiclePositionsService(visualizationSceneMock.paths);
     vehiclePositionService.onUpdate((data) => setVehicles([data]));
     vehiclePositionService.start();
 
@@ -46,7 +44,7 @@ function App() {
           state={visualisationStateMock}
           type={VisualizationType.D3}
           events={setEvents}
-          // vehicles={vehicles}
+          vehicles={vehicles}
         />
         <MouseEventTooltip events={events} />
         <SelectionEventTooltip objects={[]} />
