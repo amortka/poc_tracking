@@ -114,3 +114,10 @@ export interface ISelectionData {
   vehicles: Dictionary<ISelectionTooltip>;
   sensors: Dictionary<ISelectionTooltip>;
 }
+
+export interface VehicleAnimation {
+  tag: string;
+  type: string;
+  pathId: string;
+  progress: number;
+}

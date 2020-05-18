@@ -1,45 +1,57 @@
-import React, { useContext, useMemo, useRef } from 'react';
-import * as THREE from 'three';
+import React, { useContext, useMemo, useCallback } from 'react';
+import { BufferGeometry, ExtrudeGeometry, Vector3 } from 'three';
 import { IObjectWithPointsCoordinates } from '../../canvas.model';
 import { LineUtils } from '../../utils/line.utils';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { ShapeUtils } from '../../utils/shape.utils';
-import { Text } from '../Text';
-import { GeometryUtils } from '../../utils/geometry.utils';
 import { EventType, ObjectType, useEmitEvent } from '../../contexts/EventsContext';
+import { Label2D } from './Label2D';
 
 export interface WallProps extends IObjectWithPointsCoordinates {}
 
-export const ObjectD2: React.FC<WallProps> = React.memo(({ meta, shapePoints, fromGround = 0.001, ...other }) => {
-  const groupRef = useRef(null);
-  const emitEvent = useEmitEvent({ meta, shapePoints, fromGround, ...other }, ObjectType.OBJECT);
+const extrudeSettings = { depth: 0, bevelEnabled: false };
 
+export const ObjectD2: React.FC<WallProps> = ({ meta, shapePoints, fromGround = 0.001, ...props }) => {
   const theme = useContext(ThemeContext);
-  const points = LineUtils.getPathPointsFromPointCoordinates(shapePoints, fromGround);
+  const emitEventConfig = { meta, shapePoints, fromGround, ...props };
+  const emitEvent = useEmitEvent(emitEventConfig, ObjectType.OBJECT, []);
 
-  const lineG = useMemo(() => new THREE.BufferGeometry().setFromPoints(points), [points]);
-  const shapeG = ShapeUtils.getShapeFromPointCoordinates(shapePoints);
+  const lineGeometry = useMemo(() => {
+    const points = LineUtils.getPathPointsFromPointCoordinates(shapePoints, fromGround);
+    return new BufferGeometry().setFromPoints(points);
+  }, [shapePoints, fromGround]);
 
-  const extrudeSettings = { depth: 0, bevelEnabled: false };
+  const planeGeometry = useMemo(() => {
+    const geometryShape = ShapeUtils.getShapeFromPointCoordinates(shapePoints);
 
-  const shapeCenterV: THREE.Vector2 = GeometryUtils.getGeometryCenterFromPointCoordinates(shapePoints);
-  const textNamePositionV = new THREE.Vector3(...shapeCenterV.toArray(), 0).add(
-    new THREE.Vector3(shapePoints[0].x, shapePoints[0].y, fromGround + 0.001)
-  );
+    return new ExtrudeGeometry(geometryShape, extrudeSettings);
+  }, [shapePoints]);
 
-  const contextDescriptionPositionV = textNamePositionV.clone().add(new THREE.Vector3(0, -0.2, 0));
+  const handleClick = useCallback((e) => emitEvent(EventType.MOUSE_CLICK), [emitEvent]);
+  const handlePointerOver = useCallback((e) => emitEvent(EventType.MOUSE_IN), [emitEvent]);
+  const handlePointerOut = useCallback((e) => emitEvent(EventType.MOUSE_OUT), [emitEvent]);
+
+  const labelPosition: THREE.Vector3 = useMemo(() => {
+    const objectCenter = new Vector3();
+
+    if (!meta) return objectCenter;
+
+    planeGeometry.computeBoundingBox();
+    planeGeometry.boundingBox.getCenter(objectCenter);
+    objectCenter.setZ(objectCenter.z + fromGround);
+
+    return objectCenter;
+  }, [planeGeometry, fromGround, meta]);
+
   return (
-    <group ref={groupRef}>
-      {meta?.name && <Text label={meta.name} position={textNamePositionV} />}
-      {meta?.name && (
-        <Text label={meta.description} position={contextDescriptionPositionV} geometryConfig={{ size: 0.1 }} />
-      )}
+    <group>
+      {meta ? <Label2D title={meta.name} description={meta.description} position={labelPosition} /> : null}
       <mesh
-        position={[0, 0, fromGround]}
-        onClick={(e) => emitEvent(EventType.MOUSE_CLICK)}
-        onPointerOver={(e) => emitEvent(EventType.MOUSE_IN)}
-        onPointerOut={(e) => emitEvent(EventType.MOUSE_OUT)}>
-        <extrudeGeometry attach="geometry" args={[shapeG, extrudeSettings]} />
+        args={[planeGeometry]}
+        position-z={fromGround}
+        onClick={handleClick}
+        onPointerOver={handlePointerOver}
+        onPointerOut={handlePointerOut}>
         <meshPhongMaterial
           attach="material"
           color={theme.objects.D2.shape}
@@ -48,10 +60,9 @@ export const ObjectD2: React.FC<WallProps> = React.memo(({ meta, shapePoints, fr
           depthWrite={false}
         />
       </mesh>
-      // @ts-ignore
-      <lineLoop geometry={lineG}>
+      <lineLoop args={[lineGeometry]}>
         <lineBasicMaterial attach="material" color={theme.objects.D2.line} />
       </lineLoop>
     </group>
   );
-});
+};

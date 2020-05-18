@@ -1,11 +1,19 @@
-import React, { useContext } from 'react';
-import * as THREE from 'three';
+import React, { useContext, useMemo } from 'react';
+import {
+  Font,
+  TextGeometryParameters,
+  MeshBasicMaterialParameters,
+  DoubleSide,
+  Vector3,
+  TextGeometry,
+  MeshBasicMaterial,
+} from 'three';
 import { ThemeContext } from '../contexts/ThemeContext';
 
 const fontJson = require('three/examples/fonts/helvetiker_regular.typeface.json');
-const font = new THREE.Font(fontJson);
+const font = new Font(fontJson);
 
-const textGeometryDefault: THREE.TextGeometryParameters = {
+const textGeometryDefault: TextGeometryParameters = {
   font: font,
   size: 0.2,
   height: 0,
@@ -13,35 +21,37 @@ const textGeometryDefault: THREE.TextGeometryParameters = {
   bevelEnabled: false,
 };
 
-const textMaterialDefault: THREE.MeshBasicMaterialParameters = {
-  // transparent: false,
-  // opacity: 0.4,
-  side: THREE.DoubleSide,
+const textMaterialDefault: MeshBasicMaterialParameters = {
+  side: DoubleSide,
 };
 
 interface TextProps {
   label: string;
-  position: THREE.Vector3;
-  geometryConfig?: Partial<THREE.TextGeometryParameters>;
-  materialConfig?: Partial<THREE.MeshBasicMaterialParameters>;
+  position?: Vector3 | [number, number, number];
+  geometryConfig?: Partial<TextGeometryParameters>;
+  materialConfig?: Partial<MeshBasicMaterialParameters>;
 }
 
-export const Text: React.FC<TextProps> = React.memo(
-  ({ label, position, geometryConfig = textGeometryDefault, materialConfig = textMaterialDefault }) => {
-    const theme = useContext(ThemeContext);
-    const textGeometryConfig: THREE.TextGeometryParameters = { ...textGeometryDefault, ...geometryConfig };
-    const textMaterialConfig: THREE.MeshBasicMaterialParameters = {
+export const Text: React.FC<TextProps> = ({ label, position, geometryConfig, materialConfig }) => {
+  const theme = useContext(ThemeContext);
+
+  const geometry = useMemo(() => {
+    const textGeometryConfig: TextGeometryParameters = {
+      ...textGeometryDefault,
+      ...(geometryConfig || {}),
+    };
+    return new TextGeometry(label, textGeometryConfig).center();
+  }, [label, geometryConfig]);
+
+  const material = useMemo(() => {
+    const textMaterialConfig: MeshBasicMaterialParameters = {
       ...textMaterialDefault,
       color: theme.text.color,
-      ...materialConfig,
+      ...(materialConfig || {}),
     };
 
-    const textG = new THREE.TextGeometry(label, textGeometryConfig).center();
+    return new MeshBasicMaterial(textMaterialConfig);
+  }, [theme, materialConfig]);
 
-    return (
-      <mesh position={position} geometry={textG}>
-        <meshBasicMaterial args={[textMaterialConfig]} />
-      </mesh>
-    );
-  }
-);
+  return <mesh position={position} args={[geometry, material]} />;
+};

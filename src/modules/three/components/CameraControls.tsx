@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 // HERE
 // eslint-disable-next-line  @typescript-eslint/no-unused-vars
-import { extend, ReactThreeFiber, useFrame, useResource, useThree } from 'react-three-fiber';
-import * as THREE from 'three';
+import { extend, ReactThreeFiber, useFrame, useResource, useThree, useUpdate } from 'react-three-fiber';
 import { OrbitControls } from '../../../libs/OrbitControls/OrbitControls';
 import { CameraControlContext } from '../contexts/CameraContext';
 
@@ -28,49 +27,51 @@ interface ICameraControls {
 }
 
 export const CameraControls: React.FC<ICameraControls> = ({ boundaries }) => {
-  const [ref, controls] = useResource<OrbitControls>();
   const { camera, gl } = useThree();
   const [orbitControls, setOrbitControl] = useContext(CameraControlContext);
 
+  const controlsRef = useUpdate<OrbitControls>(
+    (controls) => {
+      if (!boundaries) return;
+
+      const container = gl.domElement;
+      const orthoCamera = camera as THREE.OrthographicCamera;
+      const zoomToBoundaries =
+        Math.min(
+          container.offsetWidth / (boundaries.max.x - boundaries.min.x),
+          container.offsetHeight / (boundaries.max.y - boundaries.min.y)
+        ) * 0.8;
+
+      orthoCamera.zoom = zoomToBoundaries;
+      orthoCamera.position.z = boundaries.max.z + Math.abs(orthoCamera.bottom);
+
+      controls.panBoundaries = boundaries;
+      controls.minZoom = zoomToBoundaries * 0.5;
+      controls.maxZoom = zoomToBoundaries * 2;
+
+      camera.updateProjectionMatrix();
+      camera.updateMatrix();
+      controls.update();
+    },
+    [boundaries, gl.domElement, camera]
+  );
+
   useEffect(() => {
-    if (!boundaries) return;
+    if (!controlsRef.current) return;
+    setOrbitControl(controlsRef.current.current);
+  }, []);
 
-    const container = gl.domElement;
-    const orthoCamera = camera as THREE.OrthographicCamera;
-    const zoomToBoundaries =
-      Math.min(
-        container.offsetWidth / (boundaries.max.x - boundaries.min.x),
-        container.offsetHeight / (boundaries.max.y - boundaries.min.y)
-      ) * 0.8;
-
-    orthoCamera.zoom = zoomToBoundaries;
-    orthoCamera.position.z = boundaries.max.z + Math.abs(orthoCamera.bottom);
-
-    controls.panBoundaries = boundaries;
-    controls.minZoom = zoomToBoundaries * 0.5;
-    controls.maxZoom = zoomToBoundaries * 2;
-
-    camera.updateProjectionMatrix();
-    camera.updateMatrix();
-    controls.update();
-  }, [boundaries, gl.domElement, camera, controls]);
-
-  useEffect(() => {
-    if (!ref) return;
-    setOrbitControl(ref.current);
-  }, [ref, setOrbitControl]);
-
-  useFrame(() => controls.update());
+  useFrame(() => controlsRef.current.update());
 
   return (
     <orbitControls
-      ref={ref}
+      ref={controlsRef}
       args={[camera, gl.domElement]}
-      maxPolarAngle={maxPolarAngle}
       enableDamping={enableDamping}
       dampingFactor={dampingFactor}
       minAzimuthAngle={minAzimuthAngle}
       maxAzimuthAngle={maxAzimuthAngle}
+      maxPolarAngle={maxPolarAngle}
     />
   );
 };

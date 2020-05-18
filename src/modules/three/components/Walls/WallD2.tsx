@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import * as THREE from 'three';
+import { Vector3, BufferGeometry } from 'three';
 import { IPoint, IWall } from '../../../../models/main.model';
 import { ThemeContext } from '../../contexts/ThemeContext';
 
@@ -8,15 +8,13 @@ interface WallProps extends Omit<IWall, 'start' | 'end'> {
   end: IPoint;
 }
 
-export const WallD2: React.FC<WallProps> = React.memo(({ start, end, meta }) => {
+export const WallD2: React.FC<WallProps> = ({ start, end }) => {
   const theme = useContext(ThemeContext);
 
-  const points = [
-    useMemo(() => new THREE.Vector3(start.x, start.y, 0), [start.x, start.y]),
-    useMemo(() => new THREE.Vector3(end.x, end.y, 0), [end.x, end.y]),
-  ];
-
-  const geometry = useMemo(() => new THREE.BufferGeometry().setFromPoints(points), [points]);
+  const geometry = useMemo(() => {
+    const points = [new Vector3(start.x, start.y, 0), new Vector3(end.x, end.y, 0)];
+    return new BufferGeometry().setFromPoints(points);
+  }, [start.x, start.y, end.x, end.y]);
 
   return (
     // @ts-ignore
@@ -24,4 +22,4 @@ export const WallD2: React.FC<WallProps> = React.memo(({ start, end, meta }) => 
       <lineBasicMaterial attach="material" color={theme.walls.D2.line} />
     </line>
   );
-});
+};
