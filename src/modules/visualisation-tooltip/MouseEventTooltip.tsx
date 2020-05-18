@@ -1,9 +1,10 @@
 import React, { Reducer, useEffect, useReducer } from 'react';
-import { EventType, IEventContextPayload } from '../three/contexts/EventsContext';
-import { TooltipProps, TooltipWrapper } from './components/Tooltip';
 import { equal } from '../../utils/object.utils';
-import { useMouseMove } from '../../custom-hooks/use-mouse-move.hook';
+import { EventType } from '../three/canvas.model';
+import { IEventContextPayload } from '../three/contexts/EventsContext';
+import { TooltipProps, TooltipWrapper } from './components/Tooltip';
 import { Typography } from '@material-ui/core';
+import { useMouseMove } from '../../custom-hooks/use-mouse-move.hook';
 
 interface MouseEventTooltipProps {
   events: IEventContextPayload;

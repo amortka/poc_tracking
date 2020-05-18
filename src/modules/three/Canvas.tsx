@@ -3,45 +3,44 @@ import React, { useEffect, useMemo } from 'react';
 import { Object3D } from 'three';
 import { Canvas as CanvasThree } from 'react-three-fiber';
 
-import { Lights } from './components/Lights';
+import { CameraControlContextProvider } from './contexts/CameraContext';
 import { CanvasUtils } from './utils/canvas.utils';
 import { EventsContextProvider, eventsContextService, IEventContextPayload } from './contexts/EventsContext';
 import { Floor } from './components/Floor';
 import { ICanvasTheme, VisualizationType } from './canvas.model';
-import { VehicleAnimation } from '../../models/main.model';
-import { ISelection, ISelectionData, IVisualisationState, IVisualizationScene } from '../../models/main.model';
+import { ISelectionData, IVisualisationState, IVisualizationScene, VehicleAnimation } from '../../models/main.model';
+import { Lights } from './components/Lights';
 import { Objects } from './components/Objects/Objects';
 import { Paths } from './components/Paths/Paths';
-import { Scene } from './components/Scene';
-import { Sensors } from './components/Sensors/Sensors';
+import { Routes } from './components/Routes/Routes';
 import { Routes1 } from './components/Routes1/Routes';
+import { Scene } from './components/Scene';
+import { Selection } from './components/Selection/Selection';
+import { Sensors } from './components/Sensors/Sensors';
 import { ThemeContext } from './contexts/ThemeContext';
 import { Walls } from './components/Walls/Walls';
-import { Routes } from './components/Routes/Routes';
-import { Selection } from './components/Selection/Selection';
-import { CameraControlContextProvider } from './contexts/CameraContext';
 
 interface CanvasProps {
+  debug?: boolean;
   selectionDataClb?: (payload: ISelectionData) => void;
   scene: IVisualizationScene;
-  selection: ISelection;
   state: IVisualisationState;
   theme?: ICanvasTheme;
   type: VisualizationType;
-  events?: (IEventContextPayload) => void;
+  events?: (eventContextPayload: IEventContextPayload) => void;
   vehicles: VehicleAnimation[];
 }
 
 Object3D.DefaultUp.set(0, 0, 1);
 
 export const Canvas: React.FC<CanvasProps> = ({
+  debug,
+  events,
   scene,
+  selectionDataClb,
+  state,
   theme = {},
   type,
-  events,
-  state,
-  selectionDataClb,
-  selection,
   vehicles,
 }) => {
   const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme]);
@@ -56,6 +55,7 @@ export const Canvas: React.FC<CanvasProps> = ({
       <CameraControlContextProvider>
         <EventsContextProvider>
           <ThemeContext.Provider value={themeConfig}>
+            {debug && <axesHelper args={[5]} />}
             <Lights />
             <Floor type={type} />
             <Scene>
@@ -67,7 +67,7 @@ export const Canvas: React.FC<CanvasProps> = ({
               <Routes1 points={scene.points} paths={scene.paths} vehicles={vehicles} />
               <Routes points={scene.points} paths={scene.paths} vehicles={state.vehicles} routes={state.routes} />
 
-              <Selection selection={selection} selectionDataClb={selectionDataClb} />
+              <Selection selection={state.selection} selectionDataClb={selectionDataClb} />
             </Scene>
           </ThemeContext.Provider>
         </EventsContextProvider>

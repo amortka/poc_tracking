@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
+import './App.css';
 import { Canvas } from './modules/three/Canvas';
-import { VisualizationType } from './modules/three/canvas.model';
+import { CartInfo } from './modules/ui-interface/components/CartInfo';
+import { CommunicationMock } from './mocks/communication.mock';
 import { IEventContextPayload } from './modules/three/contexts/EventsContext';
-import { MouseEventTooltip } from './modules/visualisation-tooltip/MouseEventTooltip';
-import { SelectionEventTooltip } from './modules/visualisation-tooltip/SelectionEventTooltip';
 import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
 import { Menu } from './modules/ui-interface/components/Menu';
-import { CartInfo } from './modules/ui-interface/components/CartInfo';
-
+import { MouseEventTooltip } from './modules/visualisation-tooltip/MouseEventTooltip';
+import { SelectionEventTooltip } from './modules/visualisation-tooltip/SelectionEventTooltip';
 import { VehicleAnimation } from './models/main.model';
-
-import { CommunicationMock } from './mocks/communication.mock';
-import { visualizationSceneMock, visualisationStateMock, selectionMock } from './mocks/main.mock';
-
 import { VehiclePositionsService } from './VehiclePositions.service';
-import './App.css';
+import { visualisationStateMock, visualizationSceneMock } from './mocks/main.mock';
+import { VisualizationType } from './modules/three/canvas.model';
 
 const theme = createMuiTheme({
   palette: {
@@ -38,22 +35,25 @@ function App() {
 
   const [events, setEvents] = useState<IEventContextPayload>(null);
   const [isCartInfoVisible, setIsCartInfoVisible] = useState(false);
+  const [selection, setSelection] = useState(null);
 
   return (
     <main className={'MainContainer'}>
       <ThemeProvider theme={theme}>
         <Menu />
-        <Canvas
-          selectionDataClb={(payload) => console.log({ payload })}
-          selection={selectionMock}
-          scene={visualizationSceneMock}
-          state={visualisationStateMock}
-          type={VisualizationType.D3}
-          events={setEvents}
-          vehicles={vehicles}
-        />
-        <MouseEventTooltip events={events} />
-        <SelectionEventTooltip objects={[]} />
+        <div className={'CanvasWrapper'}>
+          <Canvas
+            selectionDataClb={setSelection}
+            scene={visualizationSceneMock}
+            state={visualisationStateMock}
+            type={VisualizationType.D3}
+            events={setEvents}
+            vehicles={vehicles}
+            debug={true}
+          />
+          <MouseEventTooltip events={events} />
+          <SelectionEventTooltip selection={selection} debug={true} />
+        </div>
         <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
         {isCartInfoVisible && <CartInfo setIsCartInfoVisible={setIsCartInfoVisible} />}
       </ThemeProvider>

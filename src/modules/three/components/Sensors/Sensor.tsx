@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from 'react';
 import { CircleBufferGeometry } from 'three';
 import { IPoint, ISensor } from '../../../../models/main.model';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import { VisualizationType } from '../../canvas.model';
+import { ObjectType, VisualizationType } from '../../canvas.model';
 
 interface SensorProps extends Pick<ISensor, 'tag'> {
   position: IPoint;
@@ -23,7 +23,7 @@ export const Sensor: React.FC<SensorProps> = ({ position, type, id, tag }) => {
       position-x={position.x}
       position-y={position.y}
       position-z={0}
-      name={`SENSOR_${id}`}
+      name={`${ObjectType.SENSOR}_${id}`}
       userData={{ position, tag }}>
       <meshBasicMaterial attach="material" color={theme.sensor[type]} />
     </mesh>

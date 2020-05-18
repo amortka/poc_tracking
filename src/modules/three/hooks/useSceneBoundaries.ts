@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
-import { Box3, Vector3 } from 'three';
+import React, { useState, useEffect } from 'react';
+import { Box3, Object3D, Vector3 } from 'three';
 
-export const useSceneBoundaries = (scene: React.MutableRefObject<THREE.Object3D>, dependents: any[]): THREE.Box3 => {
-  const [sceneBoundaries, setSceneBoundaries] = useState<THREE.Box3>(null);
+export const useSceneBoundaries = (scene: React.MutableRefObject<Object3D>, dependents: any[]): Box3 => {
+  const [sceneBoundaries, setSceneBoundaries] = useState<Box3>(null);
 
   useEffect(() => {
-    console.log('useSceneBoundaries');
     const boundaries = new Box3();
 
     boundaries

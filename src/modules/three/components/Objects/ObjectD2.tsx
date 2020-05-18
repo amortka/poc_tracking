@@ -1,10 +1,10 @@
 import React, { useContext, useMemo, useCallback } from 'react';
 import { BufferGeometry, ExtrudeGeometry, Vector3 } from 'three';
-import { IObjectWithPointsCoordinates } from '../../canvas.model';
+import { EventType, IObjectWithPointsCoordinates, ObjectType } from '../../canvas.model';
 import { LineUtils } from '../../utils/line.utils';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { ShapeUtils } from '../../utils/shape.utils';
-import { EventType, ObjectType, useEmitEvent } from '../../contexts/EventsContext';
+import { useEmitEvent } from '../../contexts/EventsContext';
 import { Label2D } from './Label2D';
 
 export interface WallProps extends IObjectWithPointsCoordinates {}

@@ -1,11 +1,12 @@
 import React, { useRef } from 'react';
 import { useSceneBoundaries } from '../hooks/useSceneBoundaries';
 import { CameraControls } from './CameraControls';
+import { Object3D } from 'three';
 
 interface SceneProps {}
 
 export const Scene: React.FC<SceneProps> = ({ children }) => {
-  const group = useRef<THREE.Object3D>();
+  const group = useRef<Object3D>();
   const sceneBoundaries = useSceneBoundaries(group, []);
 
   return (

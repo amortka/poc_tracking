@@ -22,14 +22,18 @@ export interface TooltipProps {
   left: number;
   open: boolean;
   template: ReactNode;
+  debug?: boolean;
 }
 
-export const TooltipWrapper: React.FC<TooltipProps> = React.memo(({ top = 0, left = 0, open, template }) => {
+export const TooltipWrapper: React.FC<TooltipProps> = React.memo(({ top = 0, left = 0, open, template, debug }) => {
   const classes = useStyles();
   const theme = useTheme();
   return (
     <StyledTooltip open={open} arrow title={template}>
-      <span className={classes.tooltipSpan} style={{ top: `${top + theme.spacing(2)}px`, left: `${left}px` }} />
+      <span
+        className={classes.tooltipSpan}
+        style={{ top: `${top + theme.spacing(2)}px`, left: `${left}px`, border: debug ? '3px solid pink' : 'none' }}
+      />
     </StyledTooltip>
   );
 });

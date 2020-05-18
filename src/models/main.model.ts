@@ -1,4 +1,4 @@
-import { ObjectType } from '../modules/three/contexts/EventsContext';
+import { ObjectType } from '../modules/three/canvas.model';
 
 export interface Dictionary<T> {
   [id: string]: T;
@@ -91,7 +91,7 @@ export interface IRoute {
 export interface IVisualisationState {
   vehicles: Dictionary<IVehicle>;
   routes: Dictionary<IRoute>;
-  // TODO: add selections (showing tooltips e.g sensors)
+  selection: ISelection;
 }
 
 /**
@@ -105,15 +105,13 @@ export interface ISelectionTooltip {
   description: string;
 }
 
-export interface ISelection {
-  vehicles: string[]; // array of vehicle ids
-  sensors: string[]; // array of sensor ids
-}
+export type ISelection = {
+  [ObjectType.VEHICLE]?: string[];
+  [ObjectType.OBJECT]?: string[];
+  [ObjectType.SENSOR]?: string[];
+};
 
-export interface ISelectionData {
-  vehicles: Dictionary<ISelectionTooltip>;
-  sensors: Dictionary<ISelectionTooltip>;
-}
+export type ISelectionData = Dictionary<ISelectionTooltip>;
 
 export interface VehicleAnimation {
   tag: string;

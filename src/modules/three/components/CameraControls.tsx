@@ -1,20 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-// HERE
-// eslint-disable-next-line  @typescript-eslint/no-unused-vars
-import { extend, ReactThreeFiber, useFrame, useResource, useThree, useUpdate } from 'react-three-fiber';
+import { useFrame, useThree, useUpdate } from 'react-three-fiber';
+import { Box3, OrthographicCamera } from 'three';
+
 import { OrbitControls } from '../../../libs/OrbitControls/OrbitControls';
 import { CameraControlContext } from '../contexts/CameraContext';
-
-extend({ OrbitControls });
-
-// HERE
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      orbitControls: ReactThreeFiber.Object3DNode<OrbitControls, typeof OrbitControls>;
-    }
-  }
-}
 
 const maxPolarAngle = Math.PI / 4;
 const enableDamping = true;
@@ -23,7 +12,7 @@ const minAzimuthAngle = Math.PI / -3;
 const maxAzimuthAngle = Math.PI / 3;
 
 interface ICameraControls {
-  boundaries: THREE.Box3;
+  boundaries: Box3;
 }
 
 export const CameraControls: React.FC<ICameraControls> = ({ boundaries }) => {
@@ -35,7 +24,7 @@ export const CameraControls: React.FC<ICameraControls> = ({ boundaries }) => {
       if (!boundaries) return;
 
       const container = gl.domElement;
-      const orthoCamera = camera as THREE.OrthographicCamera;
+      const orthoCamera = camera as OrthographicCamera;
       const zoomToBoundaries =
         Math.min(
           container.offsetWidth / (boundaries.max.x - boundaries.min.x),
@@ -56,10 +45,14 @@ export const CameraControls: React.FC<ICameraControls> = ({ boundaries }) => {
     [boundaries, gl.domElement, camera]
   );
 
-  useEffect(() => {
-    if (!controlsRef.current) return;
-    setOrbitControl(controlsRef.current.current);
-  }, []);
+  useEffect(
+    () => {
+      if (!controlsRef.current) return;
+      setOrbitControl(controlsRef.current);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   useFrame(() => controlsRef.current.update());
 

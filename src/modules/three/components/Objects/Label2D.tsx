@@ -1,9 +1,9 @@
 import React from 'react';
-import { Vector3 } from 'three';
 import { Text } from '../Text';
+import { Vector3 } from 'three';
 
 interface Label2DProps {
-  position: THREE.Vector3;
+  position: Vector3;
   title?: string;
   description?: string;
 }

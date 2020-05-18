@@ -7,6 +7,20 @@ export enum VisualizationType {
   D3 = 'D3',
 }
 
+export enum EventType {
+  MOUSE_IN = 'pointerin',
+  MOUSE_OUT = 'pointerout',
+  MOUSE_CLICK = 'click',
+}
+
+export enum ObjectType {
+  OBJECT = 'OBJECT',
+  PATH = 'PATH',
+  SENSOR = 'SENSOR',
+  WALL = 'WALL',
+  VEHICLE = 'VEHICLE',
+}
+
 export interface IWallWithPointsCoordinates extends Omit<IWall, 'start' | 'end'> {
   start: IPoint;
   end: IPoint;

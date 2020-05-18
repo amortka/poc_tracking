@@ -1,4 +1,5 @@
 import { IVisualizationScene, IVisualisationState, ISelection } from '../models/main.model';
+import { ObjectType } from '../modules/three/canvas.model';
 
 export const visualizationSceneMock: IVisualizationScene = {
   objects: {
@@ -285,6 +286,10 @@ export const visualizationSceneMock: IVisualizationScene = {
   },
 };
 
+export const selectionMock: ISelection = {
+  [ObjectType.SENSOR]: ['qwbmjtmf', 'xzfsgxxh', 'izktgqna', 'piunnkuf'],
+};
+
 export const visualisationStateMock: IVisualisationState = {
   vehicles: {
     trqzbojg: { tag: 'Milkrun ABC', dimensions: { x: 0.6, y: 0.4, z: 0.25 }, segments: 1 },
@@ -297,9 +302,5 @@ export const visualisationStateMock: IVisualisationState = {
       selected: true,
     },
   },
-};
-
-export const selectionMock: ISelection = {
-  sensors: ['qwbmjtmf', 'xzfsgxxh', 'izktgqna', 'piunnkuf'],
-  vehicles: [],
+  selection: selectionMock,
 };

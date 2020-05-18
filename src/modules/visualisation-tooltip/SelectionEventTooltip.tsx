@@ -1,32 +1,31 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { equal } from '../../utils/object.utils';
-import { ISelectionTooltip } from '../../models/main.model';
+import { ISelectionData } from '../../models/main.model';
 import { TooltipWrapper } from './components/Tooltip';
 import { Typography } from '@material-ui/core';
 
 interface SelectionEventTooltipProps {
-  objects: ISelectionTooltip[];
+  selection: ISelectionData;
+  debug?: boolean;
 }
 
 export const SelectionEventTooltip: React.FC<SelectionEventTooltipProps> = React.memo(
-  ({ objects = [] }) => {
-    const renderTooltip = useMemo(
-      () =>
-        objects.map((o) => (
-          <TooltipWrapper
-            top={o.coordinates.y}
-            left={o.coordinates.x}
-            open={true}
-            template={
-              <React.Fragment>
-                <Typography color="inherit">{o.title}</Typography>
-                {o.description}
-              </React.Fragment>
-            }
-          />
-        )),
-      [objects]
-    );
+  ({ selection, debug }) => {
+    const renderTooltip = Object.keys(selection || {}).map((s) => (
+      <TooltipWrapper
+        key={s}
+        top={selection[s].coordinates.y}
+        left={selection[s].coordinates.x}
+        open={true}
+        debug={debug}
+        template={
+          <React.Fragment>
+            <Typography color="inherit">{selection[s].title}</Typography>
+            {selection[s].description}
+          </React.Fragment>
+        }
+      />
+    ));
 
     return <>{renderTooltip}</>;
   },

@@ -1,25 +1,10 @@
 import React, { useContext, useCallback } from 'react';
 import { IPath, IRoom, ISensor, IWall } from '../../../models/main.model';
-import { IObjectWithPointsCoordinates } from '../canvas.model';
-
-export enum EventType {
-  MOUSE_IN = 'pointerin',
-  MOUSE_OUT = 'pointerout',
-  MOUSE_CLICK = 'click',
-}
-
-export enum ObjectType {
-  OBJECT = 'OBJECT',
-  PATH = 'PATH',
-  SENSOR = 'SENSOR',
-  WALL = 'WALL',
-  VEHICLE = 'VEHICLE',
-}
+import { EventType, IObjectWithPointsCoordinates, ObjectType } from '../canvas.model';
 
 export type EventContextObject = IWall | ISensor | IObjectWithPointsCoordinates | IRoom | IPath;
 
 export interface IEventContextPayload {
-  // event?: PointerEvent;
   object: EventContextObject;
   objectType: ObjectType;
   type: EventType;
