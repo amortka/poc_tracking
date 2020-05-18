@@ -11,7 +11,7 @@ const StyledTooltip = withStyles((theme: Theme) => ({
 
 const useStyles = makeStyles({
   tooltipSpan: {
-    position: 'fixed' as 'fixed',
+    position: 'absolute' as 'absolute',
     display: 'block',
     pointerEvents: 'none',
   },

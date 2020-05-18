@@ -52,7 +52,7 @@ function App() {
             debug={true}
           />
           <MouseEventTooltip events={events} />
-          <SelectionEventTooltip selection={selection} debug={true} />
+          <SelectionEventTooltip selection={selection} debug={true} centerPosition={{ x: -2, y: -18 }} />
         </div>
         <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
         {isCartInfoVisible && <CartInfo setIsCartInfoVisible={setIsCartInfoVisible} />}
