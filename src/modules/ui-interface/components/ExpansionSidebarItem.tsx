@@ -9,19 +9,19 @@ import {
 } from '@material-ui/core';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import { Add } from '@material-ui/icons';
-import { CartItem } from './cart-item';
+import { CartItem } from './CartItem';
 import { cartsMock } from '../../../mocks/ui.mock';
 
 const ExpansionPanel = withStyles({
   root: {
-    boxShadow: 'inset 15px 0 9px -7px #14191F',
+    boxShadow: 'inset 12px 0 15px -5px #14191F',
     backgroundColor: '#212830',
-    margin: '0 0 20px 0',
+    margin: '0 0 15px 0',
     '&:before': {
       display: 'none',
     },
     '&$expanded': {
-      margin: '0 0 20px 0',
+      margin: '0 0 15px 0',
     },
   },
   expanded: {},

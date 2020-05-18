@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Canvas } from './modules/three/Canvas';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
-import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
-import { Menu } from './modules/ui-interface/components/Menu';
-import { VehicleAnimation } from './models/main.model';
+
+import { Canvas } from './modules/three/Canvas';
 import { VisualizationType } from './modules/three/canvas.model';
 import { IEventContextPayload } from './modules/three/contexts/EventsContext';
-import { CommunicationMock } from './mocks/communication.mock';
-import { VehiclePositionsService } from './VehiclePositions.service';
-import './App.css';
-import { visualizationSceneMock, visualisationStateMock, selectionMock } from './mocks/main.mock';
 import { MouseEventTooltip } from './modules/visualisation-tooltip/MouseEventTooltip';
 import { SelectionEventTooltip } from './modules/visualisation-tooltip/SelectionEventTooltip';
+import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
+import { Menu } from './modules/ui-interface/components/Menu';
+import { CartInfo } from './modules/ui-interface/components/CartInfo';
+
+import { VehicleAnimation } from './models/main.model';
+
+import { CommunicationMock } from './mocks/communication.mock';
+import { visualizationSceneMock, visualisationStateMock, selectionMock } from './mocks/main.mock';
+
+import { VehiclePositionsService } from './VehiclePositions.service';
+import './App.css';
 
 const theme = createMuiTheme({
   palette: {
@@ -32,6 +37,7 @@ function App() {
   }, []);
 
   const [events, setEvents] = useState<IEventContextPayload>(null);
+  const [isCartInfoVisible, setIsCartInfoVisible] = useState(false);
 
   return (
     <main className={'MainContainer'}>
@@ -48,7 +54,8 @@ function App() {
         />
         <MouseEventTooltip events={events} />
         <SelectionEventTooltip objects={[]} />
-        <InfoSidebar />
+        <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
+        {isCartInfoVisible && <CartInfo setIsCartInfoVisible={setIsCartInfoVisible} />}
       </ThemeProvider>
     </main>
   );

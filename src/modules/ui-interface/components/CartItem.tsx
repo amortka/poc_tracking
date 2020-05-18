@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { DriveEta, InfoOutlined } from '@material-ui/icons';
-import './cart-item.css';
+import './CartItem.css';
+import { CartInfoContext } from './InfoSidebar';
 
 const useStyles = makeStyles({
   root: {
@@ -37,6 +38,11 @@ export interface CartItemProps {
 
 export const CartItem: React.FC<CartItemProps> = ({ name, time, wagons, color }) => {
   const classes = useStyles();
+  const setIsCartInfoVisible = useContext(CartInfoContext);
+
+  const setCartInfoVisible = () => {
+    setIsCartInfoVisible(true);
+  };
 
   return (
     <ListItem button className={classes.root}>
@@ -51,7 +57,7 @@ export const CartItem: React.FC<CartItemProps> = ({ name, time, wagons, color })
         ))}
       </div>
       <ListItemIcon className={classes.icon}>
-        <InfoOutlined />
+        <InfoOutlined onClick={setCartInfoVisible} />
       </ListItemIcon>
     </ListItem>
   );
