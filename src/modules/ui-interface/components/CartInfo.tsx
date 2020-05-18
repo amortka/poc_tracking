@@ -21,6 +21,7 @@ const useStyles = makeStyles({
   },
   doubleArrowIcon: {
     marginLeft: 'auto',
+    cursor: 'pointer',
   },
   list: {
     '& > li:nth-child(odd)': {
@@ -44,8 +45,8 @@ export const CartInfo: React.FC<CartInfoProps> = ({ setIsCartInfoVisible }) => {
   const classes = useStyles();
 
   return (
-    <div className="background-shadow">
-      <Box color="text.primary" className={classes.box}>
+    <div className="background-shadow" onClick={() => setIsCartInfoVisible(false)}>
+      <Box color="text.primary" className={classes.box} onClick={(e) => e.stopPropagation()}>
         <div className="cartInfo-headerContainer">
           <DriveEta className={classes.cartIcon} />
           <Typography variant="h6">Milkrun GHI</Typography>
