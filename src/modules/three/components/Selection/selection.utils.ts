@@ -27,9 +27,6 @@ export class SelectionUtils {
           selectionData.title = mesh.userData['tag'];
           const position = mesh.position.clone();
           const vector = position.project(camera);
-          console.log({ camera });
-
-          console.log({ vector, viewport });
 
           selectionData.coordinates = {
             y: (-(vector.y - 1) * viewport.height) / 2,

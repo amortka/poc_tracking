@@ -16,6 +16,7 @@ interface VehicleState {
 }
 
 interface VehicleUpdate {
+  routeId: string;
   pathId: string;
   tag: string;
   type: string;
@@ -49,6 +50,7 @@ export class VehiclePositionsService {
       const newProgress = data.currentProgress + 0.001;
 
       const update = {
+        routeId: 'fqfwxpzw',
         pathId: data.pathId,
         tag: vehicleId,
         type: data.type,
