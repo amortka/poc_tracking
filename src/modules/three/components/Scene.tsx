@@ -26,7 +26,7 @@ export const Scene: React.FC<SceneProps> = ({ children, axesHelper = 5 }) => {
     if (!axesHelper) return;
     const axes = new THREE.AxesHelper(axesHelper);
     scene.add(axes);
-  }, [axesHelper]);
+  }, [axesHelper, scene]);
 
   return (
     <group ref={group} position={[0, 0, 0]}>

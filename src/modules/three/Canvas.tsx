@@ -1,29 +1,36 @@
+import './three-extend';
 import React, { useEffect, useMemo } from 'react';
-import { Object3D } from 'three';
 import { AmbientLight } from './components/AmbientLight';
 import { Canvas as CanvasThree } from 'react-three-fiber';
+import { CanvasUtils } from './utils/canvas.utils';
+import { equal } from '../../utils/object.utils';
+import { EventsContextProvider, eventsContextService, IEventContextPayload } from './contexts/EventsContext';
 import { Floor } from './components/Floor';
 import { ICanvasTheme, VisualizationType } from './canvas.model';
-import { IVisualization } from '../../models/main.model';
+import { ISelection, ISelectionData, IVisualisationState, IVisualizationScene } from '../../models/main.model';
+import { Object3D } from 'three';
 import { Objects } from './components/Objects/Objects';
-import { Scene } from './components/Scene';
-import { Walls } from './components/Walls/Walls';
-import { CanvasUtils } from './utils/canvasUtils';
-import { ThemeContext } from './contexts/ThemeContext';
 import { Paths } from './components/Paths/Paths';
+import { Scene } from './components/Scene';
 import { Sensors } from './components/Sensors/Sensors';
-import { EventsContextProvider, eventsContextService } from './contexts/EventsContext';
-import { equal } from '../../utils/object.utils';
+import { ThemeContext } from './contexts/ThemeContext';
+import { Walls } from './components/Walls/Walls';
+import { Routes } from './components/Routes/Routes';
+import { Selection } from './components/Selection/Selection';
+import { CameraControlContextProvider } from './contexts/CameraContext';
 
 interface CanvasProps {
-  config: IVisualization;
+  events?: (payload: IEventContextPayload) => void;
+  selectionDataClb?: (payload: ISelectionData) => void;
+  scene: IVisualizationScene;
+  selection: ISelection;
+  state: IVisualisationState;
   theme?: ICanvasTheme;
   type: VisualizationType;
-  events?: (IEventContextPayload) => void;
 }
 
 export const Canvas: React.FC<CanvasProps> = React.memo(
-  ({ config, theme = {}, type, events }) => {
+  ({ scene, theme = {}, type, events, state, selectionDataClb, selection }) => {
     Object3D.DefaultUp.set(0, 0, 1);
 
     const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme]);
@@ -35,24 +42,28 @@ export const Canvas: React.FC<CanvasProps> = React.memo(
 
     return (
       <CanvasThree gl2 orthographic style={{ background: themeConfig.canvasBackground }}>
-        <EventsContextProvider>
-          <ThemeContext.Provider value={themeConfig}>
-            <AmbientLight />
-            <Floor type={type} />
-            <Scene>
-              <Walls walls={config.walls} points={config.points} rooms={config.rooms} type={type} />
-              <Objects points={config.points} objects={config.objects} type={VisualizationType.D2} />
-              <Paths points={config.points} paths={config.paths} />
-              <Sensors points={config.points} sensors={config.sensors} type={type} />
-            </Scene>
-          </ThemeContext.Provider>
-        </EventsContextProvider>
+        <CameraControlContextProvider>
+          <EventsContextProvider>
+            <ThemeContext.Provider value={themeConfig}>
+              <AmbientLight />
+              <Floor type={type} />
+              <Scene>
+                <Walls walls={scene.walls} points={scene.points} rooms={scene.rooms} type={type} />
+                <Objects points={scene.points} objects={scene.objects} type={VisualizationType.D2} />
+                <Paths points={scene.points} paths={scene.paths} />
+                <Sensors points={scene.points} sensors={scene.sensors} type={type} />
+                <Routes points={scene.points} paths={scene.paths} vehicles={state.vehicles} routes={state.routes} />
+                <Selection selection={selection} selectionDataClb={selectionDataClb} />
+              </Scene>
+            </ThemeContext.Provider>
+          </EventsContextProvider>
+        </CameraControlContextProvider>
       </CanvasThree>
     );
   },
 
   (prevProps, nextProps) =>
-    equal(prevProps.config, nextProps.config) &&
+    equal(prevProps.scene, nextProps.scene) &&
     equal(prevProps.theme, nextProps.theme) &&
     prevProps.type === nextProps.type
 );

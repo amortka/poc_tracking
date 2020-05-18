@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
 import { WallD3 } from './WallD3';
-import { IVisualization } from '../../../../models/main.model';
-import { WallsUtils } from './Walls.utils';
+import { IVisualizationScene } from '../../../../models/main.model';
+import { WallsUtils } from './walls.utils';
 import { WallD2 } from './WallD2';
 import { VisualizationType } from '../../canvas.model';
 
-interface WallsProps extends Pick<IVisualization, 'walls' | 'points' | 'rooms'> {
+interface WallsProps extends Pick<IVisualizationScene, 'walls' | 'points' | 'rooms'> {
   type: VisualizationType;
 }
 

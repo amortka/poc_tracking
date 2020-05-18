@@ -4,9 +4,11 @@ import { IPathWithPointsCoordinates } from '../../canvas.model';
 import { LineUtils } from '../../utils/line.utils';
 import { ThemeContext } from '../../contexts/ThemeContext';
 
-export interface PathsDefaultProps extends IPathWithPointsCoordinates {}
+export interface PathsDefaultProps extends IPathWithPointsCoordinates {
+  color?: THREE.Color | string | number;
+}
 
-export const PathsDefault: React.FC<PathsDefaultProps> = React.memo(({ points, tag }) => {
+export const PathsDefault: React.FC<PathsDefaultProps> = React.memo(({ points, tag, color }) => {
   const lineRef = useRef<THREE.Line>(null);
   const fromGround = useRef(0.02);
 
@@ -24,7 +26,7 @@ export const PathsDefault: React.FC<PathsDefaultProps> = React.memo(({ points, t
     <line ref={lineRef} geometry={lineG}>
       <lineDashedMaterial
         attach="material"
-        color={theme.objects.D2.line}
+        color={color || theme.objects.D2.line}
         dashSize={theme.paths.D2.dashSize}
         gapSize={theme.paths.D2.gapSize}
         scale={1}
