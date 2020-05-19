@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
 import { CommunicationMock } from './mocks/communication.mock';
-import { visualizationSceneMock, visualisationStateMock } from './mocks/main.mock';
+import { visualisationStateMock, visualizationSceneMock } from './mocks/main.mock';
 
-import { VehicleAnimation, IVisualisationState } from './models/main.model';
+import { IVisualisationState } from './models/main.model';
 
 import { Canvas } from './modules/three/Canvas';
 import { CartInfo } from './modules/ui-interface/components/CartInfo';

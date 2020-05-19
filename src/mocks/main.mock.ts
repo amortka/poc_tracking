@@ -1,60 +1,68 @@
-import { IVisualizationScene, IVisualisationState, ISelection } from '../models/main.model';
-import { ObjectType } from '../modules/three/canvas.model';
+import { ISelection, IVisualisationState, IVisualizationScene } from '../models/main.model';
+import { ObjectType, VisualizationType } from '../modules/three/canvas.model';
 
 export const visualizationSceneMock: IVisualizationScene = {
   objects: {
     bkgwbnwu: {
       shapePoints: ['xfblfcmx', 'cmtulzxs', 'gjcuvwgu', 'uazocvnx'],
-      height: 1,
       fromGround: 0.1,
       meta: {
         name: 'ecophon',
         description: '120x120',
       },
+      type: VisualizationType.D2,
     },
     bkozixwk: {
       shapePoints: ['unxmnnfr', 'zboxtrvu', 'cqmcsiay', 'nstmcsir'],
-      height: 1,
       fromGround: 0.1,
       meta: {
         name: 'ecophon',
         description: '120x120',
       },
+      type: VisualizationType.D2,
     },
     xgqewujr: {
       shapePoints: ['qyipxgyf', 'oaozugec', 'suvgtoul', 'sgvatdjc'],
-      height: 1,
       fromGround: 0.1,
       meta: {
         name: 'ecophon',
         description: '120x120',
       },
+      type: VisualizationType.D2,
     },
     mdwlizmv: {
       shapePoints: ['h5jghnhl', 'o6c3mck5', 'lqximksu', 'janzaxld'],
-      height: 1,
       fromGround: 0.1,
       meta: {
         name: 'ecophon',
         description: '120x240',
       },
+      type: VisualizationType.D2,
     },
     kstmxjew: {
       shapePoints: ['ophifqgn', 'pyaidnyh', 'vbowugex', 'qtvfipgx'],
-      height: 1,
       fromGround: 0.1,
       meta: {
         name: 'ecophon',
         description: '120x240',
       },
+      type: VisualizationType.D2,
     },
     dbrolfrq: {
       shapePoints: ['aizmaxly', 'wlnnbsii', 'hddoeigl', 'dhwtktzq'],
-      height: 1,
       fromGround: 0.1,
       meta: {
         name: 'ecophon',
         description: '120x240',
+      },
+      type: VisualizationType.D2,
+    },
+    dhgolfqh: {
+      shapePoints: ['gxoyvvhy', 'zditbxul', 'ousrgrvl', 'mjbwywey'],
+      height: 1,
+      fromGround: 0.1,
+      meta: {
+        name: 'Checkpoint 1',
       },
     },
   },
@@ -106,10 +114,17 @@ export const visualizationSceneMock: IVisualizationScene = {
     pyaidnyh: { x: 5.35, y: 2.14 },
     vbowugex: { x: 5.34, y: 4.54 },
     qtvfipgx: { x: 4.13, y: 4.54 },
+
     aizmaxly: { x: 5.7, y: 2.14 },
     wlnnbsii: { x: 6.91, y: 2.14 },
     hddoeigl: { x: 6.91, y: 4.56 },
     dhwtktzq: { x: 5.7, y: 4.56 },
+
+    gxoyvvhy: { x: 5.7, y: 2.54 },
+    zditbxul: { x: 5.21, y: 2.54 },
+    ousrgrvl: { x: 5.21, y: 4.06 },
+    mjbwywey: { x: 5.7, y: 4.06 },
+
     sadvcvxl: { x: 1.49, y: 5.34 },
     dqwzllxi: { x: 1.52, y: 2.88 },
     rzmgfdlc: { x: 1.51, y: 0.01 },

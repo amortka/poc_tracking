@@ -3,7 +3,7 @@ import { equal } from '../../utils/object.utils';
 import { EventType } from '../three/canvas.model';
 import { IEventContextPayload } from '../three/contexts/EventsContext';
 import { TooltipProps, TooltipWrapper } from './components/Tooltip';
-import { Typography } from '@material-ui/core';
+import { Typography, useTheme } from '@material-ui/core';
 import { useMouseMove } from '../../custom-hooks/use-mouse-move.hook';
 
 interface MouseEventTooltipProps {
@@ -38,6 +38,7 @@ export const MouseEventTooltip: React.FC<MouseEventTooltipProps> = React.memo(
   ({ events }) => {
     const [tooltipConfig, dispatchTooltipConfig] = useReducer(tooltipReducer, { template: '', open: false });
     const [mouseCoordinates, setTrackMouse] = useMouseMove();
+    const theme = useTheme();
 
     useEffect(() => {
       if (!events) return;
@@ -48,7 +49,7 @@ export const MouseEventTooltip: React.FC<MouseEventTooltipProps> = React.memo(
       setTrackMouse(tooltipConfig.open);
     }, [tooltipConfig.open, setTrackMouse]);
 
-    return <TooltipWrapper top={mouseCoordinates.y} left={mouseCoordinates.x} {...tooltipConfig} />;
+    return <TooltipWrapper top={mouseCoordinates.y} left={mouseCoordinates.x - theme.spacing(8)} {...tooltipConfig} />;
   },
   (prevProps, nextProps) => equal(prevProps, nextProps)
 );
