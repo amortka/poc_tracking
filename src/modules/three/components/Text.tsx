@@ -51,7 +51,7 @@ export const Text: React.FC<TextProps> = ({ label, position, geometryConfig, mat
     };
 
     return new MeshBasicMaterial(textMaterialConfig);
-  }, [theme, materialConfig]);
+  }, [theme.text.color, materialConfig]);
 
   return <mesh position={position} args={[geometry, material]} />;
 };
