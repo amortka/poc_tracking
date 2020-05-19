@@ -18,6 +18,8 @@ import { VisualizationType } from './modules/three/canvas.model';
 import { VehiclePositionsService } from './VehiclePositions.service';
 
 import './App.css';
+import { Provider } from 'react-redux';
+import { store } from './store/store.config';
 
 const theme = createMuiTheme({
   palette: {
@@ -53,25 +55,27 @@ function App() {
   const [selection, setSelection] = useState(null);
 
   return (
-    <main className={'MainContainer'}>
-      <ThemeProvider theme={theme}>
-        <Menu />
-        <div className={'CanvasWrapper'}>
-          <Canvas
-            selectionDataClb={setSelection}
-            scene={visualizationSceneMock}
-            state={state}
-            type={VisualizationType.D3}
-            events={setEvents}
-            debug={true}
-          />
-          <MouseEventTooltip events={events} />
-          <SelectionEventTooltip selection={selection} debug={true} centerPosition={{ x: -2, y: -18 }} />
-        </div>
-        <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
-        {isCartInfoVisible && <CartInfo setIsCartInfoVisible={setIsCartInfoVisible} />}
-      </ThemeProvider>
-    </main>
+    <Provider store={store}>
+      <main className={'MainContainer'}>
+        <ThemeProvider theme={theme}>
+          <Menu />
+          <div className={'CanvasWrapper'}>
+            <Canvas
+              selectionDataClb={setSelection}
+              scene={visualizationSceneMock}
+              state={state}
+              type={VisualizationType.D3}
+              events={setEvents}
+              debug={true}
+            />
+            <MouseEventTooltip events={events} />
+            <SelectionEventTooltip selection={selection} debug={true} centerPosition={{ x: -2, y: -18 }} />
+          </div>
+          <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
+          {isCartInfoVisible && <CartInfo setIsCartInfoVisible={setIsCartInfoVisible} />}
+        </ThemeProvider>
+      </main>
+    </Provider>
   );
 }
 
