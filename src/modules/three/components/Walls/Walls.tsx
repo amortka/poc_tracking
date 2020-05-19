@@ -13,7 +13,9 @@ export const Walls: React.FC<WallsProps> = ({ walls, points, type }) => {
   const renderWalls = useMemo(() => {
     switch (type) {
       case VisualizationType.D3:
-        return WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallD3 key={i} {...w} />);
+        return Object.keys(walls).map((wallId, i) => (
+          <WallD3 key={wallId} wallId={wallId} walls={walls} points={points} />
+        ));
       case VisualizationType.D2:
         return WallsUtils.getWallsWithCoordinates(walls, points).map((w, i) => <WallD2 key={i} {...w} />);
     }

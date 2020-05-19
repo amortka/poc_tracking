@@ -1,13 +1,13 @@
-import React, { useMemo } from 'react';
-import { Vector2, ExtrudeGeometry, Mesh } from 'three';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import { ExtrudeGeometry, Geometry } from 'three';
 import { useUpdate } from 'react-three-fiber';
-import { IPoint, IWall } from '../../../../models/main.model';
-import { VectorUtils } from '../../utils/vector.unitls';
-import { CsgUtils } from '../../utils/csg.utils';
+import { Dictionary, IPoint, IWall } from '../../../../models/main.model';
+import { WallsUtils } from './walls.utils';
 
-interface WallProps extends Omit<IWall, 'start' | 'end'> {
-  start: IPoint;
-  end: IPoint;
+interface WallProps {
+  wallId: string;
+  walls: Dictionary<IWall>;
+  points: Dictionary<IPoint>;
   height?: number;
 }
 
@@ -16,36 +16,25 @@ const extrudeSettings = {
   bevelEnabled: false,
 };
 
-export const WallD3: React.FC<WallProps> = ({ height = 2.7, start, end, thickness, meta }) => {
-  const wallStart = useMemo(() => new Vector2(start.x, start.y), [start.x, start.y]);
-  const wallEnd = useMemo(() => new Vector2(end.x, end.y), [end.x, end.y]);
+export const WallD3: React.FC<WallProps> = ({ wallId, walls, points, height = 2.7 }) => {
+  const wall = useMemo(() => WallsUtils.getWallWithPointsCoordinates(wallId, walls, points), [wallId, walls, points]);
+
+  const makeHoles = useCallback((wallGeometry) => WallsUtils.makeHoles(wallGeometry, wall, extrudeSettings), [wall]);
 
   const geometry = useMemo(() => {
-    const wallS = VectorUtils.getShapeFromVectors([wallStart, wallEnd], thickness);
-
+    const wallS = WallsUtils.getWallShapeFromWallsArrangement(wallId, walls, points);
     return new ExtrudeGeometry(wallS, { ...extrudeSettings, depth: height });
-  }, [wallStart, wallEnd, thickness, height]);
+  }, [wallId, walls, points, height]);
 
-  useUpdate<THREE.Geometry>(
-    (wallGeometry) => {
-      if (meta?.holes) {
-        Object.values(meta.holes).forEach((hole) => {
-          const holeStartV = VectorUtils.getVectorToPositionOnSegment(wallStart, wallEnd, hole.start);
-          const holeEndV = VectorUtils.getVectorToPositionOnSegment(wallStart, wallEnd, hole.start + hole.width);
-
-          const holeShape = VectorUtils.getShapeFromVectors([holeStartV, holeEndV], thickness);
-          const holeGeometry = new ExtrudeGeometry(holeShape, { ...extrudeSettings, depth: hole.height });
-
-          const wallMesh = new Mesh(wallGeometry);
-          const holeMesh = new Mesh(holeGeometry);
-          holeMesh.position.set(0, 0, hole.fromGround || 0);
-
-          wallGeometry.copy(CsgUtils.subtract(wallMesh, holeMesh).geometry as THREE.Geometry);
-        });
-      }
+  useEffect(
+    () => {
+      makeHoles(geometry);
     },
-    [meta?.holes, wallStart, wallEnd, thickness]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
+
+  useUpdate<Geometry>(makeHoles, [wall, extrudeSettings]);
 
   return (
     <mesh geometry={geometry}>

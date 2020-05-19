@@ -4,15 +4,11 @@ import { Object3D } from 'three';
 import { Canvas as CanvasThree } from 'react-three-fiber';
 
 import { CanvasUtils } from './utils/canvas.utils';
-
 import { ICanvasTheme, VisualizationType } from './canvas.model';
-
-import { ISelectionData, IVisualisationState, IVisualizationScene, VehicleAnimation } from '../../models/main.model';
-
+import { ISelectionData, IVisualisationState, IVisualizationScene } from '../../models/main.model';
 import { EventsContextProvider, eventsContextService, IEventContextPayload } from './contexts/EventsContext';
 import { CameraControlContextProvider } from './contexts/CameraContext';
 import { ThemeContext } from './contexts/ThemeContext';
-
 import { Lights } from './components/Lights';
 import { Floor } from './components/Floor';
 import { Objects } from './components/Objects/Objects';

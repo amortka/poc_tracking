@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
-import { CommunicationMock } from './mocks/communication.mock';
-import { visualizationSceneMock, visualisationStateMock } from './mocks/main.mock';
-
-import { VehicleAnimation, IVisualisationState } from './models/main.model';
-
 import { Canvas } from './modules/three/Canvas';
 import { CartInfo } from './modules/ui-interface/components/CartInfo';
+import { CommunicationMock } from './mocks/communication.mock';
 import { IEventContextPayload } from './modules/three/contexts/EventsContext';
 import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
+import { IVisualisationState } from './models/main.model';
 import { Menu } from './modules/ui-interface/components/Menu';
 import { MouseEventTooltip } from './modules/visualisation-tooltip/MouseEventTooltip';
 import { SelectionEventTooltip } from './modules/visualisation-tooltip/SelectionEventTooltip';
-import { VisualizationType } from './modules/three/canvas.model';
-
 import { VehiclePositionsService } from './VehiclePositions.service';
+import { visualisationStateMock, visualizationSceneMock } from './mocks/main.mock';
+import { VisualizationType } from './modules/three/canvas.model';
 
 import './App.css';
 

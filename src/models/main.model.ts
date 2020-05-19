@@ -9,6 +9,11 @@ export interface IPoint {
   y: number;
 }
 
+export enum WallCorner {
+  START = 'start',
+  END = 'end',
+}
+
 /**
  * IVisualizationScene
  */
