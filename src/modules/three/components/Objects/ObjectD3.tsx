@@ -1,13 +1,11 @@
 import React from 'react';
 import { IObjectWithPointsCoordinates } from '../../canvas.model';
+import { ShapeUtils } from '../../utils/shape.utils';
 
-export interface ObjectNormalProps extends IObjectWithPointsCoordinates {}
+export interface ObjectD3Props extends IObjectWithPointsCoordinates {}
 
-export const ObjectD3: React.FC<ObjectNormalProps> = React.memo(({ height = 1, meta }) => {
-  // const wallStart = useMemo(() => new THREE.Vector2(start.x, start.y), [start.x, start.y])
-  // const wallEnd = useMemo(() => new THREE.Vector2(end.x, end.y), [end.x, end.y])
-
-  // const wallS = VectorUtils.getShapeFromVectors([wallStart, wallEnd], thickness)
+export const ObjectD3: React.FC<ObjectD3Props> = React.memo(({ shapePoints, height = 1, meta }) => {
+  const objectS = ShapeUtils.getShapeFromPointCoordinates(shapePoints);
 
   const extrudeSettings = {
     steps: 2,
@@ -17,8 +15,8 @@ export const ObjectD3: React.FC<ObjectNormalProps> = React.memo(({ height = 1, m
 
   return (
     <mesh>
-      <extrudeGeometry attach="geometry" args={[null, extrudeSettings]} />
-      <meshPhongMaterial attach="material" color={'red'} transparent={true} opacity={0.5} depthWrite={false} />
+      <extrudeGeometry attach="geometry" args={[objectS, extrudeSettings]} />
+      <meshPhongMaterial attach="material" color={'blue'} transparent={true} opacity={0.5} depthWrite={false} />
     </mesh>
   );
 });
