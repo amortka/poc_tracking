@@ -24,7 +24,6 @@ export const Routes: React.FC<RoutesProps> = ({ paths, points, routes, vehicles 
   return (
     <>
       {Object.entries(routes).map(([routeId, routeData]) => {
-        debugger;
         return (
           <Route
             key={routeId}
