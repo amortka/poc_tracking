@@ -40,9 +40,9 @@ export interface IObject {
   fromGround?: number;
   meta?: {
     name?: string;
+    type?: VisualizationType;
     description?: string;
   };
-  type?: VisualizationType;
 }
 
 export interface IPath {

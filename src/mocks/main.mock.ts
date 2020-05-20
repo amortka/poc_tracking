@@ -9,8 +9,8 @@ export const visualizationSceneMock: IVisualizationScene = {
       meta: {
         name: 'ecophon',
         description: '120x120',
+        type: VisualizationType.D2,
       },
-      type: VisualizationType.D2,
     },
     bkozixwk: {
       shapePoints: ['unxmnnfr', 'zboxtrvu', 'cqmcsiay', 'nstmcsir'],
@@ -18,8 +18,8 @@ export const visualizationSceneMock: IVisualizationScene = {
       meta: {
         name: 'ecophon',
         description: '120x120',
+        type: VisualizationType.D2,
       },
-      type: VisualizationType.D2,
     },
     xgqewujr: {
       shapePoints: ['qyipxgyf', 'oaozugec', 'suvgtoul', 'sgvatdjc'],
@@ -27,8 +27,8 @@ export const visualizationSceneMock: IVisualizationScene = {
       meta: {
         name: 'ecophon',
         description: '120x120',
+        type: VisualizationType.D2,
       },
-      type: VisualizationType.D2,
     },
     mdwlizmv: {
       shapePoints: ['h5jghnhl', 'o6c3mck5', 'lqximksu', 'janzaxld'],
@@ -36,8 +36,8 @@ export const visualizationSceneMock: IVisualizationScene = {
       meta: {
         name: 'ecophon',
         description: '120x240',
+        type: VisualizationType.D2,
       },
-      type: VisualizationType.D2,
     },
     kstmxjew: {
       shapePoints: ['ophifqgn', 'pyaidnyh', 'vbowugex', 'qtvfipgx'],
@@ -45,8 +45,8 @@ export const visualizationSceneMock: IVisualizationScene = {
       meta: {
         name: 'ecophon',
         description: '120x240',
+        type: VisualizationType.D2,
       },
-      type: VisualizationType.D2,
     },
     dbrolfrq: {
       shapePoints: ['aizmaxly', 'wlnnbsii', 'hddoeigl', 'dhwtktzq'],
@@ -54,8 +54,8 @@ export const visualizationSceneMock: IVisualizationScene = {
       meta: {
         name: 'ecophon',
         description: '120x240',
+        type: VisualizationType.D2,
       },
-      type: VisualizationType.D2,
     },
     dhgolfqh: {
       shapePoints: ['gxoyvvhy', 'zditbxul', 'ousrgrvl', 'mjbwywey'],
