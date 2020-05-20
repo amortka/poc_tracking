@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { Provider } from 'react-redux';
 
-import { CommunicationMock } from './mocks/communication.mock';
-import { visualisationStateMock, visualizationSceneMock } from './mocks/main.mock';
-
-import { IVisualisationState } from './models/main.model';
-
+import './App.css';
 import { Canvas } from './modules/three/Canvas';
 import { CartInfo } from './modules/ui-interface/components/CartInfo';
+import { CommunicationMock } from './mocks/communication.mock';
 import { IEventContextPayload } from './modules/three/contexts/EventsContext';
 import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
+import { IVisualisationState } from './models/main.model';
 import { Menu } from './modules/ui-interface/components/Menu';
 import { MouseEventTooltip } from './modules/visualisation-tooltip/MouseEventTooltip';
 import { SelectionEventTooltip } from './modules/visualisation-tooltip/SelectionEventTooltip';
-import { VisualizationType } from './modules/three/canvas.model';
-
-import { VehiclePositionsService } from './VehiclePositions.service';
-
-import './App.css';
-import { Provider } from 'react-redux';
 import { store } from './store/store.config';
+import { VehiclePositionsService } from './VehiclePositions.service';
+import { visualisationStateMock, visualizationSceneMock } from './mocks/main.mock';
+import { VisualizationType } from './modules/three/canvas.model';
 
 const theme = createMuiTheme({
   palette: {
