@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useFrame, useThree, useUpdate } from 'react-three-fiber';
 import { Box3, OrthographicCamera } from 'three';
 
-import { OrbitControls } from '../../../libs/OrbitControls/OrbitControls';
+import { OrbitControls } from '../libs/OrbitControls/OrbitControls';
 import { CameraControlContext } from '../contexts/CameraContext';
 
 const maxPolarAngle = Math.PI / 4;

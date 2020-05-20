@@ -5,7 +5,7 @@ import { Line2 } from 'three/examples/jsm/lines/Line2';
 import { LineGeometry } from 'three/examples/jsm/lines/LineGeometry';
 import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial';
 import { LineSegmentGeometry } from './objects/LineSegmentGeometry';
-import { OrbitControls } from '../../libs/OrbitControls/OrbitControls';
+import { OrbitControls } from './libs/OrbitControls/OrbitControls';
 import { ReactThreeFiber } from 'react-three-fiber/three-types';
 
 declare global {

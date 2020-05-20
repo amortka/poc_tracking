@@ -4,7 +4,7 @@ import { EventType } from '../../../canvas/canvas.model';
 import { IEventContextPayload } from '../../../canvas/contexts/EventsContext';
 import { TooltipProps, TooltipWrapper } from './components/Tooltip';
 import { Typography, useTheme } from '@material-ui/core';
-import { useMouseMove } from '../../../../custom-hooks/use-mouse-move.hook';
+import { useMouseMove } from '../../custom-hooks/use-mouse-move.hook';
 
 interface MouseEventTooltipProps {
   events: IEventContextPayload;

@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { OrbitControls } from '../../../libs/OrbitControls/OrbitControls';
+import { OrbitControls } from '../libs/OrbitControls/OrbitControls';
 
 export const CameraControlContext = React.createContext<[OrbitControls, Dispatch<SetStateAction<OrbitControls>>]>(null);
 
