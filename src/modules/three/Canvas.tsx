@@ -49,7 +49,7 @@ export const Canvas: React.FC<CanvasProps> = ({ debug, events, scene, selectionD
             <Floor type={type} />
             <Scene>
               <Walls walls={scene.walls} points={scene.points} rooms={scene.rooms} type={type} />
-              <Objects points={scene.points} objects={scene.objects} type={VisualizationType.D2} />
+              <Objects points={scene.points} objects={scene.objects} type={type} />
               <Paths points={scene.points} paths={scene.paths} />
               <Sensors points={scene.points} sensors={scene.sensors} type={type} />
               <Routes points={scene.points} paths={scene.paths} vehicles={state.vehicles} routes={state.routes} />

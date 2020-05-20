@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
-import { ExtrudeGeometry, Geometry } from 'three';
-import { useUpdate } from 'react-three-fiber';
+import React, { useMemo } from 'react';
+import { ExtrudeGeometry } from 'three';
+
 import { Dictionary, IPoint, IWall } from '../../../../models/main.model';
 import { WallsUtils } from './walls.utils';
 
@@ -19,22 +19,12 @@ const extrudeSettings = {
 export const WallD3: React.FC<WallProps> = ({ wallId, walls, points, height = 2.7 }) => {
   const wall = useMemo(() => WallsUtils.getWallWithPointsCoordinates(wallId, walls, points), [wallId, walls, points]);
 
-  const makeHoles = useCallback((wallGeometry) => WallsUtils.makeHoles(wallGeometry, wall, extrudeSettings), [wall]);
-
   const geometry = useMemo(() => {
     const wallS = WallsUtils.getWallShapeFromWallsArrangement(wallId, walls, points);
-    return new ExtrudeGeometry(wallS, { ...extrudeSettings, depth: height });
-  }, [wallId, walls, points, height]);
-
-  useEffect(
-    () => {
-      makeHoles(geometry);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
-
-  useUpdate<Geometry>(makeHoles, [wall, extrudeSettings]);
+    const extrudeGeometry = new ExtrudeGeometry(wallS, { ...extrudeSettings, depth: height });
+    WallsUtils.makeHoles(extrudeGeometry, wall, extrudeSettings);
+    return extrudeGeometry;
+  }, [wallId, wall, walls, points, height]);
 
   return (
     <mesh geometry={geometry}>
