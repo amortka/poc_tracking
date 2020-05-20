@@ -1,5 +1,5 @@
-import React from 'react'
-import { ListItem, ListItemIcon, makeStyles } from '@material-ui/core'
+import React from 'react';
+import { ListItem, ListItemIcon, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
   listItem: {
@@ -18,14 +18,14 @@ const useStyles = makeStyles({
     color: '#797E82',
     minWidth: 'unset',
   },
-})
+});
 
 export const MenuItem: React.FC<{ isButton: boolean }> = ({ children, isButton }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <ListItem className={classes.listItem} button={isButton as any}>
       <ListItemIcon className={classes.listItemIcon}>{children}</ListItemIcon>
     </ListItem>
-  )
-}
+  );
+};

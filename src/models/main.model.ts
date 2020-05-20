@@ -1,4 +1,4 @@
-import { ObjectType, VisualizationType } from '../modules/three/canvas.model';
+import { ObjectType, VisualizationType } from '../modules/canvas/canvas.model';
 
 export interface Dictionary<T> {
   [id: string]: T;
@@ -103,7 +103,6 @@ export interface IVisualisationState {
 /**
  * Selection
  */
-
 export interface ISelectionTooltip {
   objectType: ObjectType;
   coordinates: IPoint;

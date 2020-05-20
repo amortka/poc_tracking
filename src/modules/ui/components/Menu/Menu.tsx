@@ -4,10 +4,10 @@ import { AcUnit, BorderAllOutlined, CommuteOutlined, AttachMoney, PermIdentity }
 
 import { MenuItem } from './MenuItem';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: '64px',
-    maxWidth: '64px',
+    width: theme.spacing(8),
+    maxWidth: theme.spacing(8),
   },
   drawerPaper: {
     backgroundColor: '#11151A',
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   list: {
     height: '100%',
   },
-});
+}));
 
 export interface MenuItem {
   name: string;

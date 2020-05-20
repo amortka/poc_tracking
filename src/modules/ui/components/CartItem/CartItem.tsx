@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { makeStyles, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { DriveEta, InfoOutlined } from '@material-ui/icons';
+
 import './CartItem.css';
-import { CartInfoContext } from './InfoSidebar';
+import { CartInfoContext } from '../Sidebar/InfoSidebar';
 
 const useStyles = makeStyles({
   root: {

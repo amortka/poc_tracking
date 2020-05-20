@@ -1,8 +1,8 @@
 import React, { createContext } from 'react';
 import { Drawer, makeStyles, Typography, Box, List } from '@material-ui/core';
 import { ExpansionSidebarItem } from './ExpansionSidebarItem';
-import { cartsMock } from '../../../mocks/ui.mock';
-import { CartItem } from './CartItem';
+import { cartsMock } from '../../../../mocks/ui.mock';
+import { CartItem } from '../CartItem/CartItem';
 
 const useStyles = makeStyles({
   root: {

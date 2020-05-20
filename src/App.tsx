@@ -3,19 +3,15 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { Provider } from 'react-redux';
 
 import './App.css';
-import { Canvas } from './modules/three/Canvas';
-import { CartInfo } from './modules/ui-interface/components/CartInfo';
+import { Canvas } from './modules/canvas/Canvas';
 import { CommunicationMock } from './mocks/communication.mock';
-import { IEventContextPayload } from './modules/three/contexts/EventsContext';
-import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
+import { IEventContextPayload } from './modules/canvas/contexts/EventsContext';
 import { IVisualisationState } from './models/main.model';
-import { Menu } from './modules/ui-interface/components/Menu';
-import { MouseEventTooltip } from './modules/visualisation-tooltip/MouseEventTooltip';
-import { SelectionEventTooltip } from './modules/visualisation-tooltip/SelectionEventTooltip';
 import { store } from './store/store.config';
 import { VehiclePositionsService } from './VehiclePositions.service';
 import { visualisationStateMock, visualizationSceneMock } from './mocks/main.mock';
-import { VisualizationType } from './modules/three/canvas.model';
+import { VisualizationType } from './modules/canvas/canvas.model';
+import { UI } from './modules/ui/UI';
 
 const theme = createMuiTheme({
   palette: {
@@ -47,30 +43,22 @@ function App() {
   }, []);
 
   const [events, setEvents] = useState<IEventContextPayload>(null);
-  const [isCartInfoVisible, setIsCartInfoVisible] = useState(false);
   const [selection, setSelection] = useState(null);
 
   return (
     <Provider store={store}>
-      <main className={'MainContainer'}>
-        <ThemeProvider theme={theme}>
-          <Menu />
-          <div className={'CanvasWrapper'}>
-            <Canvas
-              selectionDataClb={setSelection}
-              scene={visualizationSceneMock}
-              state={state}
-              type={VisualizationType.D3}
-              events={setEvents}
-              debug={true}
-            />
-            <MouseEventTooltip events={events} />
-            <SelectionEventTooltip selection={selection} debug={true} centerPosition={{ x: -2, y: -18 }} />
-          </div>
-          <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
-          {isCartInfoVisible && <CartInfo setIsCartInfoVisible={setIsCartInfoVisible} />}
-        </ThemeProvider>
-      </main>
+      <ThemeProvider theme={theme}>
+        <UI>
+          <Canvas
+            selectionDataClb={setSelection}
+            scene={visualizationSceneMock}
+            state={state}
+            type={VisualizationType.D3}
+            events={setEvents}
+            debug={true}
+          />
+        </UI>
+      </ThemeProvider>
     </Provider>
   );
 }

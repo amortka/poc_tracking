@@ -9,8 +9,8 @@ import {
 } from '@material-ui/core';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import { Add } from '@material-ui/icons';
-import { CartItem } from './CartItem';
-import { cartsMock } from '../../../mocks/ui.mock';
+import { CartItem } from '../CartItem/CartItem';
+import { cartsMock } from '../../../../mocks/ui.mock';
 
 const ExpansionPanel = withStyles({
   root: {

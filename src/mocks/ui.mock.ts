@@ -1,4 +1,4 @@
-import { CartItemProps } from '../modules/ui-interface/components/CartItem';
+import { CartItemProps } from '../modules/ui/components/CartItem/CartItem';
 
 export const cartsMock: CartItemProps[] = [
   {
