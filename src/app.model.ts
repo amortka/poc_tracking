@@ -1,4 +1,4 @@
-import { ObjectType, VisualizationType } from '../modules/canvas/canvas.model';
+import { ObjectType, VisualizationType } from './modules/canvas/canvas.model';
 
 export interface Dictionary<T> {
   [id: string]: T;

@@ -1,4 +1,4 @@
-import { IVehicleUpdate } from '../models/main.model';
+import { IVehicleUpdate } from '../app.model';
 
 interface MockVehicle {
   id: string;

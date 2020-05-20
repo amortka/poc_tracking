@@ -1,5 +1,5 @@
 import { Vector3 } from 'three';
-import { IPoint } from '../../../models/main.model';
+import { IPoint } from '../../../app.model';
 
 export class LineUtils {
   static getShapePointsFromPointCoordinates(points: IPoint[], z: number = 0): THREE.Vector3[] {

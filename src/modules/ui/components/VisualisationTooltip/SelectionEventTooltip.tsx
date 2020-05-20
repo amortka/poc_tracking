@@ -1,6 +1,6 @@
 import React from 'react';
 import { equal } from '../../../../utils/object.utils';
-import { IPoint, ISelectionData } from '../../../../models/main.model';
+import { IPoint, ISelectionData } from '../../../../app.model';
 import { TooltipWrapper } from './components/Tooltip';
 import { Typography } from '@material-ui/core';
 

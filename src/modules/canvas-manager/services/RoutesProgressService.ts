@@ -1,6 +1,6 @@
 import shortid from 'shortid';
 import { Tween, autoPlay } from 'es6-tween';
-import { IPath, Dictionary, IVehicleUpdate } from '../../../models/main.model';
+import { IPath, Dictionary, IVehicleUpdate } from '../../../app.model';
 
 autoPlay(true);
 

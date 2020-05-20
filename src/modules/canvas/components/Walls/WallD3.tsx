@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { ExtrudeGeometry } from 'three';
 
-import { Dictionary, IPoint, IWall } from '../../../../models/main.model';
+import { Dictionary, IPoint, IWall } from '../../../../app.model';
 import { WallsUtils } from './walls.utils';
 
 interface WallProps {

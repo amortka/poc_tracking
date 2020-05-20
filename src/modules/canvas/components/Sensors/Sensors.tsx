@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { IVisualizationScene } from '../../../../models/main.model';
+import { IVisualizationScene } from '../../../../app.model';
 import { VisualizationType } from '../../canvas.model';
 import { Sensor } from './Sensor';
 

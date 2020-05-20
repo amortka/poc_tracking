@@ -1,5 +1,5 @@
 import React, { useContext, useCallback } from 'react';
-import { IPath, IRoom, ISensor, IWall } from '../../../models/main.model';
+import { IPath, IRoom, ISensor, IWall } from '../../../app.model';
 import { EventType, IObjectWithPointsCoordinates, ObjectType } from '../canvas.model';
 
 export type EventContextObject = IWall | ISensor | IObjectWithPointsCoordinates | IRoom | IPath;

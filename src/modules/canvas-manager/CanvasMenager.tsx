@@ -4,7 +4,7 @@ import { Canvas } from '../canvas/Canvas';
 import { visualizationSceneMock, visualizationStateMock } from '../../mocks/main.mock';
 import { VisualizationType } from '../canvas/canvas.model';
 import { IEventContextPayload } from '../canvas/contexts/EventsContext';
-import { IVisualizationState } from '../../models/main.model';
+import { IVisualizationState } from '../../app.model';
 import { RoutesProgressService, RouteUpdate } from './services/RoutesProgressService';
 import { CommunicationMock } from '../../mocks/communication.mock';
 

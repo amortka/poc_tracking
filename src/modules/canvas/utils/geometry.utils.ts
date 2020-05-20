@@ -1,4 +1,4 @@
-import { IPoint } from '../../../models/main.model';
+import { IPoint } from '../../../app.model';
 import * as THREE from 'three';
 import { VectorUtils } from './vector.unitls';
 

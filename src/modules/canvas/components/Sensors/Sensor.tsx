@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { CircleBufferGeometry } from 'three';
-import { IPoint, ISensor } from '../../../../models/main.model';
+import { IPoint, ISensor } from '../../../../app.model';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { ObjectType, VisualizationType } from '../../canvas.model';
 

@@ -1,4 +1,4 @@
-import { IObject, IPath, IPoint, IRoute, IVehicle, IWall } from '../../models/main.model';
+import { IObject, IPath, IPoint, IRoute, IVehicle, IWall } from '../../app.model';
 import * as THREE from 'three';
 import { BackgroundProperty } from 'csstype';
 

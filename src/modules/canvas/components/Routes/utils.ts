@@ -1,5 +1,5 @@
 import { Vector2 } from 'three';
-import { IPoint, Dictionary } from '../../../../models/main.model';
+import { IPoint, Dictionary } from '../../../../app.model';
 
 const mapPointsToPath = (pointIds: string[], points: Dictionary<IPoint>): THREE.Vector2[] => {
   return pointIds.map((id) => {

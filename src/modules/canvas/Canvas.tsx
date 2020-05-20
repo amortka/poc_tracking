@@ -6,7 +6,7 @@ import { Canvas as CanvasThree } from 'react-three-fiber';
 import { CanvasUtils } from './utils/canvas.utils';
 import { ICanvasTheme, VisualizationType } from './canvas.model';
 
-import { ISelectionData, IVisualizationState, IVisualizationScene } from '../../models/main.model';
+import { ISelectionData, IVisualizationState, IVisualizationScene } from '../../app.model';
 
 import { EventsContextProvider, eventsContextService, IEventContextPayload } from './contexts/EventsContext';
 import { CameraControlContextProvider } from './contexts/CameraContext';

@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { Vector3, BufferGeometry } from 'three';
-import { IPoint, IWall } from '../../../../models/main.model';
+import { IPoint, IWall } from '../../../../app.model';
 import { ThemeContext } from '../../contexts/ThemeContext';
 
 interface WallProps extends Omit<IWall, 'start' | 'end'> {

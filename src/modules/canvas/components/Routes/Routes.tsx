@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { IVisualizationState, IVisualizationScene } from '../../../../models/main.model';
+import { IVisualizationState, IVisualizationScene } from '../../../../app.model';
 import { Route } from './Route';
 import { Path } from 'three';
 import { mapPointsToPath } from './utils';

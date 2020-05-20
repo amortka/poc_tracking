@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import { ISelection, ISelectionData } from '../../../../models/main.model';
+import { ISelection, ISelectionData } from '../../../../app.model';
 import { useFrame, useThree } from 'react-three-fiber';
 import { CameraControlContext } from '../../contexts/CameraContext';
 import { SelectionUtils } from './selection.utils';

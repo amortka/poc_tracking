@@ -1,4 +1,4 @@
-import { IVisualizationScene, IVisualizationState, ISelection } from '../models/main.model';
+import { IVisualizationScene, IVisualizationState, ISelection } from '../app.model';
 import { ObjectType, VisualizationType } from '../modules/canvas/canvas.model';
 
 export const visualizationSceneMock: IVisualizationScene = {

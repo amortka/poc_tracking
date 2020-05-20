@@ -1,4 +1,4 @@
-import { Dictionary, IPath, IPoint } from '../../../../models/main.model';
+import { Dictionary, IPath, IPoint } from '../../../../app.model';
 import { IPathWithPointsCoordinates } from '../../canvas.model';
 
 export class PathsUtils {

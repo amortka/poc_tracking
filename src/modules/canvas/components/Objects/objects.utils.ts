@@ -1,4 +1,4 @@
-import { Dictionary, IObject, IPoint } from '../../../../models/main.model';
+import { Dictionary, IObject, IPoint } from '../../../../app.model';
 import { IObjectWithPointsCoordinates } from '../../canvas.model';
 import { Geometry, Vector3 } from 'three';
 

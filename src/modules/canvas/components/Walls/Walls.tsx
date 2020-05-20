@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { WallD3 } from './WallD3';
-import { IVisualizationScene } from '../../../../models/main.model';
+import { IVisualizationScene } from '../../../../app.model';
 import { WallsUtils } from './walls.utils';
 import { WallD2 } from './WallD2';
 import { VisualizationType } from '../../canvas.model';

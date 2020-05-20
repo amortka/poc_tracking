@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { IPoint } from '../../../models/main.model';
+import { IPoint } from '../../../app.model';
 import { Vector2 } from 'three';
 
 export class VectorUtils {

@@ -1,6 +1,6 @@
 import { Camera, Scene } from 'three';
 
-import { ISelection, ISelectionData, ISelectionTooltip } from '../../../../models/main.model';
+import { ISelection, ISelectionData, ISelectionTooltip } from '../../../../app.model';
 import { ObjectType } from '../../canvas.model';
 
 export class SelectionUtils {

@@ -1,5 +1,5 @@
 import { CsgUtils } from '../../utils/csg.utils';
-import { Dictionary, IPoint, IWall, WallCorner } from '../../../../models/main.model';
+import { Dictionary, IPoint, IWall, WallCorner } from '../../../../app.model';
 import { ExtrudeGeometry, Geometry, Line3, Mesh, Shape, Vector2 } from 'three';
 import { ExtrudeGeometryOptions } from 'three/src/geometries/ExtrudeGeometry';
 import { IWallWithPointsCoordinates } from '../../canvas.model';
