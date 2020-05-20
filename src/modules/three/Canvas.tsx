@@ -7,7 +7,7 @@ import { CanvasUtils } from './utils/canvas.utils';
 
 import { ICanvasTheme, VisualizationType } from './canvas.model';
 
-import { ISelectionData, IVisualisationState, IVisualizationScene, VehicleAnimation } from '../../models/main.model';
+import { ISelectionData, IVisualizationState, IVisualizationScene, VehicleAnimation } from '../../models/main.model';
 
 import { EventsContextProvider, eventsContextService, IEventContextPayload } from './contexts/EventsContext';
 import { CameraControlContextProvider } from './contexts/CameraContext';
@@ -27,7 +27,7 @@ interface CanvasProps {
   debug?: boolean;
   selectionDataClb?: (payload: ISelectionData) => void;
   scene: IVisualizationScene;
-  state: IVisualisationState;
+  state: IVisualizationState;
   theme?: ICanvasTheme;
   type: VisualizationType;
   events?: (eventContextPayload: IEventContextPayload) => void;

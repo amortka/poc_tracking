@@ -1,4 +1,4 @@
-import { IVisualizationScene, IVisualisationState, ISelection } from '../models/main.model';
+import { IVisualizationScene, IVisualizationState, ISelection } from '../models/main.model';
 import { ObjectType } from '../modules/three/canvas.model';
 
 export const visualizationSceneMock: IVisualizationScene = {
@@ -290,17 +290,17 @@ export const selectionMock: ISelection = {
   [ObjectType.SENSOR]: ['qwbmjtmf', 'xzfsgxxh', 'izktgqna', 'piunnkuf'],
 };
 
-export const visualisationStateMock: IVisualisationState = {
+export const visualizationStateMock: IVisualizationState = {
   vehicles: {
     trqzbojg: { tag: 'Milkrun ABC', dimensions: { x: 0.6, y: 0.4, z: 0.25 }, segments: 1 },
   },
   routes: {
-    fqfwxpzw: {
-      vehicle: 'trqzbojg',
-      path: 'ojihoybn',
-      progress: 0.2,
-      selected: true,
-    },
+    // fqfwxpzw: {
+    //   vehicle: 'trqzbojg',
+    //   path: 'ojihoybn',
+    //   progress: 0.2,
+    //   selected: true,
+    // },
   },
   selection: selectionMock,
 };

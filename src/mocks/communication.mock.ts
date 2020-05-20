@@ -1,19 +1,21 @@
+import { IVehicleUpdate } from '../models/main.model';
+
 interface MockVehicle {
-  tag: string;
+  id: string;
   pathId: string;
 }
 
 const progress = [
   { delay: 0, sensorId: 'qeculymv', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'wytjebmg', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'etkehdxr', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'rzmgfdlc', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'dqwzllxi', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'sadvcvxl', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'ccomdgqr', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'lojlicgi', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'zohcrjma', event: 'UPDATE' },
-  { delay: 5000, sensorId: 'xlrbndpv', event: 'UPDATE' },
+  { delay: 2000, sensorId: 'wytjebmg', event: 'UPDATE' },
+  { delay: 4000, sensorId: 'etkehdxr', event: 'UPDATE' },
+  { delay: 1000, sensorId: 'rzmgfdlc', event: 'UPDATE' },
+  { delay: 2000, sensorId: 'dqwzllxi', event: 'UPDATE' },
+  { delay: 3000, sensorId: 'sadvcvxl', event: 'UPDATE' },
+  { delay: 8000, sensorId: 'ccomdgqr', event: 'UPDATE' },
+  { delay: 2000, sensorId: 'lojlicgi', event: 'UPDATE' },
+  { delay: 3000, sensorId: 'zohcrjma', event: 'UPDATE' },
+  { delay: 1000, sensorId: 'xlrbndpv', event: 'UPDATE' },
 ];
 
 const wait = (time) =>
@@ -28,14 +30,18 @@ export class CommunicationMock {
     this.vehicle = vehicle;
   }
 
-  async simulate(callback) {
+  async simulate(callback: (data: Array<IVehicleUpdate>) => void) {
     for (let { delay, sensorId, event } of progress) {
       await wait(delay);
-      callback({
-        ...this.vehicle,
-        sensorId,
-        event,
-      });
+
+      const data: IVehicleUpdate = {
+        vehicleId: this.vehicle.id,
+        pathId: this.vehicle.pathId,
+        sensorId: sensorId,
+        event: event,
+      };
+
+      callback([data]);
     }
   }
 }

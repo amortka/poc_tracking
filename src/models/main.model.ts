@@ -65,7 +65,7 @@ export interface IVisualizationScene {
 }
 
 /**
- * IVisualisationState
+ * IVisualizationState
  */
 
 export interface VehicleAnimation {
@@ -88,7 +88,7 @@ export interface IRoute {
   selected: boolean;
 }
 
-export interface IVisualisationState {
+export interface IVisualizationState {
   vehicles: Dictionary<IVehicle>;
   routes: Dictionary<IRoute>;
   selection: ISelection;
@@ -113,9 +113,13 @@ export type ISelection = {
 
 export type ISelectionData = Dictionary<ISelectionTooltip>;
 
-export interface VehicleAnimation {
-  tag: string;
-  type: string;
+/**
+ * Communication
+ */
+
+export interface IVehicleUpdate {
+  vehicleId: string;
   pathId: string;
-  progress: number;
+  sensorId: string;
+  event: string;
 }
