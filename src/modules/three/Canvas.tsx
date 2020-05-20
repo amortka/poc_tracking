@@ -4,15 +4,13 @@ import { Object3D } from 'three';
 import { Canvas as CanvasThree } from 'react-three-fiber';
 
 import { CanvasUtils } from './utils/canvas.utils';
-
 import { ICanvasTheme, VisualizationType } from './canvas.model';
 
-import { ISelectionData, IVisualizationState, IVisualizationScene, VehicleAnimation } from '../../models/main.model';
+import { ISelectionData, IVisualizationState, IVisualizationScene } from '../../models/main.model';
 
 import { EventsContextProvider, eventsContextService, IEventContextPayload } from './contexts/EventsContext';
 import { CameraControlContextProvider } from './contexts/CameraContext';
 import { ThemeContext } from './contexts/ThemeContext';
-
 import { Lights } from './components/Lights';
 import { Floor } from './components/Floor';
 import { Objects } from './components/Objects/Objects';
@@ -53,7 +51,7 @@ export const Canvas: React.FC<CanvasProps> = ({ debug, events, scene, selectionD
             <Floor type={type} />
             <Scene>
               <Walls walls={scene.walls} points={scene.points} rooms={scene.rooms} type={type} />
-              <Objects points={scene.points} objects={scene.objects} type={VisualizationType.D2} />
+              <Objects points={scene.points} objects={scene.objects} type={type} />
               <Paths points={scene.points} paths={scene.paths} />
               <Sensors points={scene.points} sensors={scene.sensors} type={type} />
               <Routes points={scene.points} paths={scene.paths} vehicles={state.vehicles} routes={state.routes} />

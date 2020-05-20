@@ -1,4 +1,4 @@
-import { ObjectType } from '../modules/three/canvas.model';
+import { ObjectType, VisualizationType } from '../modules/three/canvas.model';
 
 export interface Dictionary<T> {
   [id: string]: T;
@@ -7,6 +7,11 @@ export interface Dictionary<T> {
 export interface IPoint {
   x: number;
   y: number;
+}
+
+export enum WallCorner {
+  START = 'start',
+  END = 'end',
 }
 
 /**
@@ -36,10 +41,11 @@ export interface ISensor {
 
 export interface IObject {
   shapePoints: string[];
-  height: number;
+  height?: number;
   fromGround?: number;
   meta?: {
     name?: string;
+    type?: VisualizationType;
     description?: string;
   };
 }

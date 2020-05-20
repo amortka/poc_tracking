@@ -1,16 +1,13 @@
-import * as THREE from 'three';
+import { Color, Path, Vector3 } from 'three';
 import React, { useMemo } from 'react';
-import { IPathWithPointsCoordinates } from '../../canvas.model';
-import { LineUtils } from '../../utils/line.utils';
-import { Vector3 } from 'three';
 
 export interface RoutePathProps {
-  path: THREE.Path;
+  path: Path;
   distanceStart: number; // value 0-1
   distanceEnd: number; // value 0-1
   linewidth: number;
-  colorStart?: THREE.Color | string | number;
-  colorEnd?: THREE.Color | string | number;
+  colorStart?: Color | string | number;
+  colorEnd?: Color | string | number;
   color?: number;
   dashed?: boolean;
   dashScale?: number;
