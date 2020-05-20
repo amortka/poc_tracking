@@ -1,34 +1,17 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
-import { CommunicationMock } from './mocks/communication.mock';
-import { visualizationSceneMock, visualizationStateMock } from './mocks/main.mock';
-
-import { IVisualizationState } from './models/main.model';
-
-import { Canvas } from './modules/three/Canvas';
-import { CartInfo } from './modules/ui-interface/components/CartInfo';
-import { IEventContextPayload } from './modules/three/contexts/EventsContext';
-import { InfoSidebar } from './modules/ui-interface/components/InfoSidebar';
-import { Menu } from './modules/ui-interface/components/Menu';
-import { MouseEventTooltip } from './modules/visualisation-tooltip/MouseEventTooltip';
-import { SelectionEventTooltip } from './modules/visualisation-tooltip/SelectionEventTooltip';
-import { VisualizationType } from './modules/three/canvas.model';
-
-import { RoutesProgressService, RouteUpdate } from './RoutesProgressService';
 import './App.css';
 import { Canvas } from './modules/canvas/Canvas';
 import { CommunicationMock } from './mocks/communication.mock';
 import { IEventContextPayload } from './modules/canvas/contexts/EventsContext';
-import { IVisualisationState } from './models/main.model';
+import { IVisualizationState } from './models/main.model';
+import { RoutesProgressService, RouteUpdate } from './RoutesProgressService';
 import { store } from './store/store.config';
-
-import './App.css';
-import { VehiclePositionsService } from './VehiclePositions.service';
-import { visualisationStateMock, visualizationSceneMock } from './mocks/main.mock';
-import { VisualizationType } from './modules/canvas/canvas.model';
 import { UI } from './modules/ui/UI';
+import { visualizationSceneMock, visualizationStateMock } from './mocks/main.mock';
+import { VisualizationType } from './modules/canvas/canvas.model';
 
 const theme = createMuiTheme({
   palette: {
