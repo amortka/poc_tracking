@@ -1,4 +1,5 @@
-import { ObjectType, VisualizationType } from './modules/canvas/canvas.model';
+import { EventType, ObjectType, VisualizationType } from './modules/canvas/canvas.model';
+import { MouseEventContextObject } from './modules/canvas/contexts/MouseEventsContext';
 
 export interface Dictionary<T> {
   [id: string]: T;
@@ -12,6 +13,12 @@ export interface IPoint {
 export enum WallCorner {
   START = 'start',
   END = 'end',
+}
+
+export interface IMouseEventPayload {
+  object: MouseEventContextObject;
+  objectType: ObjectType;
+  type: EventType;
 }
 
 /**
@@ -103,7 +110,7 @@ export interface IVisualizationState {
 /**
  * Selection
  */
-export interface ISelectionTooltip {
+export interface ISelectionData {
   objectType: ObjectType;
   coordinates: IPoint;
   title: string;
@@ -115,8 +122,6 @@ export type ISelection = {
   [ObjectType.OBJECT]?: string[];
   [ObjectType.SENSOR]?: string[];
 };
-
-export type ISelectionData = Dictionary<ISelectionTooltip>;
 
 /**
  * Communication

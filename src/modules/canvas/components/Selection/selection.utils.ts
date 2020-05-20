@@ -1,6 +1,6 @@
 import { Camera, Scene } from 'three';
 
-import { ISelection, ISelectionData, ISelectionTooltip } from '../../../../app.model';
+import { Dictionary, ISelection, ISelectionData } from '../../../../app.model';
 import { ObjectType } from '../../canvas.model';
 
 export class SelectionUtils {
@@ -9,12 +9,12 @@ export class SelectionUtils {
     camera: Camera,
     scene: Scene,
     viewport: { width: number; height: number }
-  ): ISelectionData {
-    const result: ISelectionData = {};
+  ): Dictionary<ISelectionData> {
+    const result: Dictionary<ISelectionData> = {};
 
     for (let [objectsType, objectIds] of Object.entries(selection)) {
       objectIds.forEach((objectId) => {
-        const selectionData: ISelectionTooltip = {
+        const selectionData: ISelectionData = {
           coordinates: undefined,
           description: '',
           objectType: ObjectType.SENSOR,

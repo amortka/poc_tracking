@@ -1,16 +1,17 @@
 import React, { Reducer, useEffect, useReducer } from 'react';
+import { Typography, useTheme } from '@material-ui/core';
+
 import { equal } from '../../../../utils/object.utils';
 import { EventType } from '../../../canvas/canvas.model';
-import { IEventContextPayload } from '../../../canvas/contexts/EventsContext';
+import { IMouseEventPayload } from '../../../../app.model';
 import { TooltipProps, TooltipWrapper } from './components/Tooltip';
-import { Typography, useTheme } from '@material-ui/core';
 import { useMouseMove } from '../../custom-hooks/use-mouse-move.hook';
+import { useSelector } from 'react-redux';
+import { TooltipsSelectors } from '../../../../store/tooltips/tooltips.selectors';
 
-interface MouseEventTooltipProps {
-  events: IEventContextPayload;
-}
+interface MouseEventTooltipProps {}
 
-const tooltipReducer: Reducer<Pick<TooltipProps, 'open' | 'template'>, IEventContextPayload> = (state, action) => {
+const tooltipReducer: Reducer<Pick<TooltipProps, 'open' | 'template'>, IMouseEventPayload> = (state, action) => {
   // console.log({ action });
   if (!action?.type) return;
   switch (action?.type) {
@@ -35,15 +36,16 @@ const tooltipReducer: Reducer<Pick<TooltipProps, 'open' | 'template'>, IEventCon
 };
 
 export const MouseEventTooltip: React.FC<MouseEventTooltipProps> = React.memo(
-  ({ events }) => {
-    const [tooltipConfig, dispatchTooltipConfig] = useReducer(tooltipReducer, { template: '', open: false });
+  () => {
     const [mouseCoordinates, setTrackMouse] = useMouseMove();
+    const [tooltipConfig, dispatchTooltipConfig] = useReducer(tooltipReducer, { template: '', open: false });
+    const mouseEvent = useSelector(TooltipsSelectors.mouse);
     const theme = useTheme();
 
     useEffect(() => {
-      if (!events) return;
-      dispatchTooltipConfig(events);
-    }, [events]);
+      if (!mouseEvent) return;
+      dispatchTooltipConfig(mouseEvent);
+    }, [mouseEvent]);
 
     useEffect(() => {
       setTrackMouse(tooltipConfig.open);

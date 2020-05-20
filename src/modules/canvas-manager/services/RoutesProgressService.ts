@@ -1,6 +1,10 @@
 import shortid from 'shortid';
+import { Store } from 'redux';
 import { Tween, autoPlay } from 'es6-tween';
+
 import { IPath, Dictionary, IVehicleUpdate } from '../../../app.model';
+import { store } from '../../../store/store.config';
+import { SceneSelectors } from '../../../store/scene/scene.selectors';
 
 autoPlay(true);
 
@@ -21,16 +25,15 @@ interface RouteState {
 }
 
 export class RoutesProgressService {
-  routes: Dictionary<RouteState> = {};
-  paths: Dictionary<IPath> = {};
+  readonly store: Store = store;
+  readonly paths: Dictionary<IPath> = SceneSelectors.paths(store.getState());
+
+  readonly routes: Dictionary<RouteState> = {};
+
   // TODO probably to remove
   vehicleRouteMap: { [vehicleId: string]: string } = {};
 
   handleUpdate: (data: RouteUpdate) => void = () => {};
-
-  constructor(paths: Dictionary<IPath>) {
-    this.paths = paths;
-  }
 
   onProgressUpdate = (handleUpdate: (data: RouteUpdate) => void) => {
     this.handleUpdate = handleUpdate;

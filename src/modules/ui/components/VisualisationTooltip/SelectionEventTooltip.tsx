@@ -1,28 +1,32 @@
 import React from 'react';
-import { equal } from '../../../../utils/object.utils';
-import { IPoint, ISelectionData } from '../../../../app.model';
-import { TooltipWrapper } from './components/Tooltip';
 import { Typography } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+
+import { equal } from '../../../../utils/object.utils';
+import { IPoint } from '../../../../app.model';
+import { TooltipsSelectors } from '../../../../store/tooltips/tooltips.selectors';
+import { TooltipWrapper } from './components/Tooltip';
 
 interface SelectionEventTooltipProps {
-  selection: ISelectionData;
   debug?: boolean;
   centerPosition?: IPoint;
 }
 
 export const SelectionEventTooltip: React.FC<SelectionEventTooltipProps> = React.memo(
-  ({ selection, centerPosition = { x: 0, y: 0 }, debug }) => {
-    const renderTooltip = Object.keys(selection || {}).map((s) => (
+  ({ centerPosition = { x: 0, y: 0 }, debug }) => {
+    const selectionData = useSelector(TooltipsSelectors.selectionData);
+
+    const renderTooltip = Object.keys(selectionData || {}).map((s) => (
       <TooltipWrapper
         key={s}
-        top={selection[s].coordinates.y + centerPosition.y}
-        left={selection[s].coordinates.x + centerPosition.x}
+        top={selectionData[s].coordinates.y + centerPosition.y}
+        left={selectionData[s].coordinates.x + centerPosition.x}
         open={true}
         debug={debug}
         template={
           <React.Fragment>
-            <Typography color="inherit">{selection[s].title}</Typography>
-            {selection[s].description}
+            <Typography color="inherit">{selectionData[s].title}</Typography>
+            {selectionData[s].description}
           </React.Fragment>
         }
       />

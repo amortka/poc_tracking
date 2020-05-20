@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import { ISelection, ISelectionData } from '../../../../app.model';
+import { Dictionary, ISelection, ISelectionData } from '../../../../app.model';
 import { useFrame, useThree } from 'react-three-fiber';
 import { CameraControlContext } from '../../contexts/CameraContext';
 import { SelectionUtils } from './selection.utils';
 
 interface SelectionProps {
   selection: ISelection;
-  selectionDataClb?: (payload: ISelectionData) => void;
+  selectionDataClb?: (payload: Dictionary<ISelectionData>) => void;
 }
 
 export const Selection: React.FC<SelectionProps> = ({ selection, selectionDataClb }) => {

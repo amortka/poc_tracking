@@ -3,48 +3,60 @@ import React, { useEffect, useMemo } from 'react';
 import { Object3D } from 'three';
 import { Canvas as CanvasThree } from 'react-three-fiber';
 
-import { CanvasUtils } from './utils/canvas.utils';
-import { ICanvasTheme, VisualizationType } from './canvas.model';
-
-import { ISelectionData, IVisualizationState, IVisualizationScene } from '../../app.model';
-
-import { EventsContextProvider, eventsContextService, IEventContextPayload } from './contexts/EventsContext';
 import { CameraControlContextProvider } from './contexts/CameraContext';
-import { ThemeContext } from './contexts/ThemeContext';
-import { Lights } from './components/Lights';
+import { CanvasUtils } from './utils/canvas.utils';
 import { Floor } from './components/Floor';
+import { ICanvasTheme, VisualizationType } from './canvas.model';
+import {
+  IVisualizationState,
+  IVisualizationScene,
+  IMouseEventPayload,
+  Dictionary,
+  ISelectionData,
+} from '../../app.model';
+import { Lights } from './components/Lights';
+import { MouseEventsContextProvider, mouseEventsContextService } from './contexts/MouseEventsContext';
 import { Objects } from './components/Objects/Objects';
 import { Paths } from './components/Paths/Paths';
 import { Routes } from './components/Routes/Routes';
 import { Scene } from './components/Scene';
 import { Selection } from './components/Selection/Selection';
 import { Sensors } from './components/Sensors/Sensors';
+import { ThemeContext } from './contexts/ThemeContext';
 import { Walls } from './components/Walls/Walls';
 
 interface CanvasProps {
   debug?: boolean;
-  selectionDataClb?: (payload: ISelectionData) => void;
+  onSelectionData?: (payload: Dictionary<ISelectionData>) => void;
   scene: IVisualizationScene;
   state: IVisualizationState;
   theme?: ICanvasTheme;
   type: VisualizationType;
-  events?: (eventContextPayload: IEventContextPayload) => void;
+  onMauseEvents?: (eventContextPayload: IMouseEventPayload) => void;
 }
 
 Object3D.DefaultUp.set(0, 0, 1);
 
-export const Canvas: React.FC<CanvasProps> = ({ debug, events, scene, selectionDataClb, state, theme = {}, type }) => {
+export const Canvas: React.FC<CanvasProps> = ({
+  debug,
+  onMauseEvents,
+  scene,
+  onSelectionData,
+  state,
+  theme = {},
+  type,
+}) => {
   const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme]);
 
   useEffect(() => {
-    events && eventsContextService.registerCallback(events);
-    return eventsContextService.unregisterCallback(events);
-  }, [events]);
+    onMauseEvents && mouseEventsContextService.registerCallback(onMauseEvents);
+    return mouseEventsContextService.unregisterCallback(onMauseEvents);
+  }, [onMauseEvents]);
 
   return (
     <CanvasThree gl2 orthographic style={{ background: themeConfig.canvasBackground }}>
       <CameraControlContextProvider>
-        <EventsContextProvider>
+        <MouseEventsContextProvider>
           <ThemeContext.Provider value={themeConfig}>
             {debug && <axesHelper args={[5]} />}
             <Lights />
@@ -55,10 +67,10 @@ export const Canvas: React.FC<CanvasProps> = ({ debug, events, scene, selectionD
               <Paths points={scene.points} paths={scene.paths} />
               <Sensors points={scene.points} sensors={scene.sensors} type={type} />
               <Routes points={scene.points} paths={scene.paths} vehicles={state.vehicles} routes={state.routes} />
-              <Selection selection={state.selection} selectionDataClb={selectionDataClb} />
+              <Selection selection={state.selection} selectionDataClb={onSelectionData} />
             </Scene>
           </ThemeContext.Provider>
-        </EventsContextProvider>
+        </MouseEventsContextProvider>
       </CameraControlContextProvider>
     </CanvasThree>
   );
