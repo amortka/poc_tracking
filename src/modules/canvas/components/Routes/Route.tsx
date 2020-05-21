@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
-import { Vector2, Vector3, CurvePath, QuadraticBezierCurve3, QuadraticBezierCurve, Path } from 'three';
+import { CurvePath, Path, QuadraticBezierCurve, Vector2, Vector3 } from 'three';
 import { RoutePath } from './RoutePath';
 import { IRouteWithComputedData } from '../../canvas.model';
 import { Vehicle } from '../Vehicle/Vehicle';
 
 interface RouteProps extends IRouteWithComputedData {}
 
-const roundedCornerLine = (points: Array<THREE.Vector2>, radius: number = 0.01) => {
+const roundedCornerLine = (points: Array<Vector2>, radius: number = 0.01) => {
   const minVector = new Vector2();
   let minLength = minVector.subVectors(points[0], points[1]).length();
   for (let i = 1; i < points.length - 1; i++) {
@@ -18,7 +18,7 @@ const roundedCornerLine = (points: Array<THREE.Vector2>, radius: number = 0.01) 
   const startIndex = 1;
   const endIndex = points.length - 2;
 
-  const curvePaths = new CurvePath<THREE.Vector2>();
+  const curvePaths = new CurvePath<Vector2>();
   let lastKeyEnd = points[0];
 
   for (let i = startIndex; i <= endIndex; i++) {

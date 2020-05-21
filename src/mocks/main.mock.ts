@@ -318,4 +318,5 @@ export const visualizationStateMock: IVisualizationState = {
     // },
   },
   selection: selectionMock,
+  isD3: true,
 };

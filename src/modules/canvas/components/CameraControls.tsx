@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useFrame, useThree, useUpdate } from 'react-three-fiber';
-import { Box3, OrthographicCamera } from 'three';
+import { Box3, OrthographicCamera, Vector3 } from 'three';
 
 import { OrbitControls } from '../libs/OrbitControls/OrbitControls';
 import { CameraControlContext } from '../contexts/CameraContext';
@@ -13,11 +13,28 @@ const maxAzimuthAngle = Math.PI / 3;
 
 interface ICameraControls {
   boundaries: Box3;
+  isD3: boolean;
 }
 
-export const CameraControls: React.FC<ICameraControls> = ({ boundaries }) => {
+function useDimensionToggle(isD3: boolean, controls: OrbitControls) {
+  useEffect(() => {
+    if (!controls) return;
+
+    if (isD3) {
+      controls.enableRotate = true;
+      controls.update();
+      controls.rotateTo(0.8, -0.7);
+    } else {
+      controls.enableRotate = false;
+      controls.update();
+      controls.rotateTo(0, 0);
+    }
+  }, [isD3, controls]);
+}
+
+export const CameraControls: React.FC<ICameraControls> = ({ boundaries, isD3 }) => {
   const { camera, gl } = useThree();
-  const [orbitControls, setOrbitControl] = useContext(CameraControlContext);
+  const [, setOrbitControl] = useContext(CameraControlContext);
 
   const controlsRef = useUpdate<OrbitControls>(
     (controls) => {
@@ -31,19 +48,27 @@ export const CameraControls: React.FC<ICameraControls> = ({ boundaries }) => {
           container.offsetHeight / (boundaries.max.y - boundaries.min.y)
         ) * 0.8;
 
+      const center: Vector3 = boundaries.getCenter(undefined);
       orthoCamera.zoom = zoomToBoundaries;
       orthoCamera.position.z = boundaries.max.z + Math.abs(orthoCamera.bottom);
 
       controls.panBoundaries = boundaries;
       controls.minZoom = zoomToBoundaries * 0.5;
       controls.maxZoom = zoomToBoundaries * 2;
+      controls.dampingFactor = 0.15;
 
       camera.updateProjectionMatrix();
       camera.updateMatrix();
       controls.update();
+      controls.moveTo(center.x, center.y);
+      controls.update();
+
+      controls.saveState();
     },
     [boundaries, gl.domElement, camera]
   );
+
+  useDimensionToggle(isD3, controlsRef.current);
 
   useEffect(
     () => {
