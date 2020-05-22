@@ -31,5 +31,7 @@ export const Vehicle: React.FC<IVehicle> = ({ progress, path }) => {
     [progress, path]
   );
 
-  return <mesh ref={ref} args={[geometry, material]} position-x={position.x} position-y={position.y} />;
+  return (
+    <mesh ref={ref} args={[geometry, material]} position-x={position.x} position-y={position.y} position-z={0.15} />
+  );
 };
