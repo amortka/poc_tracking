@@ -68,6 +68,10 @@ export class OrbitControls {
   removeEventListener(type: string, listener: (event: any) => void): void;
 
   dispatchEvent(event: { type: string; target: any }): void;
+
+  rotateTo(phi: number, theta: number): void;
+
+  moveTo(x, y): void;
 }
 
 export class MapControls extends OrbitControls {

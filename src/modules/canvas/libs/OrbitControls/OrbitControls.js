@@ -925,6 +925,19 @@ var OrbitControls = function (object, domElement) {
   // force an update at start
 
   this.update();
+
+  /**
+   * Custom functionality
+   */
+
+  this.rotateTo = function (phi, theta) {
+    sphericalDelta.set(spherical.radius, phi - spherical.phi, theta - spherical.theta);
+  };
+
+  this.moveTo = function (x, y) {
+    panUp(y - scope.object.position.y, scope.object.matrix);
+    panLeft(-(x - scope.object.position.x), scope.object.matrix);
+  };
 };
 
 OrbitControls.prototype = Object.create(EventDispatcher.prototype);

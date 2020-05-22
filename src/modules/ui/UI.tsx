@@ -7,6 +7,7 @@ import { Menu } from './components/Menu/Menu';
 import { MouseEventTooltip } from './components/VisualisationTooltip/MouseEventTooltip';
 import { SelectionEventTooltip } from './components/VisualisationTooltip/SelectionEventTooltip';
 import { theme } from './config/theme.config';
+import { CameraControl } from './components/CameraControl/CameraControl';
 
 export const UI: React.FC = ({ children }) => {
   const [isCartInfoVisible, setIsCartInfoVisible] = useState(false);
@@ -19,6 +20,7 @@ export const UI: React.FC = ({ children }) => {
           {children}
           <MouseEventTooltip />
           <SelectionEventTooltip debug={true} centerPosition={{ x: -2, y: -18 }} />
+          <CameraControl />
         </div>
         <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
         {isCartInfoVisible && <CartInfo setIsCartInfoVisible={setIsCartInfoVisible} />}

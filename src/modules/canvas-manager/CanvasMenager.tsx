@@ -9,15 +9,10 @@ import { RoutesProgressService, RouteUpdate } from './services/RoutesProgressSer
 import { CommunicationMock } from '../../mocks/communication.mock';
 import { SceneSelectors } from '../../store/scene/scene.selectors';
 import { tooltipActions } from '../../store/tooltips/tooltips.actions';
+import * as uiSelectors from '../../store/ui/ui.selectors';
 
-export const CanvasManager: React.FC = () => {
+function useVisualisationState(): IVisualizationState {
   const [state, setState] = useState<IVisualizationState>(visualizationStateMock);
-
-  const scene = useSelector(SceneSelectors.scene);
-  const dispatch = useDispatch();
-  const dispatchMouseEvent = (payload) => dispatch(tooltipActions.setMouseEvent(payload));
-  const dispatchSelectionData = (payload) => dispatch(tooltipActions.setSelectionData(payload));
-
   const updateVehicleState = useCallback((data: RouteUpdate) => {
     setState((state) => ({
       ...state,
@@ -33,12 +28,28 @@ export const CanvasManager: React.FC = () => {
     }));
   }, []);
 
-  useEffect(() => {
-    const communicationMock = new CommunicationMock({ id: 'trqzbojg', pathId: 'ojihoybn' });
-    const routesProgressService = new RoutesProgressService();
-    routesProgressService.onProgressUpdate(updateVehicleState);
-    communicationMock.simulate(routesProgressService.handleVehicleUpdate);
-  }, []);
+  useEffect(
+    () => {
+      const communicationMock = new CommunicationMock({ id: 'trqzbojg', pathId: 'ojihoybn' });
+      const routesProgressService = new RoutesProgressService();
+      routesProgressService.onProgressUpdate(updateVehicleState);
+      communicationMock.simulate(routesProgressService.handleVehicleUpdate);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
+  const isD3 = useSelector(uiSelectors.isD3);
+
+  return { ...state, isD3 };
+}
+
+export const CanvasManager: React.FC = () => {
+  const state = useVisualisationState();
+  const scene = useSelector(SceneSelectors.scene);
+  const dispatch = useDispatch();
+  const dispatchMouseEvent = (payload) => dispatch(tooltipActions.setMouseEvent(payload));
+  const dispatchSelectionData = (payload) => dispatch(tooltipActions.setSelectionData(payload));
 
   return (
     <Canvas

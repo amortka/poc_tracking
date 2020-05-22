@@ -105,6 +105,7 @@ export interface IVisualizationState {
   vehicles: Dictionary<IVehicle>;
   routes: Dictionary<IRoute>;
   selection: ISelection;
+  isD3: boolean;
 }
 
 /**

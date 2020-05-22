@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
-import { CylinderBufferGeometry, MeshBasicMaterial, BoxGeometry, BoxBufferGeometry, Vector3, Object3D } from 'three';
+import { BoxBufferGeometry, CurvePath, MeshBasicMaterial, Path, Vector2, Vector3 } from 'three';
 import { useUpdate } from 'react-three-fiber';
 
 interface IVehicle {
   type: string;
-  path: THREE.Path | THREE.CurvePath<THREE.Vector2>;
+  path: Path | CurvePath<Vector2>;
   progress: number;
 }
 

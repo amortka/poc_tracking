@@ -61,7 +61,7 @@ export const Canvas: React.FC<CanvasProps> = ({
             {debug && <axesHelper args={[5]} />}
             <Lights />
             <Floor type={type} />
-            <Scene>
+            <Scene isD3={state.isD3}>
               <Walls walls={scene.walls} points={scene.points} rooms={scene.rooms} type={type} />
               <Objects points={scene.points} objects={scene.objects} type={type} />
               <Paths points={scene.points} paths={scene.paths} />
