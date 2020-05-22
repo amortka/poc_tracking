@@ -52,13 +52,16 @@ const roundedCornerLine = (points: Array<THREE.Vector2>, radius: number = 0.01) 
 };
 
 export const Route: React.FC<RouteProps> = ({ path, selected, progress }) => {
-  const roundedPath = useMemo(() => {
-    return roundedCornerLine(path.getPoints(), 0.3);
+  const [roundedPath, proportion] = useMemo(() => {
+    const line = roundedCornerLine(path.getPoints(), 0.3);
+    const proportion = path.getLength() / line.getLength();
+
+    return [line, proportion];
   }, [path]);
 
   return (
     <>
-      <Vehicle path={roundedPath} progress={progress} type={undefined} />
+      <Vehicle path={roundedPath} progress={proportion * progress} type={undefined} />
       {selected || true ? (
         <RoutePath distanceEnd={progress} distanceStart={0} color={0x11b572} linewidth={0.007} path={path} />
       ) : null}
