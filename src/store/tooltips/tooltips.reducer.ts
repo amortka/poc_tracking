@@ -18,6 +18,9 @@ export const tooltipsReducer: Reducer<TooltipState> = (state = initialState, act
     case TooltipAction.SET_SELECTION_SELECTED: {
       return { ...state, selection: { ...state.selection, selected: action.payload } };
     }
+    case TooltipAction.CLEAR_SELECTION_SELECTED: {
+      return { ...state, selection: { ...state.selection, selected: {} } };
+    }
     default: {
       return state;
     }

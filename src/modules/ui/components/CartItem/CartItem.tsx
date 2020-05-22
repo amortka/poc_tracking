@@ -4,6 +4,8 @@ import { DriveEta, InfoOutlined } from '@material-ui/icons';
 
 import './CartItem.css';
 import { CartInfoContext } from '../Sidebar/InfoSidebar';
+import { useDispatch } from 'react-redux';
+import { tooltipActions } from '../../../../store/tooltips/tooltips.actions';
 
 const useStyles = makeStyles({
   root: {
@@ -40,8 +42,10 @@ export interface CartItemProps {
 export const CartItem: React.FC<CartItemProps> = ({ name, time, wagons, color }) => {
   const classes = useStyles();
   const setIsCartInfoVisible = useContext(CartInfoContext);
+  const dispatch = useDispatch();
 
   const setCartInfoVisible = () => {
+    dispatch(tooltipActions.clearSelectionSelected());
     setIsCartInfoVisible(true);
   };
 

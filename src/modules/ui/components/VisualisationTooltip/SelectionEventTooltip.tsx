@@ -14,7 +14,7 @@ interface SelectionEventTooltipProps {
 
 export const SelectionEventTooltip: React.FC<SelectionEventTooltipProps> = React.memo(
   ({ centerPosition = { x: 0, y: 0 }, debug }) => {
-    const selectionData = useSelector(TooltipsSelectors.selectionData);
+    const selectionData = useSelector(TooltipsSelectors.selectionSelectedData);
 
     const renderTooltip = Object.keys(selectionData || {}).map((s) => (
       <TooltipWrapper

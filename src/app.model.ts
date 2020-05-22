@@ -92,6 +92,10 @@ export interface IVehicle {
   tag: string;
   dimensions: { x: number; y: number; z: number };
   segments: number;
+  velocity: number;
+  temperature: number;
+  humidity: number;
+  ambientPressure: number;
 }
 
 export interface IRoute {
