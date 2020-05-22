@@ -7,6 +7,9 @@ const StyledTooltip = withStyles((theme: Theme) => ({
     maxWidth: 220,
     fontSize: theme.typography.pxToRem(12),
   },
+  popper: {
+    // zIndex: -1,
+  },
 }))(Tooltip);
 
 const useStyles = makeStyles({

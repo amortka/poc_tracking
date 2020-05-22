@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute' as 'absolute',
     top: theme.spacing(2),
     right: theme.spacing(2),
-    zIndex: 1000,
+    zIndex: 100,
     display: 'flex',
   },
   ListItem: {
@@ -25,7 +25,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const CameraControl: React.FC = () => {
+interface CameraControlProps {
+  onZoomIn: () => void;
+  onZoomOut: () => void;
+  onZoomFit: () => void;
+}
+
+export const CameraControl: React.FC<CameraControlProps> = ({ onZoomIn, onZoomOut, onZoomFit }) => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
@@ -36,17 +42,17 @@ export const CameraControl: React.FC = () => {
       {
         name: 'Zoom In',
         icon: <ZoomInIcon fontSize="large" />,
-        onClick: () => console.log('Zoom In'),
+        onClick: onZoomIn,
       },
       {
         name: 'Zoom Out',
         icon: <ZoomOutIcon fontSize="large" />,
-        onClick: () => console.log('Zoom Out'),
+        onClick: onZoomOut,
       },
       {
-        name: 'Zoom Out Map',
+        name: 'Zoom Fit',
         icon: <ZoomOutMapIcon fontSize="large" />,
-        onClick: () => console.log('Zoom Out Map'),
+        onClick: onZoomFit,
       },
       {
         name: 'Dimension toggle',
@@ -54,7 +60,7 @@ export const CameraControl: React.FC = () => {
         onClick: () => dispatch(uiActions.setIsD3(!isD3)),
       },
     ],
-    [dispatch, isD3]
+    [onZoomIn, onZoomOut, onZoomFit, dispatch, isD3]
   );
 
   return (

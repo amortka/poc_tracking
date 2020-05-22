@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Canvas } from '../canvas/Canvas';
@@ -44,7 +44,13 @@ function useVisualisationState(): IVisualizationState {
   return { ...state, isD3 };
 }
 
-export const CanvasManager: React.FC = () => {
+interface CanvasManagerProps {
+  setOnZoomIn: Dispatch<SetStateAction<() => void>>;
+  setOnZoomOut: Dispatch<SetStateAction<() => void>>;
+  setOnZoomFit: Dispatch<SetStateAction<() => void>>;
+}
+
+export const CanvasManager: React.FC<CanvasManagerProps> = ({ setOnZoomIn, setOnZoomOut, setOnZoomFit }) => {
   const state = useVisualisationState();
   const scene = useSelector(SceneSelectors.scene);
   const dispatch = useDispatch();
@@ -53,12 +59,15 @@ export const CanvasManager: React.FC = () => {
 
   return (
     <Canvas
+      debug={true}
+      onMauseEvents={dispatchMouseEvent}
       onSelectionData={dispatchSelectionData}
       scene={scene}
+      setOnZoomFit={setOnZoomFit}
+      setOnZoomIn={setOnZoomIn}
+      setOnZoomOut={setOnZoomOut}
       state={state}
       type={VisualizationType.D3}
-      onMauseEvents={dispatchMouseEvent}
-      debug={true}
     />
   );
 };

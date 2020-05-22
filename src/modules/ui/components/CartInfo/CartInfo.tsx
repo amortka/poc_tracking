@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles, Box, Typography, Divider, List, ListItem } from '@material-ui/core';
-import './CartInfo.css';
 import { DriveEta, DoubleArrow } from '@material-ui/icons';
 
 const useStyles = makeStyles({
@@ -35,6 +34,19 @@ const useStyles = makeStyles({
     paddingTop: '10px',
     paddingBottom: '10px',
   },
+  backgroundShadow: {
+    width: 'calc(100% - 64px - 300px)',
+    backgroundColor: 'rgba(0, 0, 0, 0.25)',
+    marginLeft: '64px',
+    marginRight: '300px',
+    position: 'absolute',
+    height: '100%',
+    zIndex: 100,
+  },
+  cartInfoHeaderContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
 });
 
 export interface CartInfoProps {
@@ -45,9 +57,9 @@ export const CartInfo: React.FC<CartInfoProps> = ({ setIsCartInfoVisible }) => {
   const classes = useStyles();
 
   return (
-    <div className="background-shadow" onClick={() => setIsCartInfoVisible(false)}>
+    <div className={classes.backgroundShadow} onClick={() => setIsCartInfoVisible(false)}>
       <Box color="text.primary" className={classes.box} onClick={(e) => e.stopPropagation()}>
-        <div className="cartInfo-headerContainer">
+        <div className={classes.cartInfoHeaderContainer}>
           <DriveEta className={classes.cartIcon} />
           <Typography variant="h6">Milkrun GHI</Typography>
           <DoubleArrow onClick={() => setIsCartInfoVisible(false)} className={classes.doubleArrowIcon} />

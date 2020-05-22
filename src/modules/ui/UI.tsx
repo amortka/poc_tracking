@@ -9,7 +9,13 @@ import { SelectionEventTooltip } from './components/VisualisationTooltip/Selecti
 import { theme } from './config/theme.config';
 import { CameraControl } from './components/CameraControl/CameraControl';
 
-export const UI: React.FC = ({ children }) => {
+interface UIProps {
+  onZoomIn: () => void;
+  onZoomOut: () => void;
+  onZoomFit: () => void;
+}
+
+export const UI: React.FC<UIProps> = ({ children, onZoomIn, onZoomOut, onZoomFit }) => {
   const [isCartInfoVisible, setIsCartInfoVisible] = useState(false);
 
   return (
@@ -20,7 +26,7 @@ export const UI: React.FC = ({ children }) => {
           {children}
           <MouseEventTooltip />
           <SelectionEventTooltip debug={true} centerPosition={{ x: -2, y: -18 }} />
-          <CameraControl />
+          <CameraControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} onZoomFit={onZoomFit} />
         </div>
         <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
         {isCartInfoVisible && <CartInfo setIsCartInfoVisible={setIsCartInfoVisible} />}

@@ -466,6 +466,7 @@ var OrbitControls = function (object, domElement) {
   }
 
   function handleMouseWheel(event) {
+    console.log('handleMouseWheel', getZoomScale());
     if (event.deltaY < 0) {
       dollyIn(getZoomScale());
     } else if (event.deltaY > 0) {
@@ -935,8 +936,20 @@ var OrbitControls = function (object, domElement) {
   };
 
   this.moveTo = function (x, y) {
-    panUp(y - scope.object.position.y, scope.object.matrix);
-    panLeft(-(x - scope.object.position.x), scope.object.matrix);
+    const correction = { x: -scope.target.x, y: -scope.target.y };
+
+    panUp(y + correction.y, scope.object.matrix);
+    panLeft(-(x + correction.x), scope.object.matrix);
+  };
+
+  this.zoomInOut = function (amount) {
+    if (amount > 0) {
+      dollyIn(amount);
+    } else if (amount < 0) {
+      dollyOut(-amount);
+    }
+
+    scope.update();
   };
 };
 

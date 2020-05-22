@@ -72,6 +72,8 @@ export class OrbitControls {
   rotateTo(phi: number, theta: number): void;
 
   moveTo(x, y): void;
+
+  zoomInOut(amount: number): void; // value 0-1
 }
 
 export class MapControls extends OrbitControls {
