@@ -19,6 +19,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "shortid": "^2.2.15",
+    "socket.io-client": "^2.3.0",
     "three": "^0.116.1",
     "three-js-csg": "^72.0.0",
     "typesafe-actions": "^5.1.0",
@@ -35,6 +36,7 @@
     "@types/redux-thunk": "^2.1.0",
     "@types/reselect": "^2.2.0",
     "@types/shortid": "^0.0.29",
+    "@types/socket.io-client": "^1.4.33",
     "husky": "^4.2.5",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1"
