@@ -28,7 +28,7 @@ export const WallD3: React.FC<WallProps> = ({ wallId, walls, points, height = 2.
 
   return (
     <mesh geometry={geometry}>
-      <meshPhongMaterial attach="material" color="red" transparent={true} opacity={0.5} depthWrite={false} />
+      <meshPhongMaterial attach="material" color="#6a6e75" transparent={true} opacity={0.75} depthWrite={false} />
     </mesh>
   );
 };

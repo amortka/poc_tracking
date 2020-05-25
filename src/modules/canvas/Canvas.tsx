@@ -18,6 +18,7 @@ import { Lights } from './components/Lights';
 import { MouseEventsContextProvider, mouseEventsContextService } from './contexts/MouseEventsContext';
 import { Objects } from './components/Objects/Objects';
 import { Paths } from './components/Paths/Paths';
+import { Routes } from './components/Routes/Routes';
 import { Scene } from './components/Scene';
 import { Selection } from './components/Selection/Selection';
 import { Sensors } from './components/Sensors/Sensors';
@@ -31,7 +32,7 @@ interface CanvasProps {
   state: IVisualizationState;
   theme?: ICanvasTheme;
   type: VisualizationType;
-  onMauseEvents?: (eventContextPayload: IMouseEventPayload) => void;
+  onMouseEvents?: (eventContextPayload: IMouseEventPayload) => void;
   setOnZoomIn: Dispatch<SetStateAction<() => void>>;
   setOnZoomOut: Dispatch<SetStateAction<() => void>>;
   setOnZoomFit: Dispatch<SetStateAction<() => void>>;
@@ -41,7 +42,7 @@ Object3D.DefaultUp.set(0, 0, 1);
 
 export const Canvas: React.FC<CanvasProps> = ({
   debug,
-  onMauseEvents,
+  onMouseEvents,
   scene,
   onSelectionData,
   state,
@@ -54,9 +55,9 @@ export const Canvas: React.FC<CanvasProps> = ({
   const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme]);
 
   useEffect(() => {
-    onMauseEvents && mouseEventsContextService.registerCallback(onMauseEvents);
-    return mouseEventsContextService.unregisterCallback(onMauseEvents);
-  }, [onMauseEvents]);
+    onMouseEvents && mouseEventsContextService.registerCallback(onMouseEvents);
+    return mouseEventsContextService.unregisterCallback(onMouseEvents);
+  }, [onMouseEvents]);
 
   return (
     <CanvasThree gl2 orthographic style={{ background: themeConfig.canvasBackground }}>
@@ -71,7 +72,7 @@ export const Canvas: React.FC<CanvasProps> = ({
               <Objects points={scene.points} objects={scene.objects} type={type} />
               <Paths points={scene.points} paths={scene.paths} />
               <Sensors points={scene.points} sensors={scene.sensors} type={type} />
-              {/*<Routes points={scene.points} paths={scene.paths} vehicles={state.vehicles} routes={state.routes} />*/}
+              <Routes points={scene.points} paths={scene.paths} vehicles={state.vehicles} routes={state.routes} />
               <Selection selection={state.selection} selectionDataClb={onSelectionData} />
             </Scene>
           </ThemeContext.Provider>

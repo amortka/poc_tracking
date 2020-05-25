@@ -221,22 +221,6 @@ export const visualizationSceneMock: IVisualizationScene = {
       start: 'otov69hw',
       end: 'zgppagoc',
       thickness: 0.1,
-      meta: {
-        holes: {
-          pzr6vr6o: {
-            start: 0.54,
-            width: 1.21,
-            height: 2.7,
-            fromGround: 0,
-          },
-          goisx17k: {
-            start: 3.81,
-            width: 1.65,
-            height: 2.7,
-            fromGround: 0,
-          },
-        },
-      },
     },
     fytviige: {
       start: 'zgppagoc',

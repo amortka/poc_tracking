@@ -60,7 +60,7 @@ export const CanvasManager: React.FC<CanvasManagerProps> = ({ setOnZoomIn, setOn
   return (
     <Canvas
       debug={true}
-      onMauseEvents={dispatchMouseEvent}
+      onMouseEvents={dispatchMouseEvent}
       onSelectionData={dispatchSelectionData}
       scene={scene}
       setOnZoomFit={setOnZoomFit}
