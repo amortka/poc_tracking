@@ -2,6 +2,16 @@
   "name": "poc_tracking",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "poc_tracking_mock_server"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "pretty": "pretty-quick --pattern \"**/*.(ts|tsx)\""
+  },
   "dependencies": {
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
@@ -40,13 +50,6 @@
     "husky": "^4.2.5",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "pretty": "pretty-quick --pattern \"**/*.(ts|tsx)\""
   },
   "prettier": {
     "semi": true,
