@@ -12,7 +12,7 @@ const io: SocketIO.Server = SocketIO(server);
 const port = process.env.PORT || 3001;
 
 app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', req.headers.origin); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Credentials', 'true');
   next();
@@ -26,10 +26,11 @@ io.on('connection', (socket) => {
   console.log('New client connected');
 
   const vehicle = new VehicleMock(io);
+  vehicle.startSimulation();
 
   socket.on('disconnect', () => {
     console.log('Client disconnected');
-    vehicle.clear();
+    vehicle.stopSimulation();
   });
 });
 

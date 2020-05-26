@@ -2,6 +2,24 @@ import { ApiEvents, IApiVehicleUpdate } from '../../../src/app.model';
 import Timeout = NodeJS.Timeout;
 import SocketIO from 'socket.io';
 
+const progress = [
+  { delay: 0, sensorId: 'qeculymv', event: ApiEvents.VEHICLE_UPDATE },
+  { delay: 2000, sensorId: 'wytjebmg', event: ApiEvents.VEHICLE_UPDATE },
+  { delay: 4000, sensorId: 'etkehdxr', event: ApiEvents.VEHICLE_UPDATE },
+  { delay: 1000, sensorId: 'rzmgfdlc', event: ApiEvents.VEHICLE_UPDATE },
+  { delay: 2000, sensorId: 'dqwzllxi', event: ApiEvents.VEHICLE_UPDATE },
+  { delay: 3000, sensorId: 'sadvcvxl', event: ApiEvents.VEHICLE_UPDATE },
+  { delay: 8000, sensorId: 'ccomdgqr', event: ApiEvents.VEHICLE_UPDATE },
+  { delay: 2000, sensorId: 'lojlicgi', event: ApiEvents.VEHICLE_UPDATE },
+  { delay: 3000, sensorId: 'zohcrjma', event: ApiEvents.VEHICLE_UPDATE },
+  { delay: 1000, sensorId: 'xlrbndpv', event: ApiEvents.VEHICLE_UPDATE },
+];
+
+const wait = (time: number) =>
+  new Promise((resolve) => {
+    setTimeout(() => resolve(), time);
+  });
+
 export class VehicleMock {
   vehicle: IApiVehicleUpdate = {
     Acc_Val_X_RMS: 0,
@@ -17,24 +35,40 @@ export class VehicleMock {
     rfids: [],
   };
 
-  private interval: Timeout;
+  private stopProcess: boolean = false;
 
-  constructor(private socketIo: SocketIO.Server) {
-    this.interval = setInterval(() => this.getApiAndEmit(), 1000);
+  constructor(private socketIo: SocketIO.Server) {}
+
+  stopSimulation(): void {
+    this.stopProcess = true;
   }
 
-  clear(): void {
-    if (this.interval) {
-      clearInterval(this.interval);
+  startSimulation(): void {
+    this.stopProcess = false;
+    this.simulateScenario();
+  }
+
+  private async simulateScenario() {
+    for (let { delay, sensorId, event } of progress) {
+      await wait(delay);
+
+      if (this.stopProcess) break;
+      this.updateVehicle({ rfids: [sensorId] });
+      this.socketIo.emit(event, this.vehicle);
     }
+    await wait(4000);
+    this.startSimulation();
   }
 
-  private getApiAndEmit(): void {
-    this.updateVehicle();
-    this.socketIo.emit(ApiEvents.VEHICLE_UPDATE, this.vehicle);
-  }
-
-  private updateVehicle(): void {
-    this.vehicle = { ...this.vehicle, TimeStats: new Date().toString(), Timestamp: Date.now() };
+  private updateVehicle(patch: Partial<IApiVehicleUpdate>): void {
+    this.vehicle = {
+      ...this.vehicle,
+      TimeStats: new Date().toString(),
+      Timestamp: Date.now(),
+      Ambient_Pressure: 1020 + Math.floor(Math.random() * 10),
+      Humidity: 80 + Math.floor(Math.random() * 10),
+      Temp: 28 + Math.floor(Math.random() * 10),
+      ...patch,
+    };
   }
 }
