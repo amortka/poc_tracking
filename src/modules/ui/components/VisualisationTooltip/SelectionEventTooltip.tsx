@@ -19,8 +19,8 @@ export const SelectionEventTooltip: React.FC<SelectionEventTooltipProps> = React
     const renderTooltip = Object.keys(selectionData || {}).map((s) => (
       <TooltipWrapper
         key={s}
-        top={selectionData[s].coordinates.y + centerPosition.y}
-        left={selectionData[s].coordinates.x + centerPosition.x}
+        top={selectionData[s].coordinates?.y + centerPosition.y}
+        left={selectionData[s].coordinates?.x + centerPosition.x}
         open={true}
         debug={debug}
         template={
