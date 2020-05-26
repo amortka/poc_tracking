@@ -45,13 +45,16 @@ export class RouteService {
 
       if (this.vehicleState?.lastUpdateTime !== vehicleState.lastUpdateTime) {
         this.vehicleState = vehicleState;
+        this.updateProgress();
+      }
 
-        this.update();
+      if (this.routeState.selected !== this.route.selected) {
+        this.setStateCallback(this.routeId, { ...this.route, selected: this.routeState.selected });
       }
     });
   }
 
-  private update() {
+  private updateProgress() {
     const sensorIndex = this.getSensorIndex(this.vehicleState.currentRfIds[0], this.path);
     const sensorProgress = this.getSensorProgress(sensorIndex, this.path);
     const nextSensorProgress = this.getSensorProgress(sensorIndex + 1, this.path);

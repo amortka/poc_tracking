@@ -1,9 +1,5 @@
 import { AppState } from '../main.store';
 import { createSelector } from 'reselect';
-import { IRouteWithData } from '../../app.model';
-import { VehiclesSelectors } from '../vehicles/vehicles.selectors';
-import { SceneSelectors } from '../scene/scene.selectors';
-import { IPath } from '../../modules/canvas/canvas.model';
 
 export class RoutesSelectors {
   static routes = createSelector(
