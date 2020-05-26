@@ -26,6 +26,7 @@ io.on('connection', (socket) => {
   console.log('New client connected');
 
   const vehicle = new VehicleMock(io);
+  vehicle.stopSimulation();
   vehicle.startSimulation();
 
   socket.on('disconnect', () => {

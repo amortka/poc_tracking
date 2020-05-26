@@ -17,12 +17,12 @@ export const visualizationStateMock: IVisualizationState = {
     },
   },
   routes: {
-    // fqfwxpzw: {
-    //   vehicle: 'trqzbojg',
-    //   path: 'ojihoybn',
-    //   progress: 0.2,
-    //   selected: true,
-    // },
+    fqfwxpzw: {
+      vehicle: 'trqzbojg',
+      path: 'ojihoybn',
+      progress: 0.2,
+      selected: true,
+    },
   },
   selection: selectionMock,
   isD3: true,

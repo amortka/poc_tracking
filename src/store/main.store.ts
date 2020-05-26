@@ -9,7 +9,7 @@ import { TooltipState } from './tooltips/tooltips.model';
 import { uiReducer } from './ui/ui.reducer';
 import { UiState } from './ui/ui.model';
 import { vehiclesReducer } from './vehicles/vehicles.reducer';
-import { VehiclesState } from './vehicles/vehicles.model';
+import { IVehiclesState } from './vehicles/vehicles.model';
 
 /**********************************************************
  * Interfaces
@@ -19,7 +19,7 @@ export interface AppState {
   scene: SceneState;
   tooltip: TooltipState;
   ui: UiState;
-  vehicles: VehiclesState;
+  vehicles: IVehiclesState;
 }
 
 /**********************************************************

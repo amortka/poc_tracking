@@ -1,3 +1,7 @@
+import { IRouteState } from './store/routes/routes.model';
+import { IPathWithPointsCoordinates } from './modules/canvas/canvas.model';
+import { IVehicleState } from './store/vehicles/vehicles.model';
+
 export interface Dictionary<T> {
   [id: string]: T;
 }
@@ -28,4 +32,9 @@ export interface IApiVehicleUpdate {
   TimeStats: string;
   rfids: string[];
   deviceId: string;
+}
+
+export interface IRouteWithData extends Omit<IRouteState, 'vehicle' | 'path'> {
+  vehicle: IVehicleState;
+  path: IPathWithPointsCoordinates;
 }

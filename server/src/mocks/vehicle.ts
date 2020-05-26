@@ -1,5 +1,4 @@
 import { ApiEvents, IApiVehicleUpdate } from '../../../src/app.model';
-import Timeout = NodeJS.Timeout;
 import SocketIO from 'socket.io';
 
 const progress = [
@@ -57,6 +56,8 @@ export class VehicleMock {
       this.socketIo.emit(event, this.vehicle);
     }
     await wait(4000);
+
+    if (this.stopProcess) return;
     this.startSimulation();
   }
 

@@ -2,10 +2,13 @@ import { Reducer } from 'redux';
 import shortid from 'shortid';
 
 import { RoutesState, RoutesAction } from './routes.model';
-import { visualizationStateMock } from '../../mocks/main.mock';
 
 export const initialState: RoutesState = {
-  ...visualizationStateMock.routes,
+  fqfwxpzw: {
+    vehicle: 'trqzbojg',
+    path: 'ojihoybn',
+    selected: true,
+  },
 };
 
 export const routesReducer: Reducer<RoutesState> = (state = initialState, action) => {

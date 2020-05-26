@@ -1,9 +1,9 @@
 import { Reducer } from 'redux';
-import { VehiclesAction, VehiclesState, VehicleState } from './vehicles.model';
+import { VehiclesAction, IVehiclesState, IVehicleState } from './vehicles.model';
 import { visualizationStateMock } from '../../mocks/main.mock';
 import { IApiVehicleUpdate } from '../../app.model';
 
-export const initialState: VehiclesState = {
+export const initialState: IVehiclesState = {
   trqzbojg: {
     ...visualizationStateMock.vehicles.trqzbojg,
     acceleration: { x: 0, y: 0, z: 0 },
@@ -13,7 +13,7 @@ export const initialState: VehiclesState = {
   },
 };
 
-function vehicleDTO(payload: IApiVehicleUpdate): Partial<VehicleState> {
+function vehicleDTO(payload: IApiVehicleUpdate): Partial<IVehicleState> {
   const {
     Ambient_Pressure: ambientPressure,
     Humidity: humidity,
@@ -39,7 +39,7 @@ function vehicleDTO(payload: IApiVehicleUpdate): Partial<VehicleState> {
   };
 }
 
-export const vehiclesReducer: Reducer<VehiclesState> = (state = initialState, action) => {
+export const vehiclesReducer: Reducer<IVehiclesState> = (state = initialState, action) => {
   switch (action.type) {
     case VehiclesAction.SET_VEHICLES: {
       return { ...action.payload };
