@@ -58,7 +58,7 @@ export class VehicleMock {
     await wait(4000);
 
     if (this.stopProcess) return;
-    this.startSimulation();
+    // this.startSimulation();
   }
 
   private updateVehicle(patch: Partial<IApiVehicleUpdate>): void {

@@ -20,21 +20,19 @@ export class RouteService {
   private subscription: any;
 
   private tween: typeof Tween;
-  private currentProgress: number;
-  private destinationProgress: number;
 
   constructor(private routeId: string, private setStateCallback: (routeId: string, data: IRoute) => void) {
     const storeState = store.getState();
 
     this.routeState = RoutesSelectors.getRoute(routeId)(storeState);
-    this.route = { ...this.routeState, progress: 0 };
     this.path = SceneSelectors.getPath(this.routeState.path)(storeState);
+    this.route = { ...this.routeState, progress: 0 };
 
     this.handleStoreStateChanges();
   }
 
   clear() {
-    this.subscription.unsubscribe();
+    this.subscription();
   }
 
   private handleStoreStateChanges() {
@@ -60,9 +58,6 @@ export class RouteService {
     const nextSensorProgress = this.getSensorProgress(sensorIndex + 1, this.path);
     const timeBetweenSensors = this.getTimeBetweenSensors(sensorIndex, sensorIndex + 1, this.path);
 
-    this.currentProgress = sensorProgress;
-    this.destinationProgress = nextSensorProgress;
-
     if (!this.tween) {
       this.tween = new Tween({ progress: sensorProgress });
     } else {
@@ -83,6 +78,7 @@ export class RouteService {
   private getSensorProgress(index: number, path: IPath): number {
     return path.sensors[index].distance;
   }
+
   // TODO: check if this should be removed
   private getTimeBetweenSensors(sensorIndex: number, nextSensorIndex: number, path: IPath): number {
     return 4000;
