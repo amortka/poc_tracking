@@ -71,7 +71,7 @@ export const visualizationSceneMock: IVisualizationScene = {
       points: ['nlyiefgt', 'ponbhqmp', 'flguqmoa', 'bxlnhzmb', 'acljbmkd', 'nlyiefgq'],
       tag: 'main path',
       sensors: [
-        { sensorId: 'qeculymv', distance: 0.0 },
+        { sensorId: 'qeculymv', distance: 0 },
         { sensorId: 'wytjebmg', distance: 0.177 },
         { sensorId: 'etkehdxr', distance: 0.23 },
         { sensorId: 'rzmgfdlc', distance: 0.283 },
@@ -81,7 +81,7 @@ export const visualizationSceneMock: IVisualizationScene = {
         { sensorId: 'lojlicgi', distance: 0.663 },
         { sensorId: 'zohcrjma', distance: 0.791 },
         { sensorId: 'xlrbndpv', distance: 0.876 },
-        { sensorId: 'qeculymv', distance: 0.999 },
+        { sensorId: 'qeculymv', distance: 1 },
       ],
     },
   },
@@ -135,18 +135,6 @@ export const visualizationSceneMock: IVisualizationScene = {
     lojlicgi: { x: 6.292071871846376, y: 5.07067923691127 },
     zohcrjma: { x: 9.945203483170104, y: 5.079174891821326 },
     xlrbndpv: { x: 10.286522301900986, y: 3.008927058784784 },
-
-    // sadvcvxl: { x: 1.49, y: 5.34 },
-    // dqwzllxi: { x: 1.52, y: 2.88 },
-    // rzmgfdlc: { x: 1.51, y: 0.01 },
-    // etkehdxr: { x: 4.27, y: 0.01 },
-    // wytjebmg: { x: 7.05, y: 0.02 },
-
-    // qeculymv: { x: 10.3, y: 0.03 },
-    // xlrbndpv: { x: 10.31, y: 2.77 },
-    // zohcrjma: { x: 10.3, y: 5.4 },
-    // lojlicgi: { x: 7.07, y: 5.34 },
-    // ccomdgqr: { x: 4.27, y: 5.34 },
 
     nlyiefgt: { x: 11.27, y: 0.27 },
     ponbhqmp: { x: 1.7, y: 0.3 },
