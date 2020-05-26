@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
 
 import { store } from '../../store/store.config';
@@ -17,8 +17,6 @@ const SOCKET_IO_CONFIG = {
 };
 
 function useWebsocket() {
-  const [response, setResponse] = useState('');
-
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT, SOCKET_IO_CONFIG);
 
@@ -38,18 +36,11 @@ function useWebsocket() {
     });
   }, []);
 
-  return [response, setResponse];
+  return;
 }
 
 export const WebsocketHandler: React.FC = ({ children }) => {
-  const [response] = useWebsocket();
+  useWebsocket();
 
-  return (
-    <>
-      <p style={{ position: 'fixed', top: 0, left: 0, zIndex: 10000, backgroundColor: 'white', width: '100%' }}>
-        It's <time dateTime={response as any}>{response}</time>
-      </p>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 };
