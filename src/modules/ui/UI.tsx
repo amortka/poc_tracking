@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ThemeProvider } from '@material-ui/core';
+import { ThemeProvider, Fade } from '@material-ui/core';
 
 import { CartInfo } from './components/CartInfo/CartInfo';
 import { InfoSidebar } from './components/Sidebar/InfoSidebar';
@@ -29,7 +29,11 @@ export const UI: React.FC<UIProps> = ({ children, onZoomIn, onZoomOut, onZoomFit
           <CameraControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} onZoomFit={onZoomFit} />
         </div>
         <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
-        {isCartInfoVisible && <CartInfo setIsCartInfoVisible={setIsCartInfoVisible} />}
+        {isCartInfoVisible && (
+          <Fade in={isCartInfoVisible}>
+            <CartInfo setIsCartInfoVisible={setIsCartInfoVisible} />
+          </Fade>
+        )}
       </main>
     </ThemeProvider>
   );

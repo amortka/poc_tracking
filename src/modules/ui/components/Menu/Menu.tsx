@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Drawer, List, makeStyles } from '@material-ui/core';
-import { AcUnit, BorderAllOutlined, CommuteOutlined, AttachMoney, PermIdentity } from '@material-ui/icons';
+import { Map, Equalizer, Settings, AccountCircle } from '@material-ui/icons';
 
 import { MenuItem } from './MenuItem';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: theme.spacing(8),
-    maxWidth: theme.spacing(8),
+    width: theme.spacing(10),
+    maxWidth: theme.spacing(10),
   },
   drawerPaper: {
     backgroundColor: '#11151A',
@@ -15,40 +15,41 @@ const useStyles = makeStyles((theme) => ({
   },
   list: {
     height: '100%',
+
+    '& > :last-child': {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+    },
   },
 }));
 
 export interface MenuItem {
   name: string;
-  icon: React.FC;
-  isButton: boolean;
+  icon: ReactElement;
+  selected: boolean;
 }
 
-const menuItems = [
-  {
-    name: 'logo',
-    icon: <AcUnit fontSize="large" />,
-    isButton: false,
-  },
+const menuItems: MenuItem[] = [
   {
     name: 'visualisation',
-    icon: <BorderAllOutlined fontSize="large" />,
-    isButton: true,
+    icon: <Map fontSize="default" />,
+    selected: true,
   },
   {
-    name: 'carts',
-    icon: <CommuteOutlined fontSize="large" />,
-    isButton: true,
-  },
-  {
-    name: 'halls',
-    icon: <AttachMoney fontSize="large" />,
-    isButton: true,
+    name: 'data',
+    icon: <Equalizer fontSize="default" />,
+    selected: false,
   },
   {
     name: 'settings',
-    icon: <PermIdentity fontSize="large" />,
-    isButton: true,
+    icon: <Settings fontSize="default" />,
+    selected: false,
+  },
+  {
+    name: 'account',
+    icon: <AccountCircle fontSize="default" />,
+    selected: false,
   },
 ];
 
@@ -59,7 +60,7 @@ export const Menu: React.FC = React.memo(() => {
     <Drawer variant="permanent" className={classes.root} classes={{ paper: classes.drawerPaper }}>
       <List className={classes.list}>
         {menuItems.map((item) => (
-          <MenuItem key={item.name} isButton={item.isButton}>
+          <MenuItem key={item.name} selected={item.selected}>
             {item.icon}
           </MenuItem>
         ))}
