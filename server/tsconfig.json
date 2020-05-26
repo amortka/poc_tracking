@@ -78,5 +78,5 @@
   //    "types": ["node"],
   //    "typeRoots": ["node_modules/@types"]
   //  },
-  "include": ["./src/**/*.ts"]
+  "include": ["./src/**/*.ts", "../src/**/*model.ts"]
 }

@@ -1,4 +1,5 @@
-import { Dictionary, IMouseEventPayload, ISelection, ISelectionData } from '../../app.model';
+import { Dictionary } from '../../app.model';
+import { IMouseEventPayload, ISelection, ISelectionData } from '../../modules/canvas/canvas.model';
 
 export enum TooltipAction {
   SET_MOUSE_DATA = '@@tooltip/SET_MOUSE_DATA',

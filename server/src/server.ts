@@ -3,6 +3,7 @@ import http, { Server } from 'http';
 import SocketIO from 'socket.io';
 
 import { router } from './routes';
+import { VehicleMock } from './mocks/vehicle';
 
 const app: express.Application = express();
 const server: Server = http.createServer(app);
@@ -19,24 +20,16 @@ app.use(function (req, res, next) {
 
 app.use(router);
 
-const getApiAndEmit = (socket) => {
-  const response = new Date();
-  // Emitting a new message. Will be consumed by the client
-  socket.emit('FromAPI', response);
-};
-
-let interval;
-
 io.origins('*:*');
+
 io.on('connection', (socket) => {
   console.log('New client connected');
-  if (interval) {
-    clearInterval(interval);
-  }
-  interval = setInterval(() => getApiAndEmit(socket), 1000);
+
+  const vehicle = new VehicleMock(io);
+
   socket.on('disconnect', () => {
     console.log('Client disconnected');
-    clearInterval(interval);
+    vehicle.clear();
   });
 });
 

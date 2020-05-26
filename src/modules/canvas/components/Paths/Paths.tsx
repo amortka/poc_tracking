@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import { IVisualizationScene } from '../../../../app.model';
 import { PathsUtils } from './paths.utils';
 import { PathsDefault } from './PathsDefault';
+import { IVisualizationScene } from '../../canvas.model';
 
 interface PathsProps extends Pick<IVisualizationScene, 'paths' | 'points'> {}
 

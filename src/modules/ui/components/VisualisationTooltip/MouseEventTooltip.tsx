@@ -2,8 +2,7 @@ import React, { Reducer, useEffect, useReducer } from 'react';
 import { Typography, useTheme } from '@material-ui/core';
 
 import { equal } from '../../../../utils/object.utils';
-import { EventType } from '../../../canvas/canvas.model';
-import { IMouseEventPayload } from '../../../../app.model';
+import { EventType, IMouseEventPayload } from '../../../canvas/canvas.model';
 import { TooltipProps, TooltipWrapper } from './components/Tooltip';
 import { useMouseMove } from '../../custom-hooks/use-mouse-move.hook';
 import { useSelector } from 'react-redux';

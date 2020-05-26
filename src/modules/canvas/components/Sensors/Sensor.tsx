@@ -1,8 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { CircleBufferGeometry } from 'three';
-import { IPoint, ISensor } from '../../../../app.model';
 import { ThemeContext } from '../../contexts/ThemeContext';
-import { ObjectType, VisualizationType } from '../../canvas.model';
+import { IPoint, ISensor, ObjectType, VisualizationType } from '../../canvas.model';
 
 interface SensorProps extends Pick<ISensor, 'tag'> {
   position: IPoint;

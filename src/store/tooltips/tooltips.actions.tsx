@@ -1,6 +1,7 @@
 import { action } from 'typesafe-actions';
 import { TooltipAction } from './tooltips.model';
-import { Dictionary, IMouseEventPayload, ISelectionData } from '../../app.model';
+import { Dictionary } from '../../app.model';
+import { IMouseEventPayload, ISelectionData } from '../../modules/canvas/canvas.model';
 
 export const tooltipActions = {
   setMouseEvent: (payload: IMouseEventPayload) => action(TooltipAction.SET_MOUSE_DATA, payload),

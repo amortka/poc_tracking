@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Canvas } from '../canvas/Canvas';
 import { visualizationStateMock } from '../../mocks/main.mock';
-import { VisualizationType } from '../canvas/canvas.model';
-import { IVisualizationState } from '../../app.model';
+import { IVisualizationState, VisualizationType } from '../canvas/canvas.model';
 import { RoutesProgressService, RouteUpdate } from './services/RoutesProgressService';
 import { CommunicationMock } from '../../mocks/communication.mock';
 import { SceneSelectors } from '../../store/scene/scene.selectors';

@@ -1,4 +1,4 @@
-import { IVisualizationScene } from '../../app.model';
+import { IVisualizationScene } from '../../modules/canvas/canvas.model';
 
 export enum SceneAction {
   SET_SCENE = '@@scene/SET_SCENE',

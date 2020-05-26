@@ -3,9 +3,9 @@ import { Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 
 import { equal } from '../../../../utils/object.utils';
-import { IPoint } from '../../../../app.model';
 import { TooltipsSelectors } from '../../../../store/tooltips/tooltips.selectors';
 import { TooltipWrapper } from './components/Tooltip';
+import { IPoint } from '../../../canvas/canvas.model';
 
 interface SelectionEventTooltipProps {
   debug?: boolean;

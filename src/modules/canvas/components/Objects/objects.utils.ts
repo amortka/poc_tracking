@@ -1,5 +1,5 @@
-import { Dictionary, IObject, IPoint } from '../../../../app.model';
-import { IObjectWithPointsCoordinates } from '../../canvas.model';
+import { Dictionary } from '../../../../app.model';
+import { IObject, IObjectWithPointsCoordinates, IPoint } from '../../canvas.model';
 import { Geometry, Vector3 } from 'three';
 
 export class ObjectsUtils {

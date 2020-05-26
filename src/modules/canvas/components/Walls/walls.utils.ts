@@ -1,8 +1,8 @@
 import { CsgUtils } from '../../utils/csg.utils';
-import { Dictionary, IPoint, IWall, WallCorner } from '../../../../app.model';
+import { Dictionary } from '../../../../app.model';
 import { ExtrudeGeometry, Geometry, Line3, Mesh, Shape, Vector2 } from 'three';
 import { ExtrudeGeometryOptions } from 'three/src/geometries/ExtrudeGeometry';
-import { IWallWithPointsCoordinates } from '../../canvas.model';
+import { IPoint, IWall, IWallWithPointsCoordinates, WallCorner } from '../../canvas.model';
 import { VectorUtils } from '../../utils/vector.unitls';
 
 export class WallsUtils {
