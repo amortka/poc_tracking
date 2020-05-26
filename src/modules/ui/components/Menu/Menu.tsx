@@ -58,7 +58,7 @@ export const Menu: React.FC = React.memo(() => {
 
   return (
     <Drawer variant="permanent" className={classes.root} classes={{ paper: classes.drawerPaper }}>
-      <List className={classes.list}>
+      <List className={classes.list} disablePadding>
         {menuItems.map((item) => (
           <MenuItem key={item.name} selected={item.selected}>
             {item.icon}
