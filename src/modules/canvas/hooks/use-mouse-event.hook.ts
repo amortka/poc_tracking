@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { EventType, ObjectType } from '../canvas.model';
-import { MouseEventContextObject, useEmitMouseEvent } from '../contexts/MouseEventsContext';
+import { EventType, MouseEventContextObject, ObjectType } from '../canvas.model';
+import { useEmitMouseEvent } from '../contexts/MouseEventsContext';
 
 export const useMouseEvent = (emitEventConfig: MouseEventContextObject) => {
   const emitEvent = useEmitMouseEvent(emitEventConfig, ObjectType.OBJECT, []);

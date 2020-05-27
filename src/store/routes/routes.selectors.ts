@@ -6,5 +6,6 @@ export class RoutesSelectors {
     (state: AppState) => state.routes,
     (routes) => routes
   );
+  static routesIds = createSelector(RoutesSelectors.routes, (routes) => Object.keys(routes));
   static getRoute = (routeId: string) => createSelector(RoutesSelectors.routes, (routes) => routes[routeId]);
 }

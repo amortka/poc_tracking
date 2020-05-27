@@ -5,6 +5,7 @@ import './App.css';
 import { store } from './store/store.config';
 import { UI } from './modules/ui/UI';
 import { CanvasManager } from './modules/canvas-manager/CanvasMenager';
+import { WebsocketHandler } from './modules/websocket/WebsocketHandler';
 
 function App() {
   const [onZoomIn, setOnZoomIn] = useState(() => () => console.log('onZoomIn'));
@@ -13,9 +14,11 @@ function App() {
 
   return (
     <Provider store={store}>
-      <UI onZoomIn={onZoomIn} onZoomOut={onZoomOut} onZoomFit={onZoomFit}>
-        <CanvasManager setOnZoomIn={setOnZoomIn} setOnZoomOut={setOnZoomOut} setOnZoomFit={setOnZoomFit} />
-      </UI>
+      <WebsocketHandler>
+        <UI onZoomIn={onZoomIn} onZoomOut={onZoomOut} onZoomFit={onZoomFit}>
+          <CanvasManager setOnZoomIn={setOnZoomIn} setOnZoomOut={setOnZoomOut} setOnZoomFit={setOnZoomFit} />
+        </UI>
+      </WebsocketHandler>
     </Provider>
   );
 }

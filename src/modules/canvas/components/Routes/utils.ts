@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { CurvePath, Path, QuadraticBezierCurve, Vector2, Vector3 } from 'three';
-import { IPoint, Dictionary } from '../../../../app.model';
+import { Dictionary } from '../../../../app.model';
+import { IPoint } from '../../canvas.model';
 
 const mapPointsToPath = (pointIds: string[], points: Dictionary<IPoint>): THREE.Vector2[] => {
   return pointIds.map((id) => {

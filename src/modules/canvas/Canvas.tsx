@@ -6,14 +6,15 @@ import { Canvas as CanvasThree } from 'react-three-fiber';
 import { CameraControlContextProvider } from './contexts/CameraContext';
 import { CanvasUtils } from './utils/canvas.utils';
 import { Floor } from './components/Floor';
-import { ICanvasTheme, VisualizationType } from './canvas.model';
 import {
-  Dictionary,
+  ICanvasTheme,
   IMouseEventPayload,
   ISelectionData,
   IVisualizationScene,
   IVisualizationState,
-} from '../../app.model';
+  VisualizationType,
+} from './canvas.model';
+import { Dictionary } from '../../app.model';
 import { Lights } from './components/Lights';
 import { MouseEventsContextProvider, mouseEventsContextService } from './contexts/MouseEventsContext';
 import { Objects } from './components/Objects/Objects';

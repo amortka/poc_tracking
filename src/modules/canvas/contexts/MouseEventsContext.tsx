@@ -1,8 +1,5 @@
 import React, { useCallback, useContext } from 'react';
-import { IMouseEventPayload, IPath, IRoom, ISensor, IWall } from '../../../app.model';
-import { IObjectWithPointsCoordinates, ObjectType } from '../canvas.model';
-
-export type MouseEventContextObject = IWall | ISensor | IObjectWithPointsCoordinates | IRoom | IPath;
+import { IMouseEventPayload, MouseEventContextObject, ObjectType } from '../canvas.model';
 
 export class MouseEventsContextService {
   private subscriptions: Array<(IEventContextPayload) => void> = [];

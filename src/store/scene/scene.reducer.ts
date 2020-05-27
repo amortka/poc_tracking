@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { SceneState } from './scene.model';
 import { SceneAction } from './scene.model';
-import { visualizationSceneMock } from '../../mocks/main.mock';
+import { visualizationSceneMock } from '../../modules/canvas/canvas.mock';
 
 export const initialState: SceneState = {
   ...visualizationSceneMock,

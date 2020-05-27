@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { Vector3, BufferGeometry } from 'three';
-import { IPoint, IWall } from '../../../../app.model';
 import { ThemeContext } from '../../contexts/ThemeContext';
+import { IPoint, IWall } from '../../canvas.model';
 
 interface WallProps extends Omit<IWall, 'start' | 'end'> {
   start: IPoint;

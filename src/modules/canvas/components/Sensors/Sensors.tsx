@@ -1,6 +1,5 @@
 import React, { useMemo, Suspense } from 'react';
-import { IVisualizationScene } from '../../../../app.model';
-import { VisualizationType } from '../../canvas.model';
+import { IVisualizationScene, VisualizationType } from '../../canvas.model';
 import { Sensor } from './Sensor';
 
 interface ISensors extends Pick<IVisualizationScene, 'sensors' | 'points'> {

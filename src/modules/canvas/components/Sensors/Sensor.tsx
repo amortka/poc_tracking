@@ -1,8 +1,7 @@
+import { IPoint, ISensor, ObjectType, VisualizationType } from '../../canvas.model';
 import React, { useMemo } from 'react';
 import { TextureLoader, CircleBufferGeometry } from 'three';
 import { useLoader } from 'react-three-fiber';
-import { IPoint, ISensor } from '../../../../app.model';
-import { ObjectType, VisualizationType } from '../../canvas.model';
 import outlineTextureUrl from './outline_texture.png';
 import fillTextureUrl from './fill_texture.png';
 

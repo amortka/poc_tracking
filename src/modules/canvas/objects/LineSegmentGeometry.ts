@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { LineGeometry } from 'three/examples/jsm/lines/LineGeometry';
 import { ColorUtils } from '../utils/color.utils';
+import { Vector3 } from 'three';
 
 export interface ILineSegment {
   distanceStart: number; // value 0-1
@@ -126,7 +127,7 @@ export class LineSegmentGeometry extends LineGeometry {
     const line = new THREE.Line3(startV, endV);
     const distanceOnLine = (target - startL) / line.distance();
 
-    return line.at(distanceOnLine, undefined);
+    return line.at(distanceOnLine, new Vector3());
   }
 
   /**

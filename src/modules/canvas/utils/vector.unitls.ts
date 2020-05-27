@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { IPoint } from '../../../app.model';
 import { Vector2 } from 'three';
+import { IPoint } from '../canvas.model';
 
 export class VectorUtils {
   static getNormalVectorToVector(v1: THREE.Vector2): THREE.Vector2 {

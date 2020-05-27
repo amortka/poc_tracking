@@ -1,5 +1,5 @@
-import { Dictionary, IPath, IPoint } from '../../../../app.model';
-import { IPathWithPointsCoordinates } from '../../canvas.model';
+import { Dictionary } from '../../../../app.model';
+import { IPath, IPathWithPointsCoordinates, IPoint } from '../../canvas.model';
 
 export class PathsUtils {
   static getPathWithCoordinates(paths: Dictionary<IPath>, points: Dictionary<IPoint>): IPathWithPointsCoordinates[] {

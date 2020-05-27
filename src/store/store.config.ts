@@ -24,6 +24,7 @@ function configureStore(initialState: any): any {
   // ======================================================
   const middleware = [
     ReduxThunk,
+    // socketMiddleware,
     // This is where you add other middleware like redux-observable
   ];
 

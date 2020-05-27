@@ -1,5 +1,5 @@
-import { IPoint } from '../../../app.model';
 import * as THREE from 'three';
+import { IPoint } from '../canvas.model';
 
 export class ShapeUtils {
   static getShapeFromPointCoordinates(points: IPoint[]): THREE.Shape {

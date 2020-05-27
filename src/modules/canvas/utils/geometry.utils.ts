@@ -1,6 +1,6 @@
-import { IPoint } from '../../../app.model';
 import * as THREE from 'three';
 import { VectorUtils } from './vector.unitls';
+import { IPoint } from '../canvas.model';
 
 export class GeometryUtils {
   static getGeometryFromPointCoordinates(points: IPoint[]): THREE.Geometry {
