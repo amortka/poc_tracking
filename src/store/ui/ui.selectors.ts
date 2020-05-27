@@ -10,3 +10,8 @@ export const isD3 = createSelector(
   (state: AppState) => state.ui.isD3,
   (isD3) => isD3
 );
+
+export const isRealData = createSelector(
+  (state: AppState) => state.ui.isRealData,
+  (isRealData) => isRealData
+);
