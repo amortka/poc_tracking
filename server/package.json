@@ -4,9 +4,7 @@
   "description": "mock sever for poc_tracking",
   "main": "index.js",
   "scripts": {
-    "start-dev": "nodemon --config \"./nodemon.json\"/",
-    "build": "rm -rf ./build/ && tsc",
-    "start": "node build/server.js"
+    "start-dev": "nodemon --config \"./nodemon.json\"/"
   },
   "author": "",
   "license": "ISC",

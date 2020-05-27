@@ -76,7 +76,7 @@ export class RouteService {
     return path.sensors.findIndex(({ sensorId }) => sensorId === id);
   }
   private getSensorProgress(index: number, path: IPath): number {
-    return path.sensors[index].distance;
+    return path.sensors[index]?.distance;
   }
 
   // TODO: check if this should be removed

@@ -1,6 +1,5 @@
 import { Dictionary } from '../../app.model';
 import { BackgroundProperty } from 'csstype';
-import { MouseEventContextObject } from './contexts/MouseEventsContext';
 import { Path, Color as ThreeColor } from 'three';
 
 /**
@@ -121,6 +120,8 @@ export interface IVisualizationScene {
 /**
  * IVisualizationState
  */
+
+export type MouseEventContextObject = IWall | ISensor | IObjectWithPointsCoordinates | IRoom | IPath;
 
 export interface IVehicle {
   tag: string;
