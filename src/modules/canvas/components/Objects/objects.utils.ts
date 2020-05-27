@@ -15,7 +15,7 @@ export class ObjectsUtils {
 
     geometry.computeBoundingBox();
     geometry.boundingBox.getCenter(objectCenter);
-    objectCenter.setZ(objectCenter.z + fromGround);
+    objectCenter.setZ(fromGround);
 
     return objectCenter;
   }

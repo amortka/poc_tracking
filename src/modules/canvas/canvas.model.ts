@@ -60,6 +60,12 @@ export interface ICanvasTheme {
  * IVisualizationScene
  */
 
+export enum TextSize {
+  SMALL = 0.12,
+  MEDIUM = 0.2,
+  LARGE = 0.25,
+}
+
 export interface Hole {
   start: number;
   width: number;
@@ -87,8 +93,10 @@ export interface IObject {
   fromGround?: number;
   meta?: {
     name?: string;
-    type?: VisualizationType;
     description?: string;
+    textSize?: TextSize;
+    selected?: boolean;
+    selectable?: boolean;
   };
 }
 

@@ -1,29 +1,19 @@
 import React, { useMemo } from 'react';
-import { IVisualizationScene, VisualizationType } from '../../canvas.model';
+import { IVisualizationScene } from '../../canvas.model';
 import { ObjectsUtils } from './objects.utils';
-import { ObjectD3 } from './ObjectD3';
 import { ObjectD2 } from './ObjectD2';
 
-interface WallsProps extends Pick<IVisualizationScene, 'objects' | 'points'> {
-  type: VisualizationType;
-}
+interface WallsProps extends Pick<IVisualizationScene, 'objects' | 'points'> {}
 
-export const Objects: React.FC<WallsProps> = ({ objects, points, type }) => {
+export const Objects: React.FC<WallsProps> = ({ objects, points }) => {
   const objectsWithCoordinates = useMemo(() => ObjectsUtils.getObjectsWithCoordinates(objects, points), [
     objects,
     points,
   ]);
 
   const renderObjects = useMemo(() => {
-    switch (type) {
-      case VisualizationType.D3:
-        return objectsWithCoordinates.map((o, i) =>
-          o.meta?.type === VisualizationType.D2 ? <ObjectD2 key={i} {...o} /> : <ObjectD3 key={i} {...o} />
-        );
-      case VisualizationType.D2:
-        return objectsWithCoordinates.map((o, i) => <ObjectD2 key={i} {...o} />);
-    }
-  }, [type, objectsWithCoordinates]);
+    return objectsWithCoordinates.map((o, i) => <ObjectD2 key={i} {...o} />);
+  }, [objectsWithCoordinates]);
 
   return <React.Fragment>{renderObjects}</React.Fragment>;
 };
