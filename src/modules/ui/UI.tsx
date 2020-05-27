@@ -8,6 +8,7 @@ import { MouseEventTooltip } from './components/VisualisationTooltip/MouseEventT
 import { SelectionEventTooltip } from './components/VisualisationTooltip/SelectionEventTooltip';
 import { theme } from './config/theme.config';
 import { CameraControl } from './components/CameraControl/CameraControl';
+import { Logos } from './components/Logos/Logos';
 
 interface UIProps {
   onZoomIn: () => void;
@@ -27,6 +28,7 @@ export const UI: React.FC<UIProps> = ({ children, onZoomIn, onZoomOut, onZoomFit
           <MouseEventTooltip />
           <SelectionEventTooltip debug={true} centerPosition={{ x: -2, y: -18 }} />
           <CameraControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} onZoomFit={onZoomFit} />
+          <Logos />
         </div>
         <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
         {isCartInfoVisible && (
