@@ -32,6 +32,7 @@ export interface IApiVehicleUpdate {
   TimeStats: string;
   rfids: string[];
   deviceId: string;
+  pathId?: string;
 }
 
 export interface IRouteWithData extends Omit<IRouteState, 'vehicle' | 'path'> {

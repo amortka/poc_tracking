@@ -8,10 +8,12 @@ const progress = [
   { delay: 1000, sensorId: 'rzmgfdlc', event: ApiEvents.VEHICLE_UPDATE },
   { delay: 2000, sensorId: 'dqwzllxi', event: ApiEvents.VEHICLE_UPDATE },
   { delay: 3000, sensorId: 'sadvcvxl', event: ApiEvents.VEHICLE_UPDATE },
-  { delay: 8000, sensorId: 'ccomdgqr', event: ApiEvents.VEHICLE_UPDATE },
+  { delay: 4000, sensorId: undefined, event: ApiEvents.VEHICLE_UPDATE },
+  { delay: 4000, sensorId: 'ccomdgqr', event: ApiEvents.VEHICLE_UPDATE },
   { delay: 2000, sensorId: 'lojlicgi', event: ApiEvents.VEHICLE_UPDATE },
   { delay: 3000, sensorId: 'zohcrjma', event: ApiEvents.VEHICLE_UPDATE },
   { delay: 1000, sensorId: 'xlrbndpv', event: ApiEvents.VEHICLE_UPDATE },
+  { delay: 1000, sensorId: 'qeculymv', event: ApiEvents.VEHICLE_UPDATE },
 ];
 
 const wait = (time: number) =>
@@ -52,13 +54,13 @@ export class VehicleMock {
       await wait(delay);
 
       if (this.stopProcess) break;
-      this.updateVehicle({ rfids: [sensorId] });
+      this.updateVehicle({ rfids: sensorId ? [sensorId] : [] });
       this.socketIo.emit(event, this.vehicle);
     }
     await wait(4000);
 
     if (this.stopProcess) return;
-    // this.startSimulation();
+    this.startSimulation();
   }
 
   private updateVehicle(patch: Partial<IApiVehicleUpdate>): void {
