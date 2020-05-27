@@ -70,7 +70,7 @@ export const Canvas: React.FC<CanvasProps> = ({
             <Floor type={type} />
             <Scene isD3={state.isD3} setOnZoomIn={setOnZoomIn} setOnZoomOut={setOnZoomOut} setOnZoomFit={setOnZoomFit}>
               <Walls walls={scene.walls} points={scene.points} rooms={scene.rooms} type={type} />
-              <Objects points={scene.points} objects={scene.objects} type={type} />
+              <Objects points={scene.points} objects={scene.objects} />
               <Paths points={scene.points} paths={scene.paths} />
               <Sensors points={scene.points} sensors={scene.sensors} type={type} />
               <Routes points={scene.points} paths={scene.paths} vehicles={state.vehicles} routes={state.routes} />

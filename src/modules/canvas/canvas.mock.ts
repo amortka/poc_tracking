@@ -1,27 +1,7 @@
-import { IVisualizationScene, VisualizationType } from './canvas.model';
+import { IVisualizationScene, TextSize } from './canvas.model';
 
 export const visualizationSceneMock: IVisualizationScene = {
   objects: {
-    // bkgwbnwu: {
-    //   shapePoints: ['xfblfcmx', 'cmtulzxs', 'gjcuvwgu', 'uazocvnx'],
-    //   fromGround: 0.1,
-    //   he
-    //   meta: {
-    //     name: 'ecophon',
-    //     description: '120x120',
-    //     type: VisualizationType.D2,
-    //   },
-    // },
-    //
-    // dhgolfqh: {
-    //   shapePoints: ['gxoyvvhy', 'zditbxul', 'ousrgrvl', 'mjbwywey'],
-    //   height: 1,
-    //   fromGround: 0.1,
-    //   meta: {
-    //     name: 'Checkpoint 1',
-    //   },
-    // },
-
     // L3
     wukfpzgn: {
       shapePoints: ['hjqbfgyn', 'kjdyzeyc', 'aooqiwgn', 'jjxesuop'],
@@ -29,7 +9,7 @@ export const visualizationSceneMock: IVisualizationScene = {
       fromGround: 0.01,
       meta: {
         name: 'L3',
-        type: VisualizationType.D2,
+        textSize: TextSize.LARGE,
       },
     },
     // L2
@@ -38,8 +18,8 @@ export const visualizationSceneMock: IVisualizationScene = {
       height: 0,
       fromGround: 0.01,
       meta: {
-        name: 'L3',
-        type: VisualizationType.D2,
+        name: 'L2',
+        textSize: TextSize.LARGE,
       },
     },
     // L1
@@ -48,78 +28,85 @@ export const visualizationSceneMock: IVisualizationScene = {
       height: 0,
       fromGround: 0.01,
       meta: {
-        name: 'L3',
-        type: VisualizationType.D2,
+        name: 'L1',
+        textSize: TextSize.LARGE,
       },
     },
     // L3B
     muiiyabw: {
       shapePoints: ['uajkikpv', 'bxepajao', 'wbngvreb', 'evnoffqc'],
-      height: 1,
+      height: 0.5,
       fromGround: 0.02,
       meta: {
         name: 'L3B',
-        type: VisualizationType.D3,
+        textSize: TextSize.SMALL,
+        selectable: true,
       },
     },
     // L3A
     hcgrauti: {
       shapePoints: ['usabopap', 'gkmuruwo', 'immfkhuu', 'znexkvmy'],
-      height: 1,
+      height: 0.5,
       fromGround: 0.02,
       meta: {
         name: 'L3A',
-        type: VisualizationType.D3,
+        textSize: TextSize.SMALL,
+        selectable: true,
       },
     },
     // L3C
     kkshvomj: {
       shapePoints: ['rnvrpfms', 'uhitdpip', 'totheacj', 'igjjiztd'],
-      height: 1,
+      height: 0.5,
       fromGround: 0.02,
       meta: {
         name: 'L3C',
-        type: VisualizationType.D3,
+        textSize: TextSize.SMALL,
+        selectable: true,
       },
     },
     // L2A
     ryqaobbn: {
       shapePoints: ['yehftwgj', 'ilouoodq', 'gnwcnczv', 'uzosscaf'],
-      height: 1,
+      height: 0.5,
       fromGround: 0.02,
       meta: {
         name: 'L2A',
-        type: VisualizationType.D3,
+        textSize: TextSize.SMALL,
+        selectable: true,
       },
     },
     // L2B
     oavzomsx: {
       shapePoints: ['poiwbfgz', 'lodeicuy', 'znocseqn', 'pirsxhnb'],
-      height: 1,
+      height: 0.5,
       fromGround: 0.02,
       meta: {
         name: 'L2B',
-        type: VisualizationType.D3,
+        textSize: TextSize.SMALL,
+        selectable: true,
       },
     },
     // L1A
     vbisqysg: {
       shapePoints: ['bovuldfh', 'jozyxcaa', 'xyqupfqs', 'fmqbomjp'],
-      height: 1,
+      height: 0.5,
       fromGround: 0.02,
       meta: {
         name: 'L1A',
-        type: VisualizationType.D3,
+        textSize: TextSize.SMALL,
+        selectable: true,
       },
     },
     // L1B
     ycjfzvlk: {
       shapePoints: ['mwbspruw', 'hjavskeu', 'jzwceyxp', 'otmkhoub'],
-      height: 1,
+      height: 0.5,
       fromGround: 0.02,
       meta: {
         name: 'L1B',
-        type: VisualizationType.D3,
+        textSize: TextSize.SMALL,
+        selectable: true,
       },
     },
   },
