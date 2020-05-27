@@ -16,14 +16,7 @@ export const visualizationStateMock: IVisualizationState = {
       ambientPressure: 1,
     },
   },
-  routes: {
-    fqfwxpzw: {
-      vehicle: 'trqzbojg',
-      path: 'ojihoybn',
-      progress: 0.2,
-      selected: true,
-    },
-  },
+  routes: {},
   selection: selectionMock,
   isD3: true,
 };

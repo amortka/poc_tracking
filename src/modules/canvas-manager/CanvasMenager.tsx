@@ -36,10 +36,7 @@ function useVisualisationState(): IVisualizationState {
       ...state,
       routes: {
         ...state.routes,
-        [routeId]: {
-          ...state.routes[routeId],
-          progress: data.progress,
-        },
+        [routeId]: { ...data },
       },
     }));
   }, []);

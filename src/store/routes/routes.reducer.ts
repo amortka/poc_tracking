@@ -22,9 +22,9 @@ export const routesReducer: Reducer<RoutesState> = (state = initialState, action
       const vehicleUpdate = action.payload as IApiVehicleUpdate;
 
       // check if vehicleUpdate has rfids so in on the route
-      if (!vehicleUpdate.rfids.length) return;
+      if (!vehicleUpdate.rfids.length) return state;
       // check if vehicle has its routes
-      if (Object.values(state).find((route) => route.vehicle === vehicleUpdate.deviceId)) return;
+      if (Object.values(state).find((route) => route.vehicle === vehicleUpdate.deviceId)) return state;
 
       const newId = shortid.generate();
       return {
