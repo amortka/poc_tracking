@@ -1,9 +1,7 @@
 import React, { useMemo } from 'react';
-import { makeStyles, Typography } from '@material-ui/core';
 import ZoomInIcon from '@material-ui/icons/ZoomIn';
 import ZoomOutIcon from '@material-ui/icons/ZoomOut';
-import ViewArrayIcon from '@material-ui/icons/ViewArray';
-import ViewCarouselIcon from '@material-ui/icons/ViewCarousel';
+import { makeStyles, Typography } from '@material-ui/core';
 import { MyLocation } from '@material-ui/icons';
 
 import * as uiSelectors from '../../../../store/ui/ui.selectors';
@@ -96,7 +94,7 @@ export const CameraControl: React.FC<CameraControlProps> = ({ onZoomIn, onZoomOu
         onClick: onZoomFit,
       },
     ],
-    [onZoomIn, onZoomOut, onZoomFit, dispatch, isD3]
+    [onZoomIn, onZoomOut, onZoomFit]
   );
 
   const dimensionToggle = useMemo(

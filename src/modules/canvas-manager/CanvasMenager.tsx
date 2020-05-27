@@ -1,47 +1,53 @@
 import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import * as uiSelectors from '../../store/ui/ui.selectors';
 import { Canvas } from '../canvas/Canvas';
-import { visualizationStateMock } from '../../mocks/main.mock';
-import { VisualizationType } from '../canvas/canvas.model';
-import { IVisualizationState } from '../../app.model';
-import { RoutesProgressService, RouteUpdate } from './services/RoutesProgressService';
-import { CommunicationMock } from '../../mocks/communication.mock';
+import { IRoute, IVisualizationState, VisualizationType } from '../canvas/canvas.model';
+import { RouteService } from './services/routes-progress.service';
+import { RoutesSelectors } from '../../store/routes/routes.selectors';
 import { SceneSelectors } from '../../store/scene/scene.selectors';
 import { tooltipActions } from '../../store/tooltips/tooltips.actions';
-import * as uiSelectors from '../../store/ui/ui.selectors';
+import { visualizationStateMock } from '../../mocks/main.mock';
+
+let routesIdSet: Set<string> = new Set();
+
+function getRoutesIdChanges(routesId: string[]): string[] {
+  const difference = [...routesId].filter((id) => !routesIdSet.has(id));
+  routesIdSet = new Set(routesId);
+
+  return difference;
+}
+
+function handleRoutes(routesId: string[], setStateCallback: (routeId: string, data: IRoute) => void): () => void {
+  getRoutesIdChanges(routesId).forEach((routeId) => new RouteService(routeId, setStateCallback));
+  return () => {
+    console.log('TODO: implement clearing subscriptions');
+  };
+}
 
 function useVisualisationState(): IVisualizationState {
-  const [state, setState] = useState<IVisualizationState>(visualizationStateMock);
-  const updateVehicleState = useCallback((data: RouteUpdate) => {
-    setState((state) => ({
+  const [visualisationState, setVisualisationState] = useState<IVisualizationState>(visualizationStateMock);
+  const routesIds = useSelector(RoutesSelectors.routesIds);
+  const isD3 = useSelector(uiSelectors.isD3);
+
+  const updateRouteState = useCallback((routeId: string, data: IRoute) => {
+    setVisualisationState((state) => ({
       ...state,
       routes: {
         ...state.routes,
-        [data.routeId]: {
-          ...state.routes[data.routeId],
-          path: data.pathId,
-          vehicle: data.tag,
-          progress: data.progress,
-        },
+        [routeId]: { ...data },
       },
     }));
   }, []);
 
-  useEffect(
-    () => {
-      const communicationMock = new CommunicationMock({ id: 'trqzbojg', pathId: 'ojihoybn' });
-      const routesProgressService = new RoutesProgressService();
-      routesProgressService.onProgressUpdate(updateVehicleState);
-      communicationMock.simulate(routesProgressService.handleVehicleUpdate);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+  useEffect(() => {
+    const clearFunction = handleRoutes(routesIds, updateRouteState);
+    // TODO: implement unsubscribe when route disappears
+    return () => clearFunction();
+  }, [routesIds, updateRouteState]);
 
-  const isD3 = useSelector(uiSelectors.isD3);
-
-  return { ...state, isD3 };
+  return { ...visualisationState, isD3 };
 }
 
 interface CanvasManagerProps {

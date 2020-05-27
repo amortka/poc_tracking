@@ -76,7 +76,7 @@ function centerViewToBoundaries(
       container.offsetHeight / (boundaries.max.y - boundaries.min.y)
     ) * 0.8;
 
-  const center: Vector3 = boundaries.getCenter(undefined);
+  const center: Vector3 = boundaries.getCenter(new Vector3());
   orthoCamera.zoom = zoomToBoundaries;
   orthoCamera.position.z = boundaries.max.z + Math.abs(orthoCamera.bottom);
 

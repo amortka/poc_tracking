@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import { Dictionary, ISelection, ISelectionData } from '../../../../app.model';
+import { Dictionary } from '../../../../app.model';
 import { useFrame, useThree } from 'react-three-fiber';
 import { CameraControlContext } from '../../contexts/CameraContext';
 import { SelectionUtils } from './selection.utils';
+import { ISelection, ISelectionData } from '../../canvas.model';
 
 interface SelectionProps {
   selection: ISelection;

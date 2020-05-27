@@ -12,7 +12,7 @@ export const Vehicle: React.FC<IVehicle> = ({ progress, path }) => {
   const position = path.getPoint(progress);
 
   const geometry = useMemo(() => new BoxBufferGeometry(0.25, 0.5, 0.25), []);
-  const material = useMemo(() => new MeshBasicMaterial({ color: 0xffff00 }), []);
+  const material = useMemo(() => new MeshBasicMaterial({ color: 0xffff00, opacity: 0.3, transparent: true }), []);
 
   // TODO Predict vehicle direction based on vehicle length and sensor (on vehicle) position
   const ref = useUpdate<THREE.Mesh>(

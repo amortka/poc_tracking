@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
-import { IVisualizationState, IVisualizationScene } from '../../../../app.model';
 import { Route } from './Route';
 import { Path } from 'three';
 import { mapPointsToPath } from './utils';
+import { IVisualizationScene, IVisualizationState } from '../../canvas.model';
 
 interface RoutesProps
   extends Pick<IVisualizationScene, 'paths' | 'points'>,

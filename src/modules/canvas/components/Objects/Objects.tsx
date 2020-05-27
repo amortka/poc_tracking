@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import { IVisualizationScene } from '../../../../app.model';
-import { VisualizationType } from '../../canvas.model';
+import { IVisualizationScene, VisualizationType } from '../../canvas.model';
 import { ObjectsUtils } from './objects.utils';
 import { ObjectD3 } from './ObjectD3';
 import { ObjectD2 } from './ObjectD2';

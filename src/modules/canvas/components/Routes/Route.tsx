@@ -7,7 +7,7 @@ import { useRoundedPath } from './utils';
 interface RouteProps extends IRouteWithComputedData {}
 
 export const Route: React.FC<RouteProps> = ({ path, selected, progress }) => {
-  const [roundedPath, proportion] = useRoundedPath(path);
+  const [roundedPath, proportion] = useRoundedPath(path, 0.3);
   const fixedProgress = proportion * progress;
   return (
     <>

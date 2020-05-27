@@ -1,7 +1,7 @@
 import { Camera, Scene } from 'three';
 
-import { Dictionary, ISelection, ISelectionData } from '../../../../app.model';
-import { ObjectType } from '../../canvas.model';
+import { Dictionary } from '../../../../app.model';
+import { ISelection, ISelectionData, ObjectType } from '../../canvas.model';
 
 export class SelectionUtils {
   static collectAllData(
