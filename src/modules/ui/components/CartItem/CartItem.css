@@ -1,0 +1,22 @@
+.cart {
+  width: 6px;
+  height: 12px;
+  margin-right: 2px;
+}
+
+.cart:last-of-type {
+  margin-right: 0;
+}
+
+.cart--loaded {
+  background-color: #ced4d9;
+}
+
+.cart--empty {
+  background-color: #6c7379;
+}
+
+.loadedIndicator {
+  display: flex;
+  margin-right: auto;
+}

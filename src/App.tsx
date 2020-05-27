@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+
 import './App.css';
+import { store } from './store/store.config';
+import { UI } from './modules/ui/UI';
+import { CanvasManager } from './modules/canvas-manager/CanvasMenager';
 
 function App() {
+  const [onZoomIn, setOnZoomIn] = useState(() => () => console.log('onZoomIn'));
+  const [onZoomOut, setOnZoomOut] = useState(() => () => console.log('onZoomOut'));
+  const [onZoomFit, setOnZoomFit] = useState(() => () => console.log('onZoomFit'));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <UI onZoomIn={onZoomIn} onZoomOut={onZoomOut} onZoomFit={onZoomFit}>
+        <CanvasManager setOnZoomIn={setOnZoomIn} setOnZoomOut={setOnZoomOut} setOnZoomFit={setOnZoomFit} />
+      </UI>
+    </Provider>
   );
 }
 
