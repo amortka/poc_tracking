@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Box, Typography, Divider, List, ListItem } from '@material-ui/core';
+import { makeStyles, Box, Typography, Divider, List, ListItem, ClickAwayListener, FadeProps } from '@material-ui/core';
 import { DriveEta, DoubleArrow } from '@material-ui/icons';
 
 const useStyles = makeStyles({
@@ -49,39 +49,41 @@ const useStyles = makeStyles({
   },
 });
 
-export interface CartInfoProps {
+export interface CartInfoProps extends FadeProps {
   setIsCartInfoVisible: Function;
 }
 
-export const CartInfo: React.FC<CartInfoProps> = ({ setIsCartInfoVisible }) => {
+export const CartInfo: React.FC<CartInfoProps> = ({ setIsCartInfoVisible, ...props }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.backgroundShadow} onClick={() => setIsCartInfoVisible(false)}>
-      <Box color="text.primary" className={classes.box} onClick={(e) => e.stopPropagation()}>
-        <div className={classes.cartInfoHeaderContainer}>
-          <DriveEta className={classes.cartIcon} />
-          <Typography variant="h6">Milkrun GHI</Typography>
-          <DoubleArrow onClick={() => setIsCartInfoVisible(false)} className={classes.doubleArrowIcon} />
-        </div>
-        <Divider className={classes.divider} />
-        <Typography variant="subtitle2">Historia trasy</Typography>
-        <Typography variant="subtitle2">Zamówienia</Typography>
-        <List className={classes.list}>
-          <ListItem className={classes.listItem}>
-            <Typography variant="body2">Nazwa produktu 1</Typography>
-          </ListItem>
-          <ListItem className={classes.listItem}>
-            <Typography variant="body2">Nazwa produktu 2</Typography>
-          </ListItem>
-          <ListItem className={classes.listItem}>
-            <Typography variant="body2">Nazwa produktu 3</Typography>
-          </ListItem>
-          <ListItem className={classes.listItem}>
-            <Typography variant="body2">Nazwa produktu 4</Typography>
-          </ListItem>
-        </List>
-      </Box>
+    <div className={classes.backgroundShadow} {...(props as any)}>
+      <ClickAwayListener onClickAway={() => setIsCartInfoVisible(false)}>
+        <Box color="text.primary" className={classes.box} onClick={(e) => e.stopPropagation()}>
+          <div className={classes.cartInfoHeaderContainer}>
+            <DriveEta className={classes.cartIcon} />
+            <Typography variant="h6">Milkrun GHI</Typography>
+            <DoubleArrow onClick={() => setIsCartInfoVisible(false)} className={classes.doubleArrowIcon} />
+          </div>
+          <Divider className={classes.divider} />
+          <Typography variant="subtitle2">Historia trasy</Typography>
+          <Typography variant="subtitle2">Zamówienia</Typography>
+          <List className={classes.list}>
+            <ListItem className={classes.listItem}>
+              <Typography variant="body2">Nazwa produktu 1</Typography>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+              <Typography variant="body2">Nazwa produktu 2</Typography>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+              <Typography variant="body2">Nazwa produktu 3</Typography>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+              <Typography variant="body2">Nazwa produktu 4</Typography>
+            </ListItem>
+          </List>
+        </Box>
+      </ClickAwayListener>
     </div>
   );
 };

@@ -3,10 +3,10 @@ import React from 'react';
 import { ListItem } from '../MaterialUI/ListItem';
 import { ListItemIcon } from '../MaterialUI/ListItemIcon';
 
-export const MenuItem: React.FC<{ isButton: boolean }> = ({ children, isButton }) => {
+export const MenuItem: React.FC<{ selected: boolean }> = ({ children, selected }) => {
   return (
-    <ListItem button={isButton as any}>
-      <ListItemIcon>{children}</ListItemIcon>
+    <ListItem button selected={selected}>
+      <ListItemIcon selected={selected}>{children}</ListItemIcon>
     </ListItem>
   );
 };
