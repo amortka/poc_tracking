@@ -1,12 +1,13 @@
 import React, { useMemo } from 'react';
 import ZoomInIcon from '@material-ui/icons/ZoomIn';
 import ZoomOutIcon from '@material-ui/icons/ZoomOut';
-import { makeStyles, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import { MyLocation } from '@material-ui/icons';
 
 import * as uiSelectors from '../../../../store/ui/ui.selectors';
 import { uiActions } from '../../../../store/ui/ui.actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { SliderButton } from '../SliderButton/SliderButton';
 
 const useStyles = makeStyles((theme) => ({
   controlsWrapper: {
@@ -34,33 +35,6 @@ const useStyles = makeStyles((theme) => ({
     '& > .MuiSvgIcon-root': {
       color: theme.palette.common.white,
     },
-  },
-  dimensionControl: {
-    display: 'flex',
-    height: theme.spacing(6),
-    width: theme.spacing(17),
-    background: '#181D24',
-    color: '#3B434D',
-    cursor: 'pointer',
-    marginLeft: theme.spacing(3),
-
-    '& > div': {
-      margin: '4px',
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      transition: `${theme.transitions.easing.easeInOut} ${theme.transitions.duration.standard}ms`,
-      userSelect: 'none',
-
-      '&:last-of-type': {
-        marginLeft: 0,
-      },
-    },
-  },
-  selectedDimension: {
-    background: '#3B434D',
-    color: theme.palette.text.primary,
   },
 }));
 
@@ -97,6 +71,11 @@ export const CameraControl: React.FC<CameraControlProps> = ({ onZoomIn, onZoomOu
     [onZoomIn, onZoomOut, onZoomFit]
   );
 
+  const slider = {
+    first: { name: '2D' },
+    second: { name: '3D' },
+  };
+
   const dimensionToggle = useMemo(
     () => ({
       name: 'Dimension toggle',
@@ -112,14 +91,7 @@ export const CameraControl: React.FC<CameraControlProps> = ({ onZoomIn, onZoomOu
           {item.icon}
         </div>
       ))}
-      <div onClick={dimensionToggle.onClick} className={classes.dimensionControl}>
-        <div className={!isD3 ? classes.selectedDimension : null}>
-          <Typography variant="body2">2D</Typography>
-        </div>
-        <div className={isD3 ? classes.selectedDimension : null}>
-          <Typography variant="body2">3D</Typography>
-        </div>
-      </div>
+      <SliderButton selected={isD3} action={dimensionToggle.onClick} options={slider} />
     </div>
   );
 };
