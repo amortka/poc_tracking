@@ -4,7 +4,7 @@ import socketIOClient from 'socket.io-client';
 
 import { store } from '../../store/store.config';
 import { VehiclesActions } from '../../store/vehicles/vehicles.actions';
-import { ApiEvents, IApiVehicleUpdate } from '../../app.model';
+import { ApiEvent, IApiVehicleUpdate } from '../../app.model';
 
 const ENDPOINT = 'http://127.0.0.1:3001';
 const SOCKET_IO_CONFIG = {
@@ -31,7 +31,7 @@ function useWebsocket() {
     socket.on('reconnect_failed', (reconnect_failed) => console.log({ reconnect_failed }));
     socket.on('reconnect_failed', (reconnect_failed) => console.log({ reconnect_failed }));
 
-    socket.on(ApiEvents.VEHICLE_UPDATE, (data: IApiVehicleUpdate) => {
+    socket.on(ApiEvent.VEHICLE_UPDATE, (data: IApiVehicleUpdate) => {
       store.dispatch(VehiclesActions.updateVehicle(data));
     });
   }, []);
@@ -39,7 +39,7 @@ function useWebsocket() {
   return;
 }
 
-export const WebsocketHandler: React.FC = ({ children }) => {
+export const RealBackend: React.FC = ({ children }) => {
   useWebsocket();
 
   return <>{children}</>;

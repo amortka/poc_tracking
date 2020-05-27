@@ -3,7 +3,7 @@ import http, { Server } from 'http';
 import SocketIO from 'socket.io';
 
 import { router } from './routes';
-import { VehicleMock } from './mocks/vehicle';
+import { VehicleMock } from '../../src/mocks/vehicle.mock';
 
 const app: express.Application = express();
 const server: Server = http.createServer(app);

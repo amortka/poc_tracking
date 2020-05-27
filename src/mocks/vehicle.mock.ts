@@ -1,19 +1,18 @@
-import { ApiEvents, IApiVehicleUpdate } from '../../../src/app.model';
-import SocketIO from 'socket.io';
+import { ApiEvent, IApiVehicleUpdate } from '../app.model';
 
 const progress = [
-  { delay: 0, sensorId: 'qeculymv', event: ApiEvents.VEHICLE_UPDATE },
-  { delay: 2000, sensorId: 'wytjebmg', event: ApiEvents.VEHICLE_UPDATE },
-  { delay: 4000, sensorId: 'etkehdxr', event: ApiEvents.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: 'rzmgfdlc', event: ApiEvents.VEHICLE_UPDATE },
-  { delay: 2000, sensorId: 'dqwzllxi', event: ApiEvents.VEHICLE_UPDATE },
-  { delay: 3000, sensorId: 'sadvcvxl', event: ApiEvents.VEHICLE_UPDATE },
-  { delay: 4000, sensorId: undefined, event: ApiEvents.VEHICLE_UPDATE },
-  { delay: 4000, sensorId: 'ccomdgqr', event: ApiEvents.VEHICLE_UPDATE },
-  { delay: 2000, sensorId: 'lojlicgi', event: ApiEvents.VEHICLE_UPDATE },
-  { delay: 3000, sensorId: 'zohcrjma', event: ApiEvents.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: 'xlrbndpv', event: ApiEvents.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: 'qeculymv', event: ApiEvents.VEHICLE_UPDATE },
+  { delay: 0, sensorId: 'qeculymv', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 2000, sensorId: 'wytjebmg', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 4000, sensorId: 'etkehdxr', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 1000, sensorId: 'rzmgfdlc', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 2000, sensorId: 'dqwzllxi', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 3000, sensorId: 'sadvcvxl', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 4000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 4000, sensorId: 'ccomdgqr', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 2000, sensorId: 'lojlicgi', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 3000, sensorId: 'zohcrjma', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 1000, sensorId: 'xlrbndpv', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 1000, sensorId: 'qeculymv', event: ApiEvent.VEHICLE_UPDATE },
 ];
 
 const wait = (time: number) =>
@@ -38,7 +37,7 @@ export class VehicleMock {
 
   private stopProcess: boolean = false;
 
-  constructor(private socketIo: SocketIO.Server) {}
+  constructor(private socketIo: any) {}
 
   stopSimulation(): void {
     this.stopProcess = true;

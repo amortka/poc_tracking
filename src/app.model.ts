@@ -6,7 +6,7 @@ export interface Dictionary<T> {
   [id: string]: T;
 }
 
-export enum ApiEvents {
+export enum ApiEvent {
   VEHICLE_UPDATE = 'VEHICLE_UPDATE',
 }
 /**
