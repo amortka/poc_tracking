@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
-import { CurvePath, Path, QuadraticBezierCurve, Vector2, Vector3 } from 'three';
+import { Curve, CurvePath, Path, QuadraticBezierCurve, Vector2, Vector3 } from 'three';
 import { Dictionary } from '../../../../app.model';
 import { IPoint } from '../../canvas.model';
 
-const mapPointsToPath = (pointIds: string[], points: Dictionary<IPoint>): THREE.Vector2[] => {
+const mapPointsToPath = (pointIds: string[], points: Dictionary<IPoint>): Vector2[] => {
   return pointIds.map((id) => {
     const point = points[id];
     return new Vector2(point.x, point.y);
@@ -55,7 +55,7 @@ const roundedCornerLine = (points: Array<Vector2>, radius: number = 0.01) => {
   return curvePaths;
 };
 
-const useRoundedPath = (path: THREE.Curve<Vector2>, radius?: number): [THREE.CurvePath<THREE.Vector2>, number] => {
+const useRoundedPath = (path: Curve<Vector2>, radius?: number): [CurvePath<Vector2>, number] => {
   const [roundedPath, proportion] = useMemo(() => {
     const line = roundedCornerLine(path.getPoints(), radius);
     const proportion = path.getLength() / line.getLength();

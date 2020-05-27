@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { LineGeometry } from 'three/examples/jsm/lines/LineGeometry';
-import { ColorUtils } from '../utils/color.utils';
+import { ColorUtils } from '../../utils/color.utils';
 import { Vector3 } from 'three';
 
 export interface ILineSegment {

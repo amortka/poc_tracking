@@ -2,66 +2,124 @@ import { IVisualizationScene, VisualizationType } from './canvas.model';
 
 export const visualizationSceneMock: IVisualizationScene = {
   objects: {
-    bkgwbnwu: {
-      shapePoints: ['xfblfcmx', 'cmtulzxs', 'gjcuvwgu', 'uazocvnx'],
-      fromGround: 0.1,
+    // bkgwbnwu: {
+    //   shapePoints: ['xfblfcmx', 'cmtulzxs', 'gjcuvwgu', 'uazocvnx'],
+    //   fromGround: 0.1,
+    //   he
+    //   meta: {
+    //     name: 'ecophon',
+    //     description: '120x120',
+    //     type: VisualizationType.D2,
+    //   },
+    // },
+    //
+    // dhgolfqh: {
+    //   shapePoints: ['gxoyvvhy', 'zditbxul', 'ousrgrvl', 'mjbwywey'],
+    //   height: 1,
+    //   fromGround: 0.1,
+    //   meta: {
+    //     name: 'Checkpoint 1',
+    //   },
+    // },
+
+    // L3
+    wukfpzgn: {
+      shapePoints: ['hjqbfgyn', 'kjdyzeyc', 'aooqiwgn', 'jjxesuop'],
+      height: 0,
+      fromGround: 0.01,
       meta: {
-        name: 'ecophon',
-        description: '120x120',
+        name: 'L3',
         type: VisualizationType.D2,
       },
     },
-    bkozixwk: {
-      shapePoints: ['unxmnnfr', 'zboxtrvu', 'cqmcsiay', 'nstmcsir'],
-      fromGround: 0.1,
+    // L2
+    zassgxxq: {
+      shapePoints: ['uihdfjwv', 'lludbgne', 'esrfytri', 'quasprkl'],
+      height: 0,
+      fromGround: 0.01,
       meta: {
-        name: 'ecophon',
-        description: '120x120',
+        name: 'L3',
         type: VisualizationType.D2,
       },
     },
-    xgqewujr: {
-      shapePoints: ['qyipxgyf', 'oaozugec', 'suvgtoul', 'sgvatdjc'],
-      fromGround: 0.1,
+    // L1
+    fzmocfah: {
+      shapePoints: ['ajxiqssn', 'qnozzmzr', 'wovbphyc', 'jtmeqtmc'],
+      height: 0,
+      fromGround: 0.01,
       meta: {
-        name: 'ecophon',
-        description: '120x120',
+        name: 'L3',
         type: VisualizationType.D2,
       },
     },
-    mdwlizmv: {
-      shapePoints: ['h5jghnhl', 'o6c3mck5', 'lqximksu', 'janzaxld'],
-      fromGround: 0.1,
-      meta: {
-        name: 'ecophon',
-        description: '120x240',
-        type: VisualizationType.D2,
-      },
-    },
-    kstmxjew: {
-      shapePoints: ['ophifqgn', 'pyaidnyh', 'vbowugex', 'qtvfipgx'],
-      fromGround: 0.1,
-      meta: {
-        name: 'ecophon',
-        description: '120x240',
-        type: VisualizationType.D2,
-      },
-    },
-    dbrolfrq: {
-      shapePoints: ['aizmaxly', 'wlnnbsii', 'hddoeigl', 'dhwtktzq'],
-      fromGround: 0.1,
-      meta: {
-        name: 'ecophon',
-        description: '120x240',
-        type: VisualizationType.D2,
-      },
-    },
-    dhgolfqh: {
-      shapePoints: ['gxoyvvhy', 'zditbxul', 'ousrgrvl', 'mjbwywey'],
+    // L3B
+    muiiyabw: {
+      shapePoints: ['uajkikpv', 'bxepajao', 'wbngvreb', 'evnoffqc'],
       height: 1,
-      fromGround: 0.1,
+      fromGround: 0.02,
       meta: {
-        name: 'Checkpoint 1',
+        name: 'L3B',
+        type: VisualizationType.D3,
+      },
+    },
+    // L3A
+    hcgrauti: {
+      shapePoints: ['usabopap', 'gkmuruwo', 'immfkhuu', 'znexkvmy'],
+      height: 1,
+      fromGround: 0.02,
+      meta: {
+        name: 'L3A',
+        type: VisualizationType.D3,
+      },
+    },
+    // L3C
+    kkshvomj: {
+      shapePoints: ['rnvrpfms', 'uhitdpip', 'totheacj', 'igjjiztd'],
+      height: 1,
+      fromGround: 0.02,
+      meta: {
+        name: 'L3C',
+        type: VisualizationType.D3,
+      },
+    },
+    // L2A
+    ryqaobbn: {
+      shapePoints: ['yehftwgj', 'ilouoodq', 'gnwcnczv', 'uzosscaf'],
+      height: 1,
+      fromGround: 0.02,
+      meta: {
+        name: 'L2A',
+        type: VisualizationType.D3,
+      },
+    },
+    // L2B
+    oavzomsx: {
+      shapePoints: ['poiwbfgz', 'lodeicuy', 'znocseqn', 'pirsxhnb'],
+      height: 1,
+      fromGround: 0.02,
+      meta: {
+        name: 'L2B',
+        type: VisualizationType.D3,
+      },
+    },
+    // L1A
+    vbisqysg: {
+      shapePoints: ['bovuldfh', 'jozyxcaa', 'xyqupfqs', 'fmqbomjp'],
+      height: 1,
+      fromGround: 0.02,
+      meta: {
+        name: 'L1A',
+        type: VisualizationType.D3,
+      },
+    },
+    // L1B
+    ycjfzvlk: {
+      shapePoints: ['mwbspruw', 'hjavskeu', 'jzwceyxp', 'otmkhoub'],
+      height: 1,
+      fromGround: 0.02,
+      meta: {
+        name: 'L1B',
+        type: VisualizationType.D3,
       },
     },
   },
@@ -93,36 +151,6 @@ export const visualizationSceneMock: IVisualizationScene = {
     aeeuewak: { x: 1.49, y: 5.36 },
     s5pyoioi: { x: 1.48, y: 1.3 },
     bbgexc3r: { x: 0, y: 1.28 },
-    xfblfcmx: { x: 2.58, y: 0.73 },
-    cmtulzxs: { x: 3.8, y: 0.73 },
-    gjcuvwgu: { x: 3.81, y: 1.93 },
-    uazocvnx: { x: 2.59, y: 1.93 },
-    unxmnnfr: { x: 4.14, y: 0.73 },
-    zboxtrvu: { x: 5.34, y: 0.72 },
-    cqmcsiay: { x: 5.35, y: 1.93 },
-    nstmcsir: { x: 4.14, y: 1.92 },
-    qyipxgyf: { x: 5.7, y: 0.72 },
-    oaozugec: { x: 6.9, y: 0.72 },
-    suvgtoul: { x: 6.88, y: 1.93 },
-    sgvatdjc: { x: 5.69, y: 1.93 },
-    h5jghnhl: { x: 2.59, y: 2.15 },
-    o6c3mck5: { x: 3.8, y: 2.15 },
-    lqximksu: { x: 3.8, y: 4.55 },
-    janzaxld: { x: 2.59, y: 4.55 },
-    ophifqgn: { x: 4.13, y: 2.15 },
-    pyaidnyh: { x: 5.35, y: 2.14 },
-    vbowugex: { x: 5.34, y: 4.54 },
-    qtvfipgx: { x: 4.13, y: 4.54 },
-
-    aizmaxly: { x: 5.7, y: 2.14 },
-    wlnnbsii: { x: 6.91, y: 2.14 },
-    hddoeigl: { x: 6.91, y: 4.56 },
-    dhwtktzq: { x: 5.7, y: 4.56 },
-
-    gxoyvvhy: { x: 5.7, y: 2.54 },
-    zditbxul: { x: 5.21, y: 2.54 },
-    ousrgrvl: { x: 5.21, y: 4.06 },
-    mjbwywey: { x: 5.7, y: 4.06 },
 
     qeculymv: { x: 11.27, y: 0.27 },
     wytjebmg: { x: 6.218415104157272, y: 0.2858356893286606 },
@@ -141,6 +169,57 @@ export const visualizationSceneMock: IVisualizationScene = {
     bxlnhzmb: { x: 10.3, y: 5.08 },
     acljbmkd: { x: 10.27, y: 0.47 },
     nlyiefgq: { x: 11.27, y: 0.47 },
+
+    //L3
+    hjqbfgyn: { x: 2.19, y: 0.47 },
+    kjdyzeyc: { x: 3.32, y: 0.47 },
+    aooqiwgn: { x: 3.32, y: 4.77 },
+    jjxesuop: { x: 2.19, y: 4.77 },
+    //L2
+    uihdfjwv: { x: 4.01, y: 0.47 },
+    lludbgne: { x: 5.14, y: 0.47 },
+    esrfytri: { x: 5.14, y: 4.77 },
+    quasprkl: { x: 4.01, y: 4.77 },
+    //L1
+    ajxiqssn: { x: 5.87, y: 0.47 },
+    qnozzmzr: { x: 6.99, y: 0.47 },
+    wovbphyc: { x: 6.99, y: 4.77 },
+    jtmeqtmc: { x: 5.87, y: 4.77 },
+    //L3B
+    uajkikpv: { x: 2.19, y: 1.89 },
+    bxepajao: { x: 2.61, y: 1.89 },
+    wbngvreb: { x: 2.61, y: 2.31 },
+    evnoffqc: { x: 2.19, y: 2.31 },
+    //L3A
+    usabopap: { x: 2.54, y: 0.47 },
+    gkmuruwo: { x: 2.96, y: 0.47 },
+    immfkhuu: { x: 2.96, y: 0.89 },
+    znexkvmy: { x: 2.54, y: 0.89 },
+    //L3C
+    rnvrpfms: { x: 2.54, y: 4.35 },
+    uhitdpip: { x: 2.96, y: 4.35 },
+    totheacj: { x: 2.96, y: 4.77 },
+    igjjiztd: { x: 2.54, y: 4.77 },
+    //L2A
+    yehftwgj: { x: 4.37, y: 0.47 },
+    ilouoodq: { x: 4.78, y: 0.47 },
+    gnwcnczv: { x: 4.78, y: 0.89 },
+    uzosscaf: { x: 4.37, y: 0.89 },
+    //L2B
+    poiwbfgz: { x: 4.37, y: 4.35 },
+    lodeicuy: { x: 4.78, y: 4.35 },
+    znocseqn: { x: 4.78, y: 4.77 },
+    pirsxhnb: { x: 4.37, y: 4.77 },
+    //L1A
+    bovuldfh: { x: 6.22, y: 0.47 },
+    jozyxcaa: { x: 6.64, y: 0.47 },
+    xyqupfqs: { x: 6.64, y: 0.89 },
+    fmqbomjp: { x: 6.22, y: 0.89 },
+    //L1B
+    mwbspruw: { x: 6.22, y: 4.35 },
+    hjavskeu: { x: 6.64, y: 4.35 },
+    jzwceyxp: { x: 6.64, y: 4.77 },
+    otmkhoub: { x: 6.22, y: 4.77 },
   },
   sensors: {
     qwbmjtmf: {
