@@ -90,7 +90,6 @@ const useAnimationPath = (
         }
       }, [])
       .map<number>((localCurveLength) => localCurveLength / routePath.getLength());
-    console.log(progressToIndexMap);
 
     return { animationPath, routePath, progressToIndexMap };
   }, [points]);
