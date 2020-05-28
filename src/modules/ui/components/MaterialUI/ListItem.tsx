@@ -9,11 +9,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#0C0F13',
     justifyContent: 'center',
     '&:hover > .MuiListItemIcon-root': {
-      color: '#FFFFFF',
+      color: theme.palette.text.primary,
     },
   },
   selected: {
-    borderLeft: '4px solid #11B573',
+    borderLeft: `4px solid ${theme.palette.secondary.main}`,
     backgroundColor: '#212830',
   },
 }));

@@ -4,8 +4,8 @@ import { makeStyles, Typography } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   controlWrapper: {
     display: 'flex',
-    background: '#181D24',
-    color: '#3B434D',
+    backgroundColor: theme.palette.background.default,
+    color: theme.palette.text.disabled,
     cursor: 'pointer',
     marginLeft: theme.spacing(3),
 
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   selected: {
-    background: '#3B434D',
+    backgroundColor: theme.palette.primary.light,
     color: theme.palette.text.primary,
   },
 }));
