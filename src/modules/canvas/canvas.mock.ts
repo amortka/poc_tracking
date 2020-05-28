@@ -130,7 +130,6 @@ export const visualizationSceneMock: IVisualizationScene = {
       meta: {
         name: 'GATEWAY',
         textSize: TextSize.SMALL,
-        selectable: true,
         textRotation: Math.PI / 2,
       },
     },

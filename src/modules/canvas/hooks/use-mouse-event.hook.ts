@@ -14,14 +14,14 @@ export const useMouseEvent = (emitEventConfig: MouseEventContextObject, objectTy
   );
   const handlePointerOver = useCallback(
     (e) => {
-      e.stopPropagation();
+      // e.stopPropagation();
       emitEvent(EventType.MOUSE_IN);
     },
     [emitEvent]
   );
   const handlePointerOut = useCallback(
     (e) => {
-      e.stopPropagation();
+      // e.stopPropagation();
       emitEvent(EventType.MOUSE_OUT);
     },
     [emitEvent]

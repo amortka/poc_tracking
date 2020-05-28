@@ -56,7 +56,7 @@ export const MouseEventTooltip: React.FC<MouseEventTooltipProps> = React.memo(
       setTrackMouse(tooltipConfig.open);
     }, [tooltipConfig.open, setTrackMouse]);
 
-    return <TooltipWrapper top={mouseCoordinates.y} left={mouseCoordinates.x - theme.spacing(8)} {...tooltipConfig} />;
+    return <TooltipWrapper top={mouseCoordinates.y} left={mouseCoordinates.x - theme.spacing(10)} {...tooltipConfig} />;
   },
   (prevProps, nextProps) => equal(prevProps, nextProps)
 );
