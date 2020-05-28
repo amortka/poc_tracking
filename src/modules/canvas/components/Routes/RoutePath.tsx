@@ -1,8 +1,8 @@
-import { Color, Path, Vector3 } from 'three';
+import { Color, Vector3 } from 'three';
 import React, { useMemo } from 'react';
 
 export interface RoutePathProps {
-  path: Path;
+  points: THREE.Vector2[];
   distanceStart: number; // value 0-1
   distanceEnd: number; // value 0-1
   linewidth: number;
@@ -16,11 +16,11 @@ export interface RoutePathProps {
   opacity?: number;
 }
 
-export const RoutePath: React.FC<RoutePathProps> = ({ path, ...config }) => {
-  const points = useMemo(() => {
+export const RoutePath: React.FC<RoutePathProps> = ({ points, ...config }) => {
+  const pointsVec3 = useMemo(() => {
     const fromGround = 0.03;
-    return path.getPoints().map((point) => new Vector3(point.x, point.y, fromGround));
-  }, [path]);
+    return points.map((point) => new Vector3(point.x, point.y, fromGround));
+  }, [points]);
 
   const geometryConfig = {
     distanceStart: config.distanceStart,
@@ -44,8 +44,8 @@ export const RoutePath: React.FC<RoutePathProps> = ({ path, ...config }) => {
       <lineSegmentGeometry
         attach="geometry"
         // TODO cannot remove args but still needs to react on any points change
-        args={[points, geometryConfig]}
-        points={points}
+        args={[pointsVec3, geometryConfig]}
+        points={pointsVec3}
         {...geometryConfig}
       />
       <lineMaterial attach="material" {...materialConfig} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Text } from '../Text';
 import { Vector3 } from 'three';
 import { TextSize } from '../../canvas.model';
@@ -14,8 +14,8 @@ const titlePosition: [number, number, number] = [0, 0, 0];
 const descriptionPosition: [number, number, number] = [0, -0.2, 0];
 
 export const Label2D: React.FC<Label2DProps> = ({ title, description, position, textSize = TextSize.MEDIUM }) => {
-  const descriptionGeometryConfig = { size: textSize };
-  console.log({ textSize });
+  const descriptionGeometryConfig = useMemo(() => ({ size: textSize }), [textSize]);
+
   return (
     <group position={position}>
       {title ? <Text label={title} position={titlePosition} geometryConfig={descriptionGeometryConfig} /> : null}

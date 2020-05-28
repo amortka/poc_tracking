@@ -4,13 +4,11 @@ import { useUpdate } from 'react-three-fiber';
 
 interface IVehicle {
   type: string;
-  path: Path | CurvePath<Vector2>;
-  progress: number;
+  position: THREE.Vector2;
+  rotation: THREE.Vector2;
 }
 
-export const Vehicle: React.FC<IVehicle> = ({ progress, path }) => {
-  const position = path.getPoint(progress);
-
+export const Vehicle: React.FC<IVehicle> = ({ position, rotation }) => {
   const geometry = useMemo(() => new BoxBufferGeometry(0.25, 0.5, 0.25), []);
   const material = useMemo(() => new MeshBasicMaterial({ color: 0xffff00, opacity: 0.3, transparent: true }), []);
 
@@ -19,8 +17,7 @@ export const Vehicle: React.FC<IVehicle> = ({ progress, path }) => {
     (mesh) => {
       const up = new Vector3(0, 1, 0);
       let axis = new Vector3();
-      const tangent2d = path.getTangent(progress).normalize();
-      const tangent3d = new Vector3(tangent2d.x, tangent2d.y, 0);
+      const tangent3d = new Vector3(rotation.x, rotation.y, 0);
 
       axis = axis.crossVectors(up, tangent3d).normalize();
 
@@ -28,7 +25,7 @@ export const Vehicle: React.FC<IVehicle> = ({ progress, path }) => {
 
       mesh.quaternion.setFromAxisAngle(axis, radians);
     },
-    [progress, path]
+    [rotation]
   );
 
   return (

@@ -1,16 +1,19 @@
 import { useMemo } from 'react';
-import { Curve, CurvePath, Path, QuadraticBezierCurve, Vector2, Vector3 } from 'three';
+import { CurvePath, Path, QuadraticBezierCurve, Vector2, Vector3 } from 'three';
 import { Dictionary } from '../../../../app.model';
 import { IPoint } from '../../canvas.model';
 
-const mapPointsToPath = (pointIds: string[], points: Dictionary<IPoint>): Vector2[] => {
+const mapPointsToVectors = (pointIds: string[], points: Dictionary<IPoint>): Vector2[] => {
   return pointIds.map((id) => {
     const point = points[id];
     return new Vector2(point.x, point.y);
   });
 };
 
-const roundedCornerLine = (points: Array<Vector2>, radius: number = 0.01) => {
+const generateAnimationPaths = (
+  points: Array<Vector2>,
+  radius: number = 0.01
+): { curvedPath: THREE.CurvePath<THREE.Vector2>; straightPath: THREE.CurvePath<THREE.Vector2> } => {
   const minVector = new Vector2();
   let minLength = minVector.subVectors(points[0], points[1]).length();
   for (let i = 1; i < points.length - 1; i++) {
@@ -22,7 +25,8 @@ const roundedCornerLine = (points: Array<Vector2>, radius: number = 0.01) => {
   const startIndex = 1;
   const endIndex = points.length - 2;
 
-  const curvePaths = new CurvePath<Vector2>();
+  const curvedPath = new CurvePath<Vector2>();
+  const straightPath = new CurvePath<Vector2>();
   let lastKeyEnd = points[0];
 
   for (let i = startIndex; i <= endIndex; i++) {
@@ -44,26 +48,67 @@ const roundedCornerLine = (points: Array<Vector2>, radius: number = 0.01) => {
     keyStart.multiplyScalar(keyLength).add(keyMid);
     keyEnd.multiplyScalar(keyLength).add(keyMid);
 
-    curvePaths.add(new Path([lastKeyEnd, keyStart]));
-    curvePaths.add(new QuadraticBezierCurve(keyStart, keyMid, keyEnd));
+    const sharedPath = new Path([lastKeyEnd, keyStart]);
+    curvedPath.add(sharedPath);
+    straightPath.add(sharedPath);
+
+    curvedPath.add(new QuadraticBezierCurve(keyStart, keyMid, keyEnd));
+    straightPath.add(new Path([keyStart, keyMid, keyEnd]));
+
     lastKeyEnd = keyEnd;
   }
 
-  const endPath = new Path([curvePaths.curves[curvePaths.curves.length - 1].getPoint(2), points[points.length - 1]]);
-  curvePaths.curves.push(endPath);
+  const endPath = new Path([curvedPath.curves[curvedPath.curves.length - 1].getPoint(2), points[points.length - 1]]);
+  curvedPath.curves.push(endPath);
+  straightPath.curves.push(endPath);
 
-  return curvePaths;
+  curvedPath.updateArcLengths();
+  straightPath.updateArcLengths();
+
+  return { curvedPath, straightPath };
 };
 
-const useRoundedPath = (path: Curve<Vector2>, radius?: number): [CurvePath<Vector2>, number] => {
-  const [roundedPath, proportion] = useMemo(() => {
-    const line = roundedCornerLine(path.getPoints(), radius);
-    const proportion = path.getLength() / line.getLength();
+const useAnimationPath = (
+  points: THREE.Vector2[]
+): {
+  animationPath: THREE.CurvePath<THREE.Vector2>;
+  routePath: THREE.CurvePath<THREE.Vector2>;
+  progressToIndexMap: number[];
+} =>
+  useMemo(() => {
+    const radius = 0.4;
+    const { curvedPath: animationPath, straightPath: routePath } = generateAnimationPaths(points, radius);
 
-    return [line, proportion];
-  }, [path, radius]);
+    const progressToIndexMap = routePath.curves
+      .reduce<number[]>((acc, curve, index) => {
+        const curveLength = curve.getLength();
 
-  return [roundedPath, proportion];
+        if (index === 0) {
+          return [curveLength];
+        } else {
+          return [...acc, curveLength + acc[index - 1]];
+        }
+      }, [])
+      .map<number>((localCurveLength) => localCurveLength / routePath.getLength());
+    console.log(progressToIndexMap);
+
+    return { animationPath, routePath, progressToIndexMap };
+  }, [points]);
+
+const useVehicleUpdate = (
+  animationPath: THREE.CurvePath<THREE.Vector2>,
+  progress: number,
+  progressToIndexMap: number[]
+): { position: THREE.Vector2; rotationTangent: THREE.Vector2 } => {
+  const curveIndex = progressToIndexMap.findIndex((curveProgress) => progress <= curveProgress);
+  const curveProgressStart = progressToIndexMap[curveIndex - 1] || 0;
+  const curveProgressEnd = progressToIndexMap[curveIndex];
+  const curveLocalProgress = (progress - curveProgressStart) / (curveProgressEnd - curveProgressStart);
+
+  const position = animationPath.curves[curveIndex].getPoint(curveLocalProgress);
+  const rotationTangent = animationPath.curves[curveIndex].getTangent(curveLocalProgress).normalize();
+
+  return { position, rotationTangent };
 };
 
-export { mapPointsToPath, useRoundedPath };
+export { mapPointsToVectors, generateAnimationPaths, useAnimationPath, useVehicleUpdate };
