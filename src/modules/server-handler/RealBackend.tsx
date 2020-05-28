@@ -41,6 +41,5 @@ function useWebsocket() {
 
 export const RealBackend: React.FC = ({ children }) => {
   useWebsocket();
-
   return <>{children}</>;
 };
