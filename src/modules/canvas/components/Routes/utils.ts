@@ -58,7 +58,7 @@ const generateAnimationPaths = (
     lastKeyEnd = keyEnd;
   }
 
-  const endPath = new Path([curvedPath.curves[curvedPath.curves.length - 1].getPoint(2), points[points.length - 1]]);
+  const endPath = new Path([curvedPath.curves[curvedPath.curves.length - 1].getPoint(1), points[points.length - 1]]);
   curvedPath.curves.push(endPath);
   straightPath.curves.push(endPath);
 
