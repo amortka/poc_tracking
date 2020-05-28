@@ -7,7 +7,9 @@ export class ObjectsUtils {
     objects: Dictionary<IObject>,
     points: Dictionary<IPoint>
   ): IObjectWithPointsCoordinates[] {
-    return Object.values(objects).map((o) => ({ ...o, shapePoints: o.shapePoints.map((p) => points[p]) })) || [];
+    return (
+      Object.entries(objects).map(([id, o]) => ({ id, ...o, shapePoints: o.shapePoints.map((p) => points[p]) })) || []
+    );
   }
 
   static getLabelPosition(shape: Shape, fromGround: number): Vector3 {

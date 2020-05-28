@@ -1,26 +1,31 @@
-import { IPoint, ISensor, ObjectType, VisualizationType } from '../../canvas.model';
 import React, { useMemo } from 'react';
 import { TextureLoader, CircleBufferGeometry } from 'three';
 import { useLoader } from 'react-three-fiber';
-import outlineTextureUrl from './outline_texture.png';
+
 import fillTextureUrl from './fill_texture.png';
+import outlineTextureUrl from './outline_texture.png';
+import { IPoint, ISensor, ObjectType, VisualizationType } from '../../canvas.model';
+import { useMouseEvent } from '../../hooks/use-mouse-event.hook';
 
 interface SensorProps extends Pick<ISensor, 'tag'> {
-  position: IPoint;
-  type: VisualizationType;
   id: string;
-  isOutline?: boolean;
+  position: IPoint;
+  selectable: boolean;
+  selected: boolean;
+  tag: string;
+  type: VisualizationType;
 }
 
 const circleRadius = 0.17;
 const circleSegments = 32;
 
-export const Sensor: React.FC<SensorProps> = ({ position, type, id, tag, isOutline = false }) => {
+export const Sensor: React.FC<SensorProps> = ({ position, type, id, tag, selected, selectable }) => {
+  const [handleClick, handlePointerOver, handlePointerOut] = useMouseEvent({ id, tag }, ObjectType.SENSOR);
   const geometry = useMemo(() => new CircleBufferGeometry(circleRadius, circleSegments), []);
 
   const fillTexture = useLoader(TextureLoader, fillTextureUrl);
   const outlineTexture = useLoader(TextureLoader, outlineTextureUrl);
-  const texture = isOutline ? outlineTexture : fillTexture;
+  const texture = selected ? outlineTexture : fillTexture;
 
   return (
     <mesh
@@ -28,6 +33,9 @@ export const Sensor: React.FC<SensorProps> = ({ position, type, id, tag, isOutli
       position-x={position.x}
       position-y={position.y}
       position-z={0.04}
+      onClick={selectable && handleClick}
+      onPointerOver={selectable && handlePointerOver}
+      onPointerOut={selectable && handlePointerOut}
       name={`${ObjectType.SENSOR}_${id}`}
       userData={{ position, tag }}>
       <meshBasicMaterial attach="material" map={texture} />

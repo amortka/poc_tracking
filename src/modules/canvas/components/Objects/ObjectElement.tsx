@@ -11,7 +11,7 @@ import { ShapeUtils } from '../../utils/shape.utils';
 
 interface ObjectD2Props extends IObjectWithPointsCoordinates {}
 
-export const ObjectElement: React.FC<ObjectD2Props> = ({ meta, shapePoints, fromGround = 0.001, height = 0 }) => {
+export const ObjectElement: React.FC<ObjectD2Props> = ({ id, meta, shapePoints, fromGround = 0.001, height = 0 }) => {
   const geometryShape = useMemo(() => ShapeUtils.getShapeFromPointCoordinates(shapePoints), [shapePoints]);
 
   const labelPosition: Vector3 = useMemo(
@@ -23,21 +23,22 @@ export const ObjectElement: React.FC<ObjectD2Props> = ({ meta, shapePoints, from
     <group>
       <ObjectExtruded
         fromGround={fromGround}
-        meta={meta}
         geometryShape={geometryShape}
         height={height}
+        id={id}
+        meta={meta}
         selected={meta.selected}
       />
       <ObjectPlane fromGround={fromGround} geometryShape={geometryShape} height={height} selected={meta.selected} />
       <ObjectLine shapePoints={shapePoints} fromGround={fromGround} />
       {meta && (
         <ObjectLabel
-          title={meta.name}
           description={meta.description}
           position={labelPosition}
-          textSize={meta.textSize}
-          textRotation={meta.textRotation}
           selected={meta.selected}
+          textRotation={meta.textRotation}
+          textSize={meta.textSize}
+          title={meta.name}
         />
       )}
     </group>
