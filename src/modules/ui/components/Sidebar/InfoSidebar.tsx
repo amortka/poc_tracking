@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     width: '300px',
     maxWidth: '300px',
     borderLeft: 'none',
+    position: 'relative' as 'relative',
   },
   box: {
     backgroundColor: theme.palette.primary.main,

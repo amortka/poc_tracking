@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
-import { ThemeProvider, Fade } from '@material-ui/core';
+import React, { useRef, useState } from 'react';
+import { Fade, makeStyles, ThemeProvider } from '@material-ui/core';
+import ReactResizeDetector from 'react-resize-detector';
 
-import { CartInfo } from './components/CartInfo/CartInfo';
-import { InfoSidebar } from './components/Sidebar/InfoSidebar';
-import { Menu } from './components/Menu/Menu';
-import { MouseEventTooltip } from './components/VisualisationTooltip/MouseEventTooltip';
-import { SelectionEventTooltip } from './components/VisualisationTooltip/SelectionEventTooltip';
-import { theme } from './config/theme.config';
 import { CameraControl } from './components/CameraControl/CameraControl';
-import { Logos } from './components/Logos/Logos';
+import { CartInfo } from './components/CartInfo/CartInfo';
 import { DataControl } from './components/DataControl/DataControl';
+import { InfoSidebar } from './components/Sidebar/InfoSidebar';
+import { Logos } from './components/Logos/Logos';
+import { Menu } from './components/Menu/Menu';
+import { theme } from './config/theme.config';
+import { VisualisationTooltip } from './components/VisualisationTooltip/VisualisationTooltip';
+
+const useStyles = makeStyles((theme) => ({
+  CanvasWrapper: {
+    position: 'relative' as 'relative',
+    width: '100%',
+    height: '100%',
+    overflow: 'hidden',
+  },
+}));
 
 interface UIProps {
   onZoomIn: () => void;
@@ -18,20 +27,29 @@ interface UIProps {
 }
 
 export const UI: React.FC<UIProps> = ({ children, onZoomIn, onZoomOut, onZoomFit }) => {
+  const classes = useStyles();
+
+  const canvasWrapperRef = useRef(null);
   const [isCartInfoVisible, setIsCartInfoVisible] = useState(false);
+  const [canvasWrapperBox, setIsCanvasWrapperBox] = useState<DOMRect>(null);
+
+  const onResize = () => {
+    setIsCanvasWrapperBox((canvasWrapperRef.current as HTMLElement).getBoundingClientRect());
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <main className={'MainContainer'}>
         <Menu />
-        <div className={'CanvasWrapper'}>
-          {children}
-          <MouseEventTooltip />
-          <SelectionEventTooltip debug={true} centerPosition={{ x: -2, y: -18 }} />
-          <CameraControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} onZoomFit={onZoomFit} />
-          <Logos />
-          <DataControl />
-        </div>
+        <ReactResizeDetector handleWidth onResize={onResize}>
+          <div className={classes.CanvasWrapper} ref={canvasWrapperRef}>
+            {children}
+            <VisualisationTooltip canvasWrapperBox={canvasWrapperBox} />
+            <CameraControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} onZoomFit={onZoomFit} />
+            <Logos />
+            <DataControl />
+          </div>
+        </ReactResizeDetector>
         <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
         {isCartInfoVisible && (
           <Fade in={isCartInfoVisible}>

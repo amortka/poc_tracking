@@ -25,7 +25,7 @@ function useVehicleMock() {
   }, []);
 }
 
-export const MockedBackend: React.FC = ({ children }) => {
+export const MockedBackend: React.FC = () => {
   useVehicleMock();
-  return <>{children}</>;
+  return <React.Fragment />;
 };

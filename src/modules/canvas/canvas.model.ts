@@ -1,6 +1,6 @@
 import { Dictionary } from '../../app.model';
 import { BackgroundProperty } from 'csstype';
-import { Path, Color as ThreeColor } from 'three';
+import { Color as ThreeColor } from 'three';
 
 /**
  * Canvas View
@@ -34,10 +34,7 @@ export interface ICanvasTheme {
       line: Color;
       shape: Color;
       text: Color;
-    };
-    D3: {
-      shape: Color;
-      text: Color;
+      textSelected: Color;
     };
   };
   paths: {
@@ -66,6 +63,11 @@ export enum TextSize {
   LARGE = 0.25,
 }
 
+export enum BorderType {
+  SOLID = 'solid',
+  DASHED = 'dashed',
+}
+
 export interface Hole {
   start: number;
   width: number;
@@ -85,6 +87,10 @@ export interface IWall {
 export interface ISensor {
   point: string;
   tag?: string;
+  meta?: {
+    selected?: boolean;
+    selectable?: boolean;
+  };
 }
 
 export interface IObject {
@@ -95,6 +101,8 @@ export interface IObject {
     name?: string;
     description?: string;
     textSize?: TextSize;
+    textRotation?: number;
+    borderType?: BorderType;
     selected?: boolean;
     selectable?: boolean;
   };
@@ -129,7 +137,9 @@ export interface IVisualizationScene {
  * IVisualizationState
  */
 
-export type MouseEventContextObject = IWall | ISensor | IObjectWithPointsCoordinates | IRoom | IPath;
+export type MouseEventContextObject =
+  | { id: string; tag: string } // for Sensors
+  | { id: string; meta: Pick<IObjectWithPointsCoordinates, 'meta'> };
 
 export interface IVehicle {
   tag: string;
@@ -150,7 +160,7 @@ export interface IRoute {
 
 export interface IRouteWithComputedData extends Omit<IRoute, 'vehicle' | 'path'> {
   vehicle: IVehicle;
-  path: Path;
+  points: THREE.Vector2[];
 }
 
 export interface IVisualizationState {
@@ -212,6 +222,7 @@ export interface IWallWithPointsCoordinates extends Omit<IWall, 'start' | 'end'>
 }
 
 export interface IObjectWithPointsCoordinates extends Omit<IObject, 'shapePoints'> {
+  id: string;
   shapePoints: IPoint[];
 }
 

@@ -34,13 +34,13 @@ function useWebsocket() {
     socket.on(ApiEvent.VEHICLE_UPDATE, (data: IApiVehicleUpdate) => {
       store.dispatch(VehiclesActions.updateVehicle(data));
     });
+    return () => socket.close();
   }, []);
 
   return;
 }
 
-export const RealBackend: React.FC = ({ children }) => {
+export const RealBackend: React.FC = () => {
   useWebsocket();
-
-  return <>{children}</>;
+  return <React.Fragment />;
 };

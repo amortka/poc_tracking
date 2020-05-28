@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { Route } from './Route';
-import { Path } from 'three';
-import { mapPointsToPath } from './utils';
+import { mapPointsToVectors } from './utils';
 import { IVisualizationScene, IVisualizationState } from '../../canvas.model';
 
 interface RoutesProps
@@ -14,7 +13,7 @@ export const Routes: React.FC<RoutesProps> = ({ paths, points, routes, vehicles 
       Object.entries(paths).reduce(
         (acc, [pathId, pathData]) => ({
           ...acc,
-          [pathId]: new Path(mapPointsToPath(pathData.points, points)),
+          [pathId]: mapPointsToVectors(pathData.points, points),
         }),
         {}
       ),
@@ -27,7 +26,7 @@ export const Routes: React.FC<RoutesProps> = ({ paths, points, routes, vehicles 
         return (
           <Route
             key={routeId}
-            path={routePaths[routeData.path]}
+            points={routePaths[routeData.path]}
             vehicle={vehicles[routeData.vehicle]}
             progress={routeData.progress}
             selected={routeData.selected}
