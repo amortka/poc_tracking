@@ -87,6 +87,10 @@ export interface IWall {
 export interface ISensor {
   point: string;
   tag?: string;
+  meta?: {
+    selected?: boolean;
+    selectable?: boolean;
+  };
 }
 
 export interface IObject {
@@ -133,7 +137,9 @@ export interface IVisualizationScene {
  * IVisualizationState
  */
 
-export type MouseEventContextObject = IWall | ISensor | Pick<IObjectWithPointsCoordinates, 'meta'> | IPath;
+export type MouseEventContextObject =
+  | { id: string; tag: string } // for Sensors
+  | { id: string; meta: Pick<IObjectWithPointsCoordinates, 'meta'> };
 
 export interface IVehicle {
   tag: string;
@@ -216,6 +222,7 @@ export interface IWallWithPointsCoordinates extends Omit<IWall, 'start' | 'end'>
 }
 
 export interface IObjectWithPointsCoordinates extends Omit<IObject, 'shapePoints'> {
+  id: string;
   shapePoints: IPoint[];
 }
 

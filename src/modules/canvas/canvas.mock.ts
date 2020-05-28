@@ -130,7 +130,6 @@ export const visualizationSceneMock: IVisualizationScene = {
       meta: {
         name: 'GATEWAY',
         textSize: TextSize.SMALL,
-        selectable: true,
         textRotation: Math.PI / 2,
       },
     },
@@ -249,42 +248,82 @@ export const visualizationSceneMock: IVisualizationScene = {
     qwbmjtmf: {
       point: 'sadvcvxl',
       tag: 'Sensor 1',
+      meta: {
+        selected: true,
+        selectable: true,
+      },
     },
     xzfsgxxh: {
       point: 'dqwzllxi',
       tag: 'Sensor 2',
+      meta: {
+        selected: false,
+        selectable: true,
+      },
     },
     izktgqna: {
       point: 'rzmgfdlc',
       tag: 'Sensor 3',
+      meta: {
+        selected: false,
+        selectable: true,
+      },
     },
     piunnkuf: {
       point: 'etkehdxr',
       tag: 'Sensor 4',
+      meta: {
+        selected: false,
+        selectable: true,
+      },
     },
     saruefli: {
       point: 'wytjebmg',
       tag: 'Sensor 5',
+      meta: {
+        selected: false,
+        selectable: true,
+      },
     },
     pnxwxnpk: {
       point: 'qeculymv',
       tag: 'Sensor 6',
+      meta: {
+        selected: false,
+        selectable: true,
+      },
     },
     aihfuhkc: {
       point: 'xlrbndpv',
       tag: 'Sensor 7',
+      meta: {
+        selected: false,
+        selectable: true,
+      },
     },
     jpgsbunl: {
       point: 'zohcrjma',
       tag: 'Sensor 8',
+      meta: {
+        selected: false,
+        selectable: true,
+      },
     },
     zapgjpha: {
       point: 'lojlicgi',
       tag: 'Sensor 9',
+      meta: {
+        selected: false,
+        selectable: true,
+      },
     },
     quqklxup: {
       point: 'ccomdgqr',
       tag: 'Sensor 10',
+      meta: {
+        selected: false,
+        selectable: true,
+      },
     },
   },
   walls: {

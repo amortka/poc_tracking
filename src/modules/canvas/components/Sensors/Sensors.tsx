@@ -11,7 +11,14 @@ export const Sensors: React.FC<ISensors> = ({ points, sensors, type }) => {
     () =>
       Object.entries(sensors).map(([sensorId, { point, tag }], index) => (
         <Suspense fallback={null} key={sensorId}>
-          <Sensor position={points[point]} type={type} id={sensorId} tag={tag} isOutline={Boolean(index % 2)} />
+          <Sensor
+            position={points[point]}
+            type={type}
+            id={sensorId}
+            tag={tag}
+            selected={Boolean(index % 2)}
+            selectable={true}
+          />
         </Suspense>
       )),
     [points, sensors, type]

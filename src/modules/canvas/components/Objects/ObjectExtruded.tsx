@@ -6,6 +6,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import { useMouseEvent } from '../../hooks/use-mouse-event.hook';
 
 interface ObjectExtrudedProps {
+  id: string;
   fromGround: number;
   meta: IObjectWithPointsCoordinates['meta'];
   geometryShape: Shape;
@@ -13,6 +14,7 @@ interface ObjectExtrudedProps {
   selected: boolean;
 }
 export const ObjectExtruded: React.FC<ObjectExtrudedProps> = ({
+  id,
   geometryShape,
   height,
   fromGround,
@@ -20,7 +22,7 @@ export const ObjectExtruded: React.FC<ObjectExtrudedProps> = ({
   meta,
 }) => {
   const theme = useContext(ThemeContext);
-  const [handleClick, handlePointerOver, handlePointerOut] = useMouseEvent({ meta });
+  const [handleClick, handlePointerOver, handlePointerOut] = useMouseEvent({ id, meta: meta as any });
 
   const planeGeometry = useMemo(() => new ExtrudeGeometry(geometryShape, { depth: height, bevelEnabled: false }), [
     geometryShape,
