@@ -1,13 +1,20 @@
 import React, { useMemo } from 'react';
 import { MockedBackend } from './MockedBackend';
 import { RealBackend } from './RealBackend';
+import { useSelector } from 'react-redux';
+import { isRealData } from '../../store/ui/ui.selectors';
 
 export const ServerHandler: React.FC = ({ children }) => {
-  const isDefaultRealBackend = process.env.REACT_APP_DEFAULT_USE_REAL_BACKEND;
+  const isDefaultRealBackend = useSelector(isRealData);
 
   const SelectBackend = useMemo(() => {
-    return isDefaultRealBackend ? MockedBackend : RealBackend;
+    return isDefaultRealBackend ? RealBackend : MockedBackend;
   }, [isDefaultRealBackend]);
 
-  return <SelectBackend>{children}</SelectBackend>;
+  return (
+    <React.Fragment>
+      <SelectBackend />
+      {children}
+    </React.Fragment>
+  );
 };
