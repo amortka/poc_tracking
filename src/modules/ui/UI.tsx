@@ -9,6 +9,7 @@ import { SelectionEventTooltip } from './components/VisualisationTooltip/Selecti
 import { theme } from './config/theme.config';
 import { CameraControl } from './components/CameraControl/CameraControl';
 import { Logos } from './components/Logos/Logos';
+import { DataControl } from './components/DataControl/DataControl';
 
 interface UIProps {
   onZoomIn: () => void;
@@ -29,6 +30,7 @@ export const UI: React.FC<UIProps> = ({ children, onZoomIn, onZoomOut, onZoomFit
           <SelectionEventTooltip debug={true} centerPosition={{ x: -2, y: -18 }} />
           <CameraControl onZoomIn={onZoomIn} onZoomOut={onZoomOut} onZoomFit={onZoomFit} />
           <Logos />
+          <DataControl />
         </div>
         <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
         {isCartInfoVisible && (

@@ -150,7 +150,7 @@ export interface IRoute {
 
 export interface IRouteWithComputedData extends Omit<IRoute, 'vehicle' | 'path'> {
   vehicle: IVehicle;
-  path: Path;
+  points: THREE.Vector2[];
 }
 
 export interface IVisualizationState {

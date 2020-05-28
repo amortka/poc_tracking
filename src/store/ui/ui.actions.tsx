@@ -4,5 +4,5 @@ import { UiAction } from './ui.model';
 export const uiActions = {
   setIsPending: (payload: boolean) => action(UiAction.PENDING, payload),
   setIsD3: (payload: boolean) => action(UiAction.IS_D3, payload),
-  setIsRealData: (payload: boolean) => action(UiAction.IS_REAL_DATA),
+  setIsRealData: (payload: boolean) => action(UiAction.IS_REAL_DATA, payload),
 };

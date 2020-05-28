@@ -7,8 +7,8 @@ import { ReactComponent as PGSLogo } from './pgssoftware-logo.svg';
 const useStyles = makeStyles((theme) => ({
   logosWrapper: {
     position: 'absolute',
-    bottom: theme.spacing(2),
-    left: theme.spacing(2),
+    bottom: theme.spacing(3),
+    left: theme.spacing(3),
     display: 'flex',
     alignItems: 'center',
   },
