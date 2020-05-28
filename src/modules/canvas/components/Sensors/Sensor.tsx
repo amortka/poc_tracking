@@ -27,7 +27,7 @@ export const Sensor: React.FC<SensorProps> = ({ position, type, id, tag, isOutli
       args={[geometry]}
       position-x={position.x}
       position-y={position.y}
-      position-z={0}
+      position-z={0.04}
       name={`${ObjectType.SENSOR}_${id}`}
       userData={{ position, tag }}>
       <meshBasicMaterial attach="material" map={texture} />

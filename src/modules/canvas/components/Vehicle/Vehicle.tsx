@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { BoxBufferGeometry, CurvePath, MeshBasicMaterial, Path, Vector2, Vector3 } from 'three';
+import { BoxBufferGeometry, MeshBasicMaterial, Vector3 } from 'three';
 import { useUpdate } from 'react-three-fiber';
 
 interface IVehicle {

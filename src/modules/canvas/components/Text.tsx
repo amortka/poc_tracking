@@ -1,12 +1,12 @@
 import React, { useContext, useMemo } from 'react';
 import {
-  Font,
-  TextGeometryParameters,
-  MeshBasicMaterialParameters,
   DoubleSide,
-  Vector3,
-  TextGeometry,
+  Font,
   MeshBasicMaterial,
+  MeshBasicMaterialParameters,
+  TextGeometry,
+  TextGeometryParameters,
+  Vector3,
 } from 'three';
 import { ThemeContext } from '../contexts/ThemeContext';
 

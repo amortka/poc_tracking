@@ -1,4 +1,4 @@
-import { IVisualizationScene, TextSize } from './canvas.model';
+import { BorderType, IVisualizationScene, TextSize } from './canvas.model';
 
 export const visualizationSceneMock: IVisualizationScene = {
   objects: {
@@ -6,7 +6,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     wukfpzgn: {
       shapePoints: ['hjqbfgyn', 'kjdyzeyc', 'aooqiwgn', 'jjxesuop'],
       height: 0,
-      fromGround: 0.01,
+      fromGround: 0.001,
       meta: {
         name: 'L3',
         textSize: TextSize.LARGE,
@@ -16,7 +16,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     zassgxxq: {
       shapePoints: ['uihdfjwv', 'lludbgne', 'esrfytri', 'quasprkl'],
       height: 0,
-      fromGround: 0.01,
+      fromGround: 0.001,
       meta: {
         name: 'L2',
         textSize: TextSize.LARGE,
@@ -26,7 +26,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     fzmocfah: {
       shapePoints: ['ajxiqssn', 'qnozzmzr', 'wovbphyc', 'jtmeqtmc'],
       height: 0,
-      fromGround: 0.01,
+      fromGround: 0.001,
       meta: {
         name: 'L1',
         textSize: TextSize.LARGE,
@@ -36,18 +36,19 @@ export const visualizationSceneMock: IVisualizationScene = {
     muiiyabw: {
       shapePoints: ['uajkikpv', 'bxepajao', 'wbngvreb', 'evnoffqc'],
       height: 0.5,
-      fromGround: 0.02,
+      fromGround: 0.01,
       meta: {
         name: 'L3B',
         textSize: TextSize.SMALL,
         selectable: true,
+        selected: true,
       },
     },
     // L3A
     hcgrauti: {
       shapePoints: ['usabopap', 'gkmuruwo', 'immfkhuu', 'znexkvmy'],
       height: 0.5,
-      fromGround: 0.02,
+      fromGround: 0.01,
       meta: {
         name: 'L3A',
         textSize: TextSize.SMALL,
@@ -58,7 +59,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     kkshvomj: {
       shapePoints: ['rnvrpfms', 'uhitdpip', 'totheacj', 'igjjiztd'],
       height: 0.5,
-      fromGround: 0.02,
+      fromGround: 0.01,
       meta: {
         name: 'L3C',
         textSize: TextSize.SMALL,
@@ -69,7 +70,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     ryqaobbn: {
       shapePoints: ['yehftwgj', 'ilouoodq', 'gnwcnczv', 'uzosscaf'],
       height: 0.5,
-      fromGround: 0.02,
+      fromGround: 0.01,
       meta: {
         name: 'L2A',
         textSize: TextSize.SMALL,
@@ -80,7 +81,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     oavzomsx: {
       shapePoints: ['poiwbfgz', 'lodeicuy', 'znocseqn', 'pirsxhnb'],
       height: 0.5,
-      fromGround: 0.02,
+      fromGround: 0.01,
       meta: {
         name: 'L2B',
         textSize: TextSize.SMALL,
@@ -91,7 +92,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     vbisqysg: {
       shapePoints: ['bovuldfh', 'jozyxcaa', 'xyqupfqs', 'fmqbomjp'],
       height: 0.5,
-      fromGround: 0.02,
+      fromGround: 0.01,
       meta: {
         name: 'L1A',
         textSize: TextSize.SMALL,
@@ -102,7 +103,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     ycjfzvlk: {
       shapePoints: ['mwbspruw', 'hjavskeu', 'jzwceyxp', 'otmkhoub'],
       height: 0.5,
-      fromGround: 0.02,
+      fromGround: 0.01,
       meta: {
         name: 'L1B',
         textSize: TextSize.SMALL,
@@ -112,22 +113,25 @@ export const visualizationSceneMock: IVisualizationScene = {
     etxmnxxf: {
       shapePoints: ['akyepqqo', 'cmjoeldy', 'icdbsniz', 'lmeikfil'],
       height: 0,
-      fromGround: 0.02,
+      fromGround: 0.001,
       meta: {
         name: 'WAREHOUSE',
+        description: 'AREA M1',
         textSize: TextSize.MEDIUM,
         selectable: true,
+        borderType: BorderType.DASHED,
       },
     },
     // GateWay
     zzxcwumh: {
       shapePoints: ['pbtndrum', 'rbdepwzi', 'owkrvduz', 'bcicinqq'],
       height: 0,
-      fromGround: 0.02,
+      fromGround: 0.01,
       meta: {
         name: 'GATEWAY',
         textSize: TextSize.SMALL,
         selectable: true,
+        textRotation: Math.PI / 2,
       },
     },
   },

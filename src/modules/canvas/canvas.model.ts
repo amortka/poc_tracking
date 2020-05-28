@@ -1,6 +1,6 @@
 import { Dictionary } from '../../app.model';
 import { BackgroundProperty } from 'csstype';
-import { Path, Color as ThreeColor } from 'three';
+import { Color as ThreeColor } from 'three';
 
 /**
  * Canvas View
@@ -34,10 +34,7 @@ export interface ICanvasTheme {
       line: Color;
       shape: Color;
       text: Color;
-    };
-    D3: {
-      shape: Color;
-      text: Color;
+      textSelected: Color;
     };
   };
   paths: {
@@ -64,6 +61,11 @@ export enum TextSize {
   SMALL = 0.12,
   MEDIUM = 0.2,
   LARGE = 0.25,
+}
+
+export enum BorderType {
+  SOLID = 'solid',
+  DASHED = 'dashed',
 }
 
 export interface Hole {
@@ -95,6 +97,8 @@ export interface IObject {
     name?: string;
     description?: string;
     textSize?: TextSize;
+    textRotation?: number;
+    borderType?: BorderType;
     selected?: boolean;
     selectable?: boolean;
   };
@@ -129,7 +133,7 @@ export interface IVisualizationScene {
  * IVisualizationState
  */
 
-export type MouseEventContextObject = IWall | ISensor | IObjectWithPointsCoordinates | IRoom | IPath;
+export type MouseEventContextObject = IWall | ISensor | Pick<IObjectWithPointsCoordinates, 'meta'> | IPath;
 
 export interface IVehicle {
   tag: string;
