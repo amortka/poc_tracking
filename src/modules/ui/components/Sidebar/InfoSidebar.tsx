@@ -4,7 +4,7 @@ import { ExpansionSidebarItem } from './ExpansionSidebarItem';
 import { cartsMock } from '../../../../mocks/ui.mock';
 import { CartItem } from '../CartItem/CartItem';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '300px',
     maxWidth: '300px',
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     position: 'relative' as 'relative',
   },
   box: {
-    backgroundColor: '#2C323A',
+    backgroundColor: theme.palette.primary.main,
     height: '200px',
     marginBottom: '15px',
     padding: 0,
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   title: {
     padding: '15px 20px',
   },
-});
+}));
 
 export interface InfoSidebarProps {
   setIsCartInfoVisible: Function;

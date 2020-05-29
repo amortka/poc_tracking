@@ -32,7 +32,6 @@ export const DataControl: React.FC = () => {
     () => ({
       name: 'Data source toggle',
       onClick: () => {
-        console.log(isRealData);
         dispatch(uiActions.setIsRealData(!isRealData));
       },
     }),

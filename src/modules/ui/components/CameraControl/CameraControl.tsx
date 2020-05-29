@@ -25,15 +25,15 @@ const useStyles = makeStyles((theme) => ({
     transition: `${theme.transitions.easing.easeInOut} ${theme.transitions.duration.standard}ms`,
     width: theme.spacing(6),
     height: theme.spacing(6),
-    background: '#181D24',
+    backgroundColor: theme.palette.background.default,
     cursor: 'pointer',
 
     '&:hover': {
-      background: '#3B434D',
+      backgroundColor: theme.palette.primary.light,
     },
 
     '& > .MuiSvgIcon-root': {
-      color: theme.palette.common.white,
+      color: theme.palette.text.primary,
     },
   },
 }));
