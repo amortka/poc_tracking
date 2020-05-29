@@ -3,30 +3,28 @@ import { Drawer, makeStyles, Typography, Box, List } from '@material-ui/core';
 import { ExpansionSidebarItem } from './ExpansionSidebarItem';
 import { cartsMock } from '../../../../mocks/ui.mock';
 import { CartItem } from '../CartItem/CartItem';
+import { Select } from '../MaterialUI/Select';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '300px',
-    maxWidth: '300px',
+    width: theme.spacing(50),
+    maxWidth: theme.spacing(50),
   },
   drawerPaper: {
     backgroundColor: '#14191F',
-    width: '300px',
-    maxWidth: '300px',
+    width: theme.spacing(50),
+    maxWidth: theme.spacing(50),
     borderLeft: 'none',
     position: 'relative' as 'relative',
   },
   box: {
     backgroundColor: theme.palette.primary.main,
-    height: '200px',
-    marginBottom: '15px',
-    padding: 0,
+    height: theme.spacing(39.5),
+    marginBottom: theme.spacing(2),
+    padding: theme.spacing(3),
   },
   list: {
     width: '100%',
-  },
-  title: {
-    padding: '15px 20px',
   },
 }));
 
@@ -43,9 +41,7 @@ export const InfoSidebar: React.FC<InfoSidebarProps> = React.memo(({ setIsCartIn
     <Drawer variant="permanent" anchor="right" className={classes.root} classes={{ paper: classes.drawerPaper }}>
       <CartInfoContext.Provider value={setIsCartInfoVisible}>
         <Box className={classes.box} padding="10px">
-          <Typography variant="subtitle1" className={classes.title}>
-            Linia produkcyjna
-          </Typography>
+          <Select />
           <List className={classes.list}>
             <CartItem {...cartsMock[0]} />
             <CartItem {...cartsMock[1]} />
