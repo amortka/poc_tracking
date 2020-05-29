@@ -1,7 +1,7 @@
 import { Action, combineReducers, Reducer } from 'redux';
 
 import { routesReducer } from './routes/routes.reducer';
-import { RoutesState } from './routes/routes.model';
+import { IRoutesState } from './routes/routes.model';
 import { sceneReducer } from './scene/scene.reducer';
 import { SceneState } from './scene/scene.model';
 import { tooltipsReducer } from './tooltips/tooltips.reducer';
@@ -15,7 +15,7 @@ import { IVehiclesState } from './vehicles/vehicles.model';
  * Interfaces
  **********************************************************/
 export interface AppState {
-  routes: RoutesState;
+  routes: IRoutesState;
   scene: SceneState;
   tooltip: TooltipState;
   ui: UiState;

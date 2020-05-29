@@ -30,6 +30,7 @@ export const Routes: React.FC<RoutesProps> = ({ paths, points, routes, vehicles 
             vehicle={vehicles[routeData.vehicle]}
             progress={routeData.progress}
             selected={routeData.selected}
+            color={routeData.color}
           />
         );
       })}

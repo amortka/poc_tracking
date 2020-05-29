@@ -1,18 +1,18 @@
 import { ApiEvent, IApiVehicleUpdate } from '../app.model';
 
 const progress = [
-  { delay: 0, sensorId: 'qeculymv', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 2000, sensorId: 'wytjebmg', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 4000, sensorId: 'etkehdxr', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: 'rzmgfdlc', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 2000, sensorId: 'dqwzllxi', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 3000, sensorId: 'sadvcvxl', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 0, sensorId: 'pnxwxnpk', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 2000, sensorId: 'saruefli', event: ApiEvent.VEHICLE_UPDATE }, //
+  { delay: 4000, sensorId: 'piunnkuf', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 1000, sensorId: 'izktgqna', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 2000, sensorId: 'xzfsgxxh', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 3000, sensorId: 'qwbmjtmf', event: ApiEvent.VEHICLE_UPDATE },
   { delay: 4000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 4000, sensorId: 'ccomdgqr', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 2000, sensorId: 'lojlicgi', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 3000, sensorId: 'zohcrjma', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: 'xlrbndpv', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: 'qeculymv', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 4000, sensorId: 'quqklxup', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 2000, sensorId: 'zapgjpha', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 3000, sensorId: 'jpgsbunl', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 1000, sensorId: 'aihfuhkc', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 1000, sensorId: 'pnxwxnpk', event: ApiEvent.VEHICLE_UPDATE },
 ];
 
 const wait = (time: number) =>

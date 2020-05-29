@@ -9,15 +9,15 @@ interface ISensors extends Pick<IVisualizationScene, 'sensors' | 'points'> {
 export const Sensors: React.FC<ISensors> = ({ points, sensors, type }) => {
   const sensorModels = useMemo(
     () =>
-      Object.entries(sensors).map(([sensorId, { point, tag }], index) => (
+      Object.entries(sensors).map(([sensorId, { point, tag, meta }], index) => (
         <Suspense fallback={null} key={sensorId}>
           <Sensor
             position={points[point]}
             type={type}
             id={sensorId}
             tag={tag}
-            selected={Boolean(index % 2)}
-            selectable={true}
+            selected={meta.selected}
+            selectable={meta.selectable}
           />
         </Suspense>
       )),

@@ -2,9 +2,9 @@ import { CartItemProps } from '../modules/ui/components/CartItem/CartItem';
 
 export const cartsMock: CartItemProps[] = [
   {
-    name: 'Milkrun ABC',
+    name: 'Mocked POI',
     time: '9:12',
-    color: '#416BE8',
+    color: '#41E8D7',
     wagons: [
       { id: 'nsef4hy9nr', isLoaded: true },
       { id: '04stobtp2e', isLoaded: true },
@@ -13,7 +13,7 @@ export const cartsMock: CartItemProps[] = [
     ],
   },
   {
-    name: 'Milkrun GHI',
+    name: 'Mocked GHI',
     time: '2:00',
     color: '#11B573',
     wagons: [
@@ -23,7 +23,7 @@ export const cartsMock: CartItemProps[] = [
     ],
   },
   {
-    name: 'Milkrun MNB',
+    name: 'Mocked MNB',
     time: '16:34',
     color: '#E9842C',
     wagons: [

@@ -5,7 +5,7 @@ import { UiAction } from './ui.model';
 export const initialState: UiState = {
   isPending: false,
   isD3: false,
-  isRealData: Boolean(process.env.REACT_APP_INNITIALLY_USE_REAL_BACKEND),
+  isRealData: process.env.REACT_APP_INNITIALLY_USE_REAL_BACKEND === 'false' ? false : true,
 };
 
 export const uiReducer: Reducer<UiState> = (state = initialState, action) => {

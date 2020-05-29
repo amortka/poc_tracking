@@ -1,10 +1,9 @@
 import { Reducer } from 'redux';
 import { TooltipState, TooltipAction } from './tooltips.model';
-import { visualizationStateMock } from '../../mocks/main.mock';
 
 export const initialState: TooltipState = {
   mouse: null,
-  selection: { data: null, selected: visualizationStateMock.selection },
+  selection: { data: null, selected: {} },
 };
 
 export const tooltipsReducer: Reducer<TooltipState> = (state = initialState, action) => {

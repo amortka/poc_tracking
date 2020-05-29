@@ -6,6 +6,7 @@ export interface IRouteState extends Omit<IRoute, 'progress'> {}
 export enum RoutesAction {
   ADD_ROUTE = '@@routes/ADD_ROUTE',
   UPDATE_ROUTE = '@@routes/UPDATE_ROUTE',
+  SELECT_ROUTES = '@@routes/SELECT_ROUTE',
 }
 
-export interface RoutesState extends Dictionary<IRouteState> {}
+export interface IRoutesState extends Dictionary<IRouteState> {}

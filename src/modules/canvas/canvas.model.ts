@@ -1,6 +1,6 @@
 import { Dictionary } from '../../app.model';
 import { BackgroundProperty } from 'csstype';
-import { Color as ThreeColor } from 'three';
+import { Color as ThreeColor, Vector2 } from 'three';
 
 /**
  * Canvas View
@@ -90,6 +90,7 @@ export interface ISensor {
   meta?: {
     selected?: boolean;
     selectable?: boolean;
+    hidden?: boolean;
   };
 }
 
@@ -111,7 +112,8 @@ export interface IObject {
 export interface IPath {
   tag?: string;
   points: string[];
-  sensors: Array<{ sensorId: string; distance: number }>;
+  sensors: Array<{ sensorId: string; distance: number; relationHidden?: boolean }>;
+  objects: Array<{ objectId: string; distance: number }>;
 }
 
 export interface IRoom {
@@ -152,15 +154,17 @@ export interface IVehicle {
 }
 
 export interface IRoute {
+  tag?: string;
   vehicle: string; // id vehicle
   path: string; // id path
   progress: number; // range 0-1
   selected: boolean;
+  color: Color;
 }
 
 export interface IRouteWithComputedData extends Omit<IRoute, 'vehicle' | 'path'> {
   vehicle: IVehicle;
-  points: THREE.Vector2[];
+  points: Vector2[];
 }
 
 export interface IVisualizationState {

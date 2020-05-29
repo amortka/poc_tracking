@@ -47,6 +47,7 @@ export class RouteService {
       }
 
       if (this.routeState.selected !== this.route.selected) {
+        this.route.selected = this.routeState.selected;
         this.setStateCallback(this.routeId, { ...this.route, selected: this.routeState.selected });
       }
     });
