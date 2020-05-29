@@ -20,8 +20,10 @@ function getRoutesIdChanges(routesId: string[]): string[] {
 }
 
 function handleRoutes(routesId: string[], setStateCallback: (routeId: string, data: IRoute) => void): () => void {
-  getRoutesIdChanges(routesId).forEach((routeId) => new RouteService(routeId, setStateCallback));
+  const routeServices: RouteService[] = [];
+  getRoutesIdChanges(routesId).forEach((routeId) => routeServices.push(new RouteService(routeId, setStateCallback)));
   return () => {
+    // routeServices.forEach((service) => service.clear());
     console.log('TODO: implement clearing subscriptions');
   };
 }

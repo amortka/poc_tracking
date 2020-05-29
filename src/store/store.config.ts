@@ -1,6 +1,8 @@
 import { applyMiddleware, compose, createStore } from 'redux';
-import { makeRootReducer } from './main.store';
 import ReduxThunk from 'redux-thunk';
+
+import { makeRootReducer } from './main.store';
+import { asyncDispatchMiddleware } from './middlewares';
 
 const initialState = (window as any).___INITIAL_STATE__ || {};
 
@@ -24,6 +26,7 @@ function configureStore(initialState: any): any {
   // ======================================================
   const middleware = [
     ReduxThunk,
+    asyncDispatchMiddleware,
     // socketMiddleware,
     // This is where you add other middleware like redux-observable
   ];

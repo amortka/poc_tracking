@@ -90,6 +90,7 @@ export interface ISensor {
   meta?: {
     selected?: boolean;
     selectable?: boolean;
+    hidden?: boolean;
   };
 }
 
@@ -111,7 +112,8 @@ export interface IObject {
 export interface IPath {
   tag?: string;
   points: string[];
-  sensors: Array<{ sensorId: string; distance: number }>;
+  sensors: Array<{ sensorId: string; distance: number; relationHidden?: boolean }>;
+  objects: Array<{ objectId: string; distance: number }>;
 }
 
 export interface IRoom {

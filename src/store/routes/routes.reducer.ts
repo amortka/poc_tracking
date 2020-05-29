@@ -6,11 +6,11 @@ import { VehiclesAction } from '../vehicles/vehicles.model';
 import { IApiVehicleUpdate } from '../../app.model';
 import { routeColors } from '../../modules/ui/config/theme.config';
 import { Color } from '../../modules/canvas/canvas.model';
+import { SceneActions } from '../scene/scene.actions';
 
 /**
- * Functions
+ * Helpers
  */
-
 function getRouteColor(value: number): Color {
   return routeColors[value % routeColors.length];
 }
@@ -34,12 +34,18 @@ function createRouteWhenNewVehicleUpdates(state: IRoutesState, action: any): IRo
   };
 }
 
-function handleRoutesSelection(state: IRoutesState, action: any) {
+function handleRoutesSelection(state: IRoutesState, routesIds: string[]) {
   let newState: IRoutesState = { ...state };
   for (const routeId in newState) {
-    newState[routeId].selected = (action.payload.routesId as string[]).indexOf(routeId) > -1;
+    newState[routeId].selected = routesIds.indexOf(routeId) > -1;
   }
   return newState;
+}
+
+function handleSceneElementsSelection(asyncDispatch: Function, state: IRoutesState, routesIds: string[]) {
+  asyncDispatch(
+    SceneActions.selectSceneElementsByPathsIds([...routesIds].map((routeId) => state[routeId]?.path).filter((r) => !!r))
+  );
 }
 
 /**
@@ -57,7 +63,9 @@ export const routesReducer: Reducer<IRoutesState> = (state = initialState, actio
       return { ...state, [action.payload.vehicleId]: { ...state[action.payload.vehicleId], ...action.payload.data } };
     }
     case RoutesAction.SELECT_ROUTES: {
-      return handleRoutesSelection(state, action);
+      const routesIds: string[] = action.payload.routesIds;
+      handleSceneElementsSelection(action.asyncDispatch, state, routesIds);
+      return handleRoutesSelection(state, routesIds);
     }
 
     // TODO: temporary add creation of route by backend vehicle update where rfid is not empty

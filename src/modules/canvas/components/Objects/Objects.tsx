@@ -12,7 +12,7 @@ export const Objects: React.FC<WallsProps> = ({ objects, points }) => {
   ]);
 
   const renderObjects = useMemo(() => {
-    return objectsWithCoordinates.map((o, i) => <ObjectElement key={i} {...o} />);
+    return objectsWithCoordinates.map((o) => <ObjectElement key={o.id} {...o} />);
   }, [objectsWithCoordinates]);
 
   return <React.Fragment>{renderObjects}</React.Fragment>;

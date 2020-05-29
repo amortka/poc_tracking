@@ -48,14 +48,8 @@ export const InfoSidebar: React.FC<InfoSidebarProps> = React.memo(({ setIsCartIn
   const routes: Dictionary<IRouteWithData> = useSelector(RoutesSelectors.getRoutesWithData);
   const renderRoutes = useMemo(() => {
     return Object.entries(routes).map(([routeId, route]) => (
-      <div onClick={() => dispatch(RoutesActions.selectRoutes(routeId))}>
-        <CartItem
-          key={routeId}
-          name={route.tag}
-          time={cartsMock[0].time}
-          wagons={cartsMock[0].wagons}
-          color={route.color}
-        />
+      <div key={routeId} onClick={() => dispatch(RoutesActions.selectRoutes([routeId]))}>
+        <CartItem name={route.tag} time={cartsMock[0].time} wagons={cartsMock[0].wagons} color={route.color} />
       </div>
     ));
   }, [routes, dispatch]);
@@ -69,7 +63,7 @@ export const InfoSidebar: React.FC<InfoSidebarProps> = React.memo(({ setIsCartIn
           </Typography>
           <List className={classes.list}>
             {renderRoutes}
-            <div onClick={() => dispatch(RoutesActions.selectRoutes('routeId'))}>
+            <div onClick={() => dispatch(RoutesActions.selectRoutes(['routeId']))}>
               <CartItem {...cartsMock[0]} />
               <CartItem {...cartsMock[1]} />
               <CartItem {...cartsMock[2]} />
