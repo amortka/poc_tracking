@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import { ExtrudeGeometry, Shape } from 'three';
+import { ExtrudeGeometry, MeshPhongMaterial, Shape } from 'three';
 
 import { IObjectWithPointsCoordinates } from '../../canvas.model';
 import { ThemeContext } from '../../contexts/ThemeContext';
@@ -29,20 +29,25 @@ export const ObjectExtruded: React.FC<ObjectExtrudedProps> = ({
     height,
   ]);
 
+  const material = useMemo(
+    () =>
+      new MeshPhongMaterial({
+        transparent: true,
+        opacity: 0.3,
+        depthWrite: false,
+        color: selected ? theme.objects.D2.line : theme.objects.D2.shape,
+      }),
+    [selected, theme.objects.D2.line, theme.objects.D2.shape]
+  );
+
   return (
     <mesh
       args={[planeGeometry]}
       position-z={fromGround + 0.001}
       onClick={meta.selectable && handleClick}
       onPointerOver={meta.selectable && handlePointerOver}
-      onPointerOut={meta.selectable && handlePointerOut}>
-      <meshPhongMaterial
-        attach="material"
-        color={selected ? theme.objects.D2.line : theme.objects.D2.shape}
-        transparent={true}
-        opacity={0.3}
-        depthWrite={false}
-      />
-    </mesh>
+      onPointerOut={meta.selectable && handlePointerOut}
+      material={material}
+    />
   );
 };

@@ -41,7 +41,6 @@ export const visualizationSceneMock: IVisualizationScene = {
         name: 'L3B',
         textSize: TextSize.SMALL,
         selectable: true,
-        selected: true,
       },
     },
     // L3A
@@ -255,7 +254,7 @@ export const visualizationSceneMock: IVisualizationScene = {
       point: 'sadvcvxl',
       tag: 'Sensor 1',
       meta: {
-        selected: true,
+        selected: false,
         selectable: true,
       },
     },

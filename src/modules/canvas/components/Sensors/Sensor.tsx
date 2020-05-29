@@ -25,7 +25,7 @@ export const Sensor: React.FC<SensorProps> = ({ position, type, id, tag, selecte
 
   const fillTexture = useLoader(TextureLoader, fillTextureUrl);
   const outlineTexture = useLoader(TextureLoader, outlineTextureUrl);
-  const texture = selected ? outlineTexture : fillTexture;
+  const texture = selected ? fillTexture : outlineTexture;
 
   return (
     <mesh

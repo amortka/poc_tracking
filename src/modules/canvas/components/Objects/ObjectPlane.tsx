@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import { ExtrudeGeometry, Shape } from 'three';
+import { ExtrudeGeometry, MeshBasicMaterial, Shape } from 'three';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 
@@ -15,9 +15,11 @@ export const ObjectPlane: React.FC<ObjectPlaneProps> = ({ geometryShape, height,
   const planeGeometry = useMemo(() => new ExtrudeGeometry(geometryShape, { depth: 0, bevelEnabled: false }), [
     geometryShape,
   ]);
-  return (
-    <mesh args={[planeGeometry]} position-z={fromGround}>
-      <meshPhongMaterial attach="material" color={selected ? theme.objects.D2.line : theme.objects.D2.shape} />
-    </mesh>
+
+  const material = useMemo(
+    () => new MeshBasicMaterial({ color: selected ? theme.objects.D2.line : theme.objects.D2.shape }),
+    [selected, theme.objects.D2.line, theme.objects.D2.shape]
   );
+
+  return <mesh args={[planeGeometry]} position-z={fromGround} material={material} />;
 };
