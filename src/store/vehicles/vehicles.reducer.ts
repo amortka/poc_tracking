@@ -1,17 +1,8 @@
 import { Reducer } from 'redux';
 import { VehiclesAction, IVehiclesState, IVehicleState } from './vehicles.model';
-import { visualizationStateMock } from '../../mocks/main.mock';
 import { IApiVehicleUpdate } from '../../app.model';
 
-export const initialState: IVehiclesState = {
-  trqzbojg: {
-    ...visualizationStateMock.vehicles.trqzbojg,
-    acceleration: { x: 0, y: 0, z: 0 },
-    lastUpdateTime: Date.now(),
-    timeStats: new Date().toString(),
-    currentRfIds: [],
-  },
-};
+export const initialState: IVehiclesState = {};
 
 function vehicleDTO(payload: IApiVehicleUpdate): Partial<IVehicleState> {
   const {

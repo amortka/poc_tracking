@@ -6,6 +6,7 @@ import './CartItem.css';
 import { CartInfoContext } from '../Sidebar/InfoSidebar';
 import { useDispatch } from 'react-redux';
 import { tooltipActions } from '../../../../store/tooltips/tooltips.actions';
+import { Color } from '../../../canvas/canvas.model';
 
 const useStyles = makeStyles({
   root: {
@@ -36,7 +37,7 @@ export interface CartItemProps {
   name: string;
   time: string;
   wagons: Array<{ id: string; isLoaded: boolean }>;
-  color: string;
+  color: Color;
 }
 
 export const CartItem: React.FC<CartItemProps> = ({ name, time, wagons, color }) => {
@@ -52,7 +53,7 @@ export const CartItem: React.FC<CartItemProps> = ({ name, time, wagons, color })
   return (
     <ListItem button className={classes.root}>
       <ListItemIcon className={classes.icon}>
-        <DriveEta htmlColor={color} />
+        <DriveEta htmlColor={color as string} />
       </ListItemIcon>
       <ListItemText primary={name} primaryTypographyProps={{ variant: 'body2' }} className={classes.cartName} />
       <ListItemText primary={time} primaryTypographyProps={{ variant: 'overline' }} className={classes.cartTime} />

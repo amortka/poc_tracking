@@ -1,11 +1,13 @@
 import React, { useMemo } from 'react';
-import { BoxBufferGeometry, MeshBasicMaterial, Vector3, Shape, ExtrudeBufferGeometry, Vector2 } from 'three';
+import { ExtrudeBufferGeometry, Mesh, MeshBasicMaterial, Shape, Vector2, Vector3 } from 'three';
 import { useUpdate } from 'react-three-fiber';
+import { Color } from '../../canvas.model';
 
-interface IVehicle {
+interface VehicleProps {
   type: string;
-  position: THREE.Vector2;
-  rotation: THREE.Vector2;
+  position: Vector2;
+  rotation: Vector2;
+  color: Color;
 }
 
 const extrudeSettings = {
@@ -18,8 +20,8 @@ const extrudeSettings = {
   bevelSegments: 1,
 };
 
-export const Vehicle: React.FC<IVehicle> = ({ position, rotation }) => {
-  const material = useMemo(() => new MeshBasicMaterial({ color: 0xe9842c }), []);
+export const Vehicle: React.FC<VehicleProps> = ({ position, rotation, color }) => {
+  const material = useMemo(() => new MeshBasicMaterial({ color }), [color]);
 
   const geometry = useMemo(() => {
     const length = 0.35,
@@ -42,7 +44,7 @@ export const Vehicle: React.FC<IVehicle> = ({ position, rotation }) => {
   }, []);
 
   // TODO Predict vehicle direction based on vehicle length and sensor (on vehicle) position
-  const ref = useUpdate<THREE.Mesh>(
+  const ref = useUpdate<Mesh>(
     (mesh) => {
       const up = new Vector3(0, 1, 0);
       let axis = new Vector3();

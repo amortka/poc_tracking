@@ -1,5 +1,4 @@
 import { IRouteState } from './store/routes/routes.model';
-import { IPathWithPointsCoordinates } from './modules/canvas/canvas.model';
 import { IVehicleState } from './store/vehicles/vehicles.model';
 
 export interface Dictionary<T> {
@@ -35,7 +34,6 @@ export interface IApiVehicleUpdate {
   pathId?: string;
 }
 
-export interface IRouteWithData extends Omit<IRouteState, 'vehicle' | 'path'> {
+export interface IRouteWithData extends Omit<IRouteState, 'vehicle'> {
   vehicle: IVehicleState;
-  path: IPathWithPointsCoordinates;
 }

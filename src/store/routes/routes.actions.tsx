@@ -5,4 +5,5 @@ import { IRoute } from '../../modules/canvas/canvas.model';
 export const RoutesActions = {
   addRoute: (payload: IRoute) => action(RoutesAction.ADD_ROUTE, payload),
   updateRoute: (payload: { routeId: string; data: IRoute }) => action(RoutesAction.UPDATE_ROUTE, payload),
+  selectRoutes: (payload: string) => action(RoutesAction.SELECT_ROUTES, { routesId: payload }),
 };

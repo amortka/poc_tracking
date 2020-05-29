@@ -1,6 +1,6 @@
 import { Dictionary } from '../../app.model';
 import { BackgroundProperty } from 'csstype';
-import { Color as ThreeColor } from 'three';
+import { Color as ThreeColor, Vector2 } from 'three';
 
 /**
  * Canvas View
@@ -152,15 +152,17 @@ export interface IVehicle {
 }
 
 export interface IRoute {
+  tag?: string;
   vehicle: string; // id vehicle
   path: string; // id path
   progress: number; // range 0-1
   selected: boolean;
+  color: Color;
 }
 
 export interface IRouteWithComputedData extends Omit<IRoute, 'vehicle' | 'path'> {
   vehicle: IVehicle;
-  points: THREE.Vector2[];
+  points: Vector2[];
 }
 
 export interface IVisualizationState {
