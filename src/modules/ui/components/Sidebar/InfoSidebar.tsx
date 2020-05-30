@@ -44,8 +44,8 @@ export const CartInfoContext = createContext<Function>(undefined);
 export const InfoSidebar: React.FC<InfoSidebarProps> = React.memo(({ setIsCartInfoVisible }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
   const routes: Dictionary<IRouteWithData> = useSelector(RoutesSelectors.getRoutesWithData);
+
   const renderRoutes = useMemo(() => {
     return Object.entries(routes).map(([routeId, route]) => (
       <div key={routeId} onClick={() => dispatch(RoutesActions.selectRoutes([routeId]))}>

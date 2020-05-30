@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Logos: React.FC = () => {
+export const Logos: React.FC = React.memo(() => {
   const classes = useStyles();
 
   return (
@@ -29,4 +29,4 @@ export const Logos: React.FC = () => {
       <BalluffLogo />
     </div>
   );
-};
+});
