@@ -48,7 +48,7 @@ export const Canvas: React.FC<CanvasProps> = ({
   scene,
   onSelectionData,
   state,
-  theme = {},
+  theme = null,
   type,
   setOnZoomIn,
   setOnZoomOut,

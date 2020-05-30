@@ -17,7 +17,7 @@ export class CanvasUtils {
     sensor: { D2: '#464c53', D3: '#464c53' },
   };
 
-  static getCanvasTheme(config: Partial<ICanvasTheme> = {}): ICanvasTheme {
-    return merge(this.canvasThemeDefault, config);
+  static getCanvasTheme(config: Partial<ICanvasTheme>): ICanvasTheme {
+    return merge(this.canvasThemeDefault, config ? config : {});
   }
 }
