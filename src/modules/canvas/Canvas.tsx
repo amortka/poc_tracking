@@ -25,6 +25,7 @@ import { Selection } from './components/Selection/Selection';
 import { Sensors } from './components/Sensors/Sensors';
 import { ThemeContext } from './contexts/ThemeContext';
 import { Walls } from './components/Walls/Walls';
+import { ThreeMonitor } from './components/ThreeMonitor';
 
 interface CanvasProps {
   debug?: boolean;
@@ -66,6 +67,7 @@ export const Canvas: React.FC<CanvasProps> = ({
         <MouseEventsContextProvider>
           <ThemeContext.Provider value={themeConfig}>
             {debug && <axesHelper args={[5]} />}
+            {debug && <ThreeMonitor />}
             <Lights />
             <Floor type={type} />
             <Scene isD3={state.isD3} setOnZoomIn={setOnZoomIn} setOnZoomOut={setOnZoomOut} setOnZoomFit={setOnZoomFit}>

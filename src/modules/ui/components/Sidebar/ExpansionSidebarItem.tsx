@@ -43,7 +43,7 @@ export interface ExpansionSidebarItemProps {
   title: string;
 }
 
-export const ExpansionSidebarItem: React.FC<ExpansionSidebarItemProps> = ({ title }) => {
+export const ExpansionSidebarItem: React.FC<ExpansionSidebarItemProps> = React.memo(({ title }) => {
   const classes = useStyles();
 
   return (
@@ -60,4 +60,4 @@ export const ExpansionSidebarItem: React.FC<ExpansionSidebarItemProps> = ({ titl
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );
-};
+});

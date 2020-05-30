@@ -8,17 +8,16 @@ import { CanvasManager } from './modules/canvas-manager/CanvasMenager';
 import { ServerHandler } from './modules/server-handler/ServerHandler';
 
 function App() {
-  const [onZoomIn, setOnZoomIn] = useState(() => () => console.log('onZoomIn'));
-  const [onZoomOut, setOnZoomOut] = useState(() => () => console.log('onZoomOut'));
-  const [onZoomFit, setOnZoomFit] = useState(() => () => console.log('onZoomFit'));
+  const [onZoomIn, setOnZoomIn] = useState(() => null);
+  const [onZoomOut, setOnZoomOut] = useState(() => () => null);
+  const [onZoomFit, setOnZoomFit] = useState(() => () => null);
 
   return (
     <Provider store={store}>
-      <ServerHandler>
-        <UI onZoomIn={onZoomIn} onZoomOut={onZoomOut} onZoomFit={onZoomFit}>
-          <CanvasManager setOnZoomIn={setOnZoomIn} setOnZoomOut={setOnZoomOut} setOnZoomFit={setOnZoomFit} />
-        </UI>
-      </ServerHandler>
+      <ServerHandler />
+      <UI onZoomIn={onZoomIn} onZoomOut={onZoomOut} onZoomFit={onZoomFit}>
+        <CanvasManager setOnZoomIn={setOnZoomIn} setOnZoomOut={setOnZoomOut} setOnZoomFit={setOnZoomFit} />
+      </UI>
     </Provider>
   );
 }
