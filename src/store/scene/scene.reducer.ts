@@ -10,7 +10,9 @@ import { visualizationSceneMock } from '../../modules/canvas/canvas.mock';
 function handleSceneElementSelections(state: SceneState, selectedPaths: string[]) {
   const sensorsToSelect = {};
   const objectToSelect = {};
+  const pathToSelect = {};
   selectedPaths.forEach((pathId) => {
+    pathToSelect[pathId] = pathId;
     state.paths[pathId].sensors.forEach(({ sensorId, relationHidden }) => {
       if (!relationHidden) {
         sensorsToSelect[sensorId] = sensorId;
@@ -21,7 +23,10 @@ function handleSceneElementSelections(state: SceneState, selectedPaths: string[]
     });
   });
 
-  /// unselect all object and sensors
+  /// unselect all paths, object and sensors
+  for (const pathId in state.paths) {
+    state.paths[pathId].meta.selected = Boolean(pathToSelect[pathId]);
+  }
   for (const objectId in state.objects) {
     state.objects[objectId].meta.selected = Boolean(objectToSelect[objectId]);
   }
@@ -31,6 +36,7 @@ function handleSceneElementSelections(state: SceneState, selectedPaths: string[]
 
   state.objects = { ...state.objects };
   state.sensors = { ...state.sensors };
+  state.paths = { ...state.paths };
 
   return state;
 }
