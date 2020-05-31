@@ -1,21 +1,20 @@
-import * as THREE from 'three';
 import React, { useContext, useEffect, useMemo, useRef } from 'react';
+import { BufferGeometry, Line } from 'three';
+
 import { IPathWithPointsCoordinates } from '../../canvas.model';
 import { LineUtils } from '../../utils/line.utils';
 import { ThemeContext } from '../../contexts/ThemeContext';
 
-export interface PathsDefaultProps extends IPathWithPointsCoordinates {
-  color?: THREE.Color | string | number;
-}
+export interface PathsElementProps extends IPathWithPointsCoordinates {}
 
-export const PathsDefault: React.FC<PathsDefaultProps> = React.memo(({ points, tag, color }) => {
-  const lineRef = useRef<THREE.Line>(null);
+export const PathsElement: React.FC<PathsElementProps> = React.memo(({ points, tag, meta }) => {
+  const lineRef = useRef<Line>(null);
   const fromGround = useRef(0.02);
 
   const theme = useContext(ThemeContext);
   const pointsV = LineUtils.getPathPointsFromPointCoordinates(points, fromGround.current);
 
-  const lineG = useMemo(() => new THREE.BufferGeometry().setFromPoints(pointsV), [pointsV]);
+  const lineG = useMemo(() => new BufferGeometry().setFromPoints(pointsV), [pointsV]);
 
   useEffect(() => {
     lineRef?.current.computeLineDistances();
@@ -26,9 +25,9 @@ export const PathsDefault: React.FC<PathsDefaultProps> = React.memo(({ points, t
     <line ref={lineRef} geometry={lineG}>
       <lineDashedMaterial
         attach="material"
-        color={color || theme.objects.D2.line}
-        dashSize={theme.paths.D2.dashSize}
-        gapSize={theme.paths.D2.gapSize}
+        color={meta.selected ? theme.paths.selectedLine : theme.objects.D2.line}
+        dashSize={theme.paths.dashSize}
+        gapSize={theme.paths.gapSize}
         scale={1}
       />
     </line>

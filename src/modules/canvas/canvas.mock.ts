@@ -156,6 +156,7 @@ export const visualizationSceneMock: IVisualizationScene = {
         { objectId: 'kkshvomj', distance: 0.495 },
         { objectId: 'ycjfzvlk', distance: 0.682 },
       ],
+      meta: {},
     },
   },
   points: {
@@ -396,6 +397,7 @@ export const visualizationSceneMock: IVisualizationScene = {
       start: 'qqsaokeb',
       end: 'aeeuewak',
       thickness: 0.1,
+      meta: {},
     },
     ka9v61v5: {
       start: 'aeeuewak',
@@ -416,6 +418,7 @@ export const visualizationSceneMock: IVisualizationScene = {
       start: 's5pyoioi',
       end: 'bbgexc3r',
       thickness: 0.1,
+      meta: {},
     },
     jgxi5xqi: {
       start: 'bbgexc3r',

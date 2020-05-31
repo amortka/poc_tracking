@@ -38,18 +38,14 @@ export interface ICanvasTheme {
     };
   };
   paths: {
-    D2: {
-      gapSize: number;
-      dashSize: number;
-      line: Color;
-      selectedLine: Color;
-    };
-    D3: {
-      gapSize: number;
-      dashSize: number;
-      line: Color;
-      selectedLine: Color;
-    };
+    gapSize: number;
+    dashSize: number;
+    line: Color;
+    selectedLine: Color;
+  };
+  routes: {
+    line: Color;
+    lineWidth: number;
   };
 }
 
@@ -79,15 +75,15 @@ export interface IWall {
   start: string;
   end: string;
   thickness: number;
-  meta?: {
-    holes: Dictionary<Hole>;
+  meta: {
+    holes?: Dictionary<Hole>;
   };
 }
 
 export interface ISensor {
   point: string;
   tag?: string;
-  meta?: {
+  meta: {
     selected?: boolean;
     selectable?: boolean;
     hidden?: boolean;
@@ -98,7 +94,7 @@ export interface IObject {
   shapePoints: string[];
   height?: number;
   fromGround?: number;
-  meta?: {
+  meta: {
     name?: string;
     description?: string;
     textSize?: TextSize;
@@ -114,6 +110,9 @@ export interface IPath {
   points: string[];
   sensors: Array<{ sensorId: string; distance: number; relationHidden?: boolean }>;
   objects: Array<{ objectId: string; distance: number }>;
+  meta: {
+    selected?: boolean;
+  };
 }
 
 export interface IRoom {

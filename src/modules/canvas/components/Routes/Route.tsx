@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Vector2 } from 'three';
 
-import { RoutePath } from './RoutePath';
 import { IRouteWithComputedData } from '../../canvas.model';
-import { Vehicle } from '../Vehicle/Vehicle';
+import { RoutePath } from './RoutePath';
+import { ThemeContext } from '../../contexts/ThemeContext';
 import { useAnimationPath, useVehicleUpdate } from './utils';
+import { Vehicle } from '../Vehicle/Vehicle';
 
 interface RouteProps extends IRouteWithComputedData {
   points: Vector2[];
@@ -13,12 +14,19 @@ interface RouteProps extends IRouteWithComputedData {
 export const Route: React.FC<RouteProps> = ({ points, selected, progress, color }) => {
   const { animationPath, progressToIndexMap } = useAnimationPath(points);
   const { position, rotationTangent } = useVehicleUpdate(animationPath, progress, progressToIndexMap);
+  const theme = useContext(ThemeContext);
 
   return (
     <>
       <Vehicle position={position} rotation={rotationTangent} type={undefined} color={color} />
       {selected ? (
-        <RoutePath distanceEnd={progress} distanceStart={0} color={0x11b572} linewidth={0.007} points={points} />
+        <RoutePath
+          distanceEnd={1}
+          distanceStart={progress}
+          color={theme.routes.line}
+          lineWidth={theme.routes.lineWidth}
+          points={points}
+        />
       ) : null}
     </>
   );
