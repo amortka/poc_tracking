@@ -13,7 +13,7 @@ export class CanvasUtils {
     },
     floor: { D2: '#2c323a', D3: '#2c323a' },
     objects: { D2: { line: '#979fa4', shape: '#41464e', text: '#979fa4', textSelected: '#ffffff' } },
-    walls: { D2: { line: '#61676f' }, D3: undefined },
+    walls: { D2: { line: '#61676f' }, D3: '#6a6e75' },
     sensor: { D2: '#464c53', D3: '#464c53' },
   };
 

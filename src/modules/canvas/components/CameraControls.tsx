@@ -22,7 +22,7 @@ function useDimensionToggle(isD3: boolean, controls: OrbitControls) {
     if (isD3) {
       controls.enableRotate = true;
       controls.update();
-      controls.rotateTo(0.8, -0.7);
+      controls.rotateTo(0.78, 0.79);
     } else {
       controls.enableRotate = false;
       controls.update();
