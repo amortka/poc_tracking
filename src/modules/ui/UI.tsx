@@ -29,13 +29,12 @@ interface UIProps {
 export const UI: React.FC<UIProps> = ({ children, onZoomIn, onZoomOut, onZoomFit }) => {
   const classes = useStyles();
 
-  const canvasWrapperRef = useRef(null);
   const [isCartInfoVisible, setIsCartInfoVisible] = useState(false);
+
+  const canvasWrapperRef = useRef(null);
   const [canvasWrapperBox, setIsCanvasWrapperBox] = useState<DOMRect>(null);
 
-  const onResize = () => {
-    setIsCanvasWrapperBox((canvasWrapperRef.current as HTMLElement).getBoundingClientRect());
-  };
+  const onResize = () => setIsCanvasWrapperBox((canvasWrapperRef.current as HTMLElement).getBoundingClientRect());
 
   return (
     <ThemeProvider theme={theme}>

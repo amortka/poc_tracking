@@ -23,7 +23,7 @@ export class CanvasUtils {
     },
   };
 
-  static getCanvasTheme(config: Partial<ICanvasTheme> = {}): ICanvasTheme {
-    return merge(this.canvasThemeDefault, config);
+  static getCanvasTheme(config: Partial<ICanvasTheme>): ICanvasTheme {
+    return merge(this.canvasThemeDefault, config ? config : {});
   }
 }
