@@ -19,7 +19,7 @@ export class CanvasUtils {
     sensor: { D2: '#464c53', D3: '#464c53' },
     routes: {
       line: '#11b572',
-      lineWidth: 0.004,
+      lineWidth: 0.002,
     },
   };
 
