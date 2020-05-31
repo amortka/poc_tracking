@@ -1,28 +1,32 @@
-import React, { useContext, useEffect, useMemo, useRef } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { BufferGeometry, Line } from 'three';
-
+import { useUpdate } from 'react-three-fiber';
 import { IPathWithPointsCoordinates } from '../../canvas.model';
 import { LineUtils } from '../../utils/line.utils';
 import { ThemeContext } from '../../contexts/ThemeContext';
 
+const fromGround = 0.02;
+
 export interface PathsElementProps extends IPathWithPointsCoordinates {}
 
-export const PathsElement: React.FC<PathsElementProps> = React.memo(({ points, tag, meta }) => {
-  const lineRef = useRef<Line>(null);
-  const fromGround = useRef(0.02);
-
+export const PathsElement: React.FC<PathsElementProps> = ({ points, meta }) => {
   const theme = useContext(ThemeContext);
-  const pointsV = LineUtils.getPathPointsFromPointCoordinates(points, fromGround.current);
 
-  const lineG = useMemo(() => new BufferGeometry().setFromPoints(pointsV), [pointsV]);
+  const geometry = useMemo(() => {
+    const pointsVec3 = LineUtils.getPathPointsFromPointCoordinates(points, fromGround);
+    return new BufferGeometry().setFromPoints(pointsVec3);
+  }, [points]);
 
-  useEffect(() => {
-    lineRef?.current.computeLineDistances();
-  }, [lineRef, points]);
+  const ref = useUpdate<THREE.Line>(
+    (line) => {
+      line.computeLineDistances();
+    },
+    [points]
+  );
 
   return (
     // @ts-ignore
-    <line ref={lineRef} geometry={lineG}>
+    <line ref={ref} geometry={geometry}>
       <lineDashedMaterial
         attach="material"
         color={meta.selected ? theme.paths.selectedLine : theme.objects.D2.line}
@@ -32,4 +36,4 @@ export const PathsElement: React.FC<PathsElementProps> = React.memo(({ points, t
       />
     </line>
   );
-});
+};
