@@ -1,12 +1,15 @@
 import { Dictionary } from '../../../../app.model';
-import { IPath, IPathWithPointsCoordinates, IPoint } from '../../canvas.model';
+import { IPath, IPoint } from '../../canvas.model';
+import { useMemo } from 'react';
 
-export class PathsUtils {
-  static getPathWithCoordinates(paths: Dictionary<IPath>, points: Dictionary<IPoint>): IPathWithPointsCoordinates[] {
-    return Object.values(paths).map((p) => this.setCoordinatesToPathPoints(p, points)) || [];
-  }
+const usePathProps = (paths: Dictionary<IPath>, points: Dictionary<IPoint>) =>
+  useMemo(() => {
+    const pathWithPoints = Object.entries(paths).map(([pathId, path]) => {
+      const pathPoints = path.points.map((pointId) => points[pointId]);
+      return { ...path, points: pathPoints, pathId };
+    });
 
-  static setCoordinatesToPathPoints(path: IPath, points: Dictionary<IPoint>): IPathWithPointsCoordinates {
-    return { ...path, points: path.points.map((p) => points[p]) };
-  }
-}
+    return pathWithPoints || [];
+  }, [paths, points]);
+
+export { usePathProps };

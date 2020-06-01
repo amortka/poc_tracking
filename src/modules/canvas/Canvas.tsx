@@ -56,6 +56,12 @@ export const Canvas: React.FC<CanvasProps> = ({
 }) => {
   const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme]);
 
+  const selectedPath = useMemo(() => {
+    const selectedRoute = Object.values(state.routes).find((route) => route.selected);
+
+    return selectedRoute?.path;
+  }, [state.routes]);
+
   useEffect(() => {
     onMouseEvents && mouseEventsContextService.registerCallback(onMouseEvents);
     return mouseEventsContextService.unregisterCallback(onMouseEvents);
@@ -73,7 +79,7 @@ export const Canvas: React.FC<CanvasProps> = ({
             <Scene isD3={state.isD3} setOnZoomIn={setOnZoomIn} setOnZoomOut={setOnZoomOut} setOnZoomFit={setOnZoomFit}>
               <Walls walls={scene.walls} points={scene.points} rooms={scene.rooms} type={type} />
               <Objects points={scene.points} objects={scene.objects} />
-              <Paths points={scene.points} paths={scene.paths} />
+              <Paths points={scene.points} paths={scene.paths} selectedPath={selectedPath} />
               <Sensors points={scene.points} sensors={scene.sensors} type={type} />
               <Routes points={scene.points} paths={scene.paths} vehicles={state.vehicles} routes={state.routes} />
               <Selection selection={state.selection} selectionDataClb={onSelectionData} />

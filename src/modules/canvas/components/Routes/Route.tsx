@@ -26,7 +26,7 @@ export const Route: React.FC<RouteProps> = ({ points, selected, progress, color 
   return (
     <>
       <Vehicle position={position} rotation={rotationTangent} type={undefined} color={color} />
-      {selected || true ? (
+      {selected ? (
         <>
           <RoutePath
             distanceEnd={progress}
@@ -34,7 +34,10 @@ export const Route: React.FC<RouteProps> = ({ points, selected, progress, color 
             color={theme.routes.line}
             lineWidth={theme.routes.lineWidth}
             points={points}
-            {...dashedLineProps}
+            dashed
+            dashScale={1}
+            dashSize={theme.routes.dashSize}
+            gapSize={theme.routes.gapSize}
           />
           <RoutePath
             distanceEnd={1}

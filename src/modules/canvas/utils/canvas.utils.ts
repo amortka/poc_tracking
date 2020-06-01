@@ -20,6 +20,8 @@ export class CanvasUtils {
     routes: {
       line: '#11b572',
       lineWidth: 0.002,
+      dashSize: 0.1,
+      gapSize: 0.05,
     },
   };
 

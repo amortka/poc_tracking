@@ -1,15 +1,20 @@
-import React, { useMemo } from 'react';
-import { PathsUtils } from './paths.utils';
-import { PathsElement } from './PathsElement';
+import React from 'react';
 import { IVisualizationScene } from '../../canvas.model';
+import { PathsElement } from './PathsElement';
+import { usePathProps } from './paths.utils';
 
-interface PathsProps extends Pick<IVisualizationScene, 'paths' | 'points'> {}
+interface PathsProps extends Pick<IVisualizationScene, 'paths' | 'points'> {
+  selectedPath: string;
+}
 
-export const Paths: React.FC<PathsProps> = React.memo(({ paths, points }) => {
-  const renderObjectsDefault = useMemo(
-    () => PathsUtils.getPathWithCoordinates(paths, points).map((o, i) => <PathsElement key={i} {...o} />),
-    [paths, points]
+export const Paths: React.FC<PathsProps> = ({ paths, points, selectedPath }) => {
+  const pathsProps = usePathProps(paths, points);
+
+  return (
+    <>
+      {pathsProps.map(({ pathId, ...props }) =>
+        pathId !== selectedPath ? <PathsElement key={pathId} {...props} /> : null
+      )}
+    </>
   );
-
-  return <React.Fragment>{renderObjectsDefault}</React.Fragment>;
-});
+};

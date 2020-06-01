@@ -46,6 +46,8 @@ export interface ICanvasTheme {
   routes: {
     line: Color;
     lineWidth: number;
+    dashSize: number;
+    gapSize: number;
   };
 }
 
