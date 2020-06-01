@@ -1,15 +1,13 @@
-import React, { createContext, useMemo } from 'react';
-import { Box, Drawer, List, makeStyles } from '@material-ui/core';
+import React, { createContext } from 'react';
+import { Box, Drawer, makeStyles } from '@material-ui/core';
 
+import { Cart } from '../Cart/Cart';
+import { Dictionary, IRouteWithData } from '../../../../app.model';
 import { ExpansionSidebarItem } from './ExpansionSidebarItem';
-import { cartsMock } from '../../../../mocks/ui.mock';
-import { CartItem } from '../CartItem/CartItem';
+import { RoutesActions } from '../../../../store/routes/routes.actions';
+import { RoutesSelectors } from '../../../../store/routes/routes.selectors';
 import { Select } from '../MaterialUI/Select';
 import { useDispatch, useSelector } from 'react-redux';
-import { RoutesSelectors } from '../../../../store/routes/routes.selectors';
-import { Dictionary, IRouteWithData } from '../../../../app.model';
-import { RoutesActions } from '../../../../store/routes/routes.actions';
-import { Cart } from '../Cart/Cart';
 
 const useStyles = makeStyles((theme) => ({
   root: {

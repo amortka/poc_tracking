@@ -26,7 +26,7 @@ export const Route: React.FC<RouteProps> = ({ points, selected, progress, color 
   return (
     <>
       <Vehicle position={position} rotation={rotationTangent} type={undefined} color={color} />
-      {selected || true ? (
+      {selected ? (
         <>
           <RoutePath
             distanceEnd={progress}

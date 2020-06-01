@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import {
   makeStyles,
   Typography,
@@ -9,8 +10,10 @@ import {
 } from '@material-ui/core';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import { Add } from '@material-ui/icons';
+
 import { CartItem } from '../CartItem/CartItem';
 import { cartsMock } from '../../../../mocks/ui.mock';
+import { RoutesActions } from '../../../../store/routes/routes.actions';
 
 const ExpansionPanel = withStyles({
   root: {
@@ -45,6 +48,7 @@ export interface ExpansionSidebarItemProps {
 
 export const ExpansionSidebarItem: React.FC<ExpansionSidebarItemProps> = React.memo(({ title }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <ExpansionPanel square>
@@ -53,9 +57,11 @@ export const ExpansionSidebarItem: React.FC<ExpansionSidebarItemProps> = React.m
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.details}>
         <List className={classes.list}>
-          <CartItem {...cartsMock[3]} />
-          <CartItem {...cartsMock[4]} />
-          <CartItem {...cartsMock[5]} />
+          <div onClick={() => dispatch(RoutesActions.selectRoutes([]))}>
+            <CartItem {...cartsMock[3]} />
+            <CartItem {...cartsMock[4]} />
+            <CartItem {...cartsMock[5]} />
+          </div>
         </List>
       </ExpansionPanelDetails>
     </ExpansionPanel>
