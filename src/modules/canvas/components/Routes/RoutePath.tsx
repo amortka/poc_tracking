@@ -19,7 +19,7 @@ export interface RoutePathProps {
   opacity?: number;
 }
 
-export const RoutePath: React.FC<RoutePathProps> = ({ points, ...config }) => {
+export const RoutePath: React.FC<RoutePathProps> = ({ points, ...props }) => {
   const pointsVec3 = useMemo(() => {
     const fromGround = 0.03;
     return points.map((point) => new Vector3(point.x, point.y, fromGround));
@@ -29,36 +29,35 @@ export const RoutePath: React.FC<RoutePathProps> = ({ points, ...config }) => {
     (line) => {
       line.computeLineDistances();
     },
-    [points, config.distanceStart, config.distanceEnd]
+    [points, props.distanceStart, props.distanceEnd]
   );
 
-  const geometryConfig = {
-    distanceStart: config.distanceStart,
-    distanceEnd: config.distanceEnd,
-    colorStart: config.colorStart,
-    colorEnd: config.colorEnd,
+  const geometryProps = {
+    distanceStart: props.distanceStart,
+    distanceEnd: props.distanceEnd,
+    colorStart: props.colorStart,
+    colorEnd: props.colorEnd,
   };
 
-  const materialConfig = {
-    color: config.color,
-    linewidth: config.lineWidth,
-    vertexColors: !config.color,
-    dashed: config.dashed,
-    gapSize: config.gapSize,
-    dashScale: config.dashScale,
-    dashSize: config.dashSize,
+  const materialProps = {
+    color: props.color,
+    linewidth: props.lineWidth,
+    vertexColors: !props.color,
+    dashed: props.dashed,
+    gapSize: props.gapSize,
+    dashScale: props.dashScale,
+    dashSize: props.dashSize,
   };
 
   return (
     <line2 ref={ref}>
       <lineSegmentGeometry
         attach="geometry"
-        // TODO cannot remove args but still needs to react on any points change
-        args={[pointsVec3, geometryConfig]}
+        args={[pointsVec3, geometryProps]}
         points={pointsVec3}
-        {...geometryConfig}
+        {...geometryProps}
       />
-      <lineMaterial attach="material" defines={{ USE_DASH: '' }} {...materialConfig} />
+      <lineMaterial attach="material" defines={{ USE_DASH: '' }} {...materialProps} />
     </line2>
   );
 };

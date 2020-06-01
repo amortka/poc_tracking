@@ -11,13 +11,6 @@ interface RouteProps extends IRouteWithComputedData {
   points: Vector2[];
 }
 
-const dashedLineProps = {
-  dashed: true,
-  gapSize: 0.4,
-  dashScale: 2,
-  dashSize: 0.5,
-};
-
 export const Route: React.FC<RouteProps> = ({ points, selected, progress, color }) => {
   const theme = useContext(ThemeContext);
   const { animationPath, progressToIndexMap } = useAnimationPath(points);
