@@ -1,15 +1,15 @@
-import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
+import React, { Dispatch, MutableRefObject, SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import * as uiSelectors from '../../store/ui/ui.selectors';
 import { Canvas } from '../canvas/Canvas';
 import { IRoute, IVisualizationState, VisualizationType } from '../canvas/canvas.model';
+import { isProduction } from '../../utils/env.utils';
 import { RouteService } from './services/routes-progress.service';
 import { RoutesSelectors } from '../../store/routes/routes.selectors';
 import { SceneSelectors } from '../../store/scene/scene.selectors';
 import { tooltipActions } from '../../store/tooltips/tooltips.actions';
 import { visualizationStateMock } from '../../mocks/main.mock';
-import { isProduction } from '../../utils/env.utils';
 
 let routesIdSet: Set<string> = new Set();
 
@@ -20,16 +20,18 @@ function getRoutesIdChanges(routesId: string[]): string[] {
   return difference;
 }
 
-function handleRoutes(routesId: string[], setStateCallback: (routeId: string, data: IRoute) => void): () => void {
-  const routeServices: RouteService[] = [];
-  getRoutesIdChanges(routesId).forEach((routeId) => routeServices.push(new RouteService(routeId, setStateCallback)));
-  return () => {
-    // routeServices.forEach((service) => service.clear());
-    console.log('TODO: implement clearing subscriptions');
-  };
+function handleRoutes(
+  routesId: string[],
+  setStateCallback: (routeId: string, data: IRoute) => void,
+  routeServices: MutableRefObject<RouteService[]>
+): void {
+  getRoutesIdChanges(routesId).forEach((routeId) =>
+    routeServices.current.push(new RouteService(routeId, setStateCallback))
+  );
 }
 
 function useVisualisationState(): IVisualizationState {
+  const routeServices = useRef<RouteService[]>([]);
   const [visualisationState, setVisualisationState] = useState<IVisualizationState>(visualizationStateMock);
   const routesIds = useSelector(RoutesSelectors.routesIds);
   const isD3 = useSelector(uiSelectors.isD3);
@@ -44,12 +46,15 @@ function useVisualisationState(): IVisualizationState {
     }));
   }, []);
 
-  useEffect(() => {
-    const clearFunction = handleRoutes(routesIds, updateRouteState);
-    // TODO: implement unsubscribe when route disappears
-    return () => clearFunction();
-  }, [routesIds, updateRouteState]);
+  useEffect(() => handleRoutes(routesIds, updateRouteState, routeServices), [routesIds, updateRouteState]);
 
+  useEffect(
+    () => () => {
+      routeServices.current.forEach((service) => service.clear());
+      routeServices.current = [];
+    },
+    []
+  );
   return { ...visualisationState, isD3 };
 }
 
