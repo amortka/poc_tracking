@@ -29,7 +29,7 @@ function createRouteWhenNewVehicleUpdates(state: IRoutesState, action: any): IRo
       path: 'ojihoybn',
       selected: false,
       color: getRouteColor(Object.keys(state).length),
-      tag: 'Milkrun ABC', // TODO change when backend will provide create NewRouteEvent
+      tag: `Milkrun ${vehicleUpdate.deviceId}`, // TODO change when backend will provide create NewRouteEvent
     },
   };
 }

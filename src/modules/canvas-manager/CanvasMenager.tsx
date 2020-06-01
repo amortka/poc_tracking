@@ -39,7 +39,7 @@ function useVisualisationState(): IVisualizationState {
       ...state,
       routes: {
         ...state.routes,
-        [routeId]: { ...data },
+        [routeId]: { progress: 0, ...data },
       },
     }));
   }, []);
