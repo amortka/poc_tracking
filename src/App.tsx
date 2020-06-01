@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import './App.css';
 import { store } from './store/store.config';
 import { UI } from './modules/ui/UI';
-import { CanvasManager } from './modules/canvas-manager/CanvasMenager';
+import { CanvasManager } from './modules/canvas-manager/CanvasManager';
 import { ServerHandler } from './modules/server-handler/ServerHandler';
 
 function App() {

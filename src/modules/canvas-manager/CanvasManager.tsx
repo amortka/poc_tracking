@@ -30,14 +30,14 @@ function handleRoutes(
   );
 }
 
-function useVisualisationState(): IVisualizationState {
+function useVisualizationState(): IVisualizationState {
   const routeServices = useRef<RouteService[]>([]);
-  const [visualisationState, setVisualisationState] = useState<IVisualizationState>(visualizationStateMock);
+  const [visualizationState, setVisualizationState] = useState<IVisualizationState>(visualizationStateMock);
   const routesIds = useSelector(RoutesSelectors.routesIds);
   const isD3 = useSelector(uiSelectors.isD3);
 
   const updateRouteState = useCallback((routeId: string, data: IRoute) => {
-    setVisualisationState((state) => ({
+    setVisualizationState((state) => ({
       ...state,
       routes: {
         ...state.routes,
@@ -55,7 +55,7 @@ function useVisualisationState(): IVisualizationState {
     },
     []
   );
-  return { ...visualisationState, isD3 };
+  return { ...visualizationState, isD3 };
 }
 
 interface CanvasManagerProps {
@@ -65,7 +65,7 @@ interface CanvasManagerProps {
 }
 
 export const CanvasManager: React.FC<CanvasManagerProps> = ({ setOnZoomIn, setOnZoomOut, setOnZoomFit }) => {
-  const state = useVisualisationState();
+  const state = useVisualizationState();
   const scene = useSelector(SceneSelectors.scene);
   const dispatch = useDispatch();
   const dispatchMouseEvent = (payload) => dispatch(tooltipActions.setMouseEvent(payload));
