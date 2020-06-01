@@ -3,7 +3,7 @@ import { makeStyles, ListItem, ListItemIcon, ListItemText } from '@material-ui/c
 import { DriveEta, InfoOutlined } from '@material-ui/icons';
 
 import './CartItem.css';
-import { CartInfoContext } from '../Sidebar/InfoSidebar';
+import { CartDetailsContext } from '../Sidebar/InfoSidebar';
 import { useDispatch } from 'react-redux';
 import { tooltipActions } from '../../../../store/tooltips/tooltips.actions';
 import { Color } from '../../../canvas/canvas.model';
@@ -42,12 +42,12 @@ export interface CartItemProps {
 
 export const CartItem: React.FC<CartItemProps> = React.memo(({ name, time, wagons, color }) => {
   const classes = useStyles();
-  const setIsCartInfoVisible = useContext(CartInfoContext);
+  const setIsCartDetailsVisible = useContext(CartDetailsContext);
   const dispatch = useDispatch();
 
-  const setCartInfoVisible = () => {
+  const setCartDetailsVisible = () => {
     dispatch(tooltipActions.clearSelectionSelected());
-    setIsCartInfoVisible(true);
+    setIsCartDetailsVisible(true);
   };
 
   return (
@@ -63,7 +63,7 @@ export const CartItem: React.FC<CartItemProps> = React.memo(({ name, time, wagon
         ))}
       </div>
       <ListItemIcon className={classes.icon}>
-        <InfoOutlined onClick={setCartInfoVisible} />
+        <InfoOutlined onClick={setCartDetailsVisible} />
       </ListItemIcon>
     </ListItem>
   );

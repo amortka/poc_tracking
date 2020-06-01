@@ -1,80 +1,85 @@
-import React, { createContext, useMemo } from 'react';
-import { Box, Drawer, List, makeStyles, Typography } from '@material-ui/core';
+import React, { createContext } from 'react';
+import { Box, Drawer, makeStyles } from '@material-ui/core';
 
-import { ExpansionSidebarItem } from './ExpansionSidebarItem';
-import { cartsMock } from '../../../../mocks/ui.mock';
-import { CartItem } from '../CartItem/CartItem';
-import { useDispatch, useSelector } from 'react-redux';
-import { RoutesSelectors } from '../../../../store/routes/routes.selectors';
+import { Cart } from '../Cart/Cart';
 import { Dictionary, IRouteWithData } from '../../../../app.model';
+import { ExpansionSidebarItem } from './ExpansionSidebarItem';
 import { RoutesActions } from '../../../../store/routes/routes.actions';
+import { RoutesSelectors } from '../../../../store/routes/routes.selectors';
+import { Select } from '../MaterialUI/Select';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '300px',
-    maxWidth: '300px',
+    width: theme.spacing(50),
+    maxWidth: theme.spacing(50),
   },
   drawerPaper: {
     backgroundColor: '#14191F',
-    width: '300px',
-    maxWidth: '300px',
+    width: theme.spacing(50),
+    maxWidth: theme.spacing(50),
     borderLeft: 'none',
     position: 'relative' as 'relative',
   },
   box: {
     backgroundColor: theme.palette.primary.main,
-    height: '200px',
-    marginBottom: '15px',
-    padding: 0,
+    marginBottom: theme.spacing(2),
+    padding: theme.spacing(3),
   },
-  list: {
+  cartWrapper: {
     width: '100%',
-  },
-  title: {
-    padding: '15px 20px',
+    marginTop: theme.spacing(3),
   },
 }));
 
 export interface InfoSidebarProps {
-  setIsCartInfoVisible: Function;
+  setIsCartDetailsVisible: Function;
 }
 
-export const CartInfoContext = createContext<Function>(undefined);
+export const CartDetailsContext = createContext<Function>(undefined);
 
-export const InfoSidebar: React.FC<InfoSidebarProps> = React.memo(({ setIsCartInfoVisible }) => {
+export const InfoSidebar: React.FC<InfoSidebarProps> = ({ setIsCartDetailsVisible }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const routes: Dictionary<IRouteWithData> = useSelector(RoutesSelectors.getRoutesWithData);
 
-  const renderRoutes = useMemo(() => {
-    return Object.entries(routes).map(([routeId, route]) => (
-      <div key={routeId} onClick={() => dispatch(RoutesActions.selectRoutes([routeId]))}>
-        <CartItem name={route.tag} time={cartsMock[0].time} wagons={cartsMock[0].wagons} color={route.color} />
-      </div>
-    ));
-  }, [routes, dispatch]);
+  const selectedRouteEntry = useSelector(RoutesSelectors.getFirstSelectedRouteEntry);
+
+  const selectOptions: Array<{ value: string | number; name: string | number }> = Object.entries(routes).map(
+    ([routeId, route]) => ({
+      value: routeId,
+      name: route.tag,
+    })
+  );
+
+  const selectRoute = (event) => {
+    event.target.value && dispatch(RoutesActions.selectRoutes([event.target.value]));
+  };
 
   return (
     <Drawer variant="permanent" anchor="right" className={classes.root} classes={{ paper: classes.drawerPaper }}>
-      <CartInfoContext.Provider value={setIsCartInfoVisible}>
-        <Box className={classes.box} padding="10px">
-          <Typography variant="subtitle1" className={classes.title}>
-            Linia produkcyjna
-          </Typography>
-          <List className={classes.list}>
-            {renderRoutes}
-            <div onClick={() => dispatch(RoutesActions.selectRoutes(['routeId']))}>
-              <CartItem {...cartsMock[0]} />
-              <CartItem {...cartsMock[1]} />
-              <CartItem {...cartsMock[2]} />
-            </div>
-          </List>
+      <CartDetailsContext.Provider value={setIsCartDetailsVisible}>
+        <Box className={classes.box}>
+          <Select
+            selectOptions={selectOptions}
+            onChange={selectRoute}
+            value={selectedRouteEntry ? selectedRouteEntry[0] : ''}
+          />
+          <div className={classes.cartWrapper}>
+            {selectedRouteEntry && (
+              <Cart
+                color={selectedRouteEntry[1].color}
+                name={selectedRouteEntry[1].tag}
+                vehicle={selectedRouteEntry[1].vehicle}
+              />
+            )}
+          </div>
         </Box>
         <ExpansionSidebarItem title="Warehouse 800" />
         <ExpansionSidebarItem title="P1" />
         <ExpansionSidebarItem title="P0" />
         <ExpansionSidebarItem title="Strefa Cavity" />
-      </CartInfoContext.Provider>
+      </CartDetailsContext.Provider>
     </Drawer>
   );
-});
+};

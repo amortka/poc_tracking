@@ -27,4 +27,12 @@ export class RoutesSelectors {
       return routesWidthData;
     }
   );
+
+  static getFirstSelectedRouteEntry = createSelector(RoutesSelectors.getRoutesWithData, (routes):
+    | [string, IRouteWithData]
+    | null => {
+    const selectedRouteEntry = Object.entries(routes).find(([routeId, route]) => route.selected);
+
+    return selectedRouteEntry ? selectedRouteEntry : null;
+  });
 }
