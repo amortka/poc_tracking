@@ -6,6 +6,10 @@ const StyledTooltip = withStyles((theme: Theme) => ({
   tooltip: {
     maxWidth: 220,
     fontSize: theme.typography.pxToRem(12),
+    backgroundColor: theme.palette.primary.dark,
+  },
+  arrow: {
+    color: theme.palette.primary.dark,
   },
   popper: {
     // zIndex: -1,

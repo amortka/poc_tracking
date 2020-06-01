@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const DataControl: React.FC = () => {
+export const DataControl: React.FC = React.memo(() => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
@@ -43,4 +43,4 @@ export const DataControl: React.FC = () => {
       <SliderButton selected={isRealData} action={dataToggle.onClick} options={slider} />
     </div>
   );
-};
+});

@@ -33,9 +33,7 @@ export const UI: React.FC<UIProps> = ({ children, onZoomIn, onZoomOut, onZoomFit
   const [isCartDetailsVisible, setIsCartDetailsVisible] = useState(false);
   const [canvasWrapperBox, setIsCanvasWrapperBox] = useState<DOMRect>(null);
 
-  const onResize = () => {
-    setIsCanvasWrapperBox((canvasWrapperRef.current as HTMLElement).getBoundingClientRect());
-  };
+  const onResize = () => setIsCanvasWrapperBox((canvasWrapperRef.current as HTMLElement).getBoundingClientRect());
 
   return (
     <ThemeProvider theme={theme}>

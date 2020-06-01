@@ -138,7 +138,7 @@ export const visualizationSceneMock: IVisualizationScene = {
       points: ['nlyiefgt', 'ponbhqmp', 'flguqmoa', 'bxlnhzmb', 'acljbmkd', 'nlyiefgq'],
       tag: 'main path',
       sensors: [
-        { sensorId: 'pnxwxnpk', distance: 0.04, relationHidden: true },
+        { sensorId: 'pnxwxnpk', distance: 0.0 },
         { sensorId: 'saruefli', distance: 0.147 },
         { sensorId: 'piunnkuf', distance: 0.244, relationHidden: true },
         { sensorId: 'izktgqna', distance: 0.332 },
@@ -148,7 +148,7 @@ export const visualizationSceneMock: IVisualizationScene = {
         { sensorId: 'zapgjpha', distance: 0.682 },
         { sensorId: 'jpgsbunl', distance: 0.791, relationHidden: true },
         { sensorId: 'aihfuhkc', distance: 0.876, relationHidden: true },
-        { sensorId: 'pnxwxnpk', distance: 0.953, relationHidden: true },
+        { sensorId: 'pnxwxnpk', distance: 1 },
       ],
       objects: [
         { objectId: 'vbisqysg', distance: 0.147 },
@@ -156,6 +156,7 @@ export const visualizationSceneMock: IVisualizationScene = {
         { objectId: 'kkshvomj', distance: 0.495 },
         { objectId: 'ycjfzvlk', distance: 0.682 },
       ],
+      meta: {},
     },
   },
   points: {
@@ -169,7 +170,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     bbgexc3r: { x: 0, y: 1.28 },
 
     // Sensors
-    qeculymv: { x: 11.27, y: 0.37 },
+    qeculymv: { x: 10.87, y: 0.46 },
     wytjebmg: { x: 6.43, y: 0.37 },
     etkehdxr: { x: 4.57, y: 0.37 },
     rzmgfdlc: { x: 2.75, y: 0.37 },
@@ -396,6 +397,7 @@ export const visualizationSceneMock: IVisualizationScene = {
       start: 'qqsaokeb',
       end: 'aeeuewak',
       thickness: 0.1,
+      meta: {},
     },
     ka9v61v5: {
       start: 'aeeuewak',
@@ -416,6 +418,7 @@ export const visualizationSceneMock: IVisualizationScene = {
       start: 's5pyoioi',
       end: 'bbgexc3r',
       thickness: 0.1,
+      meta: {},
     },
     jgxi5xqi: {
       start: 'bbgexc3r',

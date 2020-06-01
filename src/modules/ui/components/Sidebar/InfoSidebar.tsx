@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
   },
   box: {
     backgroundColor: theme.palette.primary.main,
-    height: theme.spacing(39.5),
     marginBottom: theme.spacing(2),
     padding: theme.spacing(3),
   },
@@ -44,7 +43,6 @@ export const CartDetailsContext = createContext<Function>(undefined);
 export const InfoSidebar: React.FC<InfoSidebarProps> = ({ setIsCartDetailsVisible }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
   const routes: Dictionary<IRouteWithData> = useSelector(RoutesSelectors.getRoutesWithData);
 
   const selectedRouteEntry = useSelector(RoutesSelectors.getFirstSelectedRouteEntry);

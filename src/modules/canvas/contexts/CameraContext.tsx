@@ -7,6 +7,6 @@ export const CameraControlContextProvider: React.FC = ({ children }) => {
   const [orbitControls, setOrbitControl] = useState<OrbitControls>(null);
 
   return (
-    <CameraControlContext.Provider value={[orbitControls, setOrbitControl]}> {children}</CameraControlContext.Provider>
+    <CameraControlContext.Provider value={[orbitControls, setOrbitControl]}>{children}</CameraControlContext.Provider>
   );
 };

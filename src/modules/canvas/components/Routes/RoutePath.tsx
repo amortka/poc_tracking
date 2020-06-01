@@ -1,14 +1,17 @@
-import { Color, Vector3 } from 'three';
+import { Vector2, Vector3 } from 'three';
 import React, { useMemo } from 'react';
 
+import { Color } from '../../canvas.model';
+import { useUpdate } from 'react-three-fiber';
+
 export interface RoutePathProps {
-  points: THREE.Vector2[];
+  points: Vector2[];
   distanceStart: number; // value 0-1
   distanceEnd: number; // value 0-1
-  linewidth: number;
-  colorStart?: Color | string | number;
-  colorEnd?: Color | string | number;
-  color?: number;
+  lineWidth: number;
+  colorStart?: Color;
+  colorEnd?: Color;
+  color?: Color;
   dashed?: boolean;
   dashScale?: number;
   dashSize?: number;
@@ -22,6 +25,13 @@ export const RoutePath: React.FC<RoutePathProps> = ({ points, ...config }) => {
     return points.map((point) => new Vector3(point.x, point.y, fromGround));
   }, [points]);
 
+  const ref = useUpdate<THREE.Line>(
+    (line) => {
+      line.computeLineDistances();
+    },
+    [points, config.distanceStart, config.distanceEnd]
+  );
+
   const geometryConfig = {
     distanceStart: config.distanceStart,
     distanceEnd: config.distanceEnd,
@@ -31,7 +41,7 @@ export const RoutePath: React.FC<RoutePathProps> = ({ points, ...config }) => {
 
   const materialConfig = {
     color: config.color,
-    linewidth: config.linewidth,
+    linewidth: config.lineWidth,
     vertexColors: !config.color,
     dashed: config.dashed,
     gapSize: config.gapSize,
@@ -40,7 +50,7 @@ export const RoutePath: React.FC<RoutePathProps> = ({ points, ...config }) => {
   };
 
   return (
-    <line2>
+    <line2 ref={ref}>
       <lineSegmentGeometry
         attach="geometry"
         // TODO cannot remove args but still needs to react on any points change
@@ -48,7 +58,7 @@ export const RoutePath: React.FC<RoutePathProps> = ({ points, ...config }) => {
         points={pointsVec3}
         {...geometryConfig}
       />
-      <lineMaterial attach="material" {...materialConfig} />
+      <lineMaterial attach="material" defines={{ USE_DASH: '' }} {...materialConfig} />
     </line2>
   );
 };

@@ -40,7 +40,7 @@ export interface CartItemProps {
   color: Color;
 }
 
-export const CartItem: React.FC<CartItemProps> = ({ name, time, wagons, color }) => {
+export const CartItem: React.FC<CartItemProps> = React.memo(({ name, time, wagons, color }) => {
   const classes = useStyles();
   const setIsCartDetailsVisible = useContext(CartDetailsContext);
   const dispatch = useDispatch();
@@ -67,4 +67,4 @@ export const CartItem: React.FC<CartItemProps> = ({ name, time, wagons, color })
       </ListItemIcon>
     </ListItem>
   );
-};
+});
