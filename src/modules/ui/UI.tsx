@@ -3,7 +3,7 @@ import { Fade, makeStyles, ThemeProvider } from '@material-ui/core';
 import ReactResizeDetector from 'react-resize-detector';
 
 import { CameraControl } from './components/CameraControl/CameraControl';
-import { CartInfo } from './components/CartInfo/CartInfo';
+import { CartDetails } from './components/CartDetails/CartDetails';
 import { DataControl } from './components/DataControl/DataControl';
 import { InfoSidebar } from './components/Sidebar/InfoSidebar';
 import { Logos } from './components/Logos/Logos';
@@ -30,7 +30,7 @@ export const UI: React.FC<UIProps> = ({ children, onZoomIn, onZoomOut, onZoomFit
   const classes = useStyles();
 
   const canvasWrapperRef = useRef(null);
-  const [isCartInfoVisible, setIsCartInfoVisible] = useState(false);
+  const [isCartDetailsVisible, setIsCartDetailsVisible] = useState(false);
   const [canvasWrapperBox, setIsCanvasWrapperBox] = useState<DOMRect>(null);
 
   const onResize = () => {
@@ -50,10 +50,10 @@ export const UI: React.FC<UIProps> = ({ children, onZoomIn, onZoomOut, onZoomFit
             <DataControl />
           </div>
         </ReactResizeDetector>
-        <InfoSidebar setIsCartInfoVisible={setIsCartInfoVisible} />
-        {isCartInfoVisible && (
-          <Fade in={isCartInfoVisible}>
-            <CartInfo setIsCartInfoVisible={setIsCartInfoVisible} />
+        <InfoSidebar setIsCartDetailsVisible={setIsCartDetailsVisible} />
+        {isCartDetailsVisible && (
+          <Fade in={isCartDetailsVisible}>
+            <CartDetails setIsCartDetailsVisible={setIsCartDetailsVisible} />
           </Fade>
         )}
       </main>

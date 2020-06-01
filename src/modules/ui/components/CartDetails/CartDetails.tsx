@@ -43,27 +43,27 @@ const useStyles = makeStyles({
     height: '100%',
     zIndex: 100,
   },
-  cartInfoHeaderContainer: {
+  CartDetailsHeaderContainer: {
     display: 'flex',
     alignItems: 'center',
   },
 });
 
-export interface CartInfoProps extends FadeProps {
-  setIsCartInfoVisible: Function;
+export interface CartDetailsProps extends FadeProps {
+  setIsCartDetailsVisible: Function;
 }
 
-export const CartInfo: React.FC<CartInfoProps> = ({ setIsCartInfoVisible, ...props }) => {
+export const CartDetails: React.FC<CartDetailsProps> = ({ setIsCartDetailsVisible, ...props }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.backgroundShadow} {...(props as any)}>
-      <ClickAwayListener onClickAway={() => setIsCartInfoVisible(false)}>
+      <ClickAwayListener onClickAway={() => setIsCartDetailsVisible(false)}>
         <Box color="text.primary" className={classes.box} onClick={(e) => e.stopPropagation()}>
-          <div className={classes.cartInfoHeaderContainer}>
+          <div className={classes.CartDetailsHeaderContainer}>
             <DriveEta className={classes.cartIcon} />
             <Typography variant="h6">Milkrun GHI</Typography>
-            <DoubleArrow onClick={() => setIsCartInfoVisible(false)} className={classes.doubleArrowIcon} />
+            <DoubleArrow onClick={() => setIsCartDetailsVisible(false)} className={classes.doubleArrowIcon} />
           </div>
           <Divider className={classes.divider} />
           <Typography variant="subtitle2">Historia trasy</Typography>

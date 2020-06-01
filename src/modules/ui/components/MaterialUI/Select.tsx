@@ -1,5 +1,11 @@
 import React from 'react';
-import { makeStyles, FormControl as MaterialFormControl, Select as MaterialSelect } from '@material-ui/core';
+import {
+  makeStyles,
+  FormControl as MaterialFormControl,
+  Select as MaterialSelect,
+  SelectProps as MaterialSelectProps,
+  MenuItem,
+} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -32,22 +38,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Select: React.FC<any> = ({ children, selected, ...props }) => {
+interface SelectProps extends MaterialSelectProps {
+  selectOptions: Array<{ value: string | number; name: string | number }>;
+}
+
+export const Select: React.FC<SelectProps> = React.memo(({ children, selectOptions, ...props }) => {
   const classes = useStyles();
 
   return (
     <MaterialFormControl className={classes.formControl}>
       <MaterialSelect
-        value={10}
-        // onChange={handleChange}
-        name="age"
+        value={props.value}
+        onChange={props.onChange}
+        name="cart"
         className={classes.select}
-        inputProps={{ 'aria-label': 'age' }}>
-        <option value="">None</option>
-        <option value={10}>Ten</option>
-        <option value={20}>Twenty</option>
-        <option value={30}>Thirty</option>
+        inputProps={{ 'aria-label': 'cart' }}
+        {...props}>
+        {selectOptions.map((opt) => (
+          <MenuItem key={opt.value} value={opt.value}>
+            {opt.name}
+          </MenuItem>
+        ))}
       </MaterialSelect>
     </MaterialFormControl>
   );
-};
+});
