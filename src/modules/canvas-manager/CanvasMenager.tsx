@@ -9,6 +9,7 @@ import { RoutesSelectors } from '../../store/routes/routes.selectors';
 import { SceneSelectors } from '../../store/scene/scene.selectors';
 import { tooltipActions } from '../../store/tooltips/tooltips.actions';
 import { visualizationStateMock } from '../../mocks/main.mock';
+import { isProduction } from '../../utils/env.utils';
 
 let routesIdSet: Set<string> = new Set();
 
@@ -67,7 +68,7 @@ export const CanvasManager: React.FC<CanvasManagerProps> = ({ setOnZoomIn, setOn
 
   return (
     <Canvas
-      debug={true}
+      debug={!isProduction()}
       onMouseEvents={dispatchMouseEvent}
       onSelectionData={dispatchSelectionData}
       scene={scene}

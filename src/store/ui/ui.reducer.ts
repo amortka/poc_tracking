@@ -1,11 +1,12 @@
 import { Reducer } from 'redux';
 import { UiState } from './ui.model';
 import { UiAction } from './ui.model';
+import { isAppInitiallyUseRealBackend } from '../../utils/env.utils';
 
 export const initialState: UiState = {
   isPending: false,
   isD3: false,
-  isRealData: process.env.REACT_APP_INNITIALLY_USE_REAL_BACKEND === 'false' ? false : true,
+  isRealData: isAppInitiallyUseRealBackend(),
 };
 
 export const uiReducer: Reducer<UiState> = (state = initialState, action) => {

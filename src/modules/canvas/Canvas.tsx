@@ -73,7 +73,7 @@ export const Canvas: React.FC<CanvasProps> = ({
         <MouseEventsContextProvider>
           <ThemeContext.Provider value={themeConfig}>
             {debug && <axesHelper args={[5]} />}
-            {debug && <ThreeMonitor />}
+            <ThreeMonitor debug={debug} />
             <Lights />
             <Floor type={type} />
             <Scene isD3={state.isD3} setOnZoomIn={setOnZoomIn} setOnZoomOut={setOnZoomOut} setOnZoomFit={setOnZoomFit}>

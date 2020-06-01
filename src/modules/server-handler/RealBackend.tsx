@@ -6,8 +6,9 @@ import { store } from '../../store/store.config';
 import { VehiclesActions } from '../../store/vehicles/vehicles.actions';
 import { ApiEvent, IApiVehicleUpdate } from '../../app.model';
 
-const ENDPOINT = 'http://127.0.0.1:3001';
+const ENDPOINT = 'wss://9zm5unpokg.execute-api.eu-central-1.amazonaws.com/dev';
 const SOCKET_IO_CONFIG = {
+  path: '/',
   reconnectionDelay: 1000,
   reconnection: true,
   reconnectionAttemps: 10,
