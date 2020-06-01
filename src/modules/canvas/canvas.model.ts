@@ -38,16 +38,18 @@ export interface ICanvasTheme {
     };
   };
   paths: {
-    gapSize: number;
+    dashScale: number;
     dashSize: number;
+    gapSize: number;
     line: Color;
     selectedLine: Color;
   };
   routes: {
-    line: Color;
-    lineWidth: number;
+    dashScale: number;
     dashSize: number;
     gapSize: number;
+    line: Color;
+    lineWidth: number;
   };
 }
 

@@ -27,10 +27,10 @@ export const Route: React.FC<RouteProps> = ({ points, selected, progress, color 
             color={theme.routes.line}
             lineWidth={theme.routes.lineWidth}
             points={points}
-            dashed
-            dashScale={1}
-            dashSize={theme.routes.dashSize}
+            dashed={true}
             gapSize={theme.routes.gapSize}
+            dashScale={theme.routes.dashScale}
+            dashSize={theme.routes.dashSize}
           />
           <RoutePath
             distanceEnd={1}

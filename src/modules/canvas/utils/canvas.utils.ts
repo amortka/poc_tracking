@@ -4,8 +4,9 @@ const merge = require('deepmerge');
 export class CanvasUtils {
   static canvasThemeDefault: ICanvasTheme = {
     paths: {
-      dashSize: 0.1,
-      gapSize: 0.05,
+      gapSize: 0.06,
+      dashScale: 2,
+      dashSize: 0.08,
       line: '#979fa4',
       selectedLine: '#11b572',
     },
@@ -20,7 +21,8 @@ export class CanvasUtils {
     routes: {
       line: '#11b572',
       lineWidth: 0.002,
-      dashSize: 0.1,
+      dashScale: 2,
+      dashSize: 0.08,
       gapSize: 0.05,
     },
   };

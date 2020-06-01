@@ -1,6 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { BufferGeometry, Line } from 'three';
 import { useUpdate } from 'react-three-fiber';
+
 import { IPathWithPointsCoordinates } from '../../canvas.model';
 import { LineUtils } from '../../utils/line.utils';
 import { ThemeContext } from '../../contexts/ThemeContext';
@@ -17,7 +18,7 @@ export const PathsElement: React.FC<PathsElementProps> = ({ points, meta }) => {
     return new BufferGeometry().setFromPoints(pointsVec3);
   }, [points]);
 
-  const ref = useUpdate<THREE.Line>(
+  const ref = useUpdate<Line>(
     (line) => {
       line.computeLineDistances();
     },
