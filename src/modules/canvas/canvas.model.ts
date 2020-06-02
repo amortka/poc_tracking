@@ -106,6 +106,7 @@ export interface IObject {
     borderType?: BorderType;
     selected?: boolean;
     selectable?: boolean;
+    color?: Color;
   };
 }
 

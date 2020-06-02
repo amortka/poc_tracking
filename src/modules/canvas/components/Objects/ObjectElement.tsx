@@ -29,8 +29,14 @@ export const ObjectElement: React.FC<ObjectD2Props> = ({ id, meta, shapePoints, 
         meta={meta}
         selected={meta.selected}
       />
-      <ObjectPlane fromGround={fromGround} geometryShape={geometryShape} height={height} selected={meta.selected} />
-      <ObjectLine shapePoints={shapePoints} fromGround={fromGround} />
+      <ObjectPlane
+        fromGround={fromGround}
+        geometryShape={geometryShape}
+        height={height}
+        selected={meta.selected}
+        color={meta.color}
+      />
+      <ObjectLine shapePoints={shapePoints} fromGround={fromGround} color={meta.color} selected={meta.selected} />
       {meta && (
         <ObjectLabel
           description={meta.description}

@@ -7,6 +7,7 @@ import { IApiVehicleUpdate } from '../../app.model';
 import { routeColors } from '../../modules/ui/config/theme.config';
 import { Color } from '../../modules/canvas/canvas.model';
 import { SceneActions } from '../scene/scene.actions';
+import { SelectSceneElementsByPathsIdsPayload } from '../scene/scene.model';
 
 /**
  * Helpers
@@ -43,9 +44,11 @@ function handleRoutesSelection(state: IRoutesState, routesIds: string[]) {
 }
 
 function handleSceneElementsSelection(asyncDispatch: Function, state: IRoutesState, routesIds: string[]) {
-  asyncDispatch(
-    SceneActions.selectSceneElementsByPathsIds([...routesIds].map((routeId) => state[routeId]?.path).filter((r) => !!r))
-  );
+  // const pathsIds = [...routesIds].map((routeId) => state[routeId]?.path).filter((r) => !!r);
+  const selectionPayload: SelectSceneElementsByPathsIdsPayload = [...routesIds]
+    .map((routeId) => ({ pathId: state[routeId]?.path, color: state[routeId]?.color }))
+    .filter((r) => !!r.pathId);
+  asyncDispatch(SceneActions.selectSceneElementsByPathsIds(selectionPayload));
 }
 
 /**

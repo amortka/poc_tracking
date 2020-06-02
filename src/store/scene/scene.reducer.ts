@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { SceneState } from './scene.model';
+import { SceneState, SelectSceneElementsByPathsIdsPayload } from './scene.model';
 import { SceneAction } from './scene.model';
 import { visualizationSceneMock } from '../../modules/canvas/canvas.mock';
 
@@ -7,19 +7,19 @@ import { visualizationSceneMock } from '../../modules/canvas/canvas.mock';
  * Helpers
  */
 
-function handleSceneElementSelections(state: SceneState, selectedPaths: string[]) {
+function handleSceneElementSelections(state: SceneState, selectedPaths: SelectSceneElementsByPathsIdsPayload) {
   const sensorsToSelect = {};
   const objectToSelect = {};
   const pathToSelect = {};
-  selectedPaths.forEach((pathId) => {
-    pathToSelect[pathId] = pathId;
-    state.paths[pathId].sensors.forEach(({ sensorId, relationHidden }) => {
+  selectedPaths.forEach((selection) => {
+    pathToSelect[selection.pathId] = true;
+    state.paths[selection.pathId].sensors.forEach(({ sensorId, relationHidden }) => {
       if (!relationHidden) {
         sensorsToSelect[sensorId] = sensorId;
       }
     });
-    state.paths[pathId].objects.forEach(({ objectId }) => {
-      objectToSelect[objectId] = objectId;
+    state.paths[selection.pathId].objects.forEach(({ objectId }) => {
+      objectToSelect[objectId] = selection.color;
     });
   });
 
@@ -29,6 +29,7 @@ function handleSceneElementSelections(state: SceneState, selectedPaths: string[]
   }
   for (const objectId in state.objects) {
     state.objects[objectId].meta.selected = Boolean(objectToSelect[objectId]);
+    state.objects[objectId].meta.color = objectToSelect[objectId] || null;
   }
   for (const sensorId in state.sensors) {
     state.sensors[sensorId].meta.selected = Boolean(sensorsToSelect[sensorId]);
@@ -54,7 +55,7 @@ export const sceneReducer: Reducer<SceneState> = (state = initialState, action) 
       return { ...state, ...action.payload };
     }
     case SceneAction.SELECT_SCENE_ELEMENTS_BY_PATHS_IDS: {
-      const selectedPaths: string[] = action.payload;
+      const selectedPaths: SelectSceneElementsByPathsIdsPayload = action.payload;
       return handleSceneElementSelections({ ...state }, selectedPaths);
     }
     default: {
