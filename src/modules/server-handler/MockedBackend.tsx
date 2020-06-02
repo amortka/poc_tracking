@@ -1,13 +1,20 @@
 import React, { useEffect } from 'react';
+
 import { ApiEvent } from '../../app.model';
 import { store } from '../../store/store.config';
 import { VehiclesActions } from '../../store/vehicles/vehicles.actions';
 import { VehicleMock } from '../../mocks/vehicle.mock';
+import { ObjectResourceMock } from '../../mocks/object-resource.mock';
+import { SceneActions } from '../../store/scene/scene.actions';
 
 function actionReducer(actionType: ApiEvent, data: any): void {
   switch (actionType) {
     case ApiEvent.VEHICLE_UPDATE:
       store.dispatch(VehiclesActions.updateVehicle(data));
+      break;
+    case ApiEvent.OBJECT_UPDATE:
+      store.dispatch(SceneActions.setObjectResourceIndicator(data));
+      break;
   }
 }
 
@@ -19,9 +26,16 @@ function useVehicleMock() {
       },
     };
 
-    const vehicleMock = new VehicleMock(socketIO as any);
+    const objectResourceMock = new ObjectResourceMock(socketIO as any);
+    objectResourceMock.startSimulation();
+
+    const vehicleMock = new VehicleMock(socketIO as any, objectResourceMock);
     vehicleMock.startSimulation();
-    return () => vehicleMock.stopSimulation();
+
+    return () => {
+      vehicleMock.stopSimulation();
+      objectResourceMock.stopSimulation();
+    };
   }, []);
 }
 

@@ -1,7 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import { Color } from '../../canvas/canvas.model';
 
-export const routeColors: Color[] = ['#e9842c', '#416BE8', '#11B573', '#E9842C', '#41E8D7', '#A853D8'];
+export const routeColors: Color[] = ['#E9842C', '#416BE8', '#11B573', '#41E8D7', '#A853D8'];
 
 export const theme = createMuiTheme({
   palette: {

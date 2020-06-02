@@ -107,6 +107,8 @@ export interface IObject {
     selected?: boolean;
     selectable?: boolean;
     color?: Color;
+    visibleResourceIndicator?: boolean;
+    resourceIndicator?: number; // 0-1
   };
 }
 

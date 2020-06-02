@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Vector3 } from 'three';
+import { Shape, Vector3 } from 'three';
 
 import { IObjectWithPointsCoordinates } from '../../canvas.model';
 import { ObjectExtruded } from './ObjectExtruded';
@@ -8,16 +8,22 @@ import { ObjectLine } from './ObjectLine';
 import { ObjectPlane } from './ObjectPlane';
 import { ObjectsUtils } from './objects.utils';
 import { ShapeUtils } from '../../utils/shape.utils';
+import { ObjectResourceIndicator } from './ObjectResourceIndicator';
+import { equal } from '../../../../utils/object.utils';
+import { useMemoDistinct } from '../../hooks/use-memo-distinct.hook';
 
 interface ObjectD2Props extends IObjectWithPointsCoordinates {}
 
 export const ObjectElement: React.FC<ObjectD2Props> = ({ id, meta, shapePoints, fromGround = 0.001, height = 0 }) => {
-  const geometryShape = useMemo(() => ShapeUtils.getShapeFromPointCoordinates(shapePoints), [shapePoints]);
-
-  const labelPosition: Vector3 = useMemo(
-    () => ObjectsUtils.getLabelPosition(geometryShape, fromGround / 2).setZ(fromGround + 0.004),
-    [geometryShape, fromGround]
+  const geometryShape: Shape = useMemoDistinct(
+    () => ShapeUtils.getShapeFromPointCoordinates(shapePoints),
+    [shapePoints],
+    equal
   );
+
+  const labelPosition: Vector3 = useMemo(() => {
+    return ObjectsUtils.getLabelPosition(geometryShape, fromGround / 2).setZ(fromGround + 0.004);
+  }, [geometryShape, fromGround]);
 
   return (
     <group>
@@ -46,6 +52,9 @@ export const ObjectElement: React.FC<ObjectD2Props> = ({ id, meta, shapePoints, 
           textSize={meta.textSize}
           title={meta.name}
         />
+      )}
+      {meta?.visibleResourceIndicator && meta?.resourceIndicator && (
+        <ObjectResourceIndicator fromGround={fromGround} value={meta.resourceIndicator} shapePoints={shapePoints} />
       )}
     </group>
   );
