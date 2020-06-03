@@ -3,10 +3,10 @@ import { ApiEvent, IApiObjectResourceUpdate } from '../app.model';
 export class ObjectResourceMock {
   private interval;
   readonly objects = [
-    { objectId: 'vbisqysg', resourceIndicator: 0.7, decrementValue: 0.04 },
-    { objectId: 'hcgrauti', resourceIndicator: 0.5, decrementValue: 0.06 },
-    { objectId: 'kkshvomj', resourceIndicator: 0.9, decrementValue: 0.03 },
-    { objectId: 'ycjfzvlk', resourceIndicator: 0.8, decrementValue: 0.04 },
+    { objectId: 'vbisqysg', resourceIndicator: 0.7, decrementValue: 0.08 },
+    { objectId: 'hcgrauti', resourceIndicator: 0.5, decrementValue: 0.07 },
+    { objectId: 'kkshvomj', resourceIndicator: 0.9, decrementValue: 0.06 },
+    { objectId: 'ycjfzvlk', resourceIndicator: 0.8, decrementValue: 0.07 },
   ];
 
   private stopProcess: boolean = false;
