@@ -80,7 +80,6 @@ export class RouteService {
     const timeBetweenSensors = this.getTimeForProgress(nextSensorProgress - sensorProgress, this.path);
 
     const didVehicleAppearOnPredictedSensor = sensorIndex === this.nextPredictedSensorIndex;
-    this.nextPredictedSensorIndex = nextSensorIndex;
     const isVehiclePresent = Boolean(this.tween);
 
     // Case 1 If vehicle not present then display it
@@ -122,6 +121,8 @@ export class RouteService {
       .on('update', ({ progress }) => this.emitRouteUpdate(progress % 1));
 
     this.tween.start();
+
+    this.nextPredictedSensorIndex = nextSensorIndex;
   }
 
   private getSensorIndex(id: string, path: IPath): number {
