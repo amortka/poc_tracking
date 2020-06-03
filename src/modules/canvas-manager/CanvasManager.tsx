@@ -1,65 +1,18 @@
-import React, { Dispatch, MutableRefObject, SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import * as uiSelectors from '../../store/ui/ui.selectors';
 import { Canvas } from '../canvas/Canvas';
-import { IRoute, IVisualizationState, VisualizationType } from '../canvas/canvas.model';
+import { VisualizationType } from '../canvas/canvas.model';
 import { isProduction } from '../../utils/env.utils';
-import { RouteService } from './services/routes-progress.service';
-import { RoutesSelectors } from '../../store/routes/routes.selectors';
-import { SceneSelectors } from '../../store/scene/scene.selectors';
-import { tooltipActions } from '../../store/tooltips/tooltips.actions';
-import { visualizationStateMock } from '../../mocks/main.mock';
 import { ObjectsSelectors } from '../../store/objects/objects.selectors';
 import { PathsSelectors } from '../../store/paths/paths.selectors';
+import { SceneSelectors } from '../../store/scene/scene.selectors';
 import { SensorsSelectors } from '../../store/sensors/sensors.selectors';
-
-let routesIdSet: Set<string> = new Set();
-
-function getRoutesIdChanges(routesId: string[]): string[] {
-  const difference = [...routesId].filter((id) => !routesIdSet.has(id));
-  routesIdSet = new Set(routesId);
-
-  return difference;
-}
-
-function handleRoutes(
-  routesId: string[],
-  setStateCallback: (routeId: string, data: IRoute) => void,
-  routeServices: MutableRefObject<RouteService[]>
-): void {
-  getRoutesIdChanges(routesId).forEach((routeId) =>
-    routeServices.current.push(new RouteService(routeId, setStateCallback))
-  );
-}
-
-function useVisualizationState(): IVisualizationState {
-  const routeServices = useRef<RouteService[]>([]);
-  const [visualizationState, setVisualizationState] = useState<IVisualizationState>(visualizationStateMock);
-  const routesIds = useSelector(RoutesSelectors.routesIds);
-  const isD3 = useSelector(uiSelectors.isD3);
-
-  const updateRouteState = useCallback((routeId: string, data: IRoute) => {
-    setVisualizationState((state) => ({
-      ...state,
-      routes: {
-        ...state.routes,
-        [routeId]: { progress: 0, ...data },
-      },
-    }));
-  }, []);
-
-  useEffect(() => handleRoutes(routesIds, updateRouteState, routeServices), [routesIds, updateRouteState]);
-
-  useEffect(
-    () => () => {
-      routeServices.current.forEach((service) => service.clear());
-      routeServices.current = [];
-    },
-    []
-  );
-  return { ...visualizationState, isD3 };
-}
+import { tooltipActions } from '../../store/tooltips/tooltips.actions';
+import { TooltipsSelectors } from '../../store/tooltips/tooltips.selectors';
+import { UiSelectors } from '../../store/ui/ui.selectors';
+import { VehiclesSelectors } from '../../store/vehicles/vehicles.selectors';
+import { useRoutesState } from './hooks/use-routes-state.hook';
 
 interface CanvasManagerProps {
   setOnZoomIn: Dispatch<SetStateAction<() => void>>;
@@ -68,29 +21,36 @@ interface CanvasManagerProps {
 }
 
 export const CanvasManager: React.FC<CanvasManagerProps> = ({ setOnZoomIn, setOnZoomOut, setOnZoomFit }) => {
-  const state = useVisualizationState();
+  const routesState = useRoutesState();
   const scene = useSelector(SceneSelectors.scene);
   const objectsState = useSelector(ObjectsSelectors.objects);
   const pathsState = useSelector(PathsSelectors.paths);
   const sensorsState = useSelector(SensorsSelectors.sensors);
+  const cameraView3D = useSelector(UiSelectors.isD3);
+  const selections = useSelector(TooltipsSelectors.selectionSelected);
+  const vehiclesState = useSelector(VehiclesSelectors.vehicles);
+
   const dispatch = useDispatch();
   const dispatchMouseEvent = (payload) => dispatch(tooltipActions.setMouseEvent(payload));
   const dispatchSelectionData = (payload) => dispatch(tooltipActions.setSelectionData(payload));
 
   return (
     <Canvas
-      debug={!isProduction()}
-      onMouseEvents={dispatchMouseEvent}
-      onSelectionData={dispatchSelectionData}
       scene={scene}
+      debug={!isProduction()}
+      type={VisualizationType.D3}
+      cameraView3D={cameraView3D}
+      selections={selections}
+      objectsState={objectsState}
+      pathsState={pathsState}
+      routesState={routesState}
+      sensorsState={sensorsState}
+      vehiclesState={vehiclesState}
       setOnZoomFit={setOnZoomFit}
       setOnZoomIn={setOnZoomIn}
       setOnZoomOut={setOnZoomOut}
-      state={state}
-      type={VisualizationType.D3}
-      objectsState={objectsState}
-      pathsState={pathsState}
-      sensorsState={sensorsState}
+      onMouseEvents={dispatchMouseEvent}
+      onSelectionData={dispatchSelectionData}
     />
   );
 };
