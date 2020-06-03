@@ -1,4 +1,4 @@
-import { Vector2, Vector3 } from 'three';
+import { Line, Vector2, Vector3 } from 'three';
 import React, { useMemo } from 'react';
 
 import { Color } from '../../canvas.model';
@@ -25,7 +25,7 @@ export const RoutePath: React.FC<RoutePathProps> = ({ points, ...props }) => {
     return points.map((point) => new Vector3(point.x, point.y, fromGround));
   }, [points]);
 
-  const ref = useUpdate<THREE.Line>(
+  const ref = useUpdate<Line>(
     (line) => {
       line.computeLineDistances();
     },
@@ -47,6 +47,7 @@ export const RoutePath: React.FC<RoutePathProps> = ({ points, ...props }) => {
     gapSize: props.gapSize,
     dashScale: props.dashScale,
     dashSize: props.dashSize,
+    defines: props.dashed ? { USE_DASH: '' } : null,
   };
 
   return (
@@ -57,7 +58,7 @@ export const RoutePath: React.FC<RoutePathProps> = ({ points, ...props }) => {
         points={pointsVec3}
         {...geometryProps}
       />
-      <lineMaterial attach="material" defines={{ USE_DASH: '' }} {...materialProps} />
+      <lineMaterial attach="material" {...materialProps} />
     </line2>
   );
 };

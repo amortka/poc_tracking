@@ -15,7 +15,18 @@ export class CanvasUtils {
       color: '#959da2',
     },
     floor: { D2: '#2c323a', D3: '#2c323a' },
-    objects: { D2: { line: '#979fa4', shape: '#41464e', text: '#979fa4', textSelected: '#ffffff' } },
+    objects: {
+      D2: {
+        line: '#979fa4',
+        shape: '#41464e',
+        text: '#979fa4',
+        textSelected: '#ffffff',
+        indicatorBackground: '#2c323a',
+        indicatorMaxColor: '#11b572',
+        indicatorMinColor: '#eb2e2f',
+        indicatorMidColor: '#e9a72c',
+      },
+    },
     walls: { D2: { line: '#61676f' }, D3: '#6a6e75' },
     sensor: { D2: '#464c53', D3: '#464c53' },
     routes: {

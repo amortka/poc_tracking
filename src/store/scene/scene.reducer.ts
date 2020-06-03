@@ -1,44 +1,40 @@
 import { Reducer } from 'redux';
-import { SceneState } from './scene.model';
-import { SceneAction } from './scene.model';
+
+import { SceneAction, SceneState, SelectSceneElementsByPathsIdsPayload } from './scene.model';
 import { visualizationSceneMock } from '../../modules/canvas/canvas.mock';
+import { ObjectsActions } from '../objects/objects.actions';
+import { Color } from '../../modules/canvas/canvas.model';
+import { PathsActions } from '../paths/paths.actions';
+import { SensorsActions } from '../sensors/sensors.actions';
 
 /**
  * Helpers
  */
 
-function handleSceneElementSelections(state: SceneState, selectedPaths: string[]) {
-  const sensorsToSelect = {};
-  const objectToSelect = {};
-  const pathToSelect = {};
-  selectedPaths.forEach((pathId) => {
-    pathToSelect[pathId] = pathId;
-    state.paths[pathId].sensors.forEach(({ sensorId, relationHidden }) => {
+function handleSceneElementSelections(
+  state: SceneState,
+  selectedPaths: SelectSceneElementsByPathsIdsPayload,
+  asyncDispatch: Function
+): void {
+  const sensorsToSelect: { [key: string]: boolean } = {};
+  const objectToSelect: { [key: string]: Color } = {};
+  const pathToSelect: { [key: string]: Color } = {};
+
+  selectedPaths.forEach((selection) => {
+    pathToSelect[selection.pathId] = 'green'; // TODO possibility to provide custom colors for paths
+
+    state.paths[selection.pathId].sensors.forEach(({ sensorId, relationHidden }) => {
       if (!relationHidden) {
-        sensorsToSelect[sensorId] = sensorId;
+        sensorsToSelect[sensorId] = true;
       }
     });
-    state.paths[pathId].objects.forEach(({ objectId }) => {
-      objectToSelect[objectId] = objectId;
-    });
+
+    state.paths[selection.pathId].objects.forEach(({ objectId }) => (objectToSelect[objectId] = selection.color));
   });
 
-  /// unselect all paths, object and sensors
-  for (const pathId in state.paths) {
-    state.paths[pathId].meta.selected = Boolean(pathToSelect[pathId]);
-  }
-  for (const objectId in state.objects) {
-    state.objects[objectId].meta.selected = Boolean(objectToSelect[objectId]);
-  }
-  for (const sensorId in state.sensors) {
-    state.sensors[sensorId].meta.selected = Boolean(sensorsToSelect[sensorId]);
-  }
-
-  state.objects = { ...state.objects };
-  state.sensors = { ...state.sensors };
-  state.paths = { ...state.paths };
-
-  return state;
+  asyncDispatch(ObjectsActions.selectObjects(objectToSelect));
+  asyncDispatch(PathsActions.selectPaths(pathToSelect));
+  asyncDispatch(SensorsActions.selectSensors(sensorsToSelect));
 }
 
 /**
@@ -54,8 +50,8 @@ export const sceneReducer: Reducer<SceneState> = (state = initialState, action) 
       return { ...state, ...action.payload };
     }
     case SceneAction.SELECT_SCENE_ELEMENTS_BY_PATHS_IDS: {
-      const selectedPaths: string[] = action.payload;
-      return handleSceneElementSelections({ ...state }, selectedPaths);
+      handleSceneElementSelections({ ...state }, action.payload, action.asyncDispatch);
+      return state;
     }
     default: {
       return state;

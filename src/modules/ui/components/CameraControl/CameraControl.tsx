@@ -4,10 +4,10 @@ import ZoomOutIcon from '@material-ui/icons/ZoomOut';
 import { makeStyles } from '@material-ui/core';
 import { MyLocation } from '@material-ui/icons';
 
-import * as uiSelectors from '../../../../store/ui/ui.selectors';
 import { uiActions } from '../../../../store/ui/ui.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { SliderButton } from '../SliderButton/SliderButton';
+import { UiSelectors } from '../../../../store/ui/ui.selectors';
 
 const useStyles = makeStyles((theme) => ({
   controlsWrapper: {
@@ -48,7 +48,7 @@ export const CameraControl: React.FC<CameraControlProps> = ({ onZoomIn, onZoomOu
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const isD3 = useSelector(uiSelectors.isD3);
+  const isD3 = useSelector(UiSelectors.isD3);
 
   const menuItems = useMemo(
     () => [

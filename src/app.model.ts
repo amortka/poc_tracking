@@ -5,12 +5,14 @@ export interface Dictionary<T> {
   [id: string]: T;
 }
 
-export enum ApiEvent {
-  VEHICLE_UPDATE = 'VEHICLE_UPDATE',
-}
 /**
  * Communication
  */
+
+export enum ApiEvent {
+  VEHICLE_UPDATE = 'VEHICLE_UPDATE',
+  OBJECT_UPDATE = 'OBJECT_UPDATE',
+}
 
 export interface IVehicleUpdate {
   vehicleId: string;
@@ -32,6 +34,16 @@ export interface IApiVehicleUpdate {
   rfids: string[];
   deviceId: string;
   pathId?: string;
+}
+
+export type IApiObjectResourceUpdate = Array<{
+  objectId: string;
+  resourceIndicator?: number; // 0-1
+}>;
+
+export interface IApiWebsocketMessage {
+  eventType: ApiEvent;
+  payload: IApiVehicleUpdate | IApiObjectResourceUpdate;
 }
 
 export interface IRouteWithData extends Omit<IRouteState, 'vehicle'> {

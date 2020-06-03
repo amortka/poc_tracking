@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
-import { TextureLoader, CircleBufferGeometry } from 'three';
+import { CircleBufferGeometry, TextureLoader } from 'three';
 import { useLoader } from 'react-three-fiber';
 
 import fillTextureUrl from './fill_texture.png';
 import outlineTextureUrl from './outline_texture.png';
-import { IPoint, ISensor, ObjectType, VisualizationType } from '../../canvas.model';
+import { IPoint, ISensor, ObjectType } from '../../canvas.model';
 import { useMouseEvent } from '../../hooks/use-mouse-event.hook';
 
 interface SensorProps extends Pick<ISensor, 'tag'> {
@@ -13,13 +13,12 @@ interface SensorProps extends Pick<ISensor, 'tag'> {
   selectable: boolean;
   selected: boolean;
   tag: string;
-  type: VisualizationType;
 }
 
 const circleRadius = 0.17;
 const circleSegments = 32;
 
-export const Sensor: React.FC<SensorProps> = ({ position, type, id, tag, selected, selectable }) => {
+export const Sensor: React.FC<SensorProps> = ({ position, id, tag, selected, selectable }) => {
   const [handleClick, handlePointerOver, handlePointerOut] = useMouseEvent({ id, tag }, ObjectType.SENSOR);
   const geometry = useMemo(() => new CircleBufferGeometry(circleRadius, circleSegments), []);
 

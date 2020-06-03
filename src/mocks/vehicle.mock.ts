@@ -1,15 +1,16 @@
 import { ApiEvent, IApiVehicleUpdate } from '../app.model';
+import { ObjectResourceMock } from './object-resource.mock';
 
 const progress = [
   { delay: 0, sensorId: 'pnxwxnpk', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 2000, sensorId: 'saruefli', event: ApiEvent.VEHICLE_UPDATE }, //
+  { delay: 2000, sensorId: 'saruefli', event: ApiEvent.VEHICLE_UPDATE, objectId: 'vbisqysg' }, //
   { delay: 4000, sensorId: 'piunnkuf', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: 'izktgqna', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 1000, sensorId: 'izktgqna', event: ApiEvent.VEHICLE_UPDATE, objectId: 'hcgrauti' },
   { delay: 2000, sensorId: 'xzfsgxxh', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 3000, sensorId: 'qwbmjtmf', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 3000, sensorId: 'qwbmjtmf', event: ApiEvent.VEHICLE_UPDATE, objectId: 'kkshvomj' },
   { delay: 4000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
   { delay: 4000, sensorId: 'quqklxup', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 2000, sensorId: 'zapgjpha', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 2000, sensorId: 'zapgjpha', event: ApiEvent.VEHICLE_UPDATE, objectId: 'ycjfzvlk' },
   { delay: 3000, sensorId: 'jpgsbunl', event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: 'aihfuhkc', event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: 'pnxwxnpk', event: ApiEvent.VEHICLE_UPDATE },
@@ -37,7 +38,7 @@ export class VehicleMock {
 
   private stopProcess: boolean = false;
 
-  constructor(private socketIo: any) {}
+  constructor(private socketIo: any, private objectResourceMock: ObjectResourceMock) {}
 
   stopSimulation(): void {
     this.stopProcess = true;
@@ -49,12 +50,15 @@ export class VehicleMock {
   }
 
   private async simulateScenario() {
-    for (let { delay, sensorId, event } of progress) {
+    for (let { delay, sensorId, event, objectId } of progress) {
       await wait(delay);
 
       if (this.stopProcess) break;
       this.updateVehicle({ rfids: sensorId ? [sensorId] : [] });
       this.socketIo.emit(event, this.vehicle);
+      if (objectId) {
+        this.objectResourceMock.objects.find((o) => o.objectId === objectId).resourceIndicator = 1;
+      }
     }
     await wait(4000);
 

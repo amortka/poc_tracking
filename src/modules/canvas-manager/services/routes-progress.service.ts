@@ -17,6 +17,8 @@ export class RouteService {
   private routeState: IRouteState;
   private vehicleState: IVehicleState;
 
+  private lastReceivedSensorIndex: number = 0;
+
   private subscription: any;
 
   private tween: typeof Tween;
@@ -42,8 +44,8 @@ export class RouteService {
       const vehicleState = VehiclesSelectors.getVehicle(this.routeState.vehicle)(storeState);
 
       if (this.vehicleState?.lastUpdateTime !== vehicleState.lastUpdateTime) {
+        this.updateProgress(vehicleState);
         this.vehicleState = vehicleState;
-        this.updateProgress();
       }
 
       if (this.routeState.selected !== this.route.selected) {
@@ -53,23 +55,35 @@ export class RouteService {
     });
   }
 
-  private updateProgress() {
-    const sensorIndex = this.getSensorIndex(this.vehicleState.currentRfIds[0], this.path);
-    const sensorProgress = this.getSensorProgress(sensorIndex, this.path);
-    const nextSensorProgress = this.getSensorProgress(sensorIndex + 1, this.path);
-    const timeBetweenSensors = this.getTimeBetweenSensors(sensorIndex, sensorIndex + 1, this.path);
+  private updateProgress(vehicleState: IVehicleState) {
+    const sensorIndex = this.getSensorIndex(vehicleState.currentRfIds[0], this.path);
 
-    if (!this.tween) {
+    const isSensorExist = sensorIndex !== -1;
+    const didSensorChanged = sensorIndex !== this.lastReceivedSensorIndex;
+    const isLastSensor = sensorIndex === this.path.sensors.length - 1;
+
+    if (!isSensorExist || !didSensorChanged || isLastSensor) {
+      return;
+    }
+
+    const sensorProgress = this.getSensorProgress(sensorIndex, this.path);
+    const isNextSensorOnPath = sensorIndex === this.lastReceivedSensorIndex + 1;
+
+    if (!this.tween || !isNextSensorOnPath) {
       this.tween = new Tween({ progress: sensorProgress });
     } else {
       this.tween.stop();
       this.tween = new Tween(this.tween.object);
     }
 
+    const nextSensorProgress = this.getSensorProgress(sensorIndex + 1, this.path);
+    const timeBetweenSensors = this.getTimeBetweenSensors(sensorIndex, sensorIndex + 1, this.path);
+
     this.tween
       .to({ progress: nextSensorProgress }, timeBetweenSensors)
       .on('update', ({ progress }) => this.emitRouteUpdate(progress));
 
+    this.lastReceivedSensorIndex = sensorIndex;
     this.tween.start();
   }
 
@@ -81,6 +95,7 @@ export class RouteService {
   }
 
   // TODO: check if this should be removed
+  // TODO Needs to calculate time based on vehicle avg speed and distance between sensors
   private getTimeBetweenSensors(sensorIndex: number, nextSensorIndex: number, path: IPath): number {
     return 4000;
   }

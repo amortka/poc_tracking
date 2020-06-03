@@ -20,17 +20,20 @@ const ENDPOINT = 'wss://9zm5unpokg.execute-api.eu-central-1.amazonaws.com/dev';
 function useWebsocket() {
   useEffect(() => {
     const socket = new WebSocket(ENDPOINT);
+    socket.onerror = (e) => {
+      console.log('onerror', e);
+    };
     socket.onopen = (e) => {
-      console.log(e);
+      console.log('onopen', e);
     };
 
     socket.onmessage = function (event) {
       let payload = decodeBackendPayload(event.data);
-
-      console.log({ payload });
-      store.dispatch(VehiclesActions.updateVehicle({ deviceId: 'trqzbojg', rfids: [], ...payload.pop() }));
+      store.dispatch(
+        VehiclesActions.updateVehicle({ deviceId: 'trqzbojg', rfids: [], ...payload[payload.length - 1] })
+      );
     };
-    return socket.close();
+    return () => socket.close();
   }, []);
 
   function decodeBackendPayload(payload: string): IApiVehicleUpdate[] {

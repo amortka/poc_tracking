@@ -35,6 +35,10 @@ export interface ICanvasTheme {
       shape: Color;
       text: Color;
       textSelected: Color;
+      indicatorBackground: Color;
+      indicatorMaxColor: Color;
+      indicatorMinColor: Color;
+      indicatorMidColor: Color;
     };
   };
   paths: {
@@ -104,7 +108,6 @@ export interface IObject {
     textSize?: TextSize;
     textRotation?: number;
     borderType?: BorderType;
-    selected?: boolean;
     selectable?: boolean;
   };
 }
@@ -114,9 +117,6 @@ export interface IPath {
   points: string[];
   sensors: Array<{ sensorId: string; distance: number; relationHidden?: boolean }>;
   objects: Array<{ objectId: string; distance: number }>;
-  meta: {
-    selected?: boolean;
-  };
 }
 
 export interface IRoom {
@@ -165,16 +165,36 @@ export interface IRoute {
   color: Color;
 }
 
+export interface IObjectStateMeta {
+  color?: Color;
+  resourceIndicator?: number; // 0-1
+  selected?: boolean;
+  visibleResourceIndicator?: boolean;
+}
+
+export interface IPathStateMeta {
+  selected?: boolean;
+  color?: Color;
+}
+
+export interface ISensorStateMeta {
+  selected?: boolean;
+  color?: Color;
+}
+
 export interface IRouteWithComputedData extends Omit<IRoute, 'vehicle' | 'path'> {
   vehicle: IVehicle;
   points: Vector2[];
 }
 
 export interface IVisualizationState {
-  vehicles: Dictionary<IVehicle>;
+  isD3: boolean;
+  objects: Dictionary<IObjectStateMeta>;
+  paths: Dictionary<IPathStateMeta>;
   routes: Dictionary<IRoute>;
   selection: ISelection;
-  isD3: boolean;
+  sensors: Dictionary<ISensorStateMeta>;
+  vehicles: Dictionary<IVehicle>;
 }
 
 /**

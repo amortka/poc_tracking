@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 
 import { makeStyles } from '@material-ui/core';
 
-import * as uiSelectors from '../../../../store/ui/ui.selectors';
 import { uiActions } from '../../../../store/ui/ui.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { SliderButton } from '../SliderButton/SliderButton';
+import { UiSelectors } from '../../../../store/ui/ui.selectors';
 
 const useStyles = makeStyles((theme) => ({
   controlsWrapper: {
@@ -21,7 +21,7 @@ export const DataControl: React.FC = React.memo(() => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const isRealData = useSelector(uiSelectors.isRealData);
+  const isRealData = useSelector(UiSelectors.isRealData);
 
   const slider = {
     first: { name: 'SIMULATED' },
