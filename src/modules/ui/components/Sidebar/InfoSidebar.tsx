@@ -75,10 +75,10 @@ export const InfoSidebar: React.FC<InfoSidebarProps> = ({ setIsCartDetailsVisibl
             )}
           </div>
         </Box>
-        <ExpansionSidebarItem title="Warehouse 800" />
-        <ExpansionSidebarItem title="P1" />
-        <ExpansionSidebarItem title="P0" />
-        <ExpansionSidebarItem title="Strefa Cavity" />
+        <ExpansionSidebarItem title="Production area L1" />
+        <ExpansionSidebarItem title="Production area L2" />
+        <ExpansionSidebarItem title="Production area L3" />
+        <ExpansionSidebarItem title="Warehouse area M1" />
       </CartDetailsContext.Provider>
     </Drawer>
   );

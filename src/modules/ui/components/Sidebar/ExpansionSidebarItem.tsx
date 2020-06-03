@@ -15,32 +15,32 @@ import { CartItem } from '../CartItem/CartItem';
 import { cartsMock } from '../../../../mocks/ui.mock';
 import { RoutesActions } from '../../../../store/routes/routes.actions';
 
-const ExpansionPanel = withStyles({
+const ExpansionPanel = withStyles((theme) => ({
   root: {
     boxShadow: 'inset 12px 0 24px -13px rgba(0, 0, 0, 0.5)',
-    margin: '0 0 15px 0',
+    margin: `0 0 ${theme.spacing(2)}px  0`,
     '&:before': {
       display: 'none',
     },
-    '&$expanded': {
-      margin: '0 0 15px 0',
-    },
   },
-  expanded: {},
-})(MuiExpansionPanel);
+}))(MuiExpansionPanel);
 
-const useStyles = makeStyles({
-  paper: {
-    height: '200px',
-    marginBottom: '20px',
-  },
+const useStyles = makeStyles((theme) => ({
   details: {
     padding: 0,
   },
   list: {
     width: '100%',
   },
-});
+  expansionSummary: {
+    minHeight: theme.spacing(9),
+  },
+  expansionPanel: {
+    '&.Mui-expanded': {
+      margin: `0 0 ${theme.spacing(2)}px  0`,
+    },
+  },
+}));
 
 export interface ExpansionSidebarItemProps {
   title: string;
@@ -51,8 +51,8 @@ export const ExpansionSidebarItem: React.FC<ExpansionSidebarItemProps> = React.m
   const dispatch = useDispatch();
 
   return (
-    <ExpansionPanel square>
-      <ExpansionPanelSummary expandIcon={<Add />}>
+    <ExpansionPanel square className={classes.expansionPanel}>
+      <ExpansionPanelSummary expandIcon={<Add />} className={classes.expansionSummary}>
         <Typography variant="h6">{title}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.details}>
