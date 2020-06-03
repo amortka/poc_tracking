@@ -21,13 +21,15 @@ interface CanvasManagerProps {
 }
 
 export const CanvasManager: React.FC<CanvasManagerProps> = ({ setOnZoomIn, setOnZoomOut, setOnZoomFit }) => {
-  const routesState = useRoutesState();
   const scene = useSelector(SceneSelectors.scene);
+
+  const cameraView3D = useSelector(UiSelectors.isD3);
+  const selections = useSelector(TooltipsSelectors.selectionSelected);
+
+  const routesState = useRoutesState();
   const objectsState = useSelector(ObjectsSelectors.objects);
   const pathsState = useSelector(PathsSelectors.paths);
   const sensorsState = useSelector(SensorsSelectors.sensors);
-  const cameraView3D = useSelector(UiSelectors.isD3);
-  const selections = useSelector(TooltipsSelectors.selectionSelected);
   const vehiclesState = useSelector(VehiclesSelectors.vehicles);
 
   const dispatch = useDispatch();

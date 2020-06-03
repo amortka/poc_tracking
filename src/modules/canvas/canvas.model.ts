@@ -35,6 +35,10 @@ export interface ICanvasTheme {
       shape: Color;
       text: Color;
       textSelected: Color;
+      indicatorBackground: Color;
+      indicatorMaxColor: Color;
+      indicatorMinColor: Color;
+      indicatorMidColor: Color;
     };
   };
   paths: {
