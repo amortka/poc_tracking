@@ -9,7 +9,7 @@ interface PathsProps extends Pick<IVisualizationScene, 'paths' | 'points'> {
   state: Dictionary<IPathStateMeta>;
 }
 
-export const Paths: React.FC<PathsProps> = ({ paths, points, state }) => {
+export const Paths: React.FC<PathsProps> = React.memo(({ paths, points, state }) => {
   const pathsProps = usePathProps(paths, points);
 
   return (
@@ -19,4 +19,4 @@ export const Paths: React.FC<PathsProps> = ({ paths, points, state }) => {
       )}
     </>
   );
-};
+});

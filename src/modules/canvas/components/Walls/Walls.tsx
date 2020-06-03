@@ -1,14 +1,15 @@
 import React, { useMemo } from 'react';
+
+import { IVisualizationScene, VisualizationType } from '../../canvas.model';
+import { WallD2 } from './WallD2';
 import { WallD3 } from './WallD3';
 import { WallsUtils } from './walls.utils';
-import { WallD2 } from './WallD2';
-import { IVisualizationScene, VisualizationType } from '../../canvas.model';
 
 interface WallsProps extends Pick<IVisualizationScene, 'walls' | 'points' | 'rooms'> {
   type: VisualizationType;
 }
 
-export const Walls: React.FC<WallsProps> = ({ walls, points, type }) => {
+export const Walls: React.FC<WallsProps> = React.memo(({ walls, points, type }) => {
   const renderWalls = useMemo(() => {
     switch (type) {
       case VisualizationType.D3:
@@ -21,4 +22,4 @@ export const Walls: React.FC<WallsProps> = ({ walls, points, type }) => {
   }, [type, walls, points]);
 
   return <React.Fragment>{renderWalls}</React.Fragment>;
-};
+});
