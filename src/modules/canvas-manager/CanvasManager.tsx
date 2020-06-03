@@ -12,6 +12,7 @@ import { tooltipActions } from '../../store/tooltips/tooltips.actions';
 import { visualizationStateMock } from '../../mocks/main.mock';
 import { ObjectsSelectors } from '../../store/objects/objects.selectors';
 import { PathsSelectors } from '../../store/paths/paths.selectors';
+import { SensorsSelectors } from '../../store/sensors/sensors.selectors';
 
 let routesIdSet: Set<string> = new Set();
 
@@ -71,6 +72,7 @@ export const CanvasManager: React.FC<CanvasManagerProps> = ({ setOnZoomIn, setOn
   const scene = useSelector(SceneSelectors.scene);
   const objectsState = useSelector(ObjectsSelectors.objects);
   const pathsState = useSelector(PathsSelectors.paths);
+  const sensorsState = useSelector(SensorsSelectors.sensors);
   const dispatch = useDispatch();
   const dispatchMouseEvent = (payload) => dispatch(tooltipActions.setMouseEvent(payload));
   const dispatchSelectionData = (payload) => dispatch(tooltipActions.setSelectionData(payload));
@@ -88,6 +90,7 @@ export const CanvasManager: React.FC<CanvasManagerProps> = ({ setOnZoomIn, setOn
       type={VisualizationType.D3}
       objectsState={objectsState}
       pathsState={pathsState}
+      sensorsState={sensorsState}
     />
   );
 };

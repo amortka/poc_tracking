@@ -19,6 +19,7 @@ export const visualizationStateMock: IVisualizationState = {
   objects: {},
   paths: {},
   routes: {},
+  sensors: {},
   selection: selectionMock,
   isD3: true,
 };

@@ -5,18 +5,18 @@ import { visualizationSceneMock } from '../../modules/canvas/canvas.mock';
 import { ObjectsActions } from '../objects/objects.actions';
 import { Color } from '../../modules/canvas/canvas.model';
 import { PathsActions } from '../paths/paths.actions';
+import { SensorsActions } from '../sensors/sensors.actions';
 
 /**
  * Helpers
  */
 
-// TODO remove this and put to separate reducers
 function handleSceneElementSelections(
   state: SceneState,
   selectedPaths: SelectSceneElementsByPathsIdsPayload,
   asyncDispatch: Function
-): SceneState {
-  const sensorsToSelect = {};
+): void {
+  const sensorsToSelect: { [key: string]: boolean } = {};
   const objectToSelect: { [key: string]: Color } = {};
   const pathToSelect: { [key: string]: Color } = {};
 
@@ -25,7 +25,7 @@ function handleSceneElementSelections(
 
     state.paths[selection.pathId].sensors.forEach(({ sensorId, relationHidden }) => {
       if (!relationHidden) {
-        sensorsToSelect[sensorId] = sensorId;
+        sensorsToSelect[sensorId] = true;
       }
     });
 
@@ -34,16 +34,7 @@ function handleSceneElementSelections(
 
   asyncDispatch(ObjectsActions.selectObjects(objectToSelect));
   asyncDispatch(PathsActions.selectPaths(pathToSelect));
-
-  /// unselect all paths, object and sensors
-
-  for (const sensorId in state.sensors) {
-    state.sensors[sensorId].meta.selected = Boolean(sensorsToSelect[sensorId]);
-  }
-
-  state.sensors = { ...state.sensors };
-
-  return state;
+  asyncDispatch(SensorsActions.selectSensors(sensorsToSelect));
 }
 
 /**
@@ -59,8 +50,8 @@ export const sceneReducer: Reducer<SceneState> = (state = initialState, action) 
       return { ...state, ...action.payload };
     }
     case SceneAction.SELECT_SCENE_ELEMENTS_BY_PATHS_IDS: {
-      const selectedPaths: SelectSceneElementsByPathsIdsPayload = action.payload;
-      return handleSceneElementSelections({ ...state }, selectedPaths, action.asyncDispatch);
+      handleSceneElementSelections({ ...state }, action.payload, action.asyncDispatch);
+      return state;
     }
     default: {
       return state;

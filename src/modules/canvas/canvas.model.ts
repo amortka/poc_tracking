@@ -173,18 +173,24 @@ export interface IPathStateMeta {
   color?: Color;
 }
 
+export interface ISensorStateMeta {
+  selected?: boolean;
+  color?: Color;
+}
+
 export interface IRouteWithComputedData extends Omit<IRoute, 'vehicle' | 'path'> {
   vehicle: IVehicle;
   points: Vector2[];
 }
 
 export interface IVisualizationState {
-  vehicles: Dictionary<IVehicle>;
-  routes: Dictionary<IRoute>;
-  selection: ISelection;
   isD3: boolean;
   objects: Dictionary<IObjectStateMeta>;
   paths: Dictionary<IPathStateMeta>;
+  routes: Dictionary<IRoute>;
+  selection: ISelection;
+  sensors: Dictionary<ISensorStateMeta>;
+  vehicles: Dictionary<IVehicle>;
 }
 
 /**

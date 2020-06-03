@@ -1,28 +1,27 @@
-import React, { useMemo, Suspense } from 'react';
-import { IVisualizationScene, VisualizationType } from '../../canvas.model';
+import React, { Suspense } from 'react';
+
+import { ISensorStateMeta, IVisualizationScene } from '../../canvas.model';
 import { Sensor } from './Sensor';
+import { Dictionary } from '../../../../app.model';
 
 interface ISensors extends Pick<IVisualizationScene, 'sensors' | 'points'> {
-  type: VisualizationType;
+  state: Dictionary<ISensorStateMeta>;
 }
 
-export const Sensors: React.FC<ISensors> = ({ points, sensors, type }) => {
-  const sensorModels = useMemo(
-    () =>
-      Object.entries(sensors).map(([sensorId, { point, tag, meta }], index) => (
+export const Sensors: React.FC<ISensors> = React.memo(({ points, sensors, state }) => {
+  return (
+    <>
+      {Object.entries(sensors).map(([sensorId, { point, tag, meta }]) => (
         <Suspense fallback={null} key={sensorId}>
           <Sensor
             position={points[point]}
-            type={type}
             id={sensorId}
             tag={tag}
-            selected={meta.selected}
+            selected={state[sensorId]?.selected}
             selectable={meta.selectable}
           />
         </Suspense>
-      )),
-    [points, sensors, type]
+      ))}
+    </>
   );
-
-  return <>{sensorModels}</>;
-};
+});

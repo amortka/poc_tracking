@@ -12,6 +12,7 @@ import {
   IObjectStateMeta,
   IPathStateMeta,
   ISelectionData,
+  ISensorStateMeta,
   IVisualizationScene,
   IVisualizationState,
   VisualizationType,
@@ -42,6 +43,7 @@ interface CanvasProps {
   setOnZoomFit: Dispatch<SetStateAction<() => void>>;
   objectsState: Dictionary<IObjectStateMeta>;
   pathsState: Dictionary<IPathStateMeta>;
+  sensorsState: Dictionary<ISensorStateMeta>;
 }
 
 Object3D.DefaultUp.set(0, 0, 1);
@@ -59,6 +61,7 @@ export const Canvas: React.FC<CanvasProps> = ({
   setOnZoomFit,
   objectsState,
   pathsState,
+  sensorsState,
 }) => {
   const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme]);
 
@@ -80,7 +83,7 @@ export const Canvas: React.FC<CanvasProps> = ({
               <Walls walls={scene.walls} points={scene.points} rooms={scene.rooms} type={type} />
               <Objects points={scene.points} objects={scene.objects} state={objectsState} />
               <Paths points={scene.points} paths={scene.paths} state={pathsState} />
-              <Sensors points={scene.points} sensors={scene.sensors} type={type} />
+              <Sensors points={scene.points} sensors={scene.sensors} state={sensorsState} />
               <Routes points={scene.points} paths={scene.paths} vehicles={state.vehicles} routes={state.routes} />
               <Selection selection={state.selection} selectionDataClb={onSelectionData} />
             </Scene>
