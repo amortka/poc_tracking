@@ -113,9 +113,6 @@ export interface IPath {
   points: string[];
   sensors: Array<{ sensorId: string; distance: number; relationHidden?: boolean }>;
   objects: Array<{ objectId: string; distance: number }>;
-  meta: {
-    selected?: boolean;
-  };
 }
 
 export interface IRoom {
@@ -171,6 +168,11 @@ export interface IObjectStateMeta {
   visibleResourceIndicator?: boolean;
 }
 
+export interface IPathStateMeta {
+  selected?: boolean;
+  color?: Color;
+}
+
 export interface IRouteWithComputedData extends Omit<IRoute, 'vehicle' | 'path'> {
   vehicle: IVehicle;
   points: Vector2[];
@@ -182,6 +184,7 @@ export interface IVisualizationState {
   selection: ISelection;
   isD3: boolean;
   objects: Dictionary<IObjectStateMeta>;
+  paths: Dictionary<IPathStateMeta>;
 }
 
 /**

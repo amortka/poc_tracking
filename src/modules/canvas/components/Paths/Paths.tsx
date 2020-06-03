@@ -1,19 +1,21 @@
 import React from 'react';
-import { IVisualizationScene } from '../../canvas.model';
+
+import { IPathStateMeta, IVisualizationScene } from '../../canvas.model';
 import { PathsElement } from './PathsElement';
 import { usePathProps } from './paths.utils';
+import { Dictionary } from '../../../../app.model';
 
 interface PathsProps extends Pick<IVisualizationScene, 'paths' | 'points'> {
-  selectedPath: string;
+  state: Dictionary<IPathStateMeta>;
 }
 
-export const Paths: React.FC<PathsProps> = ({ paths, points, selectedPath }) => {
+export const Paths: React.FC<PathsProps> = ({ paths, points, state }) => {
   const pathsProps = usePathProps(paths, points);
 
   return (
     <>
       {pathsProps.map(({ pathId, ...props }) =>
-        pathId !== selectedPath ? <PathsElement key={pathId} {...props} /> : null
+        state[pathId]?.selected ? null : <PathsElement key={pathId} {...props} state={state[pathId]} />
       )}
     </>
   );

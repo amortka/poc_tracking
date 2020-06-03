@@ -156,7 +156,6 @@ export const visualizationSceneMock: IVisualizationScene = {
         { objectId: 'kkshvomj', distance: 0.495 },
         { objectId: 'ycjfzvlk', distance: 0.682 },
       ],
-      meta: {},
     },
   },
   points: {

@@ -12,17 +12,22 @@ import { TooltipState } from './tooltips/tooltips.model';
 import { uiReducer } from './ui/ui.reducer';
 import { UiState } from './ui/ui.model';
 import { vehiclesReducer } from './vehicles/vehicles.reducer';
+import { pathsReducer } from './paths/paths.reducer';
+import { IPathsState } from './paths/paths.model';
 
 /**********************************************************
  * Interfaces
  **********************************************************/
 export interface AppState {
-  routes: IRoutesState;
   scene: SceneState;
-  tooltip: TooltipState;
-  ui: UiState;
-  vehicles: IVehiclesState;
+
   objects: IObjectsState;
+  paths: IPathsState;
+  routes: IRoutesState;
+  tooltip: TooltipState;
+  vehicles: IVehiclesState;
+
+  ui: UiState;
 }
 
 /**********************************************************
@@ -30,12 +35,15 @@ export interface AppState {
  **********************************************************/
 export function makeRootReducer<S = any, A extends Action = Action>(asyncReducers?: Reducer<S, A>) {
   return combineReducers({
-    routes: routesReducer,
     scene: sceneReducer,
-    tooltip: tooltipsReducer,
-    ui: uiReducer,
-    vehicles: vehiclesReducer,
+
     objects: objectsReducer,
+    paths: pathsReducer,
+    routes: routesReducer,
+    tooltip: tooltipsReducer,
+    vehicles: vehiclesReducer,
+
+    ui: uiReducer,
     ...asyncReducers,
   });
 }

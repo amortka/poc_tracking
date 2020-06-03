@@ -1,8 +1,10 @@
 import { Reducer } from 'redux';
+
 import { SceneAction, SceneState, SelectSceneElementsByPathsIdsPayload } from './scene.model';
 import { visualizationSceneMock } from '../../modules/canvas/canvas.mock';
 import { ObjectsActions } from '../objects/objects.actions';
 import { Color } from '../../modules/canvas/canvas.model';
+import { PathsActions } from '../paths/paths.actions';
 
 /**
  * Helpers
@@ -16,10 +18,10 @@ function handleSceneElementSelections(
 ): SceneState {
   const sensorsToSelect = {};
   const objectToSelect: { [key: string]: Color } = {};
-  const pathToSelect = {};
+  const pathToSelect: { [key: string]: Color } = {};
 
   selectedPaths.forEach((selection) => {
-    pathToSelect[selection.pathId] = true;
+    pathToSelect[selection.pathId] = 'green'; // TODO possibility to provide custom colors for paths
 
     state.paths[selection.pathId].sensors.forEach(({ sensorId, relationHidden }) => {
       if (!relationHidden) {
@@ -31,18 +33,15 @@ function handleSceneElementSelections(
   });
 
   asyncDispatch(ObjectsActions.selectObjects(objectToSelect));
+  asyncDispatch(PathsActions.selectPaths(pathToSelect));
 
   /// unselect all paths, object and sensors
-  for (const pathId in state.paths) {
-    state.paths[pathId].meta.selected = Boolean(pathToSelect[pathId]);
-  }
 
   for (const sensorId in state.sensors) {
     state.sensors[sensorId].meta.selected = Boolean(sensorsToSelect[sensorId]);
   }
 
   state.sensors = { ...state.sensors };
-  state.paths = { ...state.paths };
 
   return state;
 }

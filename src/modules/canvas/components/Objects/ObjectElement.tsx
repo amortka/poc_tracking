@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { Shape, Vector3 } from 'three';
 
-import { equal } from '../../../../utils/object.utils';
 import { IObjectState } from '../../../../store/objects/objects.model';
 import { IObjectWithPointsCoordinates } from '../../canvas.model';
 import { ObjectExtruded } from './ObjectExtruded';
@@ -11,7 +10,6 @@ import { ObjectPlane } from './ObjectPlane';
 import { ObjectResourceIndicator } from './ObjectResourceIndicator';
 import { ObjectsUtils } from './objects.utils';
 import { ShapeUtils } from '../../utils/shape.utils';
-import { useMemoDistinct } from '../../hooks/use-memo-distinct.hook';
 
 interface ObjectElementProps extends IObjectWithPointsCoordinates {
   state: IObjectState;
@@ -25,11 +23,7 @@ export const ObjectElement: React.FC<ObjectElementProps> = ({
   height = 0,
   state,
 }) => {
-  const geometryShape: Shape = useMemoDistinct(
-    () => ShapeUtils.getShapeFromPointCoordinates(shapePoints),
-    [shapePoints],
-    equal
-  );
+  const geometryShape: Shape = useMemo(() => ShapeUtils.getShapeFromPointCoordinates(shapePoints), [shapePoints]);
 
   const labelPosition: Vector3 = useMemo(() => {
     return ObjectsUtils.getLabelPosition(geometryShape, fromGround / 2).setZ(fromGround + 0.004);
