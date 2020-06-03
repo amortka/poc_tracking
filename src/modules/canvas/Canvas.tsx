@@ -26,6 +26,7 @@ import { Sensors } from './components/Sensors/Sensors';
 import { ThemeContext } from './contexts/ThemeContext';
 import { Walls } from './components/Walls/Walls';
 import { ThreeMonitor } from './components/ThreeMonitor';
+import { IObjectsState } from '../../store/objects/objects.model';
 
 interface CanvasProps {
   debug?: boolean;
@@ -38,6 +39,7 @@ interface CanvasProps {
   setOnZoomIn: Dispatch<SetStateAction<() => void>>;
   setOnZoomOut: Dispatch<SetStateAction<() => void>>;
   setOnZoomFit: Dispatch<SetStateAction<() => void>>;
+  objectsState: IObjectsState;
 }
 
 Object3D.DefaultUp.set(0, 0, 1);
@@ -53,6 +55,7 @@ export const Canvas: React.FC<CanvasProps> = ({
   setOnZoomIn,
   setOnZoomOut,
   setOnZoomFit,
+  objectsState,
 }) => {
   const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme]);
 
@@ -78,7 +81,7 @@ export const Canvas: React.FC<CanvasProps> = ({
             <Floor type={type} />
             <Scene isD3={state.isD3} setOnZoomIn={setOnZoomIn} setOnZoomOut={setOnZoomOut} setOnZoomFit={setOnZoomFit}>
               <Walls walls={scene.walls} points={scene.points} rooms={scene.rooms} type={type} />
-              <Objects points={scene.points} objects={scene.objects} />
+              <Objects points={scene.points} objects={scene.objects} state={objectsState} />
               <Paths points={scene.points} paths={scene.paths} selectedPath={selectedPath} />
               <Sensors points={scene.points} sensors={scene.sensors} type={type} />
               <Routes points={scene.points} paths={scene.paths} vehicles={state.vehicles} routes={state.routes} />

@@ -1,7 +1,10 @@
 import { Action, combineReducers, Reducer } from 'redux';
 
-import { routesReducer } from './routes/routes.reducer';
+import { IObjectsState } from './objects/objects.model';
 import { IRoutesState } from './routes/routes.model';
+import { IVehiclesState } from './vehicles/vehicles.model';
+import { objectsReducer } from './objects/objects.reducer';
+import { routesReducer } from './routes/routes.reducer';
 import { sceneReducer } from './scene/scene.reducer';
 import { SceneState } from './scene/scene.model';
 import { tooltipsReducer } from './tooltips/tooltips.reducer';
@@ -9,7 +12,6 @@ import { TooltipState } from './tooltips/tooltips.model';
 import { uiReducer } from './ui/ui.reducer';
 import { UiState } from './ui/ui.model';
 import { vehiclesReducer } from './vehicles/vehicles.reducer';
-import { IVehiclesState } from './vehicles/vehicles.model';
 
 /**********************************************************
  * Interfaces
@@ -20,6 +22,7 @@ export interface AppState {
   tooltip: TooltipState;
   ui: UiState;
   vehicles: IVehiclesState;
+  objects: IObjectsState;
 }
 
 /**********************************************************
@@ -32,6 +35,7 @@ export function makeRootReducer<S = any, A extends Action = Action>(asyncReducer
     tooltip: tooltipsReducer,
     ui: uiReducer,
     vehicles: vehiclesReducer,
+    objects: objectsReducer,
     ...asyncReducers,
   });
 }

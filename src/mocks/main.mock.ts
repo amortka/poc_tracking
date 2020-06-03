@@ -16,6 +16,7 @@ export const visualizationStateMock: IVisualizationState = {
       ambientPressure: 1,
     },
   },
+  objects: {},
   routes: {},
   selection: selectionMock,
   isD3: true,

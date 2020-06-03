@@ -104,11 +104,7 @@ export interface IObject {
     textSize?: TextSize;
     textRotation?: number;
     borderType?: BorderType;
-    selected?: boolean;
     selectable?: boolean;
-    color?: Color;
-    visibleResourceIndicator?: boolean;
-    resourceIndicator?: number; // 0-1
   };
 }
 
@@ -168,6 +164,13 @@ export interface IRoute {
   color: Color;
 }
 
+export interface IObjectStateMeta {
+  color?: Color;
+  resourceIndicator?: number; // 0-1
+  selected?: boolean;
+  visibleResourceIndicator?: boolean;
+}
+
 export interface IRouteWithComputedData extends Omit<IRoute, 'vehicle' | 'path'> {
   vehicle: IVehicle;
   points: Vector2[];
@@ -178,6 +181,7 @@ export interface IVisualizationState {
   routes: Dictionary<IRoute>;
   selection: ISelection;
   isD3: boolean;
+  objects: Dictionary<IObjectStateMeta>;
 }
 
 /**

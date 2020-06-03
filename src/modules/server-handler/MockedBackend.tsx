@@ -5,7 +5,7 @@ import { store } from '../../store/store.config';
 import { VehiclesActions } from '../../store/vehicles/vehicles.actions';
 import { VehicleMock } from '../../mocks/vehicle.mock';
 import { ObjectResourceMock } from '../../mocks/object-resource.mock';
-import { SceneActions } from '../../store/scene/scene.actions';
+import { ObjectsActions } from '../../store/objects/objects.actions';
 
 function actionReducer(actionType: ApiEvent, data: any): void {
   switch (actionType) {
@@ -13,7 +13,7 @@ function actionReducer(actionType: ApiEvent, data: any): void {
       store.dispatch(VehiclesActions.updateVehicle(data));
       break;
     case ApiEvent.OBJECT_UPDATE:
-      store.dispatch(SceneActions.setObjectResourceIndicator(data));
+      store.dispatch(ObjectsActions.setObjectResourceIndicator(data));
       break;
   }
 }

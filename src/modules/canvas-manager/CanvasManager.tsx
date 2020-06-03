@@ -10,6 +10,7 @@ import { RoutesSelectors } from '../../store/routes/routes.selectors';
 import { SceneSelectors } from '../../store/scene/scene.selectors';
 import { tooltipActions } from '../../store/tooltips/tooltips.actions';
 import { visualizationStateMock } from '../../mocks/main.mock';
+import { ObjectsSelectors } from '../../store/objects/objects.selectors';
 
 let routesIdSet: Set<string> = new Set();
 
@@ -67,6 +68,7 @@ interface CanvasManagerProps {
 export const CanvasManager: React.FC<CanvasManagerProps> = ({ setOnZoomIn, setOnZoomOut, setOnZoomFit }) => {
   const state = useVisualizationState();
   const scene = useSelector(SceneSelectors.scene);
+  const objectsState = useSelector(ObjectsSelectors.objects);
   const dispatch = useDispatch();
   const dispatchMouseEvent = (payload) => dispatch(tooltipActions.setMouseEvent(payload));
   const dispatchSelectionData = (payload) => dispatch(tooltipActions.setSelectionData(payload));
@@ -82,6 +84,7 @@ export const CanvasManager: React.FC<CanvasManagerProps> = ({ setOnZoomIn, setOn
       setOnZoomOut={setOnZoomOut}
       state={state}
       type={VisualizationType.D3}
+      objectsState={objectsState}
     />
   );
 };

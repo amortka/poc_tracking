@@ -1,20 +1,30 @@
 import React, { useMemo } from 'react';
 import { Shape, Vector3 } from 'three';
 
+import { equal } from '../../../../utils/object.utils';
+import { IObjectState } from '../../../../store/objects/objects.model';
 import { IObjectWithPointsCoordinates } from '../../canvas.model';
 import { ObjectExtruded } from './ObjectExtruded';
 import { ObjectLabel } from './ObjectLabel';
 import { ObjectLine } from './ObjectLine';
 import { ObjectPlane } from './ObjectPlane';
+import { ObjectResourceIndicator } from './ObjectResourceIndicator';
 import { ObjectsUtils } from './objects.utils';
 import { ShapeUtils } from '../../utils/shape.utils';
-import { ObjectResourceIndicator } from './ObjectResourceIndicator';
-import { equal } from '../../../../utils/object.utils';
 import { useMemoDistinct } from '../../hooks/use-memo-distinct.hook';
 
-interface ObjectD2Props extends IObjectWithPointsCoordinates {}
+interface ObjectElementProps extends IObjectWithPointsCoordinates {
+  state: IObjectState;
+}
 
-export const ObjectElement: React.FC<ObjectD2Props> = ({ id, meta, shapePoints, fromGround = 0.001, height = 0 }) => {
+export const ObjectElement: React.FC<ObjectElementProps> = ({
+  id,
+  meta,
+  shapePoints,
+  fromGround = 0.001,
+  height = 0,
+  state,
+}) => {
   const geometryShape: Shape = useMemoDistinct(
     () => ShapeUtils.getShapeFromPointCoordinates(shapePoints),
     [shapePoints],
@@ -33,28 +43,28 @@ export const ObjectElement: React.FC<ObjectD2Props> = ({ id, meta, shapePoints, 
         height={height}
         id={id}
         meta={meta}
-        selected={meta.selected}
+        selected={state?.selected}
       />
       <ObjectPlane
         fromGround={fromGround}
         geometryShape={geometryShape}
         height={height}
-        selected={meta.selected}
-        color={meta.color}
+        selected={state?.selected}
+        color={state?.color}
       />
-      <ObjectLine shapePoints={shapePoints} fromGround={fromGround} color={meta.color} selected={meta.selected} />
+      <ObjectLine shapePoints={shapePoints} fromGround={fromGround} color={state?.color} selected={state?.selected} />
       {meta && (
         <ObjectLabel
           description={meta.description}
           position={labelPosition}
-          selected={meta.selected}
+          selected={state?.selected}
           textRotation={meta.textRotation}
           textSize={meta.textSize}
           title={meta.name}
         />
       )}
-      {meta?.visibleResourceIndicator && meta?.resourceIndicator && (
-        <ObjectResourceIndicator fromGround={fromGround} value={meta.resourceIndicator} shapePoints={shapePoints} />
+      {state?.visibleResourceIndicator && state?.resourceIndicator && (
+        <ObjectResourceIndicator fromGround={fromGround} value={state.resourceIndicator} shapePoints={shapePoints} />
       )}
     </group>
   );
