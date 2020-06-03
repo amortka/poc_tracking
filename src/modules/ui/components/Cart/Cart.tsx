@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { makeStyles, Grid, Typography, Button } from '@material-ui/core';
+import { makeStyles, Typography, Button } from '@material-ui/core';
 import { DriveEta, Battery80, Speed, SkipNext, AvTimer } from '@material-ui/icons';
 
 import { CartDetailsContext } from '../Sidebar/InfoSidebar';
@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { tooltipActions } from '../../../../store/tooltips/tooltips.actions';
 import { IVehicleState } from '../../../../store/vehicles/vehicles.model';
 import { Color } from '../../../canvas/canvas.model';
+import { GridBoxes } from '../GridBoxes/GridBoxes';
 
 const useStyles = makeStyles((theme) => ({
   cartName: {
@@ -116,21 +117,7 @@ export const Cart: React.FC<CartProps> = ({ color, name }) => {
           See details
         </Button>
       </div>
-      <Grid container className={classes.cartStats}>
-        {cartStats.map((stat) => (
-          <Grid xs={6} item key={stat.name}>
-            <div className={classes.cartStat}>
-              <div className={classes.cartStatIconWrapper}>{stat.icon}</div>
-              <div>
-                <Typography variant="caption" className={classes.cartStatName}>
-                  {stat.name}
-                </Typography>
-                <Typography>{stat.value}</Typography>
-              </div>
-            </div>
-          </Grid>
-        ))}
-      </Grid>
+      <GridBoxes items={cartStats} />
     </div>
   );
 };

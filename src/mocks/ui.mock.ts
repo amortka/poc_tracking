@@ -56,3 +56,78 @@ export const cartsMock: CartItemProps[] = [
     wagons: [{ id: 'pbd8yv7xc3', isLoaded: true }],
   },
 ];
+
+export const ordersMock = [
+  {
+    id: '9643200322',
+    product: 'Steel screws',
+    pickUpPoint: 'L3B',
+    isDelivered: true,
+  },
+  {
+    id: '7005300322',
+    product: 'Metal parts',
+    pickUpPoint: 'L3B',
+    isDelivered: true,
+  },
+  {
+    id: '9643200322',
+    product: 'Steel screws',
+    pickUpPoint: 'L3B',
+    isDelivered: false,
+  },
+  {
+    id: '7005300322',
+    product: 'Metal parts',
+    pickUpPoint: 'L3C',
+    isDelivered: false,
+  },
+  {
+    id: '9643200322',
+    product: 'Steel screws',
+    pickUpPoint: 'L3B',
+    isDelivered: false,
+  },
+  {
+    id: '7005300322',
+    product: 'Metal parts',
+    pickUpPoint: 'L3C',
+    isDelivered: false,
+  },
+  {
+    id: '9643200322',
+    product: 'Steel screws',
+    pickUpPoint: 'L3B',
+    isDelivered: false,
+  },
+  {
+    id: '7005300322',
+    product: 'Metal parts',
+    pickUpPoint: 'L3C',
+    isDelivered: false,
+  },
+  {
+    id: '9643200322',
+    product: 'Steel screws',
+    pickUpPoint: 'L3B',
+    isDelivered: false,
+  },
+  {
+    id: '7005300322',
+    product: 'Metal parts',
+    pickUpPoint: 'L3C',
+    isDelivered: false,
+  },
+  {
+    id: '9643200322',
+    product: 'Steel screws',
+    pickUpPoint: 'L3B',
+    isDelivered: false,
+  },
+  {
+    id: '7005300322',
+    product: 'Metal parts',
+    pickUpPoint: 'L3C',
+    isDelivered: false,
+  },
+];

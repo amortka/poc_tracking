@@ -1,22 +1,32 @@
 import React from 'react';
-import { makeStyles, Box, Typography, Divider, List, ListItem, ClickAwayListener, FadeProps } from '@material-ui/core';
-import { DriveEta, DoubleArrow } from '@material-ui/icons';
+import {
+  makeStyles,
+  Box,
+  Typography,
+  ClickAwayListener,
+  FadeProps,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+} from '@material-ui/core';
+import { DriveEta, DoubleArrow, Waves, Opacity, AcUnit, Speed, CheckCircle } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
+import { RoutesSelectors } from '../../../../store/routes/routes.selectors';
+import { GridBoxes } from '../GridBoxes/GridBoxes';
+import { ordersMock } from '../../../../mocks/ui.mock';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   box: {
-    width: '410px',
+    width: theme.spacing(58),
     height: '100%',
-    backgroundColor: '#41464E',
+    backgroundColor: theme.palette.primary.light,
     marginLeft: 'auto',
-    padding: '25px',
+    padding: theme.spacing(3),
     boxShadow: '-7px 0 20px 1px #14191F',
-  },
-  divider: {
-    marginTop: '25px',
-    marginBottom: '25px',
-  },
-  cartIcon: {
-    marginRight: '15px',
+    boxSizing: 'border-box',
   },
   doubleArrowIcon: {
     marginLeft: 'auto',
@@ -24,10 +34,10 @@ const useStyles = makeStyles({
   },
   list: {
     '& > li:nth-child(odd)': {
-      backgroundColor: '#3C414A',
+      backgroundColor: 'rgba(24, 29, 36, 0.1)',
     },
     '& > li:nth-child(even)': {
-      backgroundColor: '#4A4F57',
+      backgroundColor: 'rgba(255, 255, 255, 0.05)',
     },
   },
   listItem: {
@@ -35,10 +45,10 @@ const useStyles = makeStyles({
     paddingBottom: '10px',
   },
   backgroundShadow: {
-    width: 'calc(100% - 64px - 300px)',
+    width: `calc(100% - ${theme.spacing(10)}px - ${theme.spacing(50)}px)`,
     backgroundColor: 'rgba(0, 0, 0, 0.25)',
-    marginLeft: '64px',
-    marginRight: '300px',
+    marginLeft: theme.spacing(10),
+    marginRight: theme.spacing(50),
     position: 'absolute',
     height: '100%',
     zIndex: 100,
@@ -47,7 +57,67 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
   },
-});
+  title: {
+    fontWeight: 500,
+    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(2),
+
+    '&:first-of-type': {
+      marginTop: 0,
+    },
+  },
+  tableCell: {
+    border: 'none',
+  },
+  tableHeadCell: {
+    color: '#98A0A9',
+    fontSize: '12px',
+    fontWeight: 'normal',
+    padding: `0 ${theme.spacing(1)}px`,
+  },
+  tableBodyCell: {
+    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
+    fontWeight: 400,
+    fontSize: '14px',
+  },
+  tableBodyRow: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: 'rgba(24, 29, 36, 0.1)',
+    },
+    '&:nth-of-type(even)': {
+      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    },
+  },
+  statusIcon: {
+    color: '#98A0A9',
+  },
+  statusIconDelivered: {
+    color: theme.palette.secondary.main,
+  },
+}));
+
+const cartDetailsConfig = [
+  {
+    name: 'Ambient Pressure',
+    icon: <Waves />,
+    value: null,
+  },
+  {
+    name: 'Humidity',
+    icon: <Opacity />,
+    value: null,
+  },
+  {
+    name: 'Temperature',
+    icon: <AcUnit />,
+    value: null,
+  },
+  {
+    name: 'Velocity',
+    icon: <Speed />,
+    value: null,
+  },
+];
 
 export interface CartDetailsProps extends FadeProps {
   setIsCartDetailsVisible: Function;
@@ -55,33 +125,61 @@ export interface CartDetailsProps extends FadeProps {
 
 export const CartDetails: React.FC<CartDetailsProps> = ({ setIsCartDetailsVisible, ...props }) => {
   const classes = useStyles();
+  const selectedRouteEntry = useSelector(RoutesSelectors.getFirstSelectedRouteEntry);
+  const { ambientPressure, humidity, velocity, temperature } = selectedRouteEntry[1].vehicle;
+  const stats = [ambientPressure, humidity, temperature, velocity];
+  const cartDetails = cartDetailsConfig.map((item, i) => ({ ...item, value: stats[i] }));
+
+  const tableHeaders = ['Id', 'Product', 'Pick-up point', 'Status'];
 
   return (
     <div className={classes.backgroundShadow} {...(props as any)}>
       <ClickAwayListener onClickAway={() => setIsCartDetailsVisible(false)}>
         <Box color="text.primary" className={classes.box} onClick={(e) => e.stopPropagation()}>
           <div className={classes.CartDetailsHeaderContainer}>
-            <DriveEta className={classes.cartIcon} />
-            <Typography variant="h6">Milkrun GHI</Typography>
+            <Typography variant="body1" className={classes.title}>
+              Route
+            </Typography>
             <DoubleArrow onClick={() => setIsCartDetailsVisible(false)} className={classes.doubleArrowIcon} />
           </div>
-          <Divider className={classes.divider} />
-          <Typography variant="subtitle2">Historia trasy</Typography>
-          <Typography variant="subtitle2">Zamówienia</Typography>
-          <List className={classes.list}>
-            <ListItem className={classes.listItem}>
-              <Typography variant="body2">Nazwa produktu 1</Typography>
-            </ListItem>
-            <ListItem className={classes.listItem}>
-              <Typography variant="body2">Nazwa produktu 2</Typography>
-            </ListItem>
-            <ListItem className={classes.listItem}>
-              <Typography variant="body2">Nazwa produktu 3</Typography>
-            </ListItem>
-            <ListItem className={classes.listItem}>
-              <Typography variant="body2">Nazwa produktu 4</Typography>
-            </ListItem>
-          </List>
+          <Typography variant="body1" className={classes.title}>
+            Cart details
+          </Typography>
+          <GridBoxes items={cartDetails} dark={true} />
+          <Typography variant="body1" className={classes.title}>
+            Orders
+          </Typography>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  {tableHeaders.map((header) => (
+                    <TableCell key={header} className={`${classes.tableHeadCell} ${classes.tableCell}`}>
+                      {header}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {ordersMock.map((order) => (
+                  <TableRow key={Math.random()} className={classes.tableBodyRow}>
+                    <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>{order.id}</TableCell>
+                    <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>{order.product}</TableCell>
+                    <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>
+                      {order.pickUpPoint}
+                    </TableCell>
+                    <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>
+                      {order.isDelivered ? (
+                        <CheckCircle className={classes.statusIconDelivered} />
+                      ) : (
+                        <DriveEta className={classes.statusIcon} />
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Box>
       </ClickAwayListener>
     </div>
