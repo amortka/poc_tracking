@@ -10,14 +10,18 @@ import { VehiclesSelectors } from '../../../store/vehicles/vehicles.selectors';
 
 autoPlay(true);
 
+// Current route length: 27.22m
+const vehicleAvgSpeed = 2; // m/s
+
 export class RouteService {
   private readonly path: IPath;
   private readonly route: IRoute;
+  private readonly isLoopedPath: boolean;
 
   private routeState: IRouteState;
   private vehicleState: IVehicleState;
 
-  private lastReceivedSensorIndex: number = 0;
+  private nextPredictedSensorIndex: number = 0;
 
   private subscription: any;
 
@@ -28,6 +32,7 @@ export class RouteService {
 
     this.routeState = RoutesSelectors.getRoute(routeId)(storeState);
     this.path = SceneSelectors.getPath(this.routeState.path)(storeState);
+    this.isLoopedPath = this.path.sensors[0].sensorId === this.path.sensors[this.path.sensors.length - 1].sensorId;
     this.route = { ...this.routeState, progress: 0 };
 
     this.handleStoreStateChanges();
@@ -43,10 +48,21 @@ export class RouteService {
       this.routeState = RoutesSelectors.getRoute(this.routeId)(storeState);
       const vehicleState = VehiclesSelectors.getVehicle(this.routeState.vehicle)(storeState);
 
-      if (this.vehicleState?.lastUpdateTime !== vehicleState.lastUpdateTime) {
-        this.updateProgress(vehicleState);
-        this.vehicleState = vehicleState;
+      const didSensorChanged = this.vehicleState?.currentRfIds[0] !== vehicleState.currentRfIds[0];
+      const didVehicleAppearOnSensor = vehicleState.currentRfIds[0] && didSensorChanged;
+      const didVehicleDisappearFromSensor = !vehicleState.currentRfIds[0] && didSensorChanged;
+
+      // Case 1 RFID appear
+      if (didVehicleAppearOnSensor) {
+        this.handleVehicleAppearOnSensor(vehicleState.currentRfIds[0]);
       }
+
+      // Case 2 RFID disappear
+      if (didVehicleDisappearFromSensor) {
+        this.handleVehicleDisappearFromSensor(this.vehicleState.currentRfIds[0]);
+      }
+
+      this.vehicleState = vehicleState;
 
       if (this.routeState.selected !== this.route.selected) {
         this.route.selected = this.routeState.selected;
@@ -55,35 +71,56 @@ export class RouteService {
     });
   }
 
-  private updateProgress(vehicleState: IVehicleState) {
-    const sensorIndex = this.getSensorIndex(vehicleState.currentRfIds[0], this.path);
+  private handleVehicleAppearOnSensor(sensorId: string) {
+    const sensorIndex = this.getSensorIndex(sensorId, this.path);
+    const nextSensorIndex = sensorIndex + 1;
+    const sensorProgress = this.getSensorProgress(sensorIndex, this.path);
 
-    const isSensorExist = sensorIndex !== -1;
-    const didSensorChanged = sensorIndex !== this.lastReceivedSensorIndex;
-    const isLastSensor = sensorIndex === this.path.sensors.length - 1;
+    const nextSensorProgress = this.getSensorProgress(nextSensorIndex, this.path);
+    const timeBetweenSensors = this.getTimeForProgress(nextSensorProgress - sensorProgress, this.path);
 
-    if (!isSensorExist || !didSensorChanged || isLastSensor) {
+    const didVehicleAppearOnPredictedSensor = sensorIndex === this.nextPredictedSensorIndex;
+    this.nextPredictedSensorIndex = nextSensorIndex;
+    const isVehiclePresent = Boolean(this.tween);
+
+    // Case 1 If vehicle not present then display it
+    // Case 2 If vehicle appear on non predicted RFID then "teleport" it to that position
+    if (!isVehiclePresent || !didVehicleAppearOnPredictedSensor) {
+      this.tween = new Tween({ progress: sensorProgress })
+        .to({ progress: nextSensorProgress }, timeBetweenSensors)
+        .on('update', ({ progress }) => this.emitRouteUpdate(progress));
+
+      this.emitRouteUpdate(sensorProgress);
       return;
     }
 
-    const sensorProgress = this.getSensorProgress(sensorIndex, this.path);
-    const isNextSensorOnPath = sensorIndex === this.lastReceivedSensorIndex + 1;
+    // Case 3 If vehicle appear on predicted RFID but without disappear from the last one
+    // TODO
 
-    if (!this.tween || !isNextSensorOnPath) {
-      this.tween = new Tween({ progress: sensorProgress });
-    } else {
-      this.tween.stop();
-      this.tween = new Tween(this.tween.object);
-    }
+    // Case 4 If vehicle appear in next predicted RFID then update animation destination (but left actual position)
+    // TODO How it should behave when actual position is more than one sensor behind actual sensor
+    //   and when position is ahead of the actual sensor
+  }
 
-    const nextSensorProgress = this.getSensorProgress(sensorIndex + 1, this.path);
-    const timeBetweenSensors = this.getTimeBetweenSensors(sensorIndex, sensorIndex + 1, this.path);
+  private handleVehicleDisappearFromSensor(prevSensorId: string) {
+    // Case 1 If route not in loop and vehicle disappear from last sensor
+    // TODO
 
+    // Case 2 If route in loop and vehicle disappear from the any sensor
+    const sensorIndex = this.getSensorIndex(prevSensorId, this.path);
+    const nextSensorIndex = sensorIndex + 1;
+    const nextSensorProgress = this.getSensorProgress(nextSensorIndex, this.path);
+    const currentProgress = this.tween.object.progress;
+
+    const progressDiff = nextSensorProgress - (currentProgress % 1);
+    const timeBetweenSensors = this.getTimeForProgress(progressDiff, this.path);
+
+    this.tween.stop();
+    this.tween = new Tween(this.tween.object);
     this.tween
-      .to({ progress: nextSensorProgress }, timeBetweenSensors)
-      .on('update', ({ progress }) => this.emitRouteUpdate(progress));
+      .to({ progress: currentProgress + progressDiff }, timeBetweenSensors)
+      .on('update', ({ progress }) => this.emitRouteUpdate(progress % 1));
 
-    this.lastReceivedSensorIndex = sensorIndex;
     this.tween.start();
   }
 
@@ -94,10 +131,11 @@ export class RouteService {
     return path.sensors[index]?.distance;
   }
 
-  // TODO: check if this should be removed
-  // TODO Needs to calculate time based on vehicle avg speed and distance between sensors
-  private getTimeBetweenSensors(sensorIndex: number, nextSensorIndex: number, path: IPath): number {
-    return 4000;
+  private getTimeForProgress(progress: number, path: IPath): number {
+    const time = (path.length * progress) / vehicleAvgSpeed;
+
+    // Return milliseconds
+    return time * 1000;
   }
 
   private emitRouteUpdate(progress: number) {

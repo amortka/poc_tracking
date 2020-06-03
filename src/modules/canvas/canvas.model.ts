@@ -117,6 +117,7 @@ export interface IPath {
   points: string[];
   sensors: Array<{ sensorId: string; distance: number; relationHidden?: boolean }>;
   objects: Array<{ objectId: string; distance: number }>;
+  length: number;
 }
 
 export interface IRoom {
