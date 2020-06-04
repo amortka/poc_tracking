@@ -15,7 +15,9 @@ export const Paths: React.FC<PathsProps> = React.memo(({ paths, points, state })
   return (
     <>
       {pathsProps.map(({ pathId, ...props }) =>
-        state[pathId]?.selected ? null : <PathsElement key={pathId} {...props} state={state[pathId]} />
+        state && state[pathId]?.selected ? null : (
+          <PathsElement key={pathId} {...props} state={state && state[pathId]} />
+        )
       )}
     </>
   );

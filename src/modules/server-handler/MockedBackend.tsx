@@ -12,6 +12,9 @@ function actionReducer(actionType: ApiEvent, data: any): void {
     case ApiEvent.VEHICLE_UPDATE:
       store.dispatch(VehiclesActions.updateVehicle(data));
       break;
+
+    case ApiEvent.ORDERS_UPDATE:
+      break;
     case ApiEvent.OBJECT_UPDATE:
       store.dispatch(ObjectsActions.setObjectResourceIndicator(data));
       break;

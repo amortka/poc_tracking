@@ -136,7 +136,6 @@ export interface IVisualizationScene {
   sensors: Dictionary<ISensor>;
   objects: Dictionary<IObject>;
   paths: Dictionary<IPath>;
-  rooms: Dictionary<IRoom>;
 }
 
 /**

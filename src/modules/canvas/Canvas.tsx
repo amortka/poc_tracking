@@ -37,12 +37,12 @@ interface CanvasProps {
   debug?: boolean;
   onSelectionData?: (payload: Dictionary<ISelectionData>) => void;
   scene: IVisualizationScene;
-  theme?: ICanvasTheme;
+  theme?: Partial<ICanvasTheme>;
   type: VisualizationType;
   onMouseEvents?: (eventContextPayload: IMouseEventPayload) => void;
-  setOnZoomIn: Dispatch<SetStateAction<() => void>>;
-  setOnZoomOut: Dispatch<SetStateAction<() => void>>;
-  setOnZoomFit: Dispatch<SetStateAction<() => void>>;
+  setOnZoomIn?: Dispatch<SetStateAction<() => void>>;
+  setOnZoomOut?: Dispatch<SetStateAction<() => void>>;
+  setOnZoomFit?: Dispatch<SetStateAction<() => void>>;
   routesState: Dictionary<IRoute>;
   vehiclesState: Dictionary<IVehicle>;
   objectsState: Dictionary<IObjectStateMeta>;
@@ -93,7 +93,7 @@ export const Canvas: React.FC<CanvasProps> = ({
               setOnZoomIn={setOnZoomIn}
               setOnZoomOut={setOnZoomOut}
               setOnZoomFit={setOnZoomFit}>
-              <Walls walls={scene.walls} points={scene.points} rooms={scene.rooms} type={type} />
+              <Walls walls={scene.walls} points={scene.points} type={type} />
               <Objects points={scene.points} objects={scene.objects} state={objectsState} />
               <Paths points={scene.points} paths={scene.paths} state={pathsState} />
               <Sensors points={scene.points} sensors={scene.sensors} state={sensorsState} />

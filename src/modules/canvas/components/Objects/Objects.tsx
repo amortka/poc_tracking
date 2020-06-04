@@ -18,7 +18,7 @@ export const Objects: React.FC<WallsProps> = React.memo(({ objects, points, stat
   return (
     <>
       {objectsWithCoordinates.map((o) => (
-        <ObjectElement key={o.id} {...o} state={state[o.id]} />
+        <ObjectElement key={o.id} {...o} state={state && state[o.id]} />
       ))}
     </>
   );

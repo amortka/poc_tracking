@@ -50,9 +50,9 @@ function useZoomingNav(
   useEffect(
     () => {
       if (!controls) return;
-      setOnZoomIn(() => () => controls.zoomInOut(0.5));
-      setOnZoomOut(() => () => controls.zoomInOut(-0.5));
-      setOnZoomFit(() => () => centerViewToBoundaries(controls, camera, gl, boundaries));
+      setOnZoomIn && setOnZoomIn(() => () => controls.zoomInOut(0.5));
+      setOnZoomOut && setOnZoomOut(() => () => controls.zoomInOut(-0.5));
+      setOnZoomFit && setOnZoomFit(() => () => centerViewToBoundaries(controls, camera, gl, boundaries));
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [controls, setOnZoomIn, setOnZoomOut, setOnZoomFit]

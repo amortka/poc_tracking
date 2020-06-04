@@ -17,6 +17,7 @@ import { useSelector } from 'react-redux';
 import { RoutesSelectors } from '../../../../store/routes/routes.selectors';
 import { GridBoxes } from '../GridBoxes/GridBoxes';
 import { ordersMock } from '../../../../mocks/ui.mock';
+import { RouteWrapper } from './RouteWrapper';
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -142,10 +143,13 @@ export const CartDetails: React.FC<CartDetailsProps> = ({ setIsCartDetailsVisibl
             </Typography>
             <DoubleArrow onClick={() => setIsCartDetailsVisible(false)} className={classes.doubleArrowIcon} />
           </div>
+          <RouteWrapper />
+
           <Typography variant="body1" className={classes.title}>
             Cart details
           </Typography>
           <GridBoxes items={cartDetails} dark={true} />
+
           <Typography variant="body1" className={classes.title}>
             Orders
           </Typography>

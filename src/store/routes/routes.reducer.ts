@@ -28,7 +28,7 @@ function createRouteWhenNewVehicleUpdates(state: IRoutesState, action: any): IRo
     [newId]: {
       vehicle: vehicleUpdate.deviceId,
       path: 'ojihoybn',
-      selected: true,
+      selected: false,
       color: getRouteColor(Object.keys(state).length),
       tag: `Milkrun ${vehicleUpdate.deviceId}`, // TODO change when backend will provide create NewRouteEvent
     },
