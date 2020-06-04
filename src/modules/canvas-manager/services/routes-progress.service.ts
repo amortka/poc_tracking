@@ -83,8 +83,10 @@ export class RouteService {
     const isVehiclePresent = Boolean(this.tween);
 
     // Case 1 If vehicle not present then display it
-    // Case 2 If vehicle appear on non predicted RFID then "teleport" it to that position
+    // Case 2 If vehicle appear on non predicted RFID then stop animation
+    //  and "teleport" it to that position
     if (!isVehiclePresent || !didVehicleAppearOnPredictedSensor) {
+      this.tween?.stop();
       this.tween = new Tween({ progress: sensorProgress })
         .to({ progress: nextSensorProgress }, timeBetweenSensors)
         .on('update', ({ progress }) => this.emitRouteUpdate(progress));
@@ -93,11 +95,13 @@ export class RouteService {
       return;
     }
 
-    // Case 3 If vehicle appear on predicted RFID but without disappear from the last one
+    // Case 3 If vehicle appear on predicted RFID but not disappear from the last one
     // TODO
-    // Resolved: updating nextPredictedSensorIndex only when disappear from sensor (cannot appear on predicted without disappear from initial)
+    // Resolved:
+    //  Step 1: Updating nextPredictedSensorIndex only when disappear from sensor
+    //  Step 2: Cannot appear on predicted without disappear from initial so will be catch by Cas 2
 
-    // Case 4 If vehicle appear in next predicted RFID then update animation destination (but left actual position)
+    // Case 4 If vehicle appear on predicted RFID then update animation destination (but left actual position)
     // TODO How it should behave when actual position is more than one sensor behind actual sensor
     //   and when position is ahead of the actual sensor
   }
