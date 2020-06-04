@@ -6,7 +6,7 @@ import { IPathStateMeta, IPathWithPointsCoordinates } from '../../canvas.model';
 import { LineUtils } from '../../utils/line.utils';
 import { ThemeContext } from '../../contexts/ThemeContext';
 
-const fromGround = 0.02;
+const fromGround = 0.001;
 
 export interface PathsElementProps extends IPathWithPointsCoordinates {
   state: IPathStateMeta;
