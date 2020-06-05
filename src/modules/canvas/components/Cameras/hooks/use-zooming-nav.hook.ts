@@ -83,9 +83,10 @@ export function centerViewToBoundariesHorizontal(
 
   if (setZoomAndPanBoundaries) {
     controls.enablePan = false;
+    controls.panBoundaries = boundaries;
     controls.minZoom = zoomToBoundaries * 1;
     controls.maxZoom = zoomToBoundaries * 8;
-    controls.dampingFactor = 1;
+    controls.dampingFactor = 0.8;
     controls.update();
   }
 
