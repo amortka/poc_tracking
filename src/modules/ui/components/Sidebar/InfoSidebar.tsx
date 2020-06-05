@@ -38,7 +38,7 @@ export interface InfoSidebarProps {
 
 export const CartDetailsContext = createContext<Function>(undefined);
 
-export const InfoSidebar: React.FC<InfoSidebarProps> = ({ setIsCartDetailsVisible }) => {
+export const InfoSidebar: React.FC<InfoSidebarProps> = React.memo(({ setIsCartDetailsVisible }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -91,4 +91,4 @@ export const InfoSidebar: React.FC<InfoSidebarProps> = ({ setIsCartDetailsVisibl
       </CartDetailsContext.Provider>
     </Drawer>
   );
-};
+});

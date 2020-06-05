@@ -42,7 +42,7 @@ interface GridBoxesProps {
 const getItemClassName = (dark: boolean, itemClass: string, darkItemClass: string): string =>
   `${itemClass} ${dark ? darkItemClass : ''}`;
 
-export const GridBoxes: React.FC<GridBoxesProps> = ({ items, dark = false }) => {
+export const GridBoxes: React.FC<GridBoxesProps> = React.memo(({ items, dark = false }) => {
   const classes = useStyles();
 
   return (
@@ -62,4 +62,4 @@ export const GridBoxes: React.FC<GridBoxesProps> = ({ items, dark = false }) => 
       ))}
     </Grid>
   );
-};
+});

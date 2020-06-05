@@ -124,7 +124,7 @@ export interface CartDetailsProps extends FadeProps {
   setIsCartDetailsVisible: Function;
 }
 
-export const CartDetails: React.FC<CartDetailsProps> = ({ setIsCartDetailsVisible, ...props }) => {
+export const CartDetails: React.FC<CartDetailsProps> = React.memo(({ setIsCartDetailsVisible, ...props }) => {
   const classes = useStyles();
   const selectedRouteEntry = useSelector(RoutesSelectors.getFirstSelectedRouteEntry);
   const { ambientPressure, humidity, velocity, temperature } = selectedRouteEntry[1].vehicle;
@@ -188,4 +188,4 @@ export const CartDetails: React.FC<CartDetailsProps> = ({ setIsCartDetailsVisibl
       </ClickAwayListener>
     </div>
   );
-};
+});

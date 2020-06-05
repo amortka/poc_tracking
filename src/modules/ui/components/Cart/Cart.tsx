@@ -90,7 +90,7 @@ interface CartProps {
   vehicle?: IVehicleState;
 }
 
-export const Cart: React.FC<CartProps> = ({ color, name }) => {
+export const Cart: React.FC<CartProps> = React.memo(({ color, name }) => {
   const classes = useStyles();
   const setIsCartDetailsVisible = useContext(CartDetailsContext);
   const dispatch = useDispatch();
@@ -120,4 +120,4 @@ export const Cart: React.FC<CartProps> = ({ color, name }) => {
       <GridBoxes items={cartStats} />
     </div>
   );
-};
+});

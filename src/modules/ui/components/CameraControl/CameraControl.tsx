@@ -44,7 +44,7 @@ interface CameraControlProps {
   onZoomFit: () => void;
 }
 
-export const CameraControl: React.FC<CameraControlProps> = ({ onZoomIn, onZoomOut, onZoomFit }) => {
+export const CameraControl: React.FC<CameraControlProps> = React.memo(({ onZoomIn, onZoomOut, onZoomFit }) => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
@@ -94,4 +94,4 @@ export const CameraControl: React.FC<CameraControlProps> = ({ onZoomIn, onZoomOu
       <SliderButton selected={isD3} action={dimensionToggle.onClick} options={slider} />
     </div>
   );
-};
+});
