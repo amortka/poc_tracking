@@ -11,7 +11,6 @@ interface VehicleProps {
 }
 
 export const VehicleDot: React.FC<VehicleProps> = React.memo(({ position, color }) => {
-  console.log('MEMO');
   const theme = useContext(ThemeContext);
 
   const groupRef = useUpdate(

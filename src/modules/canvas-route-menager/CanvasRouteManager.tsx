@@ -3,9 +3,8 @@ import { useSelector } from 'react-redux';
 
 import { Canvas } from '../canvas/Canvas';
 import { ICanvasTheme, VisualizationType } from '../canvas/canvas.model';
-import { ObjectsSelectors } from '../../store/objects/objects.selectors';
 import { PathsSelectors } from '../../store/paths/paths.selectors';
-import { useRoutesStateNormalized } from '../canvas-manager/hooks/use-routes-state.hook';
+import { useObjectsState, useRoutesStateNormalized } from '../canvas-manager/hooks/use-routes-state.hook';
 import { useScene } from './hooks/scene.hook';
 import { VehiclesSelectors } from '../../store/vehicles/vehicles.selectors';
 
@@ -19,10 +18,12 @@ interface CanvasManagerProps {}
 
 export const CanvasRouteManager: React.FC<CanvasManagerProps> = React.memo(() => {
   const routeIdSet = useRef<Set<string>>(new Set<string>());
+
   const scene = useScene();
-  const objectsState = useSelector(ObjectsSelectors.objects);
-  const pathsState = useSelector(PathsSelectors.paths);
   const routesState = useRoutesStateNormalized(routeIdSet.current, scene);
+  const objectsState = useObjectsState(routesState, scene);
+
+  const pathsState = useSelector(PathsSelectors.paths);
   const vehiclesState = useSelector(VehiclesSelectors.vehicles);
 
   return (
