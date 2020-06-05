@@ -21,7 +21,7 @@ export interface RoutePathProps {
 
 export const RoutePath: React.FC<RoutePathProps> = ({ points, ...props }) => {
   const pointsVec3 = useMemo(() => {
-    const fromGround = 0.03;
+    const fromGround = 0.002;
     return points.map((point) => new Vector3(point.x, point.y, fromGround));
   }, [points]);
 

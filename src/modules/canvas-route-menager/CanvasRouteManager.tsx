@@ -7,6 +7,7 @@ import { useRoutesState } from '../canvas-manager/hooks/use-routes-state.hook';
 import { useScene } from './hooks/scene.hook';
 import { VehiclesSelectors } from '../../store/vehicles/vehicles.selectors';
 import { VisualizationType } from '../canvas/canvas.model';
+import { PathsSelectors } from '../../store/paths/paths.selectors';
 
 interface CanvasManagerProps {}
 
@@ -16,6 +17,7 @@ export const CanvasRouteManager: React.FC<CanvasManagerProps> = React.memo(() =>
   const routesState = useRoutesState(routeIdSet.current);
   const objectsState = useSelector(ObjectsSelectors.objects);
   const vehiclesState = useSelector(VehiclesSelectors.vehicles);
+  const pathsState = useSelector(PathsSelectors.paths);
 
   return (
     <Canvas
@@ -24,6 +26,7 @@ export const CanvasRouteManager: React.FC<CanvasManagerProps> = React.memo(() =>
       type={VisualizationType.D3}
       cameraView3D={false}
       objectsState={objectsState}
+      pathsState={pathsState}
       routesState={routesState}
       vehiclesState={vehiclesState}
       onMouseEvents={null}

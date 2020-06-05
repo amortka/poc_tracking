@@ -29,7 +29,7 @@ export function useMoveCameraToPosition(enable: boolean, position: Vector2): voi
     if (cameraZoom === cameraControl.maxZoom) {
       moveWhenPositionChange.current = true;
       cameraControl.enablePan = false;
-      cameraControl.dampingFactor = 1;
+      cameraControl.dampingFactor = 0.8;
     } else {
       moveWhenPositionChange.current = false;
       cameraControl.enablePan = true;
