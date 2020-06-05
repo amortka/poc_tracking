@@ -2,12 +2,18 @@ import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Canvas } from '../canvas/Canvas';
+import { ICanvasTheme, VisualizationType } from '../canvas/canvas.model';
 import { ObjectsSelectors } from '../../store/objects/objects.selectors';
 import { PathsSelectors } from '../../store/paths/paths.selectors';
 import { useRoutesStateNormalized } from '../canvas-manager/hooks/use-routes-state.hook';
 import { useScene } from './hooks/scene.hook';
 import { VehiclesSelectors } from '../../store/vehicles/vehicles.selectors';
-import { VisualizationType } from '../canvas/canvas.model';
+
+const theme: Partial<ICanvasTheme> = {
+  canvasBackground: '#3b434d',
+  routes: { lineWidth: 0.025, line: '#212830' },
+  floor: { D3: '#3b434d' },
+};
 
 interface CanvasManagerProps {}
 
@@ -21,7 +27,7 @@ export const CanvasRouteManager: React.FC<CanvasManagerProps> = React.memo(() =>
 
   return (
     <Canvas
-      theme={{}}
+      theme={theme}
       scene={scene}
       type={VisualizationType.D3}
       cameraView3D={false}
