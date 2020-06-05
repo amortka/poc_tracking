@@ -13,7 +13,7 @@ interface RouteProps extends IRouteWithComputedData {
   horizontalCamera: boolean;
 }
 
-export const Route: React.FC<RouteProps> = ({ points, selected, progress, color, horizontalCamera }) => {
+export const Route: React.FC<RouteProps> = ({ points, selected, progress = 0, color, horizontalCamera }) => {
   const theme = useContext(ThemeContext);
   const { animationPath, progressToIndexMap } = useAnimationPath(points);
   const { position, rotationTangent } = useVehicleUpdate(animationPath, progress, progressToIndexMap);
