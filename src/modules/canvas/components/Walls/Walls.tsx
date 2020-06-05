@@ -5,7 +5,7 @@ import { WallD2 } from './WallD2';
 import { WallD3 } from './WallD3';
 import { WallsUtils } from './walls.utils';
 
-interface WallsProps extends Pick<IVisualizationScene, 'walls' | 'points' | 'rooms'> {
+interface WallsProps extends Pick<IVisualizationScene, 'walls' | 'points'> {
   type: VisualizationType;
 }
 

@@ -5,9 +5,11 @@ import { IVisualizationScene, IVisualizationState } from '../../canvas.model';
 
 interface RoutesProps
   extends Pick<IVisualizationScene, 'paths' | 'points'>,
-    Pick<IVisualizationState, 'routes' | 'vehicles'> {}
+    Pick<IVisualizationState, 'routes' | 'vehicles'> {
+  horizontalCamera: boolean;
+}
 
-export const Routes: React.FC<RoutesProps> = ({ paths, points, routes, vehicles }) => {
+export const Routes: React.FC<RoutesProps> = ({ paths, points, routes, vehicles, horizontalCamera }) => {
   const routePaths = useMemo(
     () =>
       Object.entries(paths).reduce(
@@ -31,6 +33,7 @@ export const Routes: React.FC<RoutesProps> = ({ paths, points, routes, vehicles 
             progress={routeData.progress}
             selected={routeData.selected}
             color={routeData.color}
+            horizontalCamera={horizontalCamera}
           />
         );
       })}

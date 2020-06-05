@@ -6,11 +6,10 @@ import { IRoute } from '../../canvas/canvas.model';
 import { RouteService } from '../services/routes-progress.service';
 import { RoutesSelectors } from '../../../store/routes/routes.selectors';
 
-let routesIdSet: Set<string> = new Set();
-
-function getRoutesIdChanges(routesId: string[]): string[] {
+function getRoutesIdChanges(routesId: string[], routesIdSet: Set<string>): string[] {
   const difference = [...routesId].filter((id) => !routesIdSet.has(id));
-  routesIdSet = new Set(routesId);
+  routesIdSet.clear();
+  routesId.forEach((r) => routesIdSet.add(r));
 
   return difference;
 }
@@ -18,14 +17,15 @@ function getRoutesIdChanges(routesId: string[]): string[] {
 function handleRoutes(
   routesId: string[],
   setStateCallback: (routeId: string, data: IRoute) => void,
-  routeServices: MutableRefObject<RouteService[]>
+  routeServices: MutableRefObject<RouteService[]>,
+  routesIdSet: Set<string>
 ): void {
-  getRoutesIdChanges(routesId).forEach((routeId) =>
+  getRoutesIdChanges(routesId, routesIdSet).forEach((routeId) =>
     routeServices.current.push(new RouteService(routeId, setStateCallback))
   );
 }
 
-export function useRoutesState(): Dictionary<IRoute> {
+export function useRoutesState(routesIdSet: Set<string>): Dictionary<IRoute> {
   const routeServices = useRef<RouteService[]>([]);
   const [routesState, setRoutesState] = useState<Dictionary<IRoute>>(null);
   const routesIds = useSelector(RoutesSelectors.routesIds);
@@ -37,7 +37,11 @@ export function useRoutesState(): Dictionary<IRoute> {
     }));
   }, []);
 
-  useEffect(() => handleRoutes(routesIds, updateRouteState, routeServices), [routesIds, updateRouteState]);
+  useEffect(() => handleRoutes(routesIds, updateRouteState, routeServices, routesIdSet), [
+    routesIds,
+    updateRouteState,
+    routesIdSet,
+  ]);
 
   useEffect(
     () => () => {

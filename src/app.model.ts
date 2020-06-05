@@ -12,6 +12,7 @@ export interface Dictionary<T> {
 export enum ApiEvent {
   VEHICLE_UPDATE = 'VEHICLE_UPDATE',
   OBJECT_UPDATE = 'OBJECT_UPDATE',
+  ORDERS_UPDATE = 'ORDERS_UPDATE',
 }
 
 export interface IVehicleUpdate {

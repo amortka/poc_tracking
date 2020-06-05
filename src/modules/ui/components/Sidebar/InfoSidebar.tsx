@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useEffect } from 'react';
 import { Box, Drawer, makeStyles } from '@material-ui/core';
 
 import { Cart } from '../Cart/Cart';
@@ -41,9 +41,18 @@ export const CartDetailsContext = createContext<Function>(undefined);
 export const InfoSidebar: React.FC<InfoSidebarProps> = ({ setIsCartDetailsVisible }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const routes: Dictionary<IRouteWithData> = useSelector(RoutesSelectors.getRoutesWithData);
 
+  const routes: Dictionary<IRouteWithData> = useSelector(RoutesSelectors.getRoutesWithData);
   const selectedRouteEntry = useSelector(RoutesSelectors.getFirstSelectedRouteEntry);
+
+  useEffect(
+    () => {
+      if (!Object.keys(routes).length) return;
+      dispatch(RoutesActions.selectRoutes([Object.keys(routes)[0]]));
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [!!Object.keys(routes).length, dispatch]
+  );
 
   const selectOptions: Array<{ value: string | number; name: string | number }> = Object.entries(routes).map(
     ([routeId, route]) => ({

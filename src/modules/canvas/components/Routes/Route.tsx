@@ -6,15 +6,19 @@ import { RoutePath } from './RoutePath';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { Vehicle } from '../Vehicle/Vehicle';
 import { useAnimationPath, useVehicleUpdate } from './utils';
+import { useMoveCameraToPosition } from '../Cameras/hooks/use-move-camera-to.position.hook';
 
 interface RouteProps extends IRouteWithComputedData {
   points: Vector2[];
+  horizontalCamera: boolean;
 }
 
-export const Route: React.FC<RouteProps> = ({ points, selected, progress, color }) => {
+export const Route: React.FC<RouteProps> = ({ points, selected, progress, color, horizontalCamera }) => {
   const theme = useContext(ThemeContext);
   const { animationPath, progressToIndexMap } = useAnimationPath(points);
   const { position, rotationTangent } = useVehicleUpdate(animationPath, progress, progressToIndexMap);
+
+  useMoveCameraToPosition(horizontalCamera, position);
 
   return (
     <>

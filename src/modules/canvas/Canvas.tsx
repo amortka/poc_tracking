@@ -37,19 +37,20 @@ interface CanvasProps {
   debug?: boolean;
   onSelectionData?: (payload: Dictionary<ISelectionData>) => void;
   scene: IVisualizationScene;
-  theme?: ICanvasTheme;
+  theme?: Partial<ICanvasTheme>;
   type: VisualizationType;
   onMouseEvents?: (eventContextPayload: IMouseEventPayload) => void;
-  setOnZoomIn: Dispatch<SetStateAction<() => void>>;
-  setOnZoomOut: Dispatch<SetStateAction<() => void>>;
-  setOnZoomFit: Dispatch<SetStateAction<() => void>>;
+  setOnZoomIn?: Dispatch<SetStateAction<() => void>>;
+  setOnZoomOut?: Dispatch<SetStateAction<() => void>>;
+  setOnZoomFit?: Dispatch<SetStateAction<() => void>>;
   routesState: Dictionary<IRoute>;
-  vehiclesState: Dictionary<IVehicle>;
-  objectsState: Dictionary<IObjectStateMeta>;
-  pathsState: Dictionary<IPathStateMeta>;
-  sensorsState: Dictionary<ISensorStateMeta>;
+  vehiclesState?: Dictionary<IVehicle>;
+  objectsState?: Dictionary<IObjectStateMeta>;
+  pathsState?: Dictionary<IPathStateMeta>;
+  sensorsState?: Dictionary<ISensorStateMeta>;
   cameraView3D: boolean;
-  selections: ISelection;
+  selections?: ISelection;
+  horizontalCamera?: boolean;
 }
 
 Object3D.DefaultUp.set(0, 0, 1);
@@ -71,6 +72,7 @@ export const Canvas: React.FC<CanvasProps> = ({
   cameraView3D,
   vehiclesState,
   selections,
+  horizontalCamera = false,
 }) => {
   const themeConfig = useMemo(() => CanvasUtils.getCanvasTheme(theme), [theme]);
 
@@ -92,13 +94,20 @@ export const Canvas: React.FC<CanvasProps> = ({
               isD3={cameraView3D}
               setOnZoomIn={setOnZoomIn}
               setOnZoomOut={setOnZoomOut}
-              setOnZoomFit={setOnZoomFit}>
-              <Walls walls={scene.walls} points={scene.points} rooms={scene.rooms} type={type} />
+              setOnZoomFit={setOnZoomFit}
+              horizontalCamera={horizontalCamera}>
+              <Walls walls={scene.walls} points={scene.points} type={type} />
               <Objects points={scene.points} objects={scene.objects} state={objectsState} />
               <Paths points={scene.points} paths={scene.paths} state={pathsState} />
               <Sensors points={scene.points} sensors={scene.sensors} state={sensorsState} />
-              <Routes points={scene.points} paths={scene.paths} vehicles={vehiclesState} routes={routesState} />
               <Selection selection={selections} selectionDataClb={onSelectionData} />
+              <Routes
+                points={scene.points}
+                paths={scene.paths}
+                vehicles={vehiclesState}
+                routes={routesState}
+                horizontalCamera={horizontalCamera}
+              />
             </Scene>
           </ThemeContext.Provider>
         </MouseEventsContextProvider>

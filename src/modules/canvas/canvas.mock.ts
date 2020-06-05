@@ -435,10 +435,4 @@ export const visualizationSceneMock: IVisualizationScene = {
       },
     },
   },
-  rooms: {
-    kn3gtnyz: {
-      walls: ['ezzgwvd4', 'sw4py33t', 'jucu1uf9', 'fytviige', 'vzelifcm', 'ka9v61v5', 'e22c2u9q', 'jgxi5xqi'],
-      tag: 'Main Room',
-    },
-  },
 };
