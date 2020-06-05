@@ -75,24 +75,23 @@ export function centerViewToBoundariesHorizontal(
     Math.min(
       container.offsetWidth / (boundaries.max.x - boundaries.min.x),
       container.offsetHeight / (boundaries.max.y - boundaries.min.y)
-    ) * 0.8;
+    ) * 0.9;
 
   const center: Vector3 = boundaries.getCenter(new Vector3());
-  orthoCamera.zoom = zoomToBoundaries * 8;
+  orthoCamera.zoom = zoomToBoundaries;
   orthoCamera.position.z = boundaries.max.z + Math.abs(orthoCamera.bottom);
-
   if (setZoomAndPanBoundaries) {
     controls.enablePan = false;
     controls.panBoundaries = boundaries;
     controls.minZoom = zoomToBoundaries * 1;
-    controls.maxZoom = zoomToBoundaries * 8;
+    controls.maxZoom = 140;
     controls.dampingFactor = 0.8;
     controls.update();
   }
 
   camera.updateProjectionMatrix();
 
-  controls.moveTo(center.x + Math.random() / 100, center.y + Math.random() / 100);
+  controls.moveTo(center.x + Math.random() / 1000, center.y + Math.random() / 1000);
   controls.update();
 
   controls.saveState();

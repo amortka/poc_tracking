@@ -24,19 +24,20 @@ export const Routes: React.FC<RoutesProps> = ({ paths, points, routes, vehicles,
 
   return (
     <>
-      {Object.entries(routes).map(([routeId, routeData]) => {
-        return (
-          <Route
-            key={routeId}
-            points={routePaths[routeData.path]}
-            vehicle={vehicles[routeData.vehicle]}
-            progress={routeData.progress}
-            selected={routeData.selected}
-            color={routeData.color}
-            horizontalCamera={horizontalCamera}
-          />
-        );
-      })}
+      {routes &&
+        Object.entries(routes).map(([routeId, routeData]) => {
+          return (
+            <Route
+              key={routeId}
+              points={routePaths[routeData.path]}
+              vehicle={vehicles[routeData.vehicle]}
+              progress={routeData.progress}
+              selected={routeData.selected}
+              color={routeData.color}
+              horizontalCamera={horizontalCamera}
+            />
+          );
+        })}
     </>
   );
 };

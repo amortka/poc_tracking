@@ -1,12 +1,13 @@
 import { useContext, useEffect, useMemo, useRef } from 'react';
 import { Vector2 } from 'three';
-import { CameraControlContext } from '../../../contexts/CameraContext';
 import { useThree } from 'react-three-fiber';
+
+import { CameraControlContext } from '../../../contexts/CameraContext';
 
 export function useMoveCameraToPosition(enable: boolean, position: Vector2): void {
   const [cameraControl] = useContext(CameraControlContext);
   const { camera } = useThree();
-  const moveWhenPositionChange = useRef<boolean>(true);
+  const moveWhenPositionChange = useRef<boolean>(false);
 
   // @ts-ignore
   const cameraZoom = camera && camera.zoom;

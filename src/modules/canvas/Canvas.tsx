@@ -43,7 +43,7 @@ interface CanvasProps {
   setOnZoomIn?: Dispatch<SetStateAction<() => void>>;
   setOnZoomOut?: Dispatch<SetStateAction<() => void>>;
   setOnZoomFit?: Dispatch<SetStateAction<() => void>>;
-  routesState: Dictionary<IRoute>;
+  routesState?: Dictionary<IRoute>;
   vehiclesState?: Dictionary<IVehicle>;
   objectsState?: Dictionary<IObjectStateMeta>;
   pathsState?: Dictionary<IPathStateMeta>;

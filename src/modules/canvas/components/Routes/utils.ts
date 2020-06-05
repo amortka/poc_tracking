@@ -13,13 +13,18 @@ const mapPointsToVectors = (pointIds: string[], points: Dictionary<IPoint>): Vec
 const generateAnimationPaths = (
   points: Array<Vector2>,
   radius: number = 0.01
-): { curvedPath: THREE.CurvePath<THREE.Vector2>; straightPath: THREE.CurvePath<THREE.Vector2> } => {
+): { curvedPath: CurvePath<Vector2>; straightPath: CurvePath<Vector2> } => {
+  if (points.length === 2) {
+    const curvedPath = new CurvePath<Vector2>();
+    curvedPath.add(new Path(points));
+    return { curvedPath: curvedPath, straightPath: curvedPath };
+  }
+
   const minVector = new Vector2();
   let minLength = minVector.subVectors(points[0], points[1]).length();
   for (let i = 1; i < points.length - 1; i++) {
     minLength = Math.min(minLength, minVector.subVectors(points[i], points[i + 1]).length());
   }
-
   radius = radius > minLength * 0.5 ? minLength * 0.5 : radius; // radius can't be greater than a half of a minimal segment
 
   const startIndex = 1;
@@ -69,10 +74,10 @@ const generateAnimationPaths = (
 };
 
 const useAnimationPath = (
-  points: THREE.Vector2[]
+  points: Vector2[]
 ): {
-  animationPath: THREE.CurvePath<THREE.Vector2>;
-  routePath: THREE.CurvePath<THREE.Vector2>;
+  animationPath: CurvePath<Vector2>;
+  routePath: CurvePath<Vector2>;
   progressToIndexMap: number[];
 } =>
   useMemo(() => {
@@ -95,10 +100,10 @@ const useAnimationPath = (
   }, [points]);
 
 const useVehicleUpdate = (
-  animationPath: THREE.CurvePath<THREE.Vector2>,
+  animationPath: CurvePath<Vector2>,
   progress: number,
   progressToIndexMap: number[]
-): { position: THREE.Vector2; rotationTangent: THREE.Vector2 } => {
+): { position: Vector2; rotationTangent: Vector2 } => {
   const curveIndex = progressToIndexMap.findIndex((curveProgress) => progress <= curveProgress);
   const curveProgressStart = progressToIndexMap[curveIndex - 1] || 0;
   const curveProgressEnd = progressToIndexMap[curveIndex];

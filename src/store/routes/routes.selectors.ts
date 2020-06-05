@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 import { AppState } from '../main.store';
 import { Dictionary, IRouteWithData } from '../../app.model';
 import { VehiclesSelectors } from '../vehicles/vehicles.selectors';
+import { IRouteState } from './routes.model';
 
 export class RoutesSelectors {
   static routes = createSelector(
@@ -32,7 +33,11 @@ export class RoutesSelectors {
     | [string, IRouteWithData]
     | null => {
     const selectedRouteEntry = Object.entries(routes).find(([routeId, route]) => route.selected);
+    return selectedRouteEntry ? selectedRouteEntry : null;
+  });
 
+  static getFirstSelectedRouteStateEntry = createSelector(RoutesSelectors.routes, (routes): [string, IRouteState] => {
+    const selectedRouteEntry = Object.entries(routes).find(([routeId, route]) => route.selected);
     return selectedRouteEntry ? selectedRouteEntry : null;
   });
 }
