@@ -71,11 +71,10 @@ export function centerViewToBoundariesHorizontal(
 
   const container = gl.domElement;
   const orthoCamera = camera;
-  const zoomToBoundaries =
-    Math.min(
-      container.offsetWidth / (boundaries.max.x - boundaries.min.x),
-      container.offsetHeight / (boundaries.max.y - boundaries.min.y)
-    ) * 0.9;
+  const zoomToBoundaries = Math.min(
+    container.offsetWidth / (boundaries.max.x - boundaries.min.x),
+    container.offsetHeight / (boundaries.max.y - boundaries.min.y)
+  );
 
   const center: Vector3 = boundaries.getCenter(new Vector3());
   orthoCamera.zoom = zoomToBoundaries;

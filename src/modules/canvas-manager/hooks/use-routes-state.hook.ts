@@ -53,7 +53,7 @@ export function useRoutesState(routesIdSet: Set<string>): Dictionary<IRoute> {
   return { ...routesState };
 }
 
-export function useRoutesStateNormalized(routesIdSet: Set<string>, scene: IVisualizationScene) {
+export function useRoutesStateNormalized(routesIdSet: Set<string>, scene: IVisualizationScene): Dictionary<IRoute> {
   const routesState = useRoutesState(routesIdSet);
 
   const selectedRouteEntry = Object.entries(routesState).find(([, routeData]) => routeData.selected) || [];
@@ -64,7 +64,7 @@ export function useRoutesStateNormalized(routesIdSet: Set<string>, scene: IVisua
   const selectedPathId: string = selectedRouteEntry[1]?.path;
   const progressReal = routesState[selectedRouteId]?.progress;
 
-  return useMemo(
+  const routeStateNormalized = useMemo(
     () => {
       if (!selectedRouteId) return routesState;
       const pathObjects = scene.paths[selectedPathId].objects;
@@ -72,7 +72,6 @@ export function useRoutesStateNormalized(routesIdSet: Set<string>, scene: IVisua
       const sectionProgressValue = 1 / sectionsLength;
 
       const routeStateNormalized = { ...routesState, [selectedRouteId]: { ...routesState[selectedRouteId] } };
-
       let progressNormalized: number;
 
       let currentSection: number = pathObjects.findIndex(({ distance }, index) => {
@@ -92,4 +91,6 @@ export function useRoutesStateNormalized(routesIdSet: Set<string>, scene: IVisua
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [selectedRouteProgress]
   );
+
+  return routeStateNormalized;
 }

@@ -15,45 +15,45 @@ export type Color = ThreeColor | number | string;
 export interface ICanvasTheme {
   canvasBackground: BackgroundProperty<any>;
   text: {
-    color: Color;
+    color?: Color;
   };
   floor: {
-    D2: Color;
-    D3: Color;
+    D2?: Color;
+    D3?: Color;
   };
   sensor: {
-    D2: Color;
-    D3: Color;
+    D2?: Color;
+    D3?: Color;
   };
   walls: {
-    D2: { line: Color };
-    D3: Color;
+    D2?: { line?: Color };
+    D3?: Color;
   };
   objects: {
-    D2: {
-      line: Color;
-      shape: Color;
-      text: Color;
-      textSelected: Color;
-      indicatorBackground: Color;
-      indicatorMaxColor: Color;
-      indicatorMinColor: Color;
-      indicatorMidColor: Color;
+    D2?: {
+      line?: Color;
+      shape?: Color;
+      text?: Color;
+      textSelected?: Color;
+      indicatorBackground?: Color;
+      indicatorMaxColor?: Color;
+      indicatorMinColor?: Color;
+      indicatorMidColor?: Color;
     };
   };
   paths: {
-    dashScale: number;
-    dashSize: number;
-    gapSize: number;
-    line: Color;
-    selectedLine: Color;
+    dashScale?: number;
+    dashSize?: number;
+    gapSize?: number;
+    line?: Color;
+    selectedLine?: Color;
   };
   routes: {
-    dashScale: number;
-    dashSize: number;
-    gapSize: number;
-    line: Color;
-    lineWidth: number;
+    dashScale?: number;
+    dashSize?: number;
+    gapSize?: number;
+    line?: Color;
+    lineWidth?: number;
   };
 }
 

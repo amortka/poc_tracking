@@ -4,7 +4,6 @@ import { Color } from '../../canvas.model';
 import { useVehicleGeometry, useVehicleUpdate } from './utils';
 
 interface VehicleProps {
-  type: string;
   position: Vector2;
   rotation: Vector2;
   color: Color;
