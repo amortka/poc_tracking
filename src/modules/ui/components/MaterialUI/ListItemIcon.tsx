@@ -4,7 +4,7 @@ import { ListItemIconProps } from '@material-ui/core/ListItemIcon/ListItemIcon';
 
 const useStyles = makeStyles((theme) => ({
   listItemIcon: {
-    transition: `${theme.transitions[1]} ${theme.transitions.duration.standard}ms`,
+    transition: `${theme.transitions.easing.easeInOut} ${theme.transitions.duration.standard}ms`,
     color: '#989FA4',
     minWidth: 'unset',
   },
