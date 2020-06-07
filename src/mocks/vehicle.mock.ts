@@ -13,6 +13,8 @@ const progress = [
   { delay: 4000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: 'xzfsgxxh', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 1000, sensorId: 'xzfsgxxh', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 1000, sensorId: 'xzfsgxxh', event: ApiEvent.VEHICLE_UPDATE },
   { delay: 4000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },

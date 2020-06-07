@@ -99,7 +99,7 @@ export class RouteService {
     // TODO
     // Resolved:
     //  Step 1: Updating nextPredictedSensorIndex only when disappear from sensor
-    //  Step 2: Cannot appear on predicted without disappear from initial so will be catch by Cas 2
+    //  Step 2: Cannot appear on predicted without disappear from initial so will be catch by Case 2
 
     // Case 4 If vehicle appear on predicted RFID then update animation destination (but left actual position)
     // TODO How it should behave when actual position is more than one sensor behind actual sensor
