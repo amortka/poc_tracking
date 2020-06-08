@@ -121,13 +121,24 @@ export const visualizationSceneMock: IVisualizationScene = {
         borderType: BorderType.DASHED,
       },
     },
-    // GateWay
+    // Gate G1
     zzxcwumh: {
       shapePoints: ['pbtndrum', 'rbdepwzi', 'owkrvduz', 'bcicinqq'],
       height: 0,
       fromGround: 0.01,
       meta: {
-        name: 'GATEWAY',
+        name: 'GATE G1',
+        textSize: TextSize.SMALL,
+        textRotation: Math.PI / 2,
+      },
+    },
+    // Gate G2
+    mmuxivkq: {
+      shapePoints: ['twiecysq', 'gzgcijcz', 'xeqeqvey', 'mstiwdey'],
+      height: 0,
+      fromGround: 0.01,
+      meta: {
+        name: 'GATE G2',
         textSize: TextSize.SMALL,
         textRotation: Math.PI / 2,
       },
@@ -139,24 +150,24 @@ export const visualizationSceneMock: IVisualizationScene = {
       tag: 'main path',
       sensors: [
         { sensorId: 'pnxwxnpk', distance: 0.0 },
-        { sensorId: 'saruefli', distance: 0.163 },
-        { sensorId: 'piunnkuf', distance: 0.231, relationHidden: true },
-        { sensorId: 'izktgqna', distance: 0.298 },
-        { sensorId: 'xzfsgxxh', distance: 0.396, relationHidden: true },
-        { sensorId: 'qwbmjtmf', distance: 0.534 },
-        { sensorId: 'quqklxup', distance: 0.602, relationHidden: true },
-        { sensorId: 'zapgjpha', distance: 0.67 },
-        { sensorId: 'jpgsbunl', distance: 0.809, relationHidden: true },
-        { sensorId: 'aihfuhkc', distance: 0.886, relationHidden: true },
+        { sensorId: 'saruefli', distance: 0.146 },
+        { sensorId: 'piunnkuf', distance: 0.218, relationHidden: true },
+        { sensorId: 'izktgqna', distance: 0.288 },
+        { sensorId: 'xzfsgxxh', distance: 0.391, relationHidden: true },
+        { sensorId: 'qwbmjtmf', distance: 0.537 },
+        { sensorId: 'quqklxup', distance: 0.607, relationHidden: true },
+        { sensorId: 'zapgjpha', distance: 0.679 },
+        { sensorId: 'jpgsbunl', distance: 0.827 },
+        { sensorId: 'aihfuhkc', distance: 0.905, relationHidden: true },
         { sensorId: 'pnxwxnpk', distance: 1 },
       ],
       objects: [
-        { objectId: 'vbisqysg', distance: 0.163 },
-        { objectId: 'hcgrauti', distance: 0.298 },
-        { objectId: 'kkshvomj', distance: 0.534 },
-        { objectId: 'ycjfzvlk', distance: 0.67 },
+        { objectId: 'vbisqysg', distance: 0.146 },
+        { objectId: 'hcgrauti', distance: 0.288 },
+        { objectId: 'kkshvomj', distance: 0.537 },
+        { objectId: 'ycjfzvlk', distance: 0.679 },
       ],
-      length: 27.22,
+      length: 2.92,
     },
   },
   points: {
@@ -170,7 +181,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     bbgexc3r: { x: 0, y: 1.28 },
 
     // Sensors
-    qeculymv: { x: 10.87, y: 0.46 },
+    qeculymv: { x: 10.22, y: 0.46 },
     wytjebmg: { x: 6.43, y: 0.37 },
     etkehdxr: { x: 4.57, y: 0.37 },
     rzmgfdlc: { x: 2.75, y: 0.37 },
@@ -178,16 +189,16 @@ export const visualizationSceneMock: IVisualizationScene = {
     sadvcvxl: { x: 2.75, y: 5.1 },
     ccomdgqr: { x: 4.57, y: 5.1 },
     lojlicgi: { x: 6.43, y: 5.1 },
-    zohcrjma: { x: 10.22, y: 5.1 },
+    zohcrjma: { x: 10.22, y: 5.01 },
     xlrbndpv: { x: 10.22, y: 3.0 },
 
     //PATH ojihoybn
-    nlyiefgt: { x: 10.87, y: 0.37 },
+    nlyiefgt: { x: 10.22, y: 0.37 },
     ponbhqmp: { x: 1.9, y: 0.37 },
     flguqmoa: { x: 1.9, y: 5.1 },
     bxlnhzmb: { x: 10.22, y: 5.1 },
     acljbmkd: { x: 10.22, y: 0.55 },
-    nlyiefgq: { x: 10.87, y: 0.55 },
+    nlyiefgq: { x: 10.22, y: 0.55 },
 
     //L3
     hjqbfgyn: { x: 2.19, y: 0.57 },
@@ -240,15 +251,20 @@ export const visualizationSceneMock: IVisualizationScene = {
     jzwceyxp: { x: 6.64, y: 4.87 },
     otmkhoub: { x: 6.22, y: 4.87 },
     // Warehouse
-    akyepqqo: { x: 11.14, y: 0.15 },
+    akyepqqo: { x: 9.7, y: 0.15 },
     cmjoeldy: { x: 13.24, y: 0.15 },
-    icdbsniz: { x: 13.24, y: 5.08 },
-    lmeikfil: { x: 11.14, y: 5.08 },
-    // GateWay
-    pbtndrum: { x: 10.87, y: 0.15 },
-    rbdepwzi: { x: 11.4, y: 0.15 },
-    owkrvduz: { x: 11.4, y: 1.4 },
-    bcicinqq: { x: 10.87, y: 1.4 },
+    icdbsniz: { x: 13.24, y: 5.31 },
+    lmeikfil: { x: 9.7, y: 5.31 },
+    // Gate G1
+    pbtndrum: { x: 9.7, y: 0.15 },
+    rbdepwzi: { x: 10.1, y: 0.15 },
+    owkrvduz: { x: 10.1, y: 1.4 },
+    bcicinqq: { x: 9.7, y: 1.4 },
+    // Gate G2
+    twiecysq: { x: 9.7, y: 4.06 },
+    gzgcijcz: { x: 10.1, y: 4.06 },
+    xeqeqvey: { x: 10.1, y: 5.31 },
+    mstiwdey: { x: 9.7, y: 5.31 },
   },
   sensors: {
     qwbmjtmf: {
