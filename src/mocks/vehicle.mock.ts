@@ -72,7 +72,7 @@ export class VehicleMock {
     TimeStats: new Date().toString(),
     Timestamp: Date.now(),
     Vel_Val_Magnitude_P2P: 0,
-    deviceId: 'trqzbojg',
+    deviceId: 'Simulated',
     rfids: [],
   };
 

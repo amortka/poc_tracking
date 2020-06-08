@@ -28,7 +28,9 @@ export class CanvasUtils {
       },
     },
     walls: { D2: { line: '#61676f' }, D3: '#6a6e75' },
-    sensor: { D2: '#464c53', D3: '#464c53' },
+    sensor: {
+      circleRadius: 0.1,
+    },
     routes: {
       line: '#11b572',
       lineWidth: 0.002,

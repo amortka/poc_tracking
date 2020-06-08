@@ -22,8 +22,7 @@ export interface ICanvasTheme {
     D3?: Color;
   };
   sensor: {
-    D2?: Color;
-    D3?: Color;
+    circleRadius: number;
   };
   walls: {
     D2?: { line?: Color };
