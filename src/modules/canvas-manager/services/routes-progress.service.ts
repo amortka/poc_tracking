@@ -11,7 +11,7 @@ import { VehiclesSelectors } from '../../../store/vehicles/vehicles.selectors';
 autoPlay(true);
 
 // Current route length: 27.22m
-const vehicleAvgSpeed = 2; // m/s
+const vehicleAvgSpeed = 5000 / 3600; // 5 km/h -> 5000/3600
 
 export class RouteService {
   private readonly path: IPath;
