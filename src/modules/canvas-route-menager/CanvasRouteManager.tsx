@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Canvas } from '../canvas/Canvas';
 import { ICanvasTheme, VisualizationType } from '../canvas/canvas.model';
+import { ISensorsState } from '../../store/sensors/sensors.model';
 import { PathsSelectors } from '../../store/paths/paths.selectors';
 import { useObjectsState } from './hooks/use-objects-state.hook';
 import { useRoutesStateNormalized } from './hooks/use-routes-state-normalized';
@@ -26,6 +27,7 @@ export const CanvasRouteManager: React.FC<CanvasManagerProps> = React.memo(() =>
 
   const pathsState = useSelector(PathsSelectors.paths);
   const vehiclesState = useSelector(VehiclesSelectors.vehicles);
+  const sensorsState: ISensorsState = useMemo(() => ({ start: { selected: true }, end: { selected: true } }), []);
 
   return (
     <Canvas
@@ -33,6 +35,7 @@ export const CanvasRouteManager: React.FC<CanvasManagerProps> = React.memo(() =>
       scene={scene}
       type={VisualizationType.D3}
       cameraView3D={false}
+      sensorsState={sensorsState}
       objectsState={objectsState}
       pathsState={pathsState}
       routesState={routesState}
