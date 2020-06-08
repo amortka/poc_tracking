@@ -80,10 +80,8 @@ export const InfoSidebar: React.FC<InfoSidebarProps> = React.memo(({ setIsCartDe
             )}
           </div>
         </Box>
-        <ExpansionSidebarItem title="Production area L1" />
-        <ExpansionSidebarItem title="Production area L2" />
-        <ExpansionSidebarItem title="Production area L3" />
-        <ExpansionSidebarItem title="Warehouse area M1" />
+        <ExpansionSidebarItem title="Production Area P1" />
+        <ExpansionSidebarItem title="Warehouse Area W1" />
       </CartDetailsContext.Provider>
     </Drawer>
   );
