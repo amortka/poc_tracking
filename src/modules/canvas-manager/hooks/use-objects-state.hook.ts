@@ -22,13 +22,15 @@ export function useObjectsState(
     () => {
       if (!pathObjects || typeof progress !== 'number') return objectsState;
 
+      const newObjectsState = { ...objectsState };
       const objectsLength = pathObjects.length;
 
       pathObjects.forEach(({ objectId, distance }, index) => {
-        objectsState[objectId].selected = (1 / (objectsLength + 1)) * (index + 1) > progress;
+        newObjectsState[objectId] = { ...newObjectsState[objectId] };
+        newObjectsState[objectId].selected = (1 / (objectsLength + 1)) * (index + 1) > progress;
       });
 
-      return objectsState;
+      return newObjectsState;
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [pathObjects, progress]

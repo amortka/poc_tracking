@@ -5,7 +5,7 @@ import { Canvas } from '../canvas/Canvas';
 import { ICanvasTheme, VisualizationType } from '../canvas/canvas.model';
 import { PathsSelectors } from '../../store/paths/paths.selectors';
 import { useObjectsState } from '../canvas-manager/hooks/use-objects-state.hook';
-import { useRoutesStateNormalized } from '../canvas-manager/hooks/use-routes-state.hook';
+import { useRoutesStateNormalized } from './hooks/use-routes-state-normalized';
 import { useScene } from './hooks/scene.hook';
 import { VehiclesSelectors } from '../../store/vehicles/vehicles.selectors';
 

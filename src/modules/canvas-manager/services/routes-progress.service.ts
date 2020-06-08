@@ -35,6 +35,8 @@ export class RouteService {
     this.isLoopedPath = this.path.sensors[0].sensorId === this.path.sensors[this.path.sensors.length - 1].sensorId;
     this.route = { ...this.routeState, progress: 0 };
 
+    this.setStateCallback(this.routeId, { ...this.route });
+
     this.handleStoreStateChanges();
   }
 
