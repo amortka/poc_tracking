@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const RouteWrapper: React.FC = () => {
+export const CartDetailsRoute: React.FC = () => {
   const classes = useStyles();
 
   return (

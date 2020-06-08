@@ -1,23 +1,12 @@
 import React from 'react';
-import {
-  makeStyles,
-  Box,
-  Typography,
-  ClickAwayListener,
-  FadeProps,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-} from '@material-ui/core';
-import { DriveEta, DoubleArrow, Waves, Opacity, AcUnit, Speed, CheckCircle } from '@material-ui/icons';
+import { Box, ClickAwayListener, FadeProps, makeStyles, Typography } from '@material-ui/core';
+import { DoubleArrow } from '@material-ui/icons';
 import { useSelector } from 'react-redux';
+
+import { CartDetailsOrders } from './CartDetailsOrders';
 import { RoutesSelectors } from '../../../../store/routes/routes.selectors';
-import { GridBoxes } from '../GridBoxes/GridBoxes';
-import { ordersMock } from '../../../../mocks/ui.mock';
-import { RouteWrapper } from './RouteWrapper';
+import { CartDetailsRoute } from './CartDetailsRoute';
+import { StatsCards } from './CardDetailsStats';
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -67,58 +56,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: 0,
     },
   },
-  tableCell: {
-    border: 'none',
-  },
-  tableHeadCell: {
-    color: '#98A0A9',
-    fontSize: '12px',
-    fontWeight: 'normal',
-    padding: `0 ${theme.spacing(1)}px`,
-  },
-  tableBodyCell: {
-    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
-    fontWeight: 400,
-    fontSize: '14px',
-  },
-  tableBodyRow: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: 'rgba(24, 29, 36, 0.1)',
-    },
-    '&:nth-of-type(even)': {
-      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-    },
-  },
-  statusIcon: {
-    color: '#98A0A9',
-  },
-  statusIconDelivered: {
-    color: theme.palette.secondary.main,
-  },
 }));
-
-const cartDetailsConfig = [
-  {
-    name: 'Ambient Pressure',
-    icon: <Waves />,
-    value: null,
-  },
-  {
-    name: 'Humidity',
-    icon: <Opacity />,
-    value: null,
-  },
-  {
-    name: 'Temperature',
-    icon: <AcUnit />,
-    value: null,
-  },
-  {
-    name: 'Velocity',
-    icon: <Speed />,
-    value: null,
-  },
-];
 
 export interface CartDetailsProps extends FadeProps {
   setIsCartDetailsVisible: Function;
@@ -127,11 +65,6 @@ export interface CartDetailsProps extends FadeProps {
 export const CartDetails: React.FC<CartDetailsProps> = React.memo(({ setIsCartDetailsVisible, ...props }) => {
   const classes = useStyles();
   const selectedRouteEntry = useSelector(RoutesSelectors.getFirstSelectedRouteEntry);
-  const { ambientPressure, humidity, velocity, temperature } = selectedRouteEntry[1].vehicle;
-  const stats = [ambientPressure, humidity, temperature, velocity];
-  const cartDetails = cartDetailsConfig.map((item, i) => ({ ...item, value: stats[i] }));
-
-  const tableHeaders = ['Id', 'Product', 'Pick-up point', 'Status'];
 
   return (
     <div className={classes.backgroundShadow} {...(props as any)}>
@@ -143,47 +76,17 @@ export const CartDetails: React.FC<CartDetailsProps> = React.memo(({ setIsCartDe
             </Typography>
             <DoubleArrow onClick={() => setIsCartDetailsVisible(false)} className={classes.doubleArrowIcon} />
           </div>
-          <RouteWrapper />
+          {selectedRouteEntry.routeId && <CartDetailsRoute />}
 
           <Typography variant="body1" className={classes.title}>
             Cart details
           </Typography>
-          <GridBoxes items={cartDetails} dark={true} />
+          <StatsCards data={selectedRouteEntry.data} />
 
           <Typography variant="body1" className={classes.title}>
             Orders
           </Typography>
-          <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  {tableHeaders.map((header) => (
-                    <TableCell key={header} className={`${classes.tableHeadCell} ${classes.tableCell}`}>
-                      {header}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {ordersMock.map((order) => (
-                  <TableRow key={Math.random()} className={classes.tableBodyRow}>
-                    <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>{order.id}</TableCell>
-                    <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>{order.product}</TableCell>
-                    <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>
-                      {order.pickUpPoint}
-                    </TableCell>
-                    <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>
-                      {order.isDelivered ? (
-                        <CheckCircle className={classes.statusIconDelivered} />
-                      ) : (
-                        <DriveEta className={classes.statusIcon} />
-                      )}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <CartDetailsOrders />
         </Box>
       </ClickAwayListener>
     </div>

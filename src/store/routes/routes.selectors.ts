@@ -29,15 +29,23 @@ export class RoutesSelectors {
     }
   );
 
-  static getFirstSelectedRouteEntry = createSelector(RoutesSelectors.getRoutesWithData, (routes):
-    | [string, IRouteWithData]
-    | null => {
+  static getFirstSelectedRouteEntry = createSelector(RoutesSelectors.getRoutesWithData, (routes): {
+    routeId: string;
+    data: IRouteWithData;
+  } => {
     const selectedRouteEntry = Object.entries(routes).find(([routeId, route]) => route.selected);
-    return selectedRouteEntry ? selectedRouteEntry : null;
+    return selectedRouteEntry
+      ? { routeId: selectedRouteEntry[0], data: selectedRouteEntry[1] }
+      : { routeId: null, data: null };
   });
 
-  static getFirstSelectedRouteStateEntry = createSelector(RoutesSelectors.routes, (routes): [string, IRouteState] => {
+  static getFirstSelectedRouteStateEntry = createSelector(RoutesSelectors.routes, (routes): {
+    routeId: string;
+    data: IRouteState;
+  } => {
     const selectedRouteEntry = Object.entries(routes).find(([routeId, route]) => route.selected);
-    return selectedRouteEntry ? selectedRouteEntry : null;
+    return selectedRouteEntry
+      ? { routeId: selectedRouteEntry[0], data: selectedRouteEntry[1] }
+      : { routeId: null, data: null };
   });
 }

@@ -9,7 +9,7 @@ import { SceneUtils } from '../utils/scene.utils';
 export function useScene(): IVisualizationScene {
   const segmentLength = 1;
   const selectedRoute = useSelector(RoutesSelectors.getFirstSelectedRouteStateEntry);
-  const selectedPathId: string = selectedRoute[1].path;
+  const selectedPathId: string = selectedRoute.data?.path;
   const sceneData = useSelector(SceneSelectors.getRouteVisualisationSceneByPathId(selectedPathId));
 
   const pathPoints = useMemo(() => SceneUtils.flattenLineNormalized(sceneData.path.objects, segmentLength), [

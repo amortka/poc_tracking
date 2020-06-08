@@ -69,17 +69,13 @@ export const InfoSidebar: React.FC<InfoSidebarProps> = React.memo(({ setIsCartDe
     <Drawer variant="permanent" anchor="right" className={classes.root} classes={{ paper: classes.drawerPaper }}>
       <CartDetailsContext.Provider value={setIsCartDetailsVisible}>
         <Box className={classes.box}>
-          <Select
-            selectOptions={selectOptions}
-            onChange={selectRoute}
-            value={selectedRouteEntry ? selectedRouteEntry[0] : ''}
-          />
+          <Select selectOptions={selectOptions} onChange={selectRoute} value={selectedRouteEntry.routeId || ''} />
           <div className={classes.cartWrapper}>
             {selectedRouteEntry && (
               <Cart
-                color={selectedRouteEntry[1].color}
-                name={selectedRouteEntry[1].tag}
-                vehicle={selectedRouteEntry[1].vehicle}
+                color={selectedRouteEntry.data?.color}
+                name={selectedRouteEntry.data?.tag}
+                vehicle={selectedRouteEntry.data?.vehicle}
               />
             )}
           </div>
