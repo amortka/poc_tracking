@@ -18,21 +18,17 @@ export function useObjectsState(
   const pathObjects: IPath['objects'] = scene.paths[selectedPathId]?.objects;
   const progress: number = selectedRouteData?.progress;
 
-  return useMemo(
-    () => {
-      if (!pathObjects || typeof progress !== 'number') return objectsState;
+  return useMemo(() => {
+    if (!pathObjects || typeof progress !== 'number') return objectsState;
 
-      const newObjectsState = { ...objectsState };
-      const objectsLength = pathObjects.length;
+    const newObjectsState = { ...objectsState };
+    const objectsLength = pathObjects.length;
 
-      pathObjects.forEach(({ objectId, distance }, index) => {
-        newObjectsState[objectId] = { ...newObjectsState[objectId] };
-        newObjectsState[objectId].selected = (1 / (objectsLength + 1)) * (index + 1) > progress;
-      });
+    pathObjects.forEach(({ objectId, distance }, index) => {
+      newObjectsState[objectId] = { ...newObjectsState[objectId] };
+      newObjectsState[objectId].selected = (1 / (objectsLength + 1)) * (index + 1) > progress;
+    });
 
-      return newObjectsState;
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [pathObjects, progress]
-  );
+    return newObjectsState;
+  }, [objectsState, pathObjects, progress]);
 }
