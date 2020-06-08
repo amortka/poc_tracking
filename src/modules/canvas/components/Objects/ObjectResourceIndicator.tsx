@@ -21,7 +21,7 @@ export const ObjectResourceIndicator: React.FC<ObjectResourceIndicatorProps> = (
   value,
   width = 0.5,
   height = 0.05,
-  depth = 0.25,
+  depth = 0.05,
   adjustWidthToObjectBox = true,
 }) => {
   const theme = useContext(ThemeContext);

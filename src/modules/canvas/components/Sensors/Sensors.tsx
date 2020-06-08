@@ -11,17 +11,15 @@ interface ISensors extends Pick<IVisualizationScene, 'sensors' | 'points'> {
 export const Sensors: React.FC<ISensors> = React.memo(({ points, sensors, state }) => {
   return (
     <>
-      {Object.entries(sensors).map(([sensorId, { point, tag, meta }]) => (
-        <Suspense fallback={null} key={sensorId}>
-          <Sensor
-            position={points[point]}
-            id={sensorId}
-            tag={tag}
-            selected={state && state[sensorId]?.selected}
-            selectable={meta.selectable}
-          />
-        </Suspense>
-      ))}
+      {Object.entries(sensors).map(
+        ([sensorId, { point, tag, meta }]) =>
+          state &&
+          state[sensorId]?.selected && (
+            <Suspense fallback={null} key={sensorId}>
+              <Sensor position={points[point]} id={sensorId} tag={tag} selected={false} selectable={meta.selectable} />
+            </Suspense>
+          )
+      )}
     </>
   );
 });
