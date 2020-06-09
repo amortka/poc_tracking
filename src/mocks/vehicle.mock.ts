@@ -48,9 +48,6 @@ const progress = [
   { delay: 1000, sensorId: 'jpgsbunl', event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
 
-  { delay: 1000, sensorId: 'aihfuhkc', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
-
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: 'pnxwxnpk', event: ApiEvent.VEHICLE_UPDATE },

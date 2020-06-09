@@ -44,6 +44,7 @@ export function useScene(): IVisualizationScene {
     points: { ...pathPoints, ...objectPoints, ...sensorPoints },
     sensors: { ...sceneData.sensors },
     walls: {},
+    areas: {},
   };
 
   return scene;

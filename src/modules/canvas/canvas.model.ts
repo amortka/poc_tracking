@@ -90,6 +90,7 @@ export interface IWall {
 export interface ISensor {
   point: string;
   tag?: string;
+  area?: string;
   meta: {
     selected?: boolean;
     selectable?: boolean;
@@ -119,14 +120,13 @@ export interface IPath {
   length: number;
 }
 
-export interface IRoom {
-  walls: string[];
-  tag?: string;
-}
-
 export interface IPoint {
   x: number;
   y: number;
+}
+
+export interface IArea {
+  name: string;
 }
 
 export interface IVisualizationScene {
@@ -135,6 +135,7 @@ export interface IVisualizationScene {
   sensors: Dictionary<ISensor>;
   objects: Dictionary<IObject>;
   paths: Dictionary<IPath>;
+  areas: Dictionary<IArea>;
 }
 
 /**
