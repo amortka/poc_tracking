@@ -315,20 +315,12 @@ export const visualizationSceneMock: IVisualizationScene = {
     pnxwxnpk: {
       point: 'qeculymv',
       tag: 'Sensor 6',
-      area: 'hhxzabjf',
+      area: 'cqdrtfmd',
       meta: {
         selected: false,
         selectable: true,
       },
     },
-    // aihfuhkc: {
-    //   point: 'xlrbndpv',
-    //   tag: 'Sensor 7',
-    //   meta: {
-    //     selected: false,
-    //     selectable: true,
-    //   },
-    // },
     jpgsbunl: {
       point: 'zohcrjma',
       tag: 'Sensor 8',

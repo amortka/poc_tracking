@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
-import { makeStyles, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
 import { DriveEta, InfoOutlined } from '@material-ui/icons';
 
 import './CartItem.css';
 import { CartDetailsContext } from '../Sidebar/InfoSidebar';
 import { useDispatch } from 'react-redux';
 import { tooltipActions } from '../../../../store/tooltips/tooltips.actions';
-import { Color } from '../../../canvas/canvas.model';
+import { IRouteState } from '../../../../store/routes/routes.model';
+import { RoutesActions } from '../../../../store/routes/routes.actions';
 
 const useStyles = makeStyles({
   root: {
@@ -15,6 +16,7 @@ const useStyles = makeStyles({
     '&:hover': {
       backgroundColor: '#41464E',
     },
+    display: 'flex',
   },
   icon: {
     minWidth: '24px',
@@ -23,8 +25,8 @@ const useStyles = makeStyles({
     },
   },
   cartName: {
-    width: '95px',
-    maxWidth: '95px',
+    // width: '95px',
+    // maxWidth: '95px',
   },
   cartTime: {
     color: '#989FA4',
@@ -33,14 +35,11 @@ const useStyles = makeStyles({
   },
 });
 
-export interface CartItemProps {
-  name: string;
-  time: string;
-  wagons: Array<{ id: string; isLoaded: boolean }>;
-  color: Color;
+interface CartItemProps extends IRouteState {
+  routeId: string;
 }
 
-export const CartItem: React.FC<CartItemProps> = React.memo(({ name, time, wagons, color }) => {
+export const CartItem: React.FC<CartItemProps> = React.memo(({ color, tag, selected, routeId }) => {
   const classes = useStyles();
   const setIsCartDetailsVisible = useContext(CartDetailsContext);
   const dispatch = useDispatch();
@@ -51,17 +50,15 @@ export const CartItem: React.FC<CartItemProps> = React.memo(({ name, time, wagon
   };
 
   return (
-    <ListItem button className={classes.root}>
+    <ListItem
+      button
+      className={classes.root}
+      selected={selected}
+      onClick={() => dispatch(RoutesActions.selectRoutes([routeId]))}>
       <ListItemIcon className={classes.icon}>
         <DriveEta htmlColor={color as string} />
       </ListItemIcon>
-      <ListItemText primary={name} primaryTypographyProps={{ variant: 'body2' }} className={classes.cartName} />
-      <ListItemText primary={time} primaryTypographyProps={{ variant: 'overline' }} className={classes.cartTime} />
-      <div className="loadedIndicator">
-        {wagons.map((cart) => (
-          <div key={cart.id} className={`cart ${cart.isLoaded ? 'cart--loaded' : 'cart--empty'}`}></div>
-        ))}
-      </div>
+      <ListItemText primary={tag} primaryTypographyProps={{ variant: 'body2' }} className={classes.cartName} />
       <ListItemIcon className={classes.icon}>
         <InfoOutlined onClick={setCartDetailsVisible} />
       </ListItemIcon>

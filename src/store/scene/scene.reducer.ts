@@ -43,8 +43,9 @@ function handleSceneElementSelections(
 function updateAreas(state: SceneState, action): void {
   const vehicleUpdate = action.payload as IApiVehicleUpdate;
   if (!vehicleUpdate.rfids.length) return;
-
   const sensorId = vehicleUpdate.rfids[0];
+  if (!state.sensors[sensorId]) return;
+
   action.asyncDispatch(
     AreasActions.updateArea({ areaId: state.sensors[sensorId].area, vehicleId: vehicleUpdate.deviceId })
   );

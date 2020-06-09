@@ -3,11 +3,11 @@ import { Box, Drawer, makeStyles } from '@material-ui/core';
 
 import { Cart } from '../Cart/Cart';
 import { Dictionary, IRouteWithData } from '../../../../app.model';
-import { ExpansionSidebarItem } from './ExpansionSidebarItem';
 import { RoutesActions } from '../../../../store/routes/routes.actions';
 import { RoutesSelectors } from '../../../../store/routes/routes.selectors';
 import { Select } from '../MaterialUI/Select';
 import { useDispatch, useSelector } from 'react-redux';
+import { SidebarAreas } from './SidebarAreas';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,8 +80,7 @@ export const InfoSidebar: React.FC<InfoSidebarProps> = React.memo(({ setIsCartDe
             )}
           </div>
         </Box>
-        <ExpansionSidebarItem title="Production Area P1" />
-        <ExpansionSidebarItem title="Warehouse Area W1" />
+        <SidebarAreas />
       </CartDetailsContext.Provider>
     </Drawer>
   );

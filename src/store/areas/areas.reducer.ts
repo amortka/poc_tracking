@@ -9,7 +9,7 @@ import { AreasAction, IAreasState } from './areas.model';
 function updateArea(state: IAreasState, vehicleId: string, areaId: string): IAreasState {
   const newState = { ...state, [areaId]: state[areaId] || { vehiclesId: [] } };
 
-  Object.entries(state).forEach(([aId, areaData]) => {
+  Object.entries(newState).forEach(([aId, areaData]) => {
     if (aId !== areaId) {
       areaData.vehiclesId = areaData.vehiclesId.filter((vId) => vId !== vehicleId);
     }
