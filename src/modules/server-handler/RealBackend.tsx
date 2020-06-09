@@ -6,6 +6,8 @@ import { IApiVehicleUpdate } from '../../app.model';
 // import socketIOClient from 'socket.io-client';
 // import { ApiEvent, IApiVehicleUpdate } from '../../app.model';
 
+export const RealDeviceId = 'Real';
+
 const ENDPOINT = 'wss://9zm5unpokg.execute-api.eu-central-1.amazonaws.com/dev';
 /*const SOCKET_IO_CONFIG = {
   path: '/',
@@ -30,7 +32,7 @@ function useWebsocket() {
     socket.onmessage = function (event) {
       let payload = decodeBackendPayload(event.data);
       store.dispatch(
-        VehiclesActions.updateVehicle({ deviceId: 'trqzbojg', rfids: [], ...payload[payload.length - 1] })
+        VehiclesActions.updateVehicle({ rfids: [], ...payload[payload.length - 1], deviceId: RealDeviceId })
       );
     };
     return () => socket.close();

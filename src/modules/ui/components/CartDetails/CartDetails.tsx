@@ -62,12 +62,12 @@ export interface CartDetailsProps extends FadeProps {
   setIsCartDetailsVisible: Function;
 }
 
-export const CartDetails: React.FC<CartDetailsProps> = React.memo(({ setIsCartDetailsVisible, ...props }) => {
+export const CartDetails: React.FC<CartDetailsProps> = React.memo(({ setIsCartDetailsVisible }) => {
   const classes = useStyles();
   const selectedRouteEntry = useSelector(RoutesSelectors.getFirstSelectedRouteEntry);
 
   return (
-    <div className={classes.backgroundShadow} {...(props as any)}>
+    <div className={classes.backgroundShadow}>
       <ClickAwayListener onClickAway={() => setIsCartDetailsVisible(false)}>
         <Box color="text.primary" className={classes.box} onClick={(e) => e.stopPropagation()}>
           <div className={classes.CartDetailsHeaderContainer}>

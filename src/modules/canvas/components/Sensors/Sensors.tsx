@@ -16,7 +16,7 @@ export const Sensors: React.FC<ISensors> = React.memo(({ points, sensors, state 
           state &&
           state[sensorId]?.selected && (
             <Suspense fallback={null} key={sensorId}>
-              <Sensor position={points[point]} id={sensorId} tag={tag} selected={false} selectable={meta.selectable} />
+              <Sensor position={points[point]} id={sensorId} tag={tag} selectable={meta.selectable} />
             </Suspense>
           )
       )}

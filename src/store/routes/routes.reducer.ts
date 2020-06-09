@@ -70,6 +70,15 @@ export const routesReducer: Reducer<IRoutesState> = (state = initialState, actio
       handleSceneElementsSelection(action.asyncDispatch, state, routesIds);
       return handleRoutesSelection(state, routesIds);
     }
+    case RoutesAction.SELECT_ROUTE_BY_DEVICE_ID: {
+      const deviceId: string = action.payload.deviceId;
+      const [routesId] = Object.entries(state).find(([routeId, data]) => data.vehicle === deviceId) || [];
+
+      if (!routesId) return state;
+
+      handleSceneElementsSelection(action.asyncDispatch, state, [routesId]);
+      return handleRoutesSelection(state, [routesId]);
+    }
 
     // TODO: temporary add creation of route by backend vehicle update where rfid is not empty
     case VehiclesAction.UPDATE_VEHICLE: {

@@ -147,7 +147,7 @@ export class RouteService {
   }
 
   private emitRouteUpdate(progress: number) {
-    this.route.progress = progress;
+    this.route.progress = progress || 0;
     this.setStateCallback(this.routeId, { ...this.route });
   }
 }

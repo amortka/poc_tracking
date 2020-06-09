@@ -181,7 +181,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     bbgexc3r: { x: 0, y: 1.28 },
 
     // Sensors
-    qeculymv: { x: 10.22, y: 0.46 },
+    qeculymv: { x: 10.22, y: 0.37 },
     wytjebmg: { x: 6.43, y: 0.37 },
     etkehdxr: { x: 4.57, y: 0.37 },
     rzmgfdlc: { x: 2.75, y: 0.37 },
@@ -189,7 +189,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     sadvcvxl: { x: 2.75, y: 5.1 },
     ccomdgqr: { x: 4.57, y: 5.1 },
     lojlicgi: { x: 6.43, y: 5.1 },
-    zohcrjma: { x: 10.22, y: 5.01 },
+    zohcrjma: { x: 10.22, y: 5.1 },
     xlrbndpv: { x: 10.22, y: 3.0 },
 
     //PATH ojihoybn
@@ -251,20 +251,20 @@ export const visualizationSceneMock: IVisualizationScene = {
     jzwceyxp: { x: 6.64, y: 4.87 },
     otmkhoub: { x: 6.22, y: 4.87 },
     // Warehouse
-    akyepqqo: { x: 9.7, y: 0.15 },
+    akyepqqo: { x: 10, y: 0.15 },
     cmjoeldy: { x: 13.24, y: 0.15 },
     icdbsniz: { x: 13.24, y: 5.31 },
-    lmeikfil: { x: 9.7, y: 5.31 },
+    lmeikfil: { x: 10, y: 5.31 },
     // Gate G1
-    pbtndrum: { x: 9.7, y: 0.15 },
-    rbdepwzi: { x: 10.1, y: 0.15 },
-    owkrvduz: { x: 10.1, y: 1.4 },
-    bcicinqq: { x: 9.7, y: 1.4 },
+    pbtndrum: { x: 10, y: 0.2 }, // 0.1
+    rbdepwzi: { x: 10.45, y: 0.2 },
+    owkrvduz: { x: 10.45, y: 1.6 }, // 0.3
+    bcicinqq: { x: 10, y: 1.6 },
     // Gate G2
-    twiecysq: { x: 9.7, y: 4.06 },
-    gzgcijcz: { x: 10.1, y: 4.06 },
-    xeqeqvey: { x: 10.1, y: 5.31 },
-    mstiwdey: { x: 9.7, y: 5.31 },
+    twiecysq: { x: 10, y: 3.86 },
+    gzgcijcz: { x: 10.45, y: 3.86 },
+    xeqeqvey: { x: 10.45, y: 5.26 },
+    mstiwdey: { x: 10, y: 5.26 },
   },
   sensors: {
     qwbmjtmf: {
