@@ -4,8 +4,8 @@ import { IRoute, IVisualizationScene } from '../../canvas/canvas.model';
 import { Dictionary } from '../../../app.model';
 import { useRoutesState } from '../../canvas-manager/hooks/use-routes-state.hook';
 
-export function useRoutesStateNormalized(routesIdSet: Set<string>, scene: IVisualizationScene): Dictionary<IRoute> {
-  const routesState = useRoutesState(routesIdSet);
+export function useRoutesStateNormalized(scene: IVisualizationScene): Dictionary<IRoute> {
+  const routesState = useRoutesState();
   const selectedRouteEntry = Object.entries(routesState).find(([, routeData]) => routeData.selected) || [];
 
   const selectedRouteId: string = selectedRouteEntry[0];
