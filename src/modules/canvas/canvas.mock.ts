@@ -197,8 +197,8 @@ export const visualizationSceneMock: IVisualizationScene = {
     ponbhqmp: { x: 1.9, y: 0.37 },
     flguqmoa: { x: 1.9, y: 5.1 },
     bxlnhzmb: { x: 10.22, y: 5.1 },
-    acljbmkd: { x: 10.22, y: 0.55 },
-    nlyiefgq: { x: 10.22, y: 0.55 },
+    acljbmkd: { x: 10.23, y: 0.55 },
+    nlyiefgq: { x: 10.23, y: 0.55 },
 
     //L3
     hjqbfgyn: { x: 2.19, y: 0.57 },
