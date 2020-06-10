@@ -44,9 +44,9 @@ interface CartDetailsOrdersProps {
   routeId: string;
 }
 
-export const CartDetailsOrders: React.FC<CartDetailsOrdersProps> = React.memo((routeId) => {
+export const CartDetailsOrders: React.FC<CartDetailsOrdersProps> = React.memo(({ routeId }) => {
   const classes = useStyles();
-  const orders = useSelector(OrdersSelectors.getOrdersForVehicleByRouteId(routeId.routeId));
+  const orders = useSelector(OrdersSelectors.getOrdersForVehicleByRouteId(routeId));
 
   return (
     <TableContainer>

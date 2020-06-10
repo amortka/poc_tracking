@@ -9,9 +9,8 @@ export class OrdersSelectors {
   static getOrdersForVehicleByRouteId = (routeId) =>
     createSelector(
       (state: AppState) => state.orders,
-      RoutesSelectors.getRoute(routeId.routeId),
+      RoutesSelectors.getRoute(routeId),
       (orders, route): Dictionary<IOrder> => {
-        console.log(route, routeId);
         const vehicleId = route.vehicle;
         return Object.fromEntries(
           Object.entries(orders).filter(([key, order]) => {

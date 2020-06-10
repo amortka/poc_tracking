@@ -9,7 +9,12 @@ interface RoutesProps
   horizontalCamera: boolean;
 }
 
+const routesSet = new Set();
 export const Routes: React.FC<RoutesProps> = ({ paths, points, routes, vehicles, horizontalCamera }) => {
+  const routesIds = Object.keys(routes);
+  routesIds.forEach((id) => routesSet.add(id));
+  console.log({ routesSet });
+
   const routePaths = useMemo(
     () =>
       Object.entries(paths).reduce(
