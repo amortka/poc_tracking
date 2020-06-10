@@ -158,7 +158,7 @@ export const visualizationSceneMock: IVisualizationScene = {
         { sensorId: 'quqklxup', distance: 0.607, relationHidden: true },
         { sensorId: 'zapgjpha', distance: 0.679 },
         { sensorId: 'jpgsbunl', distance: 0.827 },
-        { sensorId: 'aihfuhkc', distance: 0.905, relationHidden: true },
+        // { sensorId: 'aihfuhkc', distance: 0.905, relationHidden: true },
         { sensorId: 'pnxwxnpk', distance: 1 },
       ],
       objects: [
@@ -181,7 +181,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     bbgexc3r: { x: 0, y: 1.28 },
 
     // Sensors
-    qeculymv: { x: 10.22, y: 0.46 },
+    qeculymv: { x: 10.22, y: 0.37 },
     wytjebmg: { x: 6.43, y: 0.37 },
     etkehdxr: { x: 4.57, y: 0.37 },
     rzmgfdlc: { x: 2.75, y: 0.37 },
@@ -189,7 +189,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     sadvcvxl: { x: 2.75, y: 5.1 },
     ccomdgqr: { x: 4.57, y: 5.1 },
     lojlicgi: { x: 6.43, y: 5.1 },
-    zohcrjma: { x: 10.22, y: 5.01 },
+    zohcrjma: { x: 10.22, y: 5.1 },
     xlrbndpv: { x: 10.22, y: 3.0 },
 
     //PATH ojihoybn
@@ -197,8 +197,8 @@ export const visualizationSceneMock: IVisualizationScene = {
     ponbhqmp: { x: 1.9, y: 0.37 },
     flguqmoa: { x: 1.9, y: 5.1 },
     bxlnhzmb: { x: 10.22, y: 5.1 },
-    acljbmkd: { x: 10.22, y: 0.55 },
-    nlyiefgq: { x: 10.22, y: 0.55 },
+    acljbmkd: { x: 10.23, y: 0.55 },
+    nlyiefgq: { x: 10.23, y: 0.55 },
 
     //L3
     hjqbfgyn: { x: 2.19, y: 0.57 },
@@ -251,25 +251,26 @@ export const visualizationSceneMock: IVisualizationScene = {
     jzwceyxp: { x: 6.64, y: 4.87 },
     otmkhoub: { x: 6.22, y: 4.87 },
     // Warehouse
-    akyepqqo: { x: 9.7, y: 0.15 },
+    akyepqqo: { x: 10, y: 0.15 },
     cmjoeldy: { x: 13.24, y: 0.15 },
     icdbsniz: { x: 13.24, y: 5.31 },
-    lmeikfil: { x: 9.7, y: 5.31 },
+    lmeikfil: { x: 10, y: 5.31 },
     // Gate G1
-    pbtndrum: { x: 9.7, y: 0.15 },
-    rbdepwzi: { x: 10.1, y: 0.15 },
-    owkrvduz: { x: 10.1, y: 1.4 },
-    bcicinqq: { x: 9.7, y: 1.4 },
+    pbtndrum: { x: 10, y: 0.2 }, // 0.1
+    rbdepwzi: { x: 10.45, y: 0.2 },
+    owkrvduz: { x: 10.45, y: 1.6 }, // 0.3
+    bcicinqq: { x: 10, y: 1.6 },
     // Gate G2
-    twiecysq: { x: 9.7, y: 4.06 },
-    gzgcijcz: { x: 10.1, y: 4.06 },
-    xeqeqvey: { x: 10.1, y: 5.31 },
-    mstiwdey: { x: 9.7, y: 5.31 },
+    twiecysq: { x: 10, y: 3.86 },
+    gzgcijcz: { x: 10.45, y: 3.86 },
+    xeqeqvey: { x: 10.45, y: 5.26 },
+    mstiwdey: { x: 10, y: 5.26 },
   },
   sensors: {
     qwbmjtmf: {
       point: 'sadvcvxl',
       tag: 'Sensor 1',
+      area: 'cqdrtfmd',
       meta: {
         selected: false,
         selectable: true,
@@ -278,6 +279,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     xzfsgxxh: {
       point: 'dqwzllxi',
       tag: 'Sensor 2',
+      area: 'cqdrtfmd',
       meta: {
         selected: false,
         selectable: true,
@@ -286,6 +288,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     izktgqna: {
       point: 'rzmgfdlc',
       tag: 'Sensor 3',
+      area: 'cqdrtfmd',
       meta: {
         selected: false,
         selectable: true,
@@ -294,6 +297,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     piunnkuf: {
       point: 'etkehdxr',
       tag: 'Sensor 4',
+      area: 'cqdrtfmd',
       meta: {
         selected: false,
         selectable: true,
@@ -302,6 +306,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     saruefli: {
       point: 'wytjebmg',
       tag: 'Sensor 5',
+      area: 'cqdrtfmd',
       meta: {
         selected: false,
         selectable: true,
@@ -310,14 +315,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     pnxwxnpk: {
       point: 'qeculymv',
       tag: 'Sensor 6',
-      meta: {
-        selected: false,
-        selectable: true,
-      },
-    },
-    aihfuhkc: {
-      point: 'xlrbndpv',
-      tag: 'Sensor 7',
+      area: 'cqdrtfmd',
       meta: {
         selected: false,
         selectable: true,
@@ -326,6 +324,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     jpgsbunl: {
       point: 'zohcrjma',
       tag: 'Sensor 8',
+      area: 'hhxzabjf',
       meta: {
         selected: false,
         selectable: true,
@@ -334,6 +333,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     zapgjpha: {
       point: 'lojlicgi',
       tag: 'Sensor 9',
+      area: 'cqdrtfmd',
       meta: {
         selected: false,
         selectable: true,
@@ -342,6 +342,7 @@ export const visualizationSceneMock: IVisualizationScene = {
     quqklxup: {
       point: 'ccomdgqr',
       tag: 'Sensor 10',
+      area: 'cqdrtfmd',
       meta: {
         selected: false,
         selectable: true,
@@ -450,5 +451,9 @@ export const visualizationSceneMock: IVisualizationScene = {
         },
       },
     },
+  },
+  areas: {
+    cqdrtfmd: { name: 'Production Area P1' },
+    hhxzabjf: { name: 'Warehouse Area W1' },
   },
 };

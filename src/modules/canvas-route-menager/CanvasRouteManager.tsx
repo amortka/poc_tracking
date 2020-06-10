@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Canvas } from '../canvas/Canvas';
@@ -19,10 +19,8 @@ const theme: Partial<ICanvasTheme> = {
 interface CanvasManagerProps {}
 
 export const CanvasRouteManager: React.FC<CanvasManagerProps> = React.memo(() => {
-  const routeIdSet = useRef<Set<string>>(new Set<string>());
-
   const scene = useScene();
-  const routesState = useRoutesStateNormalized(routeIdSet.current, scene);
+  const routesState = useRoutesStateNormalized(scene);
   const objectsState = useObjectsState(routesState, scene);
 
   const pathsState = useSelector(PathsSelectors.paths);

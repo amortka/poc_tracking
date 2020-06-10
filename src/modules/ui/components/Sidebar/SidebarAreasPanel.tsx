@@ -1,19 +1,18 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
+  ExpansionPanelDetails,
+  ExpansionPanelSummary,
+  List,
   makeStyles,
   Typography,
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
   withStyles,
-  List,
 } from '@material-ui/core';
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
 import { Add } from '@material-ui/icons';
 
+import { RoutesSelectors } from '../../../../store/routes/routes.selectors';
 import { CartItem } from '../CartItem/CartItem';
-import { cartsMock } from '../../../../mocks/ui.mock';
-import { RoutesActions } from '../../../../store/routes/routes.actions';
 
 const ExpansionPanel = withStyles((theme) => ({
   root: {
@@ -42,26 +41,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export interface ExpansionSidebarItemProps {
+export interface SidebarAreasPanelProps {
   title: string;
+  areaId: string;
 }
 
-export const ExpansionSidebarItem: React.FC<ExpansionSidebarItemProps> = React.memo(({ title }) => {
+export const SidebarAreasPanel: React.FC<SidebarAreasPanelProps> = React.memo(({ title, areaId }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
+  const routes = useSelector(RoutesSelectors.getRoutesInArea(areaId));
 
   return (
-    <ExpansionPanel square className={classes.expansionPanel}>
+    <ExpansionPanel square className={classes.expansionPanel} expanded={true}>
       <ExpansionPanelSummary expandIcon={<Add />} className={classes.expansionSummary}>
         <Typography variant="h6">{title}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.details}>
         <List className={classes.list}>
-          <div onClick={() => dispatch(RoutesActions.selectRoutes([]))}>
-            <CartItem {...cartsMock[3]} />
-            <CartItem {...cartsMock[4]} />
-            <CartItem {...cartsMock[5]} />
-          </div>
+          {routes.map(([routeId, routeData]) => (
+            <CartItem key={routeId} routeId={routeId} {...routeData} />
+          ))}
         </List>
       </ExpansionPanelDetails>
     </ExpansionPanel>

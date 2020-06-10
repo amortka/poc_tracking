@@ -14,17 +14,16 @@ const progress = [
   { delay: 1000, sensorId: 'saruefli', event: ApiEvent.VEHICLE_UPDATE, objectId: 'vbisqysg' },
   { delay: 3000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
 
-  { delay: 1000, sensorId: 'piunnkuf', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 500, sensorId: 'piunnkuf', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 500, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
 
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: 'izktgqna', event: ApiEvent.VEHICLE_UPDATE, objectId: 'hcgrauti' },
   { delay: 3000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
 
-  { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: 'xzfsgxxh', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 500, sensorId: 'xzfsgxxh', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 500, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
 
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
@@ -34,8 +33,8 @@ const progress = [
   { delay: 1000, sensorId: 'qwbmjtmf', event: ApiEvent.VEHICLE_UPDATE, objectId: 'kkshvomj' },
   { delay: 3000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
 
-  { delay: 1000, sensorId: 'quqklxup', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 500, sensorId: 'quqklxup', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 500, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
 
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
@@ -43,13 +42,8 @@ const progress = [
   { delay: 3000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
 
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: 'jpgsbunl', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
-
-  { delay: 1000, sensorId: 'aihfuhkc', event: ApiEvent.VEHICLE_UPDATE },
-  { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 500, sensorId: 'jpgsbunl', event: ApiEvent.VEHICLE_UPDATE },
+  { delay: 500, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
 
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
@@ -72,7 +66,7 @@ export class VehicleMock {
     TimeStats: new Date().toString(),
     Timestamp: Date.now(),
     Vel_Val_Magnitude_P2P: 0,
-    deviceId: 'trqzbojg',
+    deviceId: 'Simulated',
     rfids: [],
   };
 

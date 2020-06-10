@@ -1,6 +1,8 @@
 import { Reducer } from 'redux';
-import { VehiclesAction, IVehiclesState, IVehicleState } from './vehicles.model';
+import { IVehiclesState, IVehicleState, VehiclesAction } from './vehicles.model';
 import { IApiVehicleUpdate } from '../../app.model';
+import { RoutesActions } from '../routes/routes.actions';
+import { RealDeviceId } from '../../modules/server-handler/RealBackend';
 
 export const initialState: IVehiclesState = {};
 
@@ -38,6 +40,13 @@ export const vehiclesReducer: Reducer<IVehiclesState> = (state = initialState, a
     case VehiclesAction.UPDATE_VEHICLE: {
       const payload = action.payload as IApiVehicleUpdate;
       const vehicle = vehicleDTO(action.payload);
+
+      // NOTE: This is additional functionality due to POC presentation
+      // When user retrieve first real backend data then select new route
+      if (payload.deviceId === RealDeviceId && !state[payload.deviceId]) {
+        action.asyncDispatch(RoutesActions.selectRoutesByDeviceId(RealDeviceId));
+      }
+
       return { ...state, [payload.deviceId]: { ...state[payload.deviceId], ...vehicle } };
     }
     default: {

@@ -4,6 +4,7 @@ import { AppState } from '../main.store';
 import { Dictionary, IRouteWithData } from '../../app.model';
 import { VehiclesSelectors } from '../vehicles/vehicles.selectors';
 import { IRouteState } from './routes.model';
+import { AreasSelectors } from '../areas/areas.selectors';
 
 export class RoutesSelectors {
   static routes = createSelector(
@@ -14,6 +15,12 @@ export class RoutesSelectors {
   static routesIds = createSelector(RoutesSelectors.routes, (routes) => Object.keys(routes));
 
   static getRoute = (routeId: string) => createSelector(RoutesSelectors.routes, (routes) => routes[routeId]);
+
+  static getRoutesInArea = (areaId: string) =>
+    createSelector(RoutesSelectors.routes, AreasSelectors.getArea(areaId), (routes, area) => {
+      if (!area) return [];
+      return Object.entries(routes).filter(([rId, rData]) => area.vehiclesId.indexOf(rData.vehicle) !== -1);
+    });
 
   static getRoutesWithData = createSelector(
     RoutesSelectors.routes,

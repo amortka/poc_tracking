@@ -13,7 +13,31 @@ autoPlay(true);
 // Current route length: 27.22m
 const vehicleAvgSpeed = 5000 / 3600; // 5 km/h -> 5000/3600
 
+export type IRouteServiceCallback = (routeId: string, data: IRoute) => void;
+
 export class RouteService {
+  /**
+   * Subscription handling
+   */
+  private subscriptions = new Set<IRouteServiceCallback>();
+
+  registerCallback(cta: IRouteServiceCallback): void {
+    cta(this.routeId, this.route);
+    this.subscriptions.add(cta);
+  }
+
+  unregisterCallback(cta: IRouteServiceCallback): void {
+    this.subscriptions.delete(cta);
+  }
+
+  private emitNewEvent() {
+    this.subscriptions.forEach((f) => f(this.routeId, this.route));
+  }
+
+  /**
+   * Service logic
+   */
+
   private readonly path: IPath;
   private readonly route: IRoute;
   private readonly isLoopedPath: boolean;
@@ -27,15 +51,13 @@ export class RouteService {
 
   private tween: typeof Tween;
 
-  constructor(private routeId: string, private setStateCallback: (routeId: string, data: IRoute) => void) {
+  constructor(private routeId: string) {
     const storeState = store.getState();
 
     this.routeState = RoutesSelectors.getRoute(routeId)(storeState);
     this.path = SceneSelectors.getPath(this.routeState.path)(storeState);
     this.isLoopedPath = this.path.sensors[0].sensorId === this.path.sensors[this.path.sensors.length - 1].sensorId;
     this.route = { ...this.routeState, progress: 0 };
-
-    this.setStateCallback(this.routeId, { ...this.route });
 
     this.handleStoreStateChanges();
   }
@@ -68,7 +90,6 @@ export class RouteService {
 
       if (this.routeState.selected !== this.route.selected) {
         this.route.selected = this.routeState.selected;
-        this.setStateCallback(this.routeId, { ...this.route, selected: this.routeState.selected });
       }
     });
   }
@@ -147,7 +168,7 @@ export class RouteService {
   }
 
   private emitRouteUpdate(progress: number) {
-    this.route.progress = progress;
-    this.setStateCallback(this.routeId, { ...this.route });
+    this.route.progress = progress || 0;
+    this.emitNewEvent();
   }
 }

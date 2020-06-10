@@ -62,12 +62,12 @@ export interface CartDetailsProps extends FadeProps {
   setIsCartDetailsVisible: Function;
 }
 
-export const CartDetails: React.FC<CartDetailsProps> = React.memo(({ setIsCartDetailsVisible, ...props }) => {
+export const CartDetails: React.FC<CartDetailsProps> = React.memo(({ setIsCartDetailsVisible }) => {
   const classes = useStyles();
   const selectedRouteEntry = useSelector(RoutesSelectors.getFirstSelectedRouteEntry);
 
   return (
-    <div className={classes.backgroundShadow} {...(props as any)}>
+    <div className={classes.backgroundShadow}>
       <ClickAwayListener onClickAway={() => setIsCartDetailsVisible(false)}>
         <Box color="text.primary" className={classes.box} onClick={(e) => e.stopPropagation()}>
           <div className={classes.CartDetailsHeaderContainer}>
@@ -81,12 +81,12 @@ export const CartDetails: React.FC<CartDetailsProps> = React.memo(({ setIsCartDe
           <Typography variant="body1" className={classes.title}>
             Milkrun details
           </Typography>
-          <StatsCards data={selectedRouteEntry.data} />
+          <StatsCards routeId={selectedRouteEntry.routeId} routeData={selectedRouteEntry.data} />
 
           <Typography variant="body1" className={classes.title}>
             Order ID: 1293840020
           </Typography>
-          <CartDetailsOrders />
+          <CartDetailsOrders routeId={selectedRouteEntry.routeId} />
         </Box>
       </ClickAwayListener>
     </div>
