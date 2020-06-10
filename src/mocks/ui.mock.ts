@@ -1,50 +1,61 @@
-export const ordersMock = [
-  {
-    id: '9643200322',
-    product: 'Steel screws',
-    pickUpPoint: 'L1A',
-    isDelivered: true,
+import { Dictionary } from '../app.model';
+import { IOrder, OrderStatuses } from '../store/orders/orders.model';
+
+export const ordersMock: Dictionary<IOrder> = {
+  sqmygokds3: {
+    productName: 'Steel screws',
+    vehicleId: 'Simulated',
+    amount: 40,
+    target: { name: 'L1A', id: 'vbisqysg' },
+    status: OrderStatuses.DELIVERED,
   },
-  {
-    id: '7005300322',
-    product: 'Metal parts',
-    pickUpPoint: 'L1A',
-    isDelivered: true,
+  nbtlsmo9oz: {
+    productName: 'Metal parts',
+    vehicleId: 'Simulated',
+    amount: 250,
+    target: { name: 'L1A', id: 'vbisqysg' },
+    status: OrderStatuses.DELIVERED,
   },
-  {
-    id: '9643200322',
-    product: 'Steel screws',
-    pickUpPoint: 'L3A',
-    isDelivered: false,
+  p11dnequvu: {
+    productName: 'Steel screws',
+    vehicleId: 'Simulated',
+    amount: 40,
+    target: { name: 'L3A', id: 'hcgrauti' },
+    status: OrderStatuses.ONGOING,
   },
-  {
-    id: '7005300322',
-    product: 'Metal parts',
-    pickUpPoint: 'L3A',
-    isDelivered: false,
+  ef1dl566sb: {
+    productName: 'Metal parts',
+    vehicleId: 'Simulated',
+    amount: 40,
+    target: { name: 'L3A', id: 'hcgrauti' },
+    status: OrderStatuses.ONGOING,
   },
-  {
-    id: '9643200322',
-    product: 'Steel screws',
-    pickUpPoint: 'L3C',
-    isDelivered: false,
+  v7k2htgo1k: {
+    productName: 'Steel screws',
+    vehicleId: 'Simulated',
+    amount: 40,
+    target: { name: 'L3C', id: 'kkshvomj' },
+    status: OrderStatuses.ONGOING,
   },
-  {
-    id: '7005300322',
-    product: 'Metal parts',
-    pickUpPoint: 'L3C',
-    isDelivered: false,
+  la43lkvd2n: {
+    productName: 'Metal parts',
+    vehicleId: 'Simulated',
+    amount: 40,
+    target: { name: 'L3C', id: 'kkshvomj' },
+    status: OrderStatuses.ONGOING,
   },
-  {
-    id: '9643200322',
-    product: 'Steel screws',
-    pickUpPoint: 'L1B',
-    isDelivered: false,
+  qqxyhj3tpp: {
+    productName: 'Steel screws',
+    vehicleId: 'Simulated',
+    amount: 40,
+    target: { name: 'L1B', id: 'ycjfzvlk' },
+    status: OrderStatuses.ONGOING,
   },
-  {
-    id: '7005300322',
-    product: 'Metal parts',
-    pickUpPoint: 'L1B',
-    isDelivered: false,
+  uwtilkzqzk: {
+    productName: 'Metal parts',
+    vehicleId: 'Simulated',
+    amount: 40,
+    target: { name: 'L1B', id: 'ycjfzvlk' },
+    status: OrderStatuses.ONGOING,
   },
-];
+};

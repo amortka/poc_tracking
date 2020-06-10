@@ -16,6 +16,8 @@ import { TooltipState } from './tooltips/tooltips.model';
 import { uiReducer } from './ui/ui.reducer';
 import { UiState } from './ui/ui.model';
 import { vehiclesReducer } from './vehicles/vehicles.reducer';
+import { OrdersState } from './orders/orders.model';
+import { ordersReducer } from './orders/orders.reducer';
 import { IAreasState } from './areas/areas.model';
 import { areasReducer } from './areas/areas.reducer';
 
@@ -34,6 +36,7 @@ export interface AppState {
   vehicles: IVehiclesState;
 
   ui: UiState;
+  orders: OrdersState;
 }
 
 /**********************************************************
@@ -52,6 +55,7 @@ export function makeRootReducer<S = any, A extends Action = Action>(asyncReducer
     vehicles: vehiclesReducer,
 
     ui: uiReducer,
+    orders: ordersReducer,
     ...asyncReducers,
   });
 }

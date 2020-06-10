@@ -86,7 +86,7 @@ export const CartDetails: React.FC<CartDetailsProps> = React.memo(({ setIsCartDe
           <Typography variant="body1" className={classes.title}>
             Order ID: 1293840020
           </Typography>
-          <CartDetailsOrders />
+          <CartDetailsOrders routeId={selectedRouteEntry.routeId} />
         </Box>
       </ClickAwayListener>
     </div>

@@ -26,28 +26,24 @@ function useCardDetailsConfig(routeId: string, vehicleState: IVehicleState): Arr
       icon: <Waves />,
       value: ambientPressure,
       floatPoint: 0,
-      affix: 'hPa',
     },
     {
       name: 'Humidity',
       icon: <Opacity />,
       value: humidity,
       floatPoint: 0,
-      affix: '%',
     },
     {
       name: 'Temperature',
       icon: <AcUnit />,
       value: temperature,
       floatPoint: 1,
-      affix: '&#x2103;',
     },
     {
       name: 'Distance',
       icon: <Speed />,
       value: routesState?.progress * 100,
-      floatPoint: 0,
-      affix: '%',
+      floatPoint: 2,
     },
   ];
 
