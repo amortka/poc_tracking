@@ -21,7 +21,7 @@ export const GridBoxes: React.FC<GridBoxesProps> = React.memo(({ items, dark = f
   return (
     <Grid container className={classes.items}>
       {items.map((item) => (
-        <GridBox key={item.name} {...item} />
+        <GridBox key={item.name} {...item} dark={dark} />
       ))}
     </Grid>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +30,7 @@ export interface GridBoxItem {
   icon: JSX.Element;
   value: string | number;
   floatPoint?: number;
+  affix?: string;
 }
 
 interface GridBoxProps extends GridBoxItem {
@@ -39,8 +40,13 @@ interface GridBoxProps extends GridBoxItem {
 const getItemClassName = (dark: boolean, itemClass: string, darkItemClass: string): string =>
   `${itemClass} ${dark ? darkItemClass : ''}`;
 
-export const GridBox: React.FC<GridBoxProps> = React.memo(({ name, icon, value, floatPoint, dark = false }) => {
+export const GridBox: React.FC<GridBoxProps> = React.memo(({ name, icon, value, floatPoint, dark = false, affix }) => {
   const classes = useStyles();
+
+  const displayValue = useMemo(() => {
+    const displayValue = typeof floatPoint === 'number' ? (+value).toFixed(floatPoint) : value;
+    return affix ? `${displayValue} ${affix}` : displayValue;
+  }, [floatPoint, value, affix]);
 
   return (
     <Grid xs={6} item key={name}>
@@ -50,7 +56,9 @@ export const GridBox: React.FC<GridBoxProps> = React.memo(({ name, icon, value, 
           <Typography variant="caption" className={classes.itemName}>
             {name}
           </Typography>
-          <Typography>{typeof floatPoint === 'number' ? (+value).toFixed(floatPoint) : value}</Typography>
+          <Typography>
+            <span dangerouslySetInnerHTML={{ __html: String(displayValue) }} />
+          </Typography>
         </div>
       </div>
     </Grid>
