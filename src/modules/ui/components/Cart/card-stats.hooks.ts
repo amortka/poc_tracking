@@ -56,7 +56,7 @@ export function useNextStationCounter(): number {
     const idInterval = setInterval(() => {
       setDisplayValue((current) => {
         if (current <= 1 || Number.isNaN(current)) {
-          currentTimeIndex = currentTimeIndex === scenarioStepsTime.length - 0.5 ? 0 : currentTimeIndex + 0.5;
+          currentTimeIndex = currentTimeIndex === scenarioStepsTime.length - 1 ? 0 : currentTimeIndex + 1;
           return scenarioStepsTime[currentTimeIndex];
         } else {
           return --current;
