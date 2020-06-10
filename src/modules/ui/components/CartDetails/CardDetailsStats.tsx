@@ -46,7 +46,7 @@ function useCardDetailsConfig(routeId: string, vehicleState: IVehicleState): Arr
       name: 'Distance',
       icon: <Speed />,
       value: routesState?.progress * 100,
-      floatPoint: 2,
+      floatPoint: 0,
       affix: '%',
     },
   ];

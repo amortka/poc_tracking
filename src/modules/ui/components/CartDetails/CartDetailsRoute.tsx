@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const CartDetailsRoute: React.FC = () => {
+export const CartDetailsRoute: React.FC = React.memo(() => {
   const classes = useStyles();
 
   return (
@@ -18,4 +18,4 @@ export const CartDetailsRoute: React.FC = () => {
       <CanvasRouteManager />
     </section>
   );
-};
+});
