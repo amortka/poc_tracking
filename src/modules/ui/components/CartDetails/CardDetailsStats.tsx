@@ -1,48 +1,62 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
+import { AcUnit, Opacity, Speed, Waves } from '@material-ui/icons';
 
 import { GridBoxes } from '../GridBoxes/GridBoxes';
-import { AcUnit, Opacity, Speed, Waves } from '@material-ui/icons';
+import { GridBoxItem } from '../GridBoxes/GridBox';
+import { IRoute } from '../../../canvas/canvas.model';
+import { IRouteServiceCallback } from '../../../canvas-manager/services/routes-progress.service';
 import { IRouteWithData } from '../../../../app.model';
+import { IVehicleState } from '../../../../store/vehicles/vehicles.model';
+import { RoutesProgressHandlerService } from '../../../canvas-manager/services/routes-progress-handler.service';
 
-const cartDetailsConfig = [
-  {
-    name: 'Ambient Pressure',
-    icon: <Waves />,
-    value: null,
-    floatPoint: 0,
-  },
-  {
-    name: 'Humidity',
-    icon: <Opacity />,
-    value: null,
-    floatPoint: 0,
-  },
-  {
-    name: 'Temperature',
-    icon: <AcUnit />,
-    value: null,
-    floatPoint: 1,
-  },
-  {
-    name: 'Velocity',
-    icon: <Speed />,
-    value: null,
-    floatPoint: 2,
-  },
-];
+function useCardDetailsConfig(routeId: string, vehicleState: IVehicleState): Array<GridBoxItem> {
+  const [routesState, setRoutesState] = useState<IRoute>(null);
+  const { ambientPressure, humidity, temperature } = vehicleState || {};
 
-interface StatsCardsProps {
-  data: IRouteWithData;
+  useEffect(() => {
+    const cta: IRouteServiceCallback = (routeId, data) => setRoutesState(data);
+    const routeService = RoutesProgressHandlerService.getInstance().routesServices.get(routeId);
+    routeService.registerCallback(cta);
+    return routeService.unregisterCallback(cta);
+  }, [routeId]);
+
+  const cartDetailsConfig = [
+    {
+      name: 'Ambient Pressure',
+      icon: <Waves />,
+      value: ambientPressure,
+      floatPoint: 0,
+    },
+    {
+      name: 'Humidity',
+      icon: <Opacity />,
+      value: humidity,
+      floatPoint: 0,
+    },
+    {
+      name: 'Temperature',
+      icon: <AcUnit />,
+      value: temperature,
+      floatPoint: 1,
+    },
+    {
+      name: 'Distance',
+      icon: <Speed />,
+      value: routesState?.progress * 100,
+      floatPoint: 2,
+    },
+  ];
+
+  return cartDetailsConfig;
 }
 
-export const StatsCards: React.FC<StatsCardsProps> = React.memo(({ data }) => {
-  const { ambientPressure, humidity, velocity, temperature } = data?.vehicle || {};
+interface StatsCardsProps {
+  routeData: IRouteWithData;
+  routeId: string;
+}
 
-  const stats = [ambientPressure, humidity, temperature, velocity];
+export const StatsCards: React.FC<StatsCardsProps> = React.memo(({ routeId, routeData }) => {
+  const cartDetailsConfig = useCardDetailsConfig(routeId, routeData?.vehicle);
 
-  const cartDetails = useMemo(
-    () => cartDetailsConfig.map((item, i) => ({ ...item, value: (+stats[i]).toFixed(item.floatPoint) })),
-    [stats]
-  );
-  return <GridBoxes items={cartDetails} dark={true} />;
+  return <GridBoxes items={cartDetailsConfig} dark={true} />;
 });
