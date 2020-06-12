@@ -1,16 +1,16 @@
 import React, { useMemo } from 'react';
 import {
-  makeStyles,
-  DialogProps,
   Dialog,
-  Typography,
+  DialogProps,
   LinearProgress,
-  TableContainer,
+  makeStyles,
   Table,
+  TableBody,
+  TableCell,
+  TableContainer,
   TableHead,
   TableRow,
-  TableCell,
-  TableBody,
+  Typography,
 } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import { OrdersSelectors } from '../../../../store/orders/orders.selectors';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import { CheckCircle, DriveEta } from '@material-ui/icons';
-
 import { useSelector } from 'react-redux';
+
 import { OrdersSelectors } from '../../../../store/orders/orders.selectors';
 import { OrderStatuses } from '../../../../store/orders/orders.model';
 
