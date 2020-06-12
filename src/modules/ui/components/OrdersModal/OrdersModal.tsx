@@ -1,14 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   makeStyles,
   DialogProps,
   Dialog,
-  Box,
-  Paper,
   Typography,
   LinearProgress,
-  createStyles,
-  withStyles,
   TableContainer,
   Table,
   TableHead,
@@ -16,7 +12,7 @@ import {
   TableCell,
   TableBody,
 } from '@material-ui/core';
-import { Close, Autorenew } from '@material-ui/icons';
+import { Close } from '@material-ui/icons';
 import { OrdersSelectors } from '../../../../store/orders/orders.selectors';
 import { useSelector } from 'react-redux';
 import { ObjectsSelectors } from '../../../../store/objects/objects.selectors';
@@ -49,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   closeIcon: {
     marginLeft: 'auto',
+    cursor: 'pointer',
   },
   stationName: {
     lineHeight: 'normal',
@@ -79,6 +76,15 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'rgba(255, 255, 255, 0.05)',
     },
   },
+  resourceIndicator: {
+    height: '4px',
+    width: '100%',
+    backgroundColor: theme.palette.primary.dark,
+
+    '& > div': {
+      height: '4px',
+    },
+  },
 }));
 
 const tableHeaders = ['Id', 'Product', 'Amount', 'Resource status'];
@@ -87,6 +93,22 @@ interface OrdersModalProps extends DialogProps {
   selectedStation: { id: string; name: string };
   handleClose: Function;
 }
+const indicatorColors = {
+  indicatorBackground: '#2c323a',
+  indicatorMaxColor: '#11b572',
+  indicatorMinColor: '#eb2e2f',
+  indicatorMidColor: '#e9a72c',
+};
+
+const getIndicatorColor = (value) => {
+  if (value > 0.7) {
+    return indicatorColors.indicatorMaxColor;
+  } else if (value > 0.3) {
+    return indicatorColors.indicatorMidColor;
+  } else {
+    return indicatorColors.indicatorMinColor;
+  }
+};
 
 export const OrdersModal: React.FC<OrdersModalProps> = React.memo(({ handleClose, selectedStation, ...props }) => {
   const classes = useStyles();
@@ -100,7 +122,13 @@ export const OrdersModal: React.FC<OrdersModalProps> = React.memo(({ handleClose
           <div className={classes.stationSquare} style={{ backgroundColor: station?.color as string }}>
             <Typography variant="body2">{selectedStation?.name}</Typography>
           </div>
-          <LinearProgress color="secondary" variant="determinate" value={station?.resourceIndicator * 100} />
+          <div className={classes.resourceIndicator}>
+            <div
+              style={{
+                width: `${station?.resourceIndicator * 100}%`,
+                backgroundColor: getIndicatorColor(station?.resourceIndicator),
+              }}></div>
+          </div>
         </div>
         <div>
           <Typography variant="subtitle2">Pick-up point</Typography>

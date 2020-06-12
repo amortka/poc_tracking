@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
     boxShadow: '-7px 0 20px 1px #14191F',
     boxSizing: 'border-box',
+    overflow: 'auto',
   },
   doubleArrowIcon: {
     marginLeft: 'auto',
