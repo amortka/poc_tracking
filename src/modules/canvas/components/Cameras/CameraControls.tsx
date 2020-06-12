@@ -2,11 +2,11 @@ import React, { Dispatch, SetStateAction, useContext } from 'react';
 import { useFrame, useThree, useUpdate } from 'react-three-fiber';
 import { Box3, MOUSE, OrthographicCamera } from 'three';
 
-import { OrbitControls } from '../../libs/OrbitControls/OrbitControls';
 import { CameraControlContext } from '../../contexts/CameraContext';
+import { centerViewToBoundaries, useZoomingNav } from './hooks/use-zooming-nav.hook';
+import { OrbitControls } from '../../libs/OrbitControls/OrbitControls';
 import { useDimensionToggle } from './hooks/use-dimension-toggle.hook';
 import { useSetControlToContext } from './hooks/use-set-control-to-context.hook';
-import { centerViewToBoundaries, useZoomingNav } from './hooks/use-zooming-nav.hook';
 
 const maxPolarAngle = Math.PI / 4;
 const enableDamping = true;
