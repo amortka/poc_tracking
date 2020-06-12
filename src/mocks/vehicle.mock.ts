@@ -1,7 +1,8 @@
 import { ApiEvent, IApiVehicleUpdate } from '../app.model';
 import { ObjectResourceMock } from './object-resource.mock';
 
-const progress = [
+export const awaitAfterLoop = 4000;
+export const progress = [
   { delay: 0, sensorId: 'pnxwxnpk', event: ApiEvent.VEHICLE_UPDATE },
   { delay: 1000, sensorId: undefined, event: ApiEvent.VEHICLE_UPDATE },
 
@@ -94,7 +95,7 @@ export class VehicleMock {
         this.objectResourceMock.objects.find((o) => o.objectId === objectId).resourceIndicator = 1;
       }
     }
-    await wait(4000);
+    await wait(awaitAfterLoop);
 
     if (this.stopProcess) return;
     this.startSimulation();

@@ -1,22 +1,18 @@
 import React from 'react';
 import {
-  makeStyles,
-  DialogProps,
   Dialog,
-  Box,
-  Paper,
-  Typography,
+  DialogProps,
   LinearProgress,
-  createStyles,
-  withStyles,
-  TableContainer,
+  makeStyles,
   Table,
+  TableBody,
+  TableCell,
+  TableContainer,
   TableHead,
   TableRow,
-  TableCell,
-  TableBody,
+  Typography,
 } from '@material-ui/core';
-import { Close, Autorenew } from '@material-ui/icons';
+import { Close } from '@material-ui/icons';
 import { OrdersSelectors } from '../../../../store/orders/orders.selectors';
 import { useSelector } from 'react-redux';
 import { ObjectsSelectors } from '../../../../store/objects/objects.selectors';
