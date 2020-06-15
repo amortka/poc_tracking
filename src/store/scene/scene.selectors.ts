@@ -12,6 +12,7 @@ export class SceneSelectors {
   static points = createSelector(SceneSelectors.scene, (scene) => scene.points);
   static objects = createSelector(SceneSelectors.scene, (scene) => scene.objects);
   static sensors = createSelector(SceneSelectors.scene, (scene) => scene.sensors);
+  static areas = createSelector(SceneSelectors.scene, (scene) => scene.areas);
 
   static getPath = (pathId: string) => createSelector(SceneSelectors.paths, (paths) => paths[pathId]);
 

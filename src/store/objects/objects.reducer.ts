@@ -55,7 +55,7 @@ function handleSetObjectResourceIndicator(
 
   // Create object entity if not exist
   objectsWithValue.forEach(({ objectId }) => {
-    newState[objectId] = newState[objectId] || {};
+    newState[objectId] = { ...newState[objectId] } || {};
   });
 
   objectsWithValue.forEach(

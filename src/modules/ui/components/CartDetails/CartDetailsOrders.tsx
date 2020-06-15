@@ -1,8 +1,10 @@
 import React from 'react';
 import { makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import { CheckCircle, DriveEta } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
 
-import { ordersMock } from '../../../../mocks/ui.mock';
+import { OrdersSelectors } from '../../../../store/orders/orders.selectors';
+import { OrderStatuses } from '../../../../store/orders/orders.model';
 
 const tableHeaders = ['Id', 'Product', 'Pick-up point', 'Status'];
 
@@ -37,8 +39,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const CartDetailsOrders: React.FC = React.memo(() => {
+interface CartDetailsOrdersProps {
+  routeId: string;
+}
+
+export const CartDetailsOrders: React.FC<CartDetailsOrdersProps> = React.memo(({ routeId }) => {
   const classes = useStyles();
+  const orders = useSelector(OrdersSelectors.getOrdersForVehicleByRouteId(routeId));
 
   return (
     <TableContainer>
@@ -53,13 +60,13 @@ export const CartDetailsOrders: React.FC = React.memo(() => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {ordersMock.map((order) => (
-            <TableRow key={Math.random()} className={classes.tableBodyRow}>
-              <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>{order.id}</TableCell>
-              <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>{order.product}</TableCell>
-              <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>{order.pickUpPoint}</TableCell>
+          {Object.entries(orders).map(([orderId, order]) => (
+            <TableRow key={orderId} className={classes.tableBodyRow}>
+              <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>{orderId}</TableCell>
+              <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>{order.productName}</TableCell>
+              <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>{order.target.name}</TableCell>
               <TableCell className={`${classes.tableBodyCell} ${classes.tableCell}`}>
-                {order.isDelivered ? (
+                {order.status === OrderStatuses.DELIVERED ? (
                   <CheckCircle className={classes.statusIconDelivered} />
                 ) : (
                   <DriveEta className={classes.statusIcon} />

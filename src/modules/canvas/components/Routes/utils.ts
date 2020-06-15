@@ -20,12 +20,12 @@ const generateAnimationPaths = (
     return { curvedPath: curvedPath, straightPath: curvedPath };
   }
 
-  const minVector = new Vector2();
-  let minLength = minVector.subVectors(points[0], points[1]).length();
-  for (let i = 1; i < points.length - 1; i++) {
-    minLength = Math.min(minLength, minVector.subVectors(points[i], points[i + 1]).length());
-  }
-  radius = radius > minLength * 0.5 ? minLength * 0.5 : radius; // radius can't be greater than a half of a minimal segment
+  // const minVector = new Vector2();
+  // let minLength = minVector.subVectors(points[0], points[1]).length();
+  // for (let i = 1; i < points.length - 1; i++) {
+  //   minLength = Math.min(minLength, minVector.subVectors(points[i], points[i + 1]).length());
+  // }
+  // radius = radius > minLength * 0.5 ? minLength * 0.5 : radius; // radius can't be greater than a half of a minimal segment
 
   const startIndex = 1;
   const endIndex = points.length - 2;
@@ -67,8 +67,8 @@ const generateAnimationPaths = (
   curvedPath.curves.push(endPath);
   straightPath.curves.push(endPath);
 
-  curvedPath.updateArcLengths();
-  straightPath.updateArcLengths();
+  // curvedPath.updateArcLengths();
+  // straightPath.updateArcLengths();
 
   return { curvedPath, straightPath };
 };

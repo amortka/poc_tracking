@@ -62,7 +62,12 @@ export const routesReducer: Reducer<IRoutesState> = (state = initialState, actio
       const newId = shortid.generate();
       return { ...state, [newId]: action.payload };
     }
+    case RoutesAction.CREATE_OR_UPDATE_ROUTE: {
+      return { ...state, [action.payload.vehicleId]: { ...state[action.payload.vehicleId], ...action.payload.data } };
+    }
     case RoutesAction.UPDATE_ROUTE: {
+      console.log(action.payload);
+      if (!state[action.payload.vehicleId]) return state;
       return { ...state, [action.payload.vehicleId]: { ...state[action.payload.vehicleId], ...action.payload.data } };
     }
     case RoutesAction.SELECT_ROUTES: {

@@ -10,7 +10,6 @@ const sensors = [
   { sensorId: 'quqklxup', distance: 0.602 },
   { sensorId: 'zapgjpha', distance: 0.67 },
   { sensorId: 'jpgsbunl', distance: 0.809 },
-  { sensorId: 'aihfuhkc', distance: 0.886 },
   { sensorId: 'pnxwxnpk', distance: 1 },
 ];
 
