@@ -11,7 +11,7 @@ import { VehiclesSelectors } from '../../../store/vehicles/vehicles.selectors';
 autoPlay(true);
 
 // Current route length: 27.22m
-const vehicleAvgSpeed = 5000 / 3600; // 5 km/h -> 5000/3600
+const vehicleAvgSpeed = 2000 / 3600; // 5 km/h -> 5000/3600
 
 export type IRouteServiceCallback = (routeId: string, data: IRoute) => void;
 
