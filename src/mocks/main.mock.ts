@@ -7,7 +7,7 @@ export const selectionMock: ISelection = {
 export const visualizationStateMock: IVisualizationState = {
   vehicles: {
     trqzbojg: {
-      tag: 'Milkrun ABC',
+      tag: 'AGV ABC',
       dimensions: { x: 0.6, y: 0.4, z: 0.25 },
       segments: 1,
       velocity: 1,

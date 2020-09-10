@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, Typography } from '@material-ui/core';
 
-import { ReactComponent as BalluffLogo } from './balluff-logo.svg';
+// import { ReactComponent as BalluffLogo } from './balluff-logo.svg';
 import { ReactComponent as PGSLogo } from './pgssoftware-logo.svg';
 
 const useStyles = makeStyles((theme) => ({
@@ -17,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(3),
     marginRight: theme.spacing(3),
   },
+  logo: {
+    width: '55px',
+    height: '55px',
+  },
 }));
 
 export const Logos: React.FC = React.memo(() => {
@@ -26,7 +30,7 @@ export const Logos: React.FC = React.memo(() => {
     <div className={classes.logosWrapper}>
       <PGSLogo />
       <Typography className={classes.typography}>&</Typography>
-      <BalluffLogo />
+      <img className={classes.logo} src="/wobit-logo-white.png" alt="Wobit" />
     </div>
   );
 });
